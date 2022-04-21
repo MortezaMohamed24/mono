@@ -1,11 +1,10 @@
-import {OID} from "/util/checker";
-import {ARRAY} from "/util/checker";
+import {OID} from "/util/formatter";
+import {ARRAY} from "/util/formatter";
 import {title} from "../fields/formatters";
 import {filter} from "../fields/formatters";
-import {OBJECT} from "/util/checker";
-import CHECKITEM from "/checkitems/entity";
-import {WithError} from "/util/checker";
+import {OBJECT} from "/util/formatter";
 import ChecklistBase from "./base";
+import {formatAsCheckitemRawNested} from "/checkitems/entity";
 
 
 /** 
@@ -18,26 +17,14 @@ export type ChecklistRawNested = Pick<ChecklistBase,
   | "checkitems"
 >
 
-
-export const formatAsChecklistRawNested = OBJECT<ChecklistRawNested>({
+export const formatAsChecklistRawNested = OBJECT({
   id: OID(),
   title: title,
   filter: filter,
-  checkitems: ARRAY([CHECKITEM.rawNested.format]),
+  checkitems: ARRAY([formatAsCheckitemRawNested]),
+}, {
+  name: "ChecklistRawNested",
 });
 
 
-export const formatAsChecklistRawNestedStrictly = WithError(OBJECT<ChecklistRawNested>({
-  id: OID(),
-  title: title,
-  filter: filter,
-  checkitems: ARRAY([CHECKITEM.rawNested.formatStrictly]),
-}), () => {
-  new TypeError("invalid raw nested checklist")
-});
-
-
-export default Object.freeze({
-  format: formatAsChecklistRawNested,
-  formatStrictly: formatAsChecklistRawNestedStrictly,
-});
+export default formatAsChecklistRawNested;

@@ -1,14 +1,13 @@
-import list from "/lists/entity";
-import label from "/labels/entity";
-import {OID} from "/util/checker";
+import {OID} from "/util/formatter";
 import {title} from "/boards/fields";
 import {theme} from "/boards/fields";
-import {ARRAY} from "/util/checker";
-import {OBJECT} from "/util/checker";
+import {ARRAY} from "/util/formatter";
+import {OBJECT} from "/util/formatter";
 import BoardBase from "./base";
-import {WithError} from "/util/checker";
 import {isStarred} from "/boards/fields";
 import {dateLastView} from "/boards/fields";
+import {formatAsListRawNested} from "/lists/entity";
+import {formatAsLabelRawNested} from "/labels/entity";
 
 
 export type BoardRawNested = Pick<BoardBase, 
@@ -21,35 +20,17 @@ export type BoardRawNested = Pick<BoardBase,
   | "dateLastView"
 >
 
-
-export const formatAsBoardRawNested = OBJECT<BoardRawNested>({
+export const formatAsBoardRawNested = OBJECT({
   id: OID(),
   title: title,
   theme: theme,
-  lists: ARRAY([list.rawNested.format]),
-  labels: ARRAY([label.rawNested.format]),
+  lists: ARRAY([formatAsListRawNested]),
+  labels: ARRAY([formatAsLabelRawNested]),
   isStarred: isStarred,
   dateLastView: dateLastView,
+}, {
+  name: "BoardRawNested"
 });
 
 
-export const formatAsBoardRawNestedStrictly = WithError(
-  OBJECT<BoardRawNested>({
-    id: OID(),
-    title: title,
-    theme: theme,
-    lists: ARRAY([list.rawNested.formatStrictly]),
-    labels: ARRAY([label.rawNested.formatStrictly]),
-    isStarred: isStarred,
-    dateLastView: dateLastView,
-  }), 
-  () => {
-    new TypeError("invalid raw nested board")
-  },
-);
-
-
-export default Object.freeze({
-  format: formatAsBoardRawNested, 
-  formatStrictly: formatAsBoardRawNestedStrictly,
-});
+export default formatAsBoardRawNested;

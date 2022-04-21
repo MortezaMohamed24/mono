@@ -1,15 +1,14 @@
-export * from "./native";
-export * from "./rawNested";
-export * from "./rawUnnested";
+export {BoardNative} from "./native";
+export {BoardRawNested} from "./rawNested";
+export {BoardRawUnnested} from "./rawUnnested";
 
+import {formatAsBoardRawNested} from "./rawNested";
+import {formatAsBoardRawUnnested} from "./rawUnnested";
 
-import native from "./native";
-import rawNested from "./rawNested";
-import rawUnnested from "./rawUnnested";
-
+export {formatAsBoardRawNested};
+export {formatAsBoardRawUnnested};
 
 export default Object.freeze({
-  native,
-  rawNested,
-  rawUnnested,
-})
+  formatAsBoardRawNested,
+  formatAsBoardRawUnnested,
+});

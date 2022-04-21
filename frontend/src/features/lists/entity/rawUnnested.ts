@@ -1,12 +1,11 @@
-import card from "/cards/entity";
-import {OID} from "/util/checker";
-import {ARRAY} from "/util/checker";
+import {OID} from "/util/formatter";
+import {ARRAY} from "/util/formatter";
 import {title} from "../fields";
-import {OBJECT} from "/util/checker";
+import {OBJECT} from "/util/formatter";
 import {ListBase} from "./base";
-import {WithError} from "/util/checker";
 import {isWatched} from "../fields";
 import {sortMethod} from "../fields";
+import {formatAsCardRawNested} from "/cards/entity";
 
 
 /**
@@ -25,19 +24,11 @@ export type ListRawUnnested = Pick<ListBase,
 export const formatAsListRawUnnested = OBJECT<ListRawUnnested>({
   id: OID(),
   title: title,
-  cards: ARRAY([card.rawNested.format]),
+  cards: ARRAY([formatAsCardRawNested]),
   idBoard: OID(),
   isWatched: isWatched,
   sortMethod: sortMethod,
 });
 
 
-export const formatAsListRawUnnestedStrictly = WithError(formatAsListRawUnnested, () => (
-  new TypeError("invalid raw unnested list")
-));
-
-
-export default Object.freeze({
-  format: formatAsListRawUnnested,
-  formatStrictly: formatAsListRawUnnestedStrictly,
-});
+export default formatAsListRawUnnested;

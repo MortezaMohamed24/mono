@@ -1,12 +1,10 @@
 import URLS from "/labels/endpoints";
-import {Or} from "/util/checker";
 import {Oid} from "/util/idUtil";
-import {OID} from "/util/checker";
+import {OID} from "/util/formatter";
 import FIELDS from "/labels/fields";
-import {OBJECT} from "/util/checker";
-import {WithError} from "/util/checker";
-import {UNDEFINED} from "/util/checker";
-import ApiMutator from "/api/mutator";
+import {OBJECT} from "/util/formatter";
+import {UNDEFINED} from "/util/formatter";
+import ApiMutator from "/core/api/mutator";
 import {LabelBase} from "/labels/entity";
 
 
@@ -54,35 +52,29 @@ export const prepareLabelCreateRequestMeta = (meta: LabelCreateRequestMetaUnprep
 
 // ---------- REQUEST META FORMATTERS
 
-export const formatAsLabelEditRequestMeta = OBJECT<LabelEditRequestMeta>({
-  name: Or([FIELDS.name, UNDEFINED()]), 
-  color: Or([FIELDS.color, UNDEFINED()]),
+export const formatAsLabelEditRequestMeta = OBJECT({
+  name: FIELDS.name.copy({optional: true}), 
+  color: FIELDS.color.copy({optional: true}),
   idLabel: OID(), 
+}, {
+  name: "LabelEditRequestMeta",
 });
 
-export const formatAsLabelCreateRequestMeta = OBJECT<LabelCreateRequestMeta>({
+export const formatAsLabelCreateRequestMeta = OBJECT({
   id: OID(),
   name: FIELDS.name, 
   color: FIELDS.color,
   idBoard: OID(), 
-  
+}, {
+  name: "LabelCreateRequestMeta",
 });
 
-export const formatAsLabelDestroyRequestMeta = OBJECT<LabelDestroyRequestMeta>({
+export const formatAsLabelDestroyRequestMeta = OBJECT({
   idLabel: OID(),
+}, {
+  name: "LabelDestroyRequestMeta",
 });
 
-export const formatAsLabelEditRequestMetaStrictly = WithError(formatAsLabelEditRequestMeta, () => (
-  new TypeError("invalid label edit request meta")
-));
-
-export const formatAsLabelCreateRequestMetaStrictly = WithError(formatAsLabelCreateRequestMeta, () => (
-  new TypeError("invalid label create request meta")
-));
-
-export const formatAsLabelDestroyRequestMetaStrictly = WithError(formatAsLabelDestroyRequestMeta, () => (
-  new TypeError("invalid label destroy request meta")
-));
 
 // ---------- REQUEST CREATORS
 
@@ -349,9 +341,6 @@ export default Object.freeze({
   formatAsLabelEditRequestMeta,
   formatAsLabelCreateRequestMeta,
   formatAsLabelDestroyRequestMeta,
-  formatAsLabelEditRequestMetaStrictly,
-  formatAsLabelCreateRequestMetaStrictly,
-  formatAsLabelDestroyRequestMetaStrictly,
   LabelEditRequest,
   LabelCreateRequest,
   LabelDestroyRequest,

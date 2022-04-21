@@ -1,8 +1,9 @@
-import CardBase from "../../entity/base";
-import {BOOLEAN} from "/util/checker";
+import {BOOLEAN} from "/util/formatter";
 
 
-const isComplete = BOOLEAN<CardBase["isComplete"]>({});
+const isComplete = BOOLEAN({
+  name: "Card/isComplete",
+});
 
 
 export default isComplete;

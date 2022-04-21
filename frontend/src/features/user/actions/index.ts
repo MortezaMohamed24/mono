@@ -1,6 +1,7 @@
 import URLS from "/user/endpoints";
-import {NULL} from "/util/checker";
-import {OBJECT} from "/util/checker";
+import {OR} from "/util/formatter";
+import {NULL} from "/util/formatter";
+import {OBJECT} from "/util/formatter";
 import {UserRaw} from "../entity";
 import {password} from "/user/fields";
 import ApiQuerier from "/core/api/querier";
@@ -9,7 +10,7 @@ import {initials} from "/user/fields";
 import {username} from "/user/fields";
 import {lastname} from "/user/fields";
 import {firstname} from "/user/fields";
-import {WithError} from "/util/checker";
+import {UNDEFINED} from "/util/formatter";
 import {formatAsUserRaw} from "../entity";
 
 
@@ -47,40 +48,24 @@ export type UserDestroyRequestMeta = undefined
 
 // ---------- REQUEST META FORMATTERS
 
-export const formatAsUserLoadRequestMeta = NULL();
-
-export const formatAsUserEditRequestMeta = OBJECT<UserEditRequestMeta>({
-  username: username.optional(undefined),
-  passwrod: password.optional(undefined),
-  initials: initials.optional(undefined),
-  lastname: lastname.optional(undefined),
-  fistname: firstname.optional(undefined),
+export const formatAsUserEditRequestMeta = OBJECT({
+  username: username.copy({optional: true}),
+  passwrod: password.copy({optional: true}),
+  initials: initials.copy({optional: true}),
+  lastname: lastname.copy({optional: true}),
+  fistname: firstname.copy({optional: true}),
+}, {
+  name: "UserEditRequestMeta",
 });
 
-export const formatAsUserCreateRequestMeta = OBJECT<UserCreateRequestMeta>({
+export const formatAsUserCreateRequestMeta = OBJECT({
   username: username, 
   password: password,
   lastname: lastname, 
   firstname: firstname, 
+}, {
+  name: "UserCreateRequestMeta",
 });
-
-export const formatAsUserDestroyRequestMeta = NULL();
-
-export const formatAsUserLoadRequestMetaStrictly = WithError(formatAsUserLoadRequestMeta, () => (
-  new TypeError("invalid user load request")
-));
-
-export const formatAsUserEditRequestMetaStrictly = WithError(formatAsUserEditRequestMeta, () => (
-  new TypeError("invalid user edit request meta")
-));
-
-export const formatAsUserCreateRequestMetaStrictly = WithError(formatAsUserCreateRequestMeta, () => (
-  new TypeError("invalid user create request meta")
-));
-
-export const formatAsUserDestroyRequestMetaStrictly = WithError(formatAsUserDestroyRequestMeta, () => (
-  new TypeError("invalid user destroy request meta")
-));
 
 
 // ---------- REQUEST CREATORS
@@ -127,10 +112,6 @@ export type UserDestroyResponseBody = undefined;
 // ---------- RESPONSE BODY FORMATTERS
 
 export const formatAsUserLoadResponseBody = formatAsUserRaw;
-
-export const formatAsUserLoadResponseBodyStrictly = WithError(formatAsUserLoadResponseBody, () => (
-  new TypeError("invalid user load response body")
-));
 
 
 // ---------- ACTION TYPES
@@ -390,7 +371,7 @@ export const load = ApiQuerier<
   UserLoadRejectedAction,
   UserLoadFulfilledAction
 >({
-  format: formatAsUserLoadResponseBodyStrictly,
+  format: formatAsUserLoadResponseBody.copy({strict: true}),
   request: UserLoadRequest,
   pending: UserLoadPendingAction,
   rejected: UserLoadRejectedAction,
@@ -427,20 +408,13 @@ export const destroy = ApiMutator<
 
 
 export default Object.freeze({
-  formatAsUserLoadRequestMeta,
   formatAsUserEditRequestMeta,
   formatAsUserCreateRequestMeta,
-  formatAsUserDestroyRequestMeta,
-  formatAsUserLoadRequestMetaStrictly,
-  formatAsUserEditRequestMetaStrictly,
-  formatAsUserCreateRequestMetaStrictly,
-  formatAsUserDestroyRequestMetaStrictly,
   UserLoadRequest,
   UserEditRequest,
   UserCreateRequest,
   UserDestroyRequest,
   formatAsUserLoadResponseBody,
-  formatAsUserLoadResponseBodyStrictly,
   LOAD_PENDING,
   LOAD_REJECTED,
   LOAD_FULFILLED,

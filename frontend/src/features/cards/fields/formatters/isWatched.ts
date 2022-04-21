@@ -1,8 +1,9 @@
-import CardBase from "../../entity/base";
-import {BOOLEAN} from "/util/checker";
+import {BOOLEAN} from "/util/formatter";
 
 
-const isWatched = BOOLEAN<CardBase["isWatched"]>({});
+const isWatched = BOOLEAN({
+  name: "Card/isWatched",
+});
 
 
 export default isWatched;

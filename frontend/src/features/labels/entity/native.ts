@@ -18,21 +18,4 @@ export type LabelNative = Pick<LabelBase,
 >
 
 
-export const formatAsLablNative = OBJECT<LabelNative>({
-  id: OID(),
-  name: name,
-  color: color,
-  idUser: OID(),
-  idBoard: OID(),
-});
-
-
-export const formatAsLablNativeStrictly = WithError(formatAsLablNative, () => (
-  new TypeError("invalid label native")
-));
-
-
-export default Object.freeze({
-  format: formatAsLablNative,
-  formatStrictly: formatAsLablNativeStrictly,
-});
+export default LabelNative;

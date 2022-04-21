@@ -1,11 +1,11 @@
-import {Or} from "/util/checker";
-import {NULL} from "/util/checker";
-import {STRING} from "/util/checker";
+import {OR} from "/util/formatter";
+import {NULL} from "/util/formatter";
+import {STRING} from "/util/formatter";
 import {MAX_NAME_LENGTH} from "../constants";
 import {MIN_NAME_LENGTH} from "../constants";
 
 
-const name = Or([
+const name = OR([
   NULL(),
   STRING({
     min: MIN_NAME_LENGTH,
@@ -15,7 +15,9 @@ const name = Or([
     escape: "html",
     compact: true,
   }),
-]);
+], {
+  name: "Label/name"
+});
 
 
 export default name;

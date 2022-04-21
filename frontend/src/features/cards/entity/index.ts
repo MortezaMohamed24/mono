@@ -1,16 +1,15 @@
-export * from "./base";
-export * from "./native";
-export * from "./rawNested";
-export * from "./rawUnnested";
+export {CardBase} from "./base";
+export {CardNative} from "./native";
+export {CardRawNested} from "./rawNested";
+export {CardRawUnnested} from "./rawUnnested";
 
+import {formatAsCardRawNested} from "./rawNested";
+import {formatAsCardRawUnnested} from "./rawUnnested";
 
-import native from "./native";
-import rawNested from "./rawNested";
-import rawUnnested from "./rawUnnested";
-
+export {formatAsCardRawNested};
+export {formatAsCardRawUnnested};
 
 export default Object.freeze({
-  native,
-  rawNested,
-  rawUnnested,
-})
+  formatAsCardRawNested,
+  formatAsCardRawUnnested,
+});

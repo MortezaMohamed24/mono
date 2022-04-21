@@ -1,20 +1,20 @@
-import {Or} from "/util/checker";
 import URLS from "../endpoints";
 import list from "/lists/entity";
-import card from "../../cards/entity";
+import card, { formatAsCardRawUnnested } from "../../cards/entity";
 import label from "/labels/entity";
 import {Oid} from "/util/idUtil";
+import {OID} from "/util/formatter";
 import FIELDS from "/lists/fields";
-import {OID} from "/util/checker";
-import {OBJECT} from "/util/checker";
-import {NUMBER} from "/util/checker";
-import {UNDEFINED} from "/util/checker";
+import {ARRAY} from "/util/formatter";
+import {OBJECT} from "/util/formatter";
+import {NUMBER} from "/util/formatter";
 import {ListBase} from "/lists/entity";
-import ApiMutator from "/api/mutator";
-import {WithError} from "/util/checker";
+import ApiMutator from "/core/api/mutator";
 import {CardRawUnnested} from "/cards/entity";
 import {ListRawUnnested} from "/lists/entity";
 import {LabelRawUnnested} from "/labels/entity";
+import {formatAsListRawUnnested} from "/lists/entity";
+import {formatAsLabelRawUnnested} from "/labels/entity";
 
 
 // ---------- PREPARED REQUEST METAS
@@ -96,78 +96,62 @@ export const prepareListCreateRequestMeta = (meta: ListCreateRequestMetaUnprepar
 
 // ---------- REQUEST META FORMATTERS
 
-export const formatAsListEditRequestMeta = OBJECT<ListEditRequestMeta>({
-  title: Or([FIELDS.title, UNDEFINED()]),
+export const formatAsListEditRequestMeta = OBJECT({
+  title: FIELDS.title.copy({optional: true}),
   idList: OID(),
-  isWatched: Or([FIELDS.isWatched, UNDEFINED()]),
+  isWatched: FIELDS.isWatched.copy({optional: true}),
+}, {
+  name: "ListEditRequestMeta"
 });
 
-export const formatAsListCopyRequestMeta = OBJECT<ListCopyRequestMeta>({
+export const formatAsListCopyRequestMeta = OBJECT({
   title: FIELDS.title,
   idList: OID(), 
   idBoard: OID(), 
+}, {
+  name: "ListCopyRequestMeta"
 });
 
-export const formatAsListMoveRequestMeta = OBJECT<ListMoveRequestMeta>({
-  index: NUMBER({min: 0, nonNaN: true}),
+export const formatAsListMoveRequestMeta = OBJECT({
+  index: NUMBER({min: 0, name: "index"}),
   idList: OID(), 
   idBoard: OID(), 
+}, {
+  name: "ListMoveRequestMeta"
 });
 
-export const formatAsListSortRequestMeta = OBJECT<ListSortRequestMeta>({
+export const formatAsListSortRequestMeta = OBJECT({
   idList: OID(), 
   method: FIELDS.sortMethod,
+}, {
+  name: "ListSortRequestMeta"
 });
 
-export const formatAsListCreateRequestMeta = OBJECT<ListCreateRequestMeta>({
+export const formatAsListCreateRequestMeta = OBJECT({
   title: FIELDS.title,
   idBoard: OID(), 
+}, {
+  name: "ListCreateRequestMeta"
 });
 
-export const formatAsListDestroyRequestMeta = OBJECT<ListDestroyRequestMeta>({
+export const formatAsListDestroyRequestMeta = OBJECT({
   idList: OID(),
+}, {
+  name: "ListDestroyRequestMeta"
 });
 
-export const formatAsListMoveAllOwnCardsRequestMeta = OBJECT<ListMoveAllOwnCardsRequestMeta>({
+export const formatAsListMoveAllOwnCardsRequestMeta = OBJECT({
   idListA: OID(), 
   idListB: OID(),
+}, {
+  name: "ListMoveAllOwnCardsRequestMeta"
 });
 
-export const formatAsListDestroyAllOwnCardsRequestMeta = OBJECT<ListDestroyAllOwnCardsRequestMeta>({
+export const formatAsListDestroyAllOwnCardsRequestMeta = OBJECT({
   idList: OID(),
+}, {
+  name: "ListDestroyAllOwnCardsRequestMeta"
 });
-
-export const formatAsListEditRequestMetaStrictly = WithError(formatAsListEditRequestMeta, () => (
-  new TypeError("invalid list edit request meta")
-));
-
-export const formatAsListCopyRequestMetaStrictly = WithError(formatAsListCopyRequestMeta, () => (
-  new TypeError("invalid list copy request meta")
-));
-
-export const formatAsListMoveRequestMetaStrictly = WithError(formatAsListMoveRequestMeta, () => (
-  new TypeError("invalid list move request meta")
-));
-
-export const formatAsListSortRequestMetaStrictly = WithError(formatAsListSortRequestMeta, () => (
-  new TypeError("invalid list sort request meta")
-));
-
-export const formatAsListCreateRequestMetaStrictly = WithError(formatAsListCreateRequestMeta, () => (
-  new TypeError("invalid list create request meta")
-));
-
-export const formatAsListDestroyRequestMetaStrictly = WithError(formatAsListDestroyRequestMeta, () => (
-  new TypeError("invalid list destroy request meta")
-));
-
-export const formatAsListMoveAllOwnCardsRequestMetaStrictly = WithError(formatAsListMoveAllOwnCardsRequestMeta, () => (
-  new TypeError("invalid list move-all-own-cards request meta")
-));
-
-export const formatAsListDestroyAllOwnCardsRequestMetaStrictly = WithError(formatAsListDestroyAllOwnCardsRequestMeta, () => (
-  new TypeError("invalid list destroy-all-own-cards request meta")
-));
 
 
 // ---------- REQUEST CREATORS
@@ -251,32 +235,26 @@ export type ListDestroyAllOwnCardsResponseBody = undefined
 
 // ---------- RESPONSE BODY FORMATERS
 
-export const formatListCopyResponseBody = OBJECT<ListCopyResponseBody>({
-  list: list.rawUnnested.format,
-  labels: label.rawUnnested.format,
+export const formatListCopyResponseBody = OBJECT({
+  list: formatAsListRawUnnested,
+  labels: ARRAY([formatAsLabelRawUnnested]),
+}, {
+  name: "ListCopyResponseBody"
 });
 
-export const formatListMoveResponseBody = OBJECT<ListMoveResponseBody>({
-  list: list.rawUnnested.format,
-  labels: label.rawUnnested.format,
+export const formatListMoveResponseBody = OBJECT({
+  list: formatAsListRawUnnested,
+  labels: ARRAY([formatAsLabelRawUnnested]),
+}, {
+  name: "ListMoveResponseBody"
 });
 
-export const formatListMoveAllOwnCardsResponseBody = OBJECT<ListMoveAllOwnCardsResponseBody>({
-  cards: card.rawUnnested.format,
-  labels: label.rawUnnested.format,
+export const formatListMoveAllOwnCardsResponseBody = OBJECT({
+  cards: ARRAY([formatAsCardRawUnnested]),
+  labels: ARRAY([formatAsLabelRawUnnested]),
+}, {
+  name: "ListMoveAllOwnCardsResponseBody"
 });
-
-export const formatListCopyResponseBodyStrictly = WithError(formatListCopyResponseBody, () => (
-  new TypeError("invalid list copy response body")
-));
-
-export const formatListMoveResponseBodyStrictly = WithError(formatListMoveResponseBody, () => (
-  new TypeError("invalid list move response body")
-));
-
-export const formatListMoveAllOwnCardsResponseBodyStrictly = WithError(formatListMoveAllOwnCardsResponseBody, () => (
-  new TypeError("invalid list move all own cards response body")
-));
 
 
 // ---------- ACTION TYPES
@@ -753,7 +731,7 @@ export const move = ApiMutator<
   ListMoveRejectedAction,
   ListMoveFulfilledAction
 >({
-  format: formatListMoveResponseBodyStrictly,
+  format: formatListMoveResponseBody.copy({strict: true}),
   request: ListMoveRequest,
   pending: ListMovePendingAction, 
   rejected: ListMoveRejectedAction, 
@@ -768,7 +746,7 @@ export const copy = ApiMutator<
   ListCopyRejectedAction,
   ListCopyFulfilledAction
 >({
-  format: formatListCopyResponseBodyStrictly,
+  format: formatListCopyResponseBody.copy({strict: true}),
   request: ListCopyRequest,
   pending: ListCopyPendingAction, 
   rejected: ListCopyRejectedAction, 
@@ -825,7 +803,7 @@ export const moveAllOwnCards = ApiMutator<
   ListMoveAllOwnCardsRejectedAction,
   ListMoveAllOwnCardsFulfilledAction
 >({
-  format: formatListMoveAllOwnCardsResponseBodyStrictly,
+  format: formatListMoveAllOwnCardsResponseBody.copy({strict: true}),
   request: ListMoveAllOwnCardsRequest,
   pending: ListMoveAllOwnCardsPendingAction, 
   rejected: ListMoveAllOwnCardsRejectedAction, 
@@ -859,9 +837,6 @@ export default Object.freeze({
   formatListCopyResponseBody,
   formatListMoveResponseBody,
   formatListMoveAllOwnCardsResponseBody,
-  formatListCopyResponseBodyStrictly,
-  formatListMoveResponseBodyStrictly,
-  formatListMoveAllOwnCardsResponseBodyStrictly,
   MOVE_PENDING,
   MOVE_REJECTED,
   MOVE_FULFILLED,

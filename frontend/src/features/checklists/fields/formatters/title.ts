@@ -1,13 +1,13 @@
-import {STRING} from "/util/checker";
-import {ChecklistBase} from "../../entity";
+import {STRING} from "/util/formatter";
 import {MIN_TITLE_LENGTH} from "../constants";
 import {MAX_TITLE_LENGTH} from "../constants";
 
 
-const title = STRING<ChecklistBase["title"]>({
+const title = STRING({
   min: MIN_TITLE_LENGTH,
   max: MAX_TITLE_LENGTH,
   trim: "both",
+  name: "Checklist/title",
   escape: "html",
   compact: true,
 });
