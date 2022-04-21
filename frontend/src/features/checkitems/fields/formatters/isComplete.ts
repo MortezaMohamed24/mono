@@ -2,7 +2,7 @@ import {BOOLEAN} from "/util/formatter";
 
 
 const isComplete = BOOLEAN({
-  name: "CheckitemEntity/IsComplete",
+  name: "CheckitemIsComplete",
 });
 
 

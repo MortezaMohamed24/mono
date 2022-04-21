@@ -10,7 +10,7 @@ import {useRef} from "react";
 import {Toggler} from "/components/popupify";
 import {useState} from "react";
 import {useEffect} from "react";
-import {useSelector} from "/core/store";
+import {useSelector} from "../../../core/store";
 import {useDispatch} from "react-redux";
 import {TextareaMeta} from "/components/textarea/statefull";
 import {MAX_TITLE_LENGTH} from "/cards/fields/constants";

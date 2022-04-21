@@ -18,10 +18,10 @@ export type CheckitemRawUnnested = Pick<CheckitemBase,
 export const formatAsCheckitemRawUnnested = OBJECT({
   name: "CheckitemRawUnnestedEntity",
   content: {
-    id: OID({name: "CheckitemRawUnnestedEntity/Id"}),
-    content: content.copy({name: "CheckitemRawUnnestedEntity/content"}),
-    idCheckist: OID({name: "CheckitemRawUnnestedEntity/IdChecklist"}),
-    isComplete: isComplete.copy({name: "CheckitemRawUnnestedEntity/IsComplete"}),  
+    id: OID(),
+    content: content,
+    idCheckist: OID(),
+    isComplete: isComplete,  
   }
 });
 

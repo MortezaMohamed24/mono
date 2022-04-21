@@ -1,11 +1,12 @@
 import URLS from "../endpoints";
 import {Oid} from "/util/idUtil";
 import {OID} from "/util/formatter";
-import FIELDS from "/checkitems/fields";
 import {OBJECT} from "/util/formatter";
 import {NUMBER} from "/util/formatter";
 import {BOOLEAN} from "/util/formatter";
+import {content} from "/checkitems/fields";
 import ApiMutator from "/core/api/mutator";
+import {isComplete} from "/checkitems/fields";
 
 
 // ---------- UNPREPARED REQUEST METAS
@@ -60,45 +61,35 @@ export const prepareCheckitemCreateRequestMeta = (meta: CheckitemCreateRequestMe
 export const formatAsCheckitemEditRequestMeta = OBJECT({
   name: "CheckitemEditRequestMeta",
   content: {
-    content: FIELDS.content.copy({name: "CheckitemEditRequestMeta/Content"}),
-    isComplete: BOOLEAN({name: "CheckitemEditRequestMeta/IsComplete", optional: true}),
-    idCheckitem: OID({name: "CheckitemEditRequestMeta/IdCheckitem"}),
+    content: content.copy({optional: true}),
+    isComplete: BOOLEAN({optional: true}),
+    idCheckitem: OID(),
   },
 });
 
 export const formatAsCheckitemMoveRequestMeta = OBJECT({
   name: "CheckitemMoveRequestMeta",
   content: {
-    index: NUMBER({min: 0, name: "CheckitemMoveRequestMeta/Index"}),
-    idCheckitem: OID({name: "CheckitemMoveRequestMeta"}),
+    index: NUMBER({min: 0, name: "index"}),
+    idCheckitem: OID(),
   }
 });
 
-export const formatAsCheckitemCreateRequestMeta = OBJECT<CheckitemCreateRequestMeta>({
-  id: OID(),
-  content: FIELDS.content,
-  idChecklist: OID(),
+export const formatAsCheckitemCreateRequestMeta = OBJECT({
+  name: "CheckitemCreateRequestMeta",
+  content: {
+    id: OID(),
+    content: content,
+    idChecklist: OID(),
+  },
 });
 
-export const formatAsCheckitemDestroyRequestMeta = OBJECT<CheckitemDestroyRequestMeta>({
-  idCheckitem: OID(),
+export const formatAsCheckitemDestroyRequestMeta = OBJECT({
+  name: "CheckitemDestroyRequestMeta",
+  content: {
+    idCheckitem: OID(),
+  },
 });
-
-export const formatAsCheckitemEditRequestMetaStrictly = WithError(formatAsCheckitemEditRequestMeta, () => (
-  new TypeError("invalid checkitem edit request meta")
-));
-
-export const formatAsCheckitemMoveRequestMetaStrictly = WithError(formatAsCheckitemMoveRequestMeta, () => (
-  new TypeError("invalid checkitem move request meta")
-));
-
-export const formatAsCheckitemCreateRequestMetaStrictly = WithError(formatAsCheckitemCreateRequestMeta, () => (
-  new TypeError("invalid checkitem create request meta")
-));
-
-export const formatAsCheckitemDestroyRequestMetaStrictly = WithError(formatAsCheckitemDestroyRequestMeta, () => (
-  new TypeError("invalid checkitem destroy request meta")
-));
 
 
 // ---------- REQUEST CREATORS
@@ -442,10 +433,6 @@ export default Object.freeze({
   formatAsCheckitemMoveRequestMeta,
   formatAsCheckitemCreateRequestMeta,
   formatAsCheckitemDestroyRequestMeta,
-  formatAsCheckitemEditRequestMetaStrictly,
-  formatAsCheckitemMoveRequestMetaStrictly,
-  formatAsCheckitemCreateRequestMetaStrictly,
-  formatAsCheckitemDestroyRequestMetaStrictly,
   CheckitemMoveRequest,
   CheckitemEditRequest,
   CheckitemCreateRequest,

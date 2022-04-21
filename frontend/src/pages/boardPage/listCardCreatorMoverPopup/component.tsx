@@ -13,8 +13,8 @@ import {Toggler} from "/components/popupify";
 import {useEffect} from "react";
 import {ListOption} from "./selectorOptions";
 import {IndexOption} from "./selectorOptions";
-import {useDispatch} from "/core/store";
-import {useSelector} from "/core/store";
+import {useDispatch} from "../../../core/store";
+import {useSelector} from "../../../core/store";
 import {useSelectorState} from "/components/selector/stateless";
 
 

@@ -3,7 +3,7 @@ import bd from "/boards";
 import React from "react";
 import SideMenu from "../boardSideMenu";
 import BoardList from "../list";
-import {useSelector} from "/core/store";
+import {useSelector} from "../../../core/store";
 import boardPanelify from "../boardPagePanel";
 import BoardListCreator from "../listCreator";
 

@@ -1,6 +1,6 @@
-import {Dispatch} from "/core/store";
-import {GetState} from "/core/store";
-import {AnyAction} from "/core/store";
+import {Dispatch} from "../../store";
+import {GetState} from "../../store";
+import {AnyAction} from "../../store";
 
 
 type Thunk<

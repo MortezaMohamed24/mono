@@ -9,7 +9,7 @@ const content = STRING({
   max: MAX_CONTENT_LENGTH,
   type: "" as CheckitemBase["content"],
   trim: "both",
-  name: "CheckitemEntity/content",
+  name: "CheckitemContent",
   escape: "html",
   compact: true,
 });

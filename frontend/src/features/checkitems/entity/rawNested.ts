@@ -18,9 +18,9 @@ export type CheckitemRawNested = Pick<CheckitemBase,
 export const formatAsCheckitemRawNested = OBJECT({
   name: "CheckitemRawNestedEntity",
   content: {    
-    id: OID({name: "CheckitemRawNestedEntity/Id"}),
-    content: content.copy({name: "CheckitemRawNestedEntity/content"}),
-    isComplete: isComplete.copy({name: "CheckitemRawNestedEntity/IsComplete"}),
+    id: OID(),
+    content: content,
+    isComplete: isComplete,
   },
 });
 

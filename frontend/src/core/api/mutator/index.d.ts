@@ -1,7 +1,7 @@
 import fetch from "../fetch";
-import {Dispatch} from "/core/store";
-import {GetState} from "/core/store";
-import {AnyAction} from "/core/store";
+import {Dispatch} from "../../store";
+import {GetState} from "../../store";
+import {AnyAction} from "../../store";
 import {ApplyPatches} from "/features/global";
 import generateUndoerPatches from "/util/redux/generateUndoerPatches";
 
