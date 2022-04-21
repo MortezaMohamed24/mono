@@ -1,0 +1,69 @@
+@use "/style/form";
+@use "/style/icon";
+@use "/style/button";
+@use "/labels/colors" as label;
+
+
+.body {
+  > ul,
+  > ul > li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  > ul {
+    margin-top: var(--grid-gutter-xs);
+  }
+
+  > ul > li {
+    display: grid;
+    grid-template-areas: "label edit";
+    grid-template-columns: 1fr min-content;
+    align-items: stretch;
+    column-gap: var(--grid-gutter-xs);
+    
+    &:not(:last-child) {
+      margin-bottom: var(--grid-gutter-xxs);
+    }
+  }
+}
+
+.label {
+  height: auto;
+  color: white;
+  padding: var(--jumbotron-xs);
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+
+  &:active {
+    transform: scale(.95);
+  }
+  
+  position: relative;
+  
+  &.selected::after {
+    position: absolute;
+    inset: 0 var(--jumbotron-sm) 0 auto;
+    width: min-content;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    @include icon.font();
+    content: icon.fa-check();
+    color: white;
+  }
+
+  @include label.colors();
+}
+
+.edit {
+  @include icon.create($code-point: icon.fa-pen-fancy());
+  @include icon.shape("rect");
+  @include icon.size("md", $filled: true);
+  @include icon.apply-theme(icon.$gray, (normal-filled: false));
+}

@@ -1,0 +1,55 @@
+@use "sass:color";
+@use "/style/form";
+@use "/style/media";
+@use "/style/colors";
+
+
+.field {
+  display: grid;
+  grid-template-areas: "title" "input" "status" ;
+
+  > :nth-child(1) { grid-area: title; }
+  > :nth-child(2) { grid-area: input; }
+  > :nth-child(3) { grid-area: status; }
+
+  > :nth-child(2) {
+    @include form.normal();
+
+    &:focus {
+      @include form.active();
+    }
+  }
+
+  > :nth-child(3) { 
+    color: colors.get("sky");
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  
+  &.invalid {
+    > :nth-child(2) {
+      &:focus {
+        @include form.invalid();
+      }
+    }
+
+    > :nth-child(3) {
+      display: block;
+      color: colors.get("red");
+    }
+  }
+
+  @include media.lg {
+    grid-template-columns: 7rem 1fr;
+    grid-template-areas:
+    "title input"
+    "...   status";
+
+    > :nth-child(1) {
+      justify-self: start;
+      align-self: center;
+      margin: 0;
+    }
+  }
+}

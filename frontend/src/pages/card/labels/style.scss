@@ -1,0 +1,57 @@
+@use "sass:color";
+@use "../section";
+@use "/style/icon";
+@use "/style/media";
+@use "/style/colors";
+@use "/style/button";
+@use "/labels/colors" as label;
+@use "/style/typeography";
+
+
+.labels {
+  display: flex;
+  flex-flow: row wrap;
+  
+  padding: 0 section.$jumbotron;
+  margin-bottom: section.$gap-sm;
+  gap: var(--grid-gutter-xs);
+  
+  > :not(:last-child) {
+    @each $name, $value in label.$colors {
+      &.#{$name} {
+        --bg: #{$value};
+        --hover-bg: #{color.change($value, $alpha: 0.8%)};
+        --active-bg: #{$value};
+        --outline: #{$value};
+      }
+    }
+
+    @include button.create();
+    @include button.size("sm", $filled: true);
+    @include button.shape("rect");
+    @include button.fill($bg: var(--bg), $fg: white);
+    @include button.hover($bg: var(--hover-bg), $fg: null);
+    @include button.activate($bg: var(--active-bg), $fg: null);
+    @include button.focus($fg: null, $bg: null, $outline: null);
+
+    min-width: 2.6rem;
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  > :last-child {
+    @include icon.create($code-point: icon.fa-plus());
+    @include icon.shape("rect");
+    @include icon.apply-theme(icon.$gray);
+  
+    width: 2.6rem;
+    height: 1.8rem;
+  }
+}
+
+
+@include media.lg {
+  .labels {
+    padding-left: section.$left-gap;
+  }
+}

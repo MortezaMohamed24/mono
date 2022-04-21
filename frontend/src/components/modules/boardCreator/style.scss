@@ -1,0 +1,170 @@
+@use "sass:map";
+@use "sass:color";
+@use "/style/icon";
+@use "/style/colors";
+@use "/style/button";
+@use "/boards/themes" as board;
+@use "/style/typeography";
+
+
+// 0. Container
+.creator {
+  display: grid;
+  grid-template-areas: "field" "actions" "backgrounds";
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content min-content min-content;
+  gap: var(--grid-gutter-sm);
+
+  max-width: 300px;
+  padding: calc(var(--jumbotron-lg) * 2) var(--jumbotron-md);
+  margin: 0 auto;
+}
+
+
+// 1. Field section 
+.creator > :nth-child(1) {
+  grid-area: field;
+
+  display: grid;
+  grid-template-areas: "title closer";
+  grid-template-columns: 1fr min-content;
+  column-gap: var(--grid-gutter-sm);
+
+  padding: var(--jumbotron-md);
+  border-radius: var(--radius-sm);
+
+  background-color: colors.get("blue");
+
+  @include board.colors();
+  
+
+  // Input
+  > :nth-child(1) {
+    display: block;
+  
+    width: 100%;
+    height: 2rem;
+    padding: var(--jumbotron-xxs) var(--jumbotron-sm);
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+    outline: 0;
+    
+    color: map.get(button.$lightest, "fill-fg");
+    background-color: map.get(button.$lightest, "fill-bg");
+  
+    &:hover {
+      color: map.get(button.$lightest, "hover-fill-fg");
+      background-color: map.get(button.$lightest, "hover-fill-bg");
+    }
+  
+    &:focus {
+      color: #333;
+      background-color: white;
+    }
+    
+    &:invalid {
+      border-color: colors.get("red");
+    }
+  
+    &::placeholder {
+      font-size: .96em;
+      color: hsla(0, 0%, 100%, 0.521);
+    }
+  
+    grid-area: title;
+    align-self: center;
+  }
+  
+
+  // Closer
+  > :nth-child(2) {
+    @include icon.create($code-point: icon.fa-times());
+    @include icon.shape("rect");
+    @include icon.size("md", $filled: true);
+    @include icon.apply-theme(icon.$lightest);
+    grid-area: closer;
+    align-self: center;
+  }
+}
+
+
+// 2. Backgrounds section
+.creator > :nth-child(2) {
+  grid-area: backgrounds;
+  overflow: hidden;
+
+  ul,
+  li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin: var(--grid-gutter-sm-half-n);
+    padding: 0;
+  }
+
+  li {
+    padding: var(--grid-gutter-sm-half);
+    width: 4rem;
+    height: 4rem;
+  }
+
+  button {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-sm);
+    margin: 0;
+
+    @include board.colors();
+
+    position: relative;
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+    }
+
+    &:not(.selected):hover::before {
+      background-color: rgba(51, 51, 51, 0.336);
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.selected::after {
+      @include icon.font();
+      content: icon.fa-check();
+      color: white;
+      cursor: not-allowed;
+    }
+  }
+}
+
+
+// 3. Actions section
+.creator > :nth-child(3) {
+  grid-area: actions;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  
+  > button {
+    @include button.create();
+    @include button.size("md", $filled: true);
+    @include button.shape("rect");
+    @include button.apply-theme(button.$lightest);
+  }
+}

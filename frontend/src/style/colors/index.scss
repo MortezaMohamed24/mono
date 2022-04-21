@@ -1,0 +1,41 @@
+@function get($name) {
+  @each $key, $value in $colors {
+    @if $key == $name {
+      @return $value;
+    }
+  }
+  @error "No color named '#{$name}'";
+}
+
+$colors: (
+  "theme": #2d89ef,
+  "theme-fg": #fff,
+
+  "primary": #2d89ef,
+  "primary-fg": #fff,
+  
+  "blue": #00477e,
+  "indigo": #4424d6,
+  "sky": #2d89ef,
+  "purple": #8601af,
+  "pink": #c21460,
+  "red": #a6001a,
+  "orange": #e06000,
+  "cyan": #187296,
+  "lime": #66b032,
+  "green": #004d33,
+  "yellow": #f1c40f,
+  
+  "white": white,
+  "light": hsl(0, 0%, 95%),
+  "lighter": hsl(0, 0%, 97%),
+  "lightest": hsl(0, 0%, 98%),
+
+  "dark": hsl(0, 0%, 20%),
+  "darker": hsl(0, 0%, 15%),
+  "darkest": hsl(0, 5%, 13%),
+  "black": black,
+
+  "hr-light": #f8f8f82e,
+  "hr-dark": #8686862e,
+);

@@ -1,0 +1,44 @@
+@use "/style/form";
+@use "/style/icon";
+@use "/style/colors";
+@use "/style/button";
+
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  grid-template-rows: 1fr;
+  align-items: center;
+  gap: var(--grid-gutter-xs);
+  width: 100%;
+  padding: var(--popup-spacing);
+
+  .close {
+    @include icon.create(icon.fa-times());
+    @include icon.shape("circle");
+    @include icon.size("sm", $filled: true);
+    @include icon.apply-theme(icon.$gray, (normal-filled: false));
+  }
+
+  position: relative;
+  
+  &::after
+  {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    width: calc(100% - var(--popup-spacing) * 2);
+    border-bottom: 1px solid colors.get("hr-dark");
+  
+    content: "";
+  }
+}
+
+.create-board {
+  @include button.create();
+  @include button.shape("hotdog");
+  @include button.size("md", $filled: true);
+  @include button.apply-theme(button.$gray);
+}

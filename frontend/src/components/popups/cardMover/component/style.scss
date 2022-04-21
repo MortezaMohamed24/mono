@@ -1,0 +1,14 @@
+.body {
+  display: grid;
+  grid-template-areas: 
+  "title  title"
+  "boards boards"
+  "lists  cards";
+  grid-template-columns: 1fr 1fr;
+  gap: var(--grid-gutter-xs);
+  
+  > *:nth-child(1) { grid-area: title; margin: 0; }
+  > *:nth-child(2) { grid-area: boards; }
+  > *:nth-child(3) { grid-area: lists; }
+  > *:nth-child(4) { grid-area: cards; }
+}

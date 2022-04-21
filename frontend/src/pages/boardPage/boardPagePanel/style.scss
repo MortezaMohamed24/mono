@@ -1,0 +1,14 @@
+@use "../boardPage/bindings";
+
+
+.panel {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+  
+  width: 100%;
+  height: bindings.$board-panel-height;
+  overflow: hidden;
+  position: relative;
+}

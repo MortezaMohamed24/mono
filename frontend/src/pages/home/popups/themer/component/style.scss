@@ -1,0 +1,73 @@
+@use "sass:map";
+@use "/style/icon";
+@use "/boards/themes" as board;
+
+
+.body {
+  ul,
+  li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  ul {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--grid-gutter-xs);
+  }
+  
+  li {
+    width: calc(50% - var(--grid-gutter-xs) / 2);
+    height: 5rem;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  
+  button {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    
+    @include board.colors();
+
+    position: relative;
+    
+    @media (any-hover: hover) {
+      &:hover::before { 
+        position: absolute;
+        inset: 0;
+        background-color: rgba(51, 51, 51, 0.233);
+        content: "";
+      }
+    }
+
+    &.selected {
+      
+      position: relative;
+
+      &::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+      }
+
+      &:not(.selected):hover::before {
+        background-color: rgba(51, 51, 51, 0.336);
+      }
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.selected::after {
+        @include icon.font();
+        content: icon.fa-check();
+        color: white;
+        cursor: not-allowed;
+      }
+    }
+      
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,26 @@
+@use "/style/layout";
+
+.home {
+  display: block;
+  padding: var(--jumbotron-xl) var(--jumbotron-md);
+  @extend %container-to-xl;
+}
+
+.loading,
+.failed,
+.no-boards-msg {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  
+  width: 100%;
+  height: 100%;
+
+  padding: var(--jumbotron-md);
+
+  > h2 {
+    text-align: center;
+    margin-bottom: var(--grid-gutter-md);
+  }
+}

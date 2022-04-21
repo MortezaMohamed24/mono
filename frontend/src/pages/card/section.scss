@@ -1,0 +1,24 @@
+@use "/style/icon";
+
+
+$gap-lg: var(--grid-gutter-lg);
+$gap-sm: var(--grid-gutter-sm);
+$jumbotron: var(--jumbotron-sm);
+$left-gap: calc((var(--jumbotron-sm) + 1.3rem + var(--grid-gutter-sm)));
+$icon-width: 1.3rem;
+
+
+
+@mixin icon($code-point) {
+  @include icon.create($code-point: $code-point);
+  @include icon.size("lg", $filled: false);
+  @include icon.apply-theme(icon.$gray, (
+    filled: false,
+    hoverable: false,
+    activatable: false,
+    focusable: false,
+  ));
+
+  align-self: center;
+  justify-self: center;
+}

@@ -1,0 +1,68 @@
+@use "/style/media";
+@use "/style/colors";
+
+
+%card  {
+  width: 100%;
+  max-width: 500px;
+
+  background-color: #fff;
+  padding: var(--jumbotron-sm);
+  border-radius: var(--radius-sm);
+  box-shadow: 11px 13px 13px 0px #3333;
+}
+
+.login {
+  width: 100vw;
+  height: 100vh;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  padding: calc(var(--jumbotron-lg) * 2) var(--jumbotron-md);
+  background-color: #ebebeb;
+}
+
+.form {
+  @extend %card;
+  
+  // title
+  > :nth-child(1) {
+    text-align: center;
+    margin: var(--grid-gutter-lg) 0;
+  }
+  
+  // Error message
+  > :nth-child(2) {
+    color: colors.get("red");
+    text-align: center;
+  }
+
+  // Fields
+  > :nth-child(3) { margin-bottom: var(--grid-gutter-sm); }
+  > :nth-child(4) { margin-bottom: 0; }
+  
+  // submitter, hr, and footer
+  > :nth-child(5) { margin-top: var(--grid-gutter-md); width: 100%; }
+  > :nth-child(6) { margin: var(--grid-gutter-md) 0 var(--grid-gutter-sm) 0; }
+  > :nth-child(7) { text-align: center; }
+}
+
+.loader, 
+.error {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  
+  @extend %card;
+
+  padding: var(--jumbotron-xxl) var(--jumbotron-md);
+  
+  // title
+  > :nth-child(1) {
+    text-align: center;
+    margin: var(--grid-gutter-md) 0;
+  }  
+}

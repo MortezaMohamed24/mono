@@ -1,0 +1,20 @@
+.module {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-module);
+
+  overflow: auto;
+
+  &.open { display: flex; }
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+
+  padding: calc(var(--jumbotron-lg) * 2) var(--jumbotron-md);
+  background-color: rgb(0, 0, 0, 89%);
+
+  .backwardable {
+    // TODO: Display a backward button
+  }
+}

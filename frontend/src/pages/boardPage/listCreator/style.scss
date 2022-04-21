@@ -1,0 +1,28 @@
+@use "sass:map";
+@use "/style/icon";
+@use "/style/colors";
+@use "/style/button";
+
+
+.front {
+  min-width: 270px;
+  padding: var(--jumbotron-xs);
+}
+
+.back {
+  min-width: 270px;
+  padding: var(--jumbotron-xs);
+  background-color: #ebebeb;
+  border-radius: var(--radius-sm);
+
+
+  // Input
+  > *:nth-child(1) { 
+    margin-bottom: var(--grid-gutter-xs); 
+  }
+
+  // Creator button
+  > *:nth-child(2) { 
+    margin-right: var(--grid-gutter-xs); 
+  }
+}

@@ -1,0 +1,44 @@
+@use "/labels/colors" as label;
+
+
+.s {
+  display: flex;
+  flex-flow: row wrap;
+  gap: var(--grid-gutter-xxs);
+  padding: var(--jmbotron-xs);
+
+  > p {
+    width: calc((100% - var(--grid-gutter-xxs) * 4) / 5);
+    height: .5rem;
+    padding: 0;
+    margin: 0;
+    transition: width .3s, height .3s, padding .3s;
+    
+    color: transparent;
+    font-size: .5rem;
+    line-height: .5rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip; // Used clip because ellipsis meses with the width in &.opened > p
+    user-select: none;
+    border-radius: var(--radius-sm);
+
+    @include label.colors();
+  }
+  
+  &.opened > p {
+    // --scroll-width is set by javascript
+    --min-width: calc((100% - var(--grid-gutter-xxs) * 2) / 3);
+    --width: calc(var(--scroll-width) + var(--jumbotron-xs) * 2);
+
+    width: max(var(--min-width), var(--width));
+    max-width: 100%;
+    height: 1.5rem;
+    padding: 0 var(--jumbotron-xs);
+  
+    color: white;
+    font-size: .85rem;
+    line-height: 1.5rem;
+  }
+}

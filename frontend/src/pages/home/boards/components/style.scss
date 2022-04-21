@@ -1,0 +1,38 @@
+@use "/style/icon";
+@use "/style/media";
+
+
+.self {
+  &:not(:last-child) { margin-bottom: var(--grid-gutter-lg); }
+  
+  ul, 
+  li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  ul {
+    display: grid;
+    gap: var(--grid-gutter-sm);
+  
+    grid-template-columns: 1fr;
+    @include media.sm { grid-template-columns: 1fr 1fr; }
+    @include media.xl { grid-template-columns: 1fr 1fr 1fr; }
+  }
+}
+
+.all,
+.recent,
+.starred {
+  &::before {
+    @include icon.create($code-point: "", $selector: "&");
+    @include icon.size("md", $filled: false);
+    @include icon.apply-theme(icon.$gray, (filled: false, interactive: false));
+    margin-right: var(--grid-gutter-sm);
+  }
+}
+
+.all::before { content: icon.fa-cookie-bite(); }
+.recent::before { content: icon.fa-history(); }
+.starred::before { content: icon.fa-star(); }

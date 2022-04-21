@@ -1,0 +1,81 @@
+@use "/style/colors";
+@use "/style/media";
+@use "/style/typeography";
+
+
+%card {
+  width: 100%;
+  max-width: 500px;
+
+  background-color: #fff;
+  padding: var(--jumbotron-sm);
+  border-radius: var(--radius-sm);
+  box-shadow: 11px 13px 13px 0px #3333;
+}
+
+.signup {
+  width: 100vw;
+  height: 100vh;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  padding: calc(var(--jumbotron-lg) * 2) var(--jumbotron-md);
+  background-color: #ebebeb;
+}
+
+.form {
+  @extend %card;
+
+  // Title
+  > :nth-child(1) {
+    text-align: center;
+    margin: var(--grid-gutter-lg) 0;
+  }
+
+  // "Username unavailable" message
+  > :nth-child(2) {
+    color: colors.get("red");
+    text-align: center;
+  }
+
+  // Fields
+  > :nth-child(3) { margin-bottom: var(--grid-gutter-sm); }
+  > :nth-child(4) { margin-bottom: var(--grid-gutter-sm); }
+  > :nth-child(5) { margin-bottom: var(--grid-gutter-sm); }
+  > :nth-child(6) { margin-bottom: 0; }
+  
+  // submitter, hr, and footer
+  > :nth-child(7) { margin-top: var(--grid-gutter-md); width: 100%; }
+  > :nth-child(8) { margin: var(--grid-gutter-md) 0 var(--grid-gutter-sm) 0; }
+  > :nth-child(9) { text-align: center; }
+}
+
+.loader {
+  @extend %card;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  // Loading message
+  > :nth-child(1) {
+    text-align: center;
+    margin: var(--grid-gutter-lg) 0;
+  }
+}
+
+.error {
+  @extend %card;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  // Error message
+  > :nth-child(1) {
+    text-align: center;
+    margin: var(--grid-gutter-lg) 0;
+  }
+}

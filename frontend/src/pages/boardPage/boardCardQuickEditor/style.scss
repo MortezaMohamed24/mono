@@ -1,0 +1,164 @@
+@use "/style/icon";
+@use "/style/media";
+@use "/style/colors";
+@use "/style/button";
+
+
+$background: rgb(0, 0, 0, 89%);
+
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: calc(var(--jumbotron-lg) * 2) var(--jumbotron-md);
+  background-color: $background;
+
+
+  // Editor
+  > div {
+    display: grid;
+    grid-template-areas: "card" "actions" "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content min-content;
+    gap: var(--grid-gutter-sm);
+
+
+    // Card
+    > :nth-child(1) {
+      grid-area: card;
+    
+      width: 13rem;
+      background-color: #ebebeb;
+      border-radius: var(--radius-sm);
+      
+      .textarea {
+        width: calc(100% - var(--grid-gutter-xs) * 2);
+        border: 0;
+        margin: var(--grid-gutter-xs);
+        outline: 0;
+        
+        background-color: white;
+        box-shadow: 1px 1px 2px #33333385;
+      }
+    
+      > *:nth-child(2) { 
+        margin: var(--jumbotron-xs);
+        margin-top: var(--grid-gutter-sm);
+      }
+    
+      > *:nth-child(3) { 
+        margin: var(--jumbotron-xs);
+      }
+    }
+    
+    
+    // Actions
+    > :nth-child(2) {
+      grid-area: actions;
+    
+      ul, 
+      li {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+    
+      li {
+        button {
+          @include button.create();
+          @include button.icon($code-point: "");
+          @include button.size("md", $filled: true);
+          @include button.shape("rect");
+          @include button.apply-theme(button.$darker);
+      
+          display: block;
+          width: 100%;
+          text-align: start;
+      
+          @media (any-hover: hover) {
+            &:hover { 
+              transition: transform .3s;
+              transform: translateX(3px); 
+            }
+          }
+      
+          &:active {
+            transition: transform 0s;
+            transform: scale(.95); 
+          }
+        }
+    
+        &:nth-child(1) button:before { content: icon.fa-table(); }
+        &:nth-child(2) button:before { content: icon.fa-pen-fancy(); }
+        &:nth-child(3) button:before { content: icon.fa-fill(); }
+        &:nth-child(4) button:before { content: icon.fa-arrow-right(); }
+        &:nth-child(5) button:before { content: icon.fa-clone() }
+        &:nth-child(6) button:before { content: icon.fa-calendar-alt(); }
+        &:nth-child(7) button:before { content: icon.fa-trash(); }
+    
+        &:not(:last-child) {
+          margin-bottom: var(--grid-gutter-xxs);
+        }
+      }
+    
+    }
+    
+    
+    // Footer 
+    > :nth-child(3) {
+      grid-area: footer;
+      justify-self: stretch;
+  
+      > :first-child,
+      > :last-child {
+        @include button.create();
+        @include button.size("md", $filled: true);
+        @include button.shape("rect");
+      }
+      
+      > :first-child {
+        @include button.apply-theme(button.$blue);
+        width: calc(50% - var(--grid-gutter-xs) / 2);
+        margin-right: var(--grid-gutter-xs);
+      }
+      
+      > :last-child {
+        @include button.apply-theme(button.$lightest);
+        width: calc(50% - var(--grid-gutter-xs) / 2);
+      }
+    }
+  }
+
+}
+
+
+@include media.lg {
+  .wrapper > div {
+    grid-template-areas: 
+      "card   actions" 
+      "footer actions";
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content 1fr;
+    justify-items: start;
+    align-items: start;
+
+    > :nth-child(1) {
+      width: 15rem;
+    }
+  }
+}
+
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  padding: calc(var(--jumbotron-lg) * 2) var(--jumbotron-md);
+  color: white;
+  background-color: $background;
+}

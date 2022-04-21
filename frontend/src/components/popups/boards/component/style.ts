@@ -1,0 +1,1 @@
+export default {} as Record<"header" | "close" | "create-board", string>

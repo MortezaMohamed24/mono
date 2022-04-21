@@ -1,0 +1,6 @@
+.footer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: stretch;
+  column-gap: var(--grid-gutter-md);
+}

@@ -1,0 +1,1 @@
+export default {} as Record<"cancel" | "options", string>;

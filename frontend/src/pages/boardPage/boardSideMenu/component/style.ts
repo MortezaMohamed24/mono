@@ -1,0 +1,1 @@
+export default {} as Record<"menu" | "open", string>;

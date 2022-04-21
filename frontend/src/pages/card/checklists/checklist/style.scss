@@ -1,0 +1,81 @@
+@use "sass:map";
+@use "../../section";
+@use "/style/icon";
+@use "/style/colors";
+@use "/style/button";
+@use "/style/typeography";
+
+
+.checklist {
+  margin-top: section.$gap-lg;
+
+  > header {
+    // 0. Header
+    display: grid;
+    grid-template-areas: "icon title options";
+    grid-template-columns: section.$icon-width 1fr min-content;
+    align-items: center;
+    gap: section.$gap-sm;
+    padding: 0 section.$jumbotron;
+
+    
+    // Icon
+    .icon {
+      @include section.icon($code-point: icon.fa-check-square());
+    }
+
+
+    // <TwoFacedInput /> component
+    .title, 
+    .input {
+      @include typeography.heading($size: "md");
+
+      display: block;
+      width: 100%;
+      height: 2rem;
+      margin: 0;
+
+      grid-area: title;
+    }
+    
+    .title {
+      padding: var(--jumbotron-xs) 0;
+      line-height: calc(2rem - var(--jumbotron-xs) * 2);
+
+      overflow: hidden;
+      word-break: break-all;
+
+      cursor: pointer;
+    }
+
+    .input {
+      padding: calc(var(--jumbotron-xs) - 2px);
+      border: 2px solid colors.get("sky");
+      border-radius: var(--radius-sm);
+      outline: 0;
+
+      cursor: text;
+
+      &:invalid { border-color: colors.get("red"); }
+      &:valid { border-color: colors.get("sky"); }
+    }
+
+    .title,
+    .input {
+      width: 100%;
+    }
+
+
+    // Options menu toggler
+    .options {
+      grid-area: options;
+    }
+
+
+    // Incommons
+    .icon,
+    .options {
+      flex: min-content 0 0;
+    }
+  }
+}

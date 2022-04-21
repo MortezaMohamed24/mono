@@ -1,0 +1,69 @@
+@use "sass:map";
+@use "/style/icon";
+@use "/style/button";
+@use "/pages/card/section";
+
+
+.viewer {
+  display: grid;
+  grid-template-areas: "checkbox text edit";
+  grid-template-columns: section.$left-gap 1fr min-content;
+  align-items: center;
+  justify-items: center;
+  padding: var(--jumbotron-xs) section.$jumbotron var(--jumbotron-xs) 0;
+
+
+  &:hover {
+    color: map.get(button.$gray, "hover-fill-fg");
+    background-color: map.get(button.$gray, "hover-fill-bg");
+  }
+
+  &:active {
+    color: map.get(button.$gray, "active-fill-fg");
+    background-color: map.get(button.$gray, "active-fill-bg");
+  }
+
+
+  > :nth-child(1) {
+    grid-area: checkbox;
+    margin: 0;
+  }
+
+  > :nth-child(2) {
+    grid-area: text;
+    justify-self: stretch;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  > :nth-child(3) {
+    @include icon.create($code-point: icon.fa-trash-alt());
+    @include icon.size("sm", $filled: true);
+    @include icon.shape("circle");
+    @include icon.apply-theme(icon.$gray);
+
+    grid-area: edit;
+    margin-left: var(--grid-gutter-xs);
+  }
+
+
+  &.complete {
+    > :nth-child(2) {
+      text-decoration: line-through;
+      opacity: .8;
+    }
+  }
+}
+
+
+.editor {
+  margin: var(--grid-gutter-xs) section.$jumbotron;
+
+  > :nth-child(1) {
+    margin-bottom: var(--grid-gutter-xs);
+  }
+
+  > :nth-child(2) {
+    margin-right: var(--grid-gutter-xs);
+  }
+}

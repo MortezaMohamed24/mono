@@ -1,0 +1,12 @@
+@use "/style/media";
+
+@include media.xs { 
+  .body {
+    // Boards button
+    li:nth-of-type(0), 
+    // Account button 
+    li:nth-of-type(2) { 
+      display: none; 
+    }
+  }
+}

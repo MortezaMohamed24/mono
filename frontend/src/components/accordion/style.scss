@@ -1,0 +1,53 @@
+@use "/style/icon";
+
+
+.accordion {
+  // Accordion
+  display: grid;
+  grid-template-areas: 
+  "title   toggler"
+  "content content";
+  grid-template-columns: 1fr min-content;
+
+  // Title
+  > :nth-child(1) {
+    grid-area: title;
+    align-self: center;
+    margin: 0 var(--grid-gutter-sm) 0 0;
+  }
+
+  // Toggler
+  > :nth-child(2) {
+    @include icon.create($code-point: icon.fa-plus());
+    @include icon.shape("rect");
+    @include icon.size("sm", $filled: true);
+    @include icon.apply-theme(icon.$primary);
+
+    grid-area: toggler;
+    align-self: center;
+  }
+
+  // Content
+  > :nth-child(3) {
+    grid-area: content;
+
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+
+  // When opned
+  &.open{
+    > :nth-child(2) {
+      &::before { 
+        content: icon.fa-minus(); 
+      }
+    }
+
+    > :nth-child(3) {
+      margin-top: var(--grid-gutter-sm); 
+      height: auto; 
+    }
+  }
+}

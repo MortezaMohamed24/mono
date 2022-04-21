@@ -1,0 +1,75 @@
+@use "/style/icon";
+@use "/style/colors";
+
+
+.tab {  
+  > header {
+    // Header
+    display: grid;
+    grid-template-areas: "backwarder title closer";
+    grid-template-columns: 3rem 1fr 3rem;
+    align-items: center;
+    padding: var(--jumbotron-xs);
+    
+
+    // Backwarder
+    > :nth-child(1) { 
+      grid-area: backwarder; 
+
+      @include icon.create($code-point: icon.fa-arrow-left());
+      @include icon.size("sm", $filled: true);
+      @include icon.shape("circle");
+      @include icon.apply-theme(icon.$gray, (normal-filled: false));
+
+      display: none;
+    }
+
+
+    // Title
+    > :nth-child(2) {
+      grid-area: title;
+      text-align: center;
+      margin: 0;
+    }
+
+
+    // Closer
+    > :nth-child(3) {
+      @include icon.create($code-point: icon.fa-times());
+      @include icon.size("sm", $filled: true);
+      @include icon.shape("circle");
+      @include icon.apply-theme(icon.$gray, (normal-filled: false));
+      grid-area: closer;
+      justify-self: end;
+    }
+
+
+    // Horizontal rule
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 100% var(--jumbotron-xs) auto var(--jumbotron-xs);
+      border-bottom: 1px solid colors.get("hr-dark");
+    }
+  }
+
+
+  > section {
+    height: 100%;
+    overflow: auto;
+
+    > * {
+      height: auto;
+      overflow: visible;
+    }
+  }
+
+
+  &.backwardable {
+    > header > :nth-child(1) {
+      display: block;
+    }
+  }
+}

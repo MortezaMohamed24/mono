@@ -1,0 +1,24 @@
+.checkboxes {
+  // Title and checkboxes container
+  > :nth-child(1),
+  > :nth-child(2) { 
+    width: 100%; 
+  }
+
+  // Checkoxes container
+  > :nth-child(2) > div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    > :nth-child(odd) { 
+      margin-right: var(--grid-gutter-xs);
+    }
+
+    > :nth-child(even) { 
+      width: 100%;
+      margin: 0;
+    }
+  }
+}

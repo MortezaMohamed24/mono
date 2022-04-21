@@ -1,0 +1,30 @@
+@use "sass:map";
+
+$colors: (
+  "red":    #a6001a,
+  "sky":    #2d89ef,
+  "blue":   #00477e,
+  "cyan":   #187296,
+  "lime":   #66b032,
+  "dark":   #333333,
+  "pink":   #c21460,
+  "green":  #004d33,
+  "indigo": #4424d6,
+  "orange": #e06000,
+  "purple": #8601af,
+);
+
+@mixin colors() {
+  &,
+  &.red { background-color: map.get($colors, "red"); }
+  &.sky { background-color: map.get($colors, "sky"); }
+  &.blue { background-color: map.get($colors, "blue"); }
+  &.cyan { background-color: map.get($colors, "cyan"); }
+  &.lime { background-color: map.get($colors, "lime"); }
+  &.dark { background-color: map.get($colors, "dark"); }
+  &.pink { background-color: map.get($colors, "pink"); }
+  &.green { background-color: map.get($colors, "green"); }
+  &.indigo { background-color: map.get($colors, "indigo"); }
+  &.orange { background-color: map.get($colors, "orange"); }
+  &.purple { background-color: map.get($colors, "purple"); }
+}

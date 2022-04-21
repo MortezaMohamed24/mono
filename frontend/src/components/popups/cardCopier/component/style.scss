@@ -1,0 +1,5 @@
+.body {
+  > :not(:last-child) {
+    margin-bottom: var(--grid-gutter-sm);
+  }
+}

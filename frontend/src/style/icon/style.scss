@@ -1,0 +1,44 @@
+@use "./creators";
+@use "./code_points";
+@use "./themes";
+
+
+:root {
+  --icon-size-xs: 1.3rem;
+  --icon-size-sm: 1.5rem;
+  --icon-size-md: 1.8rem;
+  --icon-size-lg: 2.3rem;
+  
+  --icon-font-size-xs: .75rem;
+  --icon-font-size-sm: .9rem;
+  --icon-font-size-md: 1.03rem;
+  --icon-font-size-lg: 1.15rem;
+}
+
+@font-face {
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  $dirname: "/assets/fontawesome-free/webfonts";
+  src: url("#{$dirname}/fa-solid-900.eot");
+  src: url("#{$dirname}/fa-solid-900.eot?#iefix") format("embedded-opentype"), 
+     url("#{$dirname}/fa-solid-900.woff2") format("woff2"), 
+     url("#{$dirname}/fa-solid-900.woff") format("woff"), 
+     url("#{$dirname}/fa-solid-900.ttf") format("truetype"), 
+     url("#{$dirname}/fa-solid-900.svg#fontawesome") format("svg"); 
+}
+
+.cancel {
+  @include creators.create(code_points.fa-times());
+  @include creators.size("sm", $filled: true);
+  @include creators.shape("circle");
+  @include creators.apply-theme(themes.$gray, (normal-filled: false));
+}
+
+.options {
+  @include creators.create(code_points.fa-ellipsis-h());
+  @include creators.size("md", $filled: true);
+  @include creators.shape("circle");
+  @include creators.apply-theme(themes.$gray, (normal-filled: false));
+}

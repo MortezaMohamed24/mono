@@ -1,0 +1,23 @@
+@use "sass:map";
+@use "sass:math";
+@use "sass:list";
+@use "./bindings";
+
+
+@mixin all($default: "dark") {
+  @if $default {
+    background-color: map.get(bindings.$all, $default);
+  }
+  
+  &.sky { background-color: map.get(bindings.$all, "sky"); }
+  &.red { background-color: map.get(bindings.$all, "red"); }
+  &.blue { background-color: map.get(bindings.$all, "blue"); }
+  &.pink { background-color: map.get(bindings.$all, "pink"); }
+  &.dark { background-color: map.get(bindings.$all, "dark"); }
+  &.cyan { background-color: map.get(bindings.$all, "cyan"); }
+  &.lime { background-color: map.get(bindings.$all, "lime"); }
+  &.green { background-color: map.get(bindings.$all, "green"); }
+  &.purple { background-color: map.get(bindings.$all, "purple"); }
+  &.orange { background-color: map.get(bindings.$all, "orange"); }
+  &.indigo { background-color: map.get(bindings.$all, "indigo"); }
+}

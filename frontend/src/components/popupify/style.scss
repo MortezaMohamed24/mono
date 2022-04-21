@@ -1,0 +1,146 @@
+@use "/style/icon";
+@use "/style/button";
+@use "/style/media";
+@use "/style/colors";
+@use "/style/typeography"; 
+
+
+// 0. Container 
+.popup {
+  --popup-spacing: var(--jumbotron-sm);
+  
+  background-color: white;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 0 30px 14px #20202018;
+
+  position: fixed;
+  z-index: var(--z-index-popup);
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  width: 270px;
+  height: auto;
+  max-height: var(--panel-height);
+  @include media.xs { width: 300px; } 
+  
+  visibility: hidden;
+  &.open { visibility: visible; }
+}
+
+
+// 1. Header
+
+.header {
+  display: grid;
+  grid-template-areas: "backwarder title closer";
+  grid-template-columns: minmax(30px, min-content) 1fr minmax(30px, min-content);
+  padding: var(--popup-spacing);
+  justify-items: center;
+  align-items: center;
+
+  .title {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    grid-area: title;
+  }
+
+  .close,
+  .backward {
+    @include icon.create(icon.fa-times());
+    @include icon.shape("circle");
+    @include icon.size("sm", $filled: true);
+    @include icon.apply-theme(icon.$gray, (normal-filled: false));
+  }
+
+  .close {
+    grid-area: closer;
+  }
+
+  .backward {
+    &::before { 
+      content: icon.fa-chevron-left(); 
+    }
+    
+    grid-area: backwarder;
+    visibility: hidden;
+
+    .popup.backwardable & { 
+      visibility: visible; 
+    } 
+  }
+
+  position: relative;
+  z-index: 1;
+  
+  &::after {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    width: calc(100% - var(--popup-spacing) * 2);
+    border-bottom: 1px solid colors.get("hr-dark");
+  
+    content: "";
+  }
+}
+
+
+// 2. Body 
+
+.body {
+  padding: var(--popup-spacing);
+  overflow: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.list,
+.li,
+.divider {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.li {
+  .btn {
+    @include button.create();
+    @include button.size("md", $filled: true);
+    @include button.shape("hotdog");
+    @include button.apply-theme(button.$gray, (normal-filled: false));
+    
+    display: block;
+    text-align: start;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.divider {
+  border-bottom: 1px solid colors.get("hr-dark");
+  margin: var(--grid-gutter-sm) 0;
+}
+
+
+// 3. Footer
+
+.footer {
+  padding: var(--popup-spacing);
+  position: relative;
+  z-index: 0;
+  
+  &::before {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: calc(100% - var(--popup-spacing) * 2);
+    border-top: 1px solid colors.get("hr-dark");
+
+    content: "";
+  }
+}

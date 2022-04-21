@@ -1,0 +1,33 @@
+@use "/style/icon";
+@use "/style/media";
+@use "/style/button";
+@use "../section";
+
+
+.dates {
+  padding: 0 section.$jumbotron;
+  margin-bottom: section.$gap-lg;
+  
+  @include media.lg {
+    margin-left: section.$left-gap;
+  }
+
+
+  // Checkbox
+  > :nth-child(2) {
+    margin-right: var(--grid-gutter-xs);
+  }
+
+  // Toggler
+  > :nth-child(3) {
+    @include button.icon(
+      $code-point: icon.fa-angle-down(), 
+      $position: "right",
+      $selector: "&::after"
+    );
+  }
+
+  .status {
+    margin-left: var(--grid-gutter-sm);
+  }
+}

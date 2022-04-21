@@ -1,0 +1,50 @@
+@use "/style/form";
+@use "/style/icon";
+@use "/style/button";
+@use "/labels/colors" as label;
+
+
+.labels {
+  padding: var(--jumbotron-sm);
+  
+  // Search field
+  > :nth-child(1) {
+    margin-bottom: var(--grid-gutter-sm);
+  }
+
+
+  // List items
+  li {
+    display: grid;
+    grid-template-areas: "label edit";
+    grid-template-columns: 1fr min-content;
+    align-items: stretch;
+    column-gap: var(--grid-gutter-xs);
+    
+    &:not(:last-child) {
+      margin-bottom: var(--grid-gutter-xxs);
+    }
+
+    > :nth-child(1) {
+      height: auto;
+      color: white;
+      padding: var(--jumbotron-xs);
+      border: 0;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    
+      &:active {
+        transform: scale(.95);
+      }
+      
+      @include label.colors();
+    }
+    
+    > :nth-child(2) {
+      @include icon.create($code-point: icon.fa-pen-fancy());
+      @include icon.shape("rect");
+      @include icon.size("md", $filled: true);
+      @include icon.apply-theme(icon.$gray, (normal-filled: false));
+    }
+  }
+}

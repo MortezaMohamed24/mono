@@ -1,0 +1,58 @@
+@use "sass:map";
+@use "/style/icon";
+@use "/style/button";
+@use "/boards/themes" as board;
+
+
+.board {
+  --board-navbar-height: 3rem;
+  --board-panel-height: calc(var(--content-height) - var(--board-navbar-height));
+
+  height: 100%;
+  width: 100%;
+
+  @include board.colors();
+}
+
+.panel {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+  
+  width: 100%;
+  height: var(--board-panel-height);
+  overflow: hidden;
+  position: relative;
+}
+
+.loading,
+.error {
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  padding: var(--jumbotron-xs);
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  flex-flow: column nowrap;
+
+  p {
+    color: white;
+    text-align: center;
+    margin-bottom: var(--grid-gutter-sm);
+  }
+
+  button { 
+    @include button.create();
+    @include button.icon($code-point: icon.fa-redo());
+    @include button.size("md", $filled: true);
+    @include button.shape("rect");
+    @include button.apply-theme(button.$lightest);
+  }
+}

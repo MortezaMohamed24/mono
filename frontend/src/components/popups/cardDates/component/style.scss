@@ -1,0 +1,21 @@
+.body { 
+  > div {
+    &:first-child {
+      margin-bottom: var(--grid-gutter-md);
+    }
+
+    display: grid;
+    grid-template-areas: 
+    "title btn1 btn2"
+    "date  date date";
+
+    grid-template-columns: 1fr min-content min-content;
+    justify-content: flex-start;
+    align-items: center;
+
+    > :nth-child(1) { grid-area: title; margin: 0; }
+    > :nth-child(2) { grid-area: date; margin: 0; }
+    > :nth-child(3) { grid-area: btn1; margin-left: var(--grid-gutter-xs); }
+    > :nth-child(4) { grid-area: btn2; margin-left: var(--grid-gutter-xs); }
+  }
+}

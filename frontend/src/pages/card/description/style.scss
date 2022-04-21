@@ -1,0 +1,123 @@
+@use "../section";
+@use "/style/icon";
+@use "/style/media";
+@use "/style/typeography";
+
+
+.self {
+  display: grid;
+  grid-template-areas: "icon title edit" "description  description description";
+  grid-template-columns: section.$icon-width min-content 1fr;
+  align-items: center;
+  justify-items: start;
+  margin: section.$jumbotron;
+  margin-top: section.$gap-lg;
+  gap: section.$gap-sm;
+
+
+  // Haeding icon 
+  > :nth-child(1) {
+    @include section.icon($code-point: icon.fa-align-left());
+    grid-area: icon;
+  }
+
+  // Heading
+  > *:nth-child(2) { 
+    grid-area: title; 
+    margin: 0; 
+  }
+
+  // Editting button
+  > *:nth-child(3) { 
+    grid-area: edit;
+    visibility: visible;
+  }
+  
+  &.open > *:nth-child(3) {
+    visibility: hidden;
+  }
+
+  // Description
+  > *:nth-child(4) { grid-area: description; }
+}
+
+.editor {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+
+  // Textarea
+  > :nth-child(1) {
+    display: block;
+    width: 100%;
+    height: 5rem;
+    margin-bottom: var(--grid-gutter-sm);
+  }
+  
+
+  // Save button
+  > :nth-child(2) {
+    margin-right: var(--grid-gutter-sm);
+    display: none;
+  }
+
+  // Cancel button
+  > :nth-child(3) {
+    // Mikasa is so evil to kill eren
+    display: none;
+  }
+
+
+  // Formatting help button
+  > :nth-child(4) {
+    margin-left: auto;
+  }
+
+
+  // When open
+  &.open {
+    // Save buton
+    > :nth-child(2) {
+      display: block;
+    }
+
+    // Cancel button
+    > :nth-child(3) {
+      display: block;
+    }
+
+
+    // Formatting help button
+    > :nth-child(3) {
+      display: block;
+    }
+  }
+}
+
+.viewer {
+  width: 100%;
+  padding: var(--jumbotron-xs);
+  border-radius: var(--radius-sm);
+
+  h1 { @include typeography.heading($size: "h1"); }
+  h2 { @include typeography.heading($size: "h2"); }
+  h3 { @include typeography.heading($size: "h3"); }
+  h4 { @include typeography.heading($size: "h4"); }
+  h5 { @include typeography.heading($size: "h5"); }
+  h6 { @include typeography.heading($size: "h6"); }
+
+  p { @include typeography.para(); }
+
+  ul { @include typeography.list($type: "ul"); }
+  ol { @include typeography.list($type: "ol"); }
+
+  li { @include typeography.li(); }
+
+  hr { @include typeography.hr(); }
+}
+
+@include media.lg {
+  .self {
+    grid-template-areas: "icon title edit" "...  description description";
+  }
+}

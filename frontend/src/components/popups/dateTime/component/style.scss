@@ -1,0 +1,10 @@
+.body {
+  > :nth-child(2) {
+    margin-top: var(--grid-gutter-md);
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,60 @@
+@use "/style/icon";
+@use "/labels/colors" as label;
+
+
+.colors {
+  --gap: var(--grid-gutter-xs);
+
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: var(--gap);
+
+  > li {
+    width: calc((100% - var(--gap) * 4) / 5);
+    height: 2rem;
+  }
+
+  .color {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-sm);
+    margin: 0;
+    cursor: pointer;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+
+    position: relative;
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      background-color: transparent;
+      content: "";
+    }
+
+    &:hover::before {
+      background-color: rgba(51, 51, 51, 0.233);
+    }
+
+    &.selected::after {
+      @include icon.font();
+      content: icon.fa-check();
+      color: white;
+
+      // To overlap &::before
+      position: relative;
+    }
+
+    @include label.colors();
+  }
+}

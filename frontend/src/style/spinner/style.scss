@@ -1,0 +1,94 @@
+@use "/style/colors";
+
+
+.spinner,
+.lg,
+.md,
+.sm,
+.xs,
+.thickness-lg,
+.thickness-md,
+.thickness-sm,
+.dark, 
+.light, 
+.blue, 
+.indigo, 
+.sky, 
+.purple, 
+.pink, 
+.red, 
+.orange, 
+.cyan, 
+.lime, 
+.green {
+  border-style: solid;
+  border-radius: 50%;
+  animation: spin infinite .7s cubic-bezier(0, 0, 1, 0.99);
+}
+
+.spinner,
+.md,
+.thickness-lg,
+.thickness-md,
+.thickness-sm,
+.dark, 
+.light, 
+.blue, 
+.indigo, 
+.sky, 
+.purple, 
+.pink, 
+.red, 
+.orange, 
+.cyan, 
+.lime, 
+.green { width: 50px; height: 50px; }
+.lg { width: 60px; height: 60px; }
+.sm { width: 40px; height: 40px; }
+.xs { width: 25px; height: 25px; }
+
+.spinner,
+.thickness-md,
+.lg,
+.md,
+.sm,
+.xs,
+.dark, 
+.light, 
+.blue, 
+.indigo, 
+.sky, 
+.purple, 
+.pink, 
+.red, 
+.orange, 
+.cyan, 
+.lime, 
+.green { border-width: 5px; }
+.thickness-lg { border-width: 7px; }
+.thickness-sm { border-width: 3.5px; }
+
+@each $color in (
+  "dark", 
+  "light", 
+  "blue", 
+  "indigo", 
+  "sky", 
+  "purple", 
+  "pink", 
+  "red", 
+  "orange", 
+  "cyan", 
+  "lime", 
+  "green"
+) {
+  .#{$color} { 
+    border-color: colors.get($color);
+    border-bottom-color: transparent;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotateZ(0deg); }
+  100% { transform: rotateZ(350deg); }
+}

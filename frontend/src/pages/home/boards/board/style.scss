@@ -1,0 +1,93 @@
+@use "sass:map";
+@use "sass:color";
+@use "/style/icon";
+@use "/style/colors";
+@use "/boards/themes" as board;
+
+
+.board {
+  display: grid;
+  grid-template-areas: 
+  "title title title"
+  "menu  ...   star";
+  grid-template-columns: min-content 1fr min-content;
+
+  height: 5rem;
+  color: white;
+  padding: var(--jumbotron-sm);
+  border-radius: var(--radius-sm);
+  
+  text-decoration: none;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  position: relative;
+  
+  @media (any-hover: hover) {
+    &:hover::before {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-color: rgba(51, 51, 51, 0.233);
+      content: "";
+    }
+  }
+
+  & > * { position: relative; }
+  
+  @include board.colors();
+
+
+  // Title
+  > :nth-child(1) {
+    color: white;
+    margin: 0;
+      
+    grid-area: title;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  // Menu toggler and Star button
+  > :nth-child(2),
+  > :nth-child(3) {
+    @include icon.create(icon.fa-star());
+    @include icon.apply-theme(icon.$lightest, (filled: false));
+
+    visibility: visible;
+  }
+
+  @media (any-hover: hover) {
+    > :nth-child(2),
+    > :nth-child(3) {
+      visibility: hidden;
+    }
+
+    &:hover > :nth-child(2),
+    &:hover > :nth-child(3) { 
+      visibility: visible; 
+    }
+  }
+
+  :nth-child(2) { 
+    grid-area: star;
+  }
+
+  &.starred > :nth-child(2) {
+    visibility: visible;
+    color: colors.get("yellow");
+  }
+
+  > :nth-child(3) {
+    &::before { content: icon.fa-list(); }   
+    grid-area: menu;
+  }
+}

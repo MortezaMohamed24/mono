@@ -1,0 +1,54 @@
+@use "/style/icon";
+@use "/style/colors";
+@use "/style/typeography";
+
+
+// 0. Wrapper
+.badges > :not(:last-child) { 
+  margin-right: var(--grid-gutter-sm); 
+}
+
+
+// 1. Incommons
+.dates::before,
+.description::before,
+.attachments::before,
+.checklists::before,
+.watched::before {
+  @include icon.create($code-point: "", $selector: "&");
+  @include icon.size("xs", $filled: false);
+}
+
+.dates,
+.description,
+.attachments,
+.checklists,
+.watched {
+  @include typeography.resize($type: "text", $size: "sm");
+}
+
+
+// 2. Dates
+.dates::before {
+  content: icon.fa-clock();
+  margin-right: var(--grid-gutter-xxs); 
+}
+
+
+// 3. Description
+.description::before { 
+  content: icon.fa-align-center(); 
+}
+
+
+// 4. Checklists
+.checklists::before { 
+  content: icon.fa-check-square(); 
+  margin-right: var(--grid-gutter-xxs); 
+}
+
+
+// 5. IsWatched
+.watched::before { 
+  content: icon.fa-eye(); 
+}

@@ -1,0 +1,80 @@
+@use "../section";
+@use "/style/icon";
+@use "/style/colors";
+@use "/style/typeography";
+
+
+.header {
+  grid-area: header;
+ 
+  display: grid;
+  grid-template-areas: 
+  "icon title  closer"
+  "...  footer footer";
+  grid-template-columns: section.$icon-width 1fr min-content;
+  align-items: center;
+
+  padding: section.$jumbotron section.$jumbotron 0 section.$jumbotron;
+  margin-bottom: section.$gap-lg;
+  column-gap: section.$gap-sm;
+
+
+  // Heading Icon
+  .icon {
+    @include section.icon($code-point: icon.fa-table());
+    grid-area: icon;
+  }
+
+
+  // <TowFacedInput /> component
+  .title, 
+  .input {
+    @include typeography.heading($size: "h1");
+  
+    display: block;
+    width: calc(100% - var(--grid-gutter-sm));
+    height: 2rem;
+    margin: 0 var(--grid-gutter-sm) 0 0;
+    grid-area: title;
+  }
+  
+  .title {
+    padding: var(--jumbotron-xs) 0;
+  
+    height: auto;
+    min-height: 2rem;
+    // white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  
+    cursor: pointer;
+  }
+  
+  .input {
+    padding: calc(var(--jumbotron-xs) - 2px);
+    border: 2px solid colors.get("sky");
+    border-radius: var(--radius-sm);
+    outline: 0;
+  
+    cursor: text;
+  
+    &:invalid { border-color: colors.get("red"); }
+    &:valid { border-color: colors.get("sky"); }
+  }
+
+  
+  // Mover
+  .mover {
+    grid-area: footer;
+    justify-self: start;
+  }
+
+  // Closer
+  .closer {
+    @include icon.create($code-point: icon.fa-times());
+    @include icon.size("lg", $filled: true);
+    @include icon.shape("circle");
+    @include icon.apply-theme(icon.$gray, (normal-filled: false));
+    grid-area: closer;
+  }
+}

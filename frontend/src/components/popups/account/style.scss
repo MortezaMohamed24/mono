@@ -1,0 +1,50 @@
+@use "sass:map";
+@use "/style/colors";
+@use "/style/typeography";
+
+
+.header {
+  display: grid;
+  grid-template-areas: 
+  "avatar username"
+  "avatar full-name";
+  grid-template-columns: min-content 1fr;
+  align-items: center;
+  column-gap: var(--grid-gutter-sm);
+  margin-bottom: var(--grid-gutter-xs);
+}
+
+.img,
+.initials {
+  grid-area: avatar;
+  align-self: center;
+  display: block;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+}
+
+.initials {
+  background-color: colors.get("light");
+  line-height: 2.2rem;
+  text-align: center;
+  user-select: none;
+  margin: 0;
+}
+  
+.username {
+  grid-area: username;
+  margin: 0;
+}
+
+.full-name {
+  grid-area: full-name;
+  margin: 0;
+}
+  
+.username,
+.full-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

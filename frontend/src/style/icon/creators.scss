@@ -1,0 +1,189 @@
+@use "sass:map";
+
+@mixin create($code-point, $selector: "&::before") {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;  
+
+  color: inherit;
+  background-color: transparent;
+  padding: 0;
+  border: 0;
+
+  overflow: hidden;
+  user-select: none;
+  
+  #{$selector} {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: $code-point;
+    color: inherit;
+  }
+}
+
+@mixin font() {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+@mixin shape($shape) {
+  @if $shape == "rect" {
+    border-radius: var(--radius-sm);
+  }
+  @else if $shape == "circle" {
+    border-radius: 50%;
+  }  
+}
+
+@mixin size($size: "md", $filled: false) {
+  @if $size == "lg" {
+    @if $filled {
+      font-size: var(--icon-font-size-lg);
+      width: var(--icon-size-lg);
+      height: var(--icon-size-lg);
+    } @else {
+      font-size: var(--icon-font-size-lg);
+    }
+  } 
+  
+  @else if $size == "md" {
+    @if $filled {
+      font-size: var(--icon-font-size-md);
+      width: var(--icon-size-md);
+      height: var(--icon-size-md);
+    } @else {
+      font-size: var(--icon-font-size-md);
+    }
+  } 
+  
+  @else if $size == "sm" {
+    @if $filled {
+      font-size: var(--icon-font-size-sm);
+      width: var(--icon-size-sm);
+      height: var(--icon-size-sm);
+    } @else {
+      font-size: var(--icon-font-size-sm);
+    }
+  }
+  
+  @else if $size == "xs" {
+    @if $filled {
+      font-size: var(--icon-font-size-xs);
+      width: var(--icon-size-xs);
+      height: var(--icon-size-xs);
+    } @else {
+      font-size: var(--icon-font-size-xs);
+    }
+  }
+}
+
+@mixin fill($fg, $bg: null) {
+  color: $fg;
+  background-color: $bg;
+}
+
+@mixin hover($fg, $bg: null) {
+  &:hover {
+    color: $fg;
+    background-color: $bg;
+  }
+}
+
+@mixin activate($fg: null, $bg: null) {
+  cursor: pointer;
+  
+  &:active {
+    color: $fg;
+    background-color: $bg;
+    transform: scale(0.95);
+  }
+}
+
+@mixin focus($fg: null, $bg: null, $outline: null) {
+  @if $outline {
+    outline: 0 solid $outline;
+    outline-offset: 5px;
+    
+    &:focus-visible {
+      outline-width: 1px;
+    }
+  }
+  
+  &:focus-visible {
+    color: $fg;
+    background-color: $bg;
+  }
+}
+
+@mixin disable($fg: null, $bg: null) {
+  &[disabled] {
+    cursor: not-allowed;
+    color: $fg;
+    background-color: $bg;
+  }
+}
+
+@mixin apply-theme($theme, $overrider: ()) {
+  $theme: map.merge($theme, $overrider);
+  $filled: map.get($theme, "filled");
+
+  @if $filled and map.get($theme, "normal-filled") {
+    @include fill(
+      map.get($theme, "fill-fg"), 
+      map.get($theme, "fill-bg")
+    );
+  } @else {
+    @include fill(map.get($theme, "fg"));
+  }
+ 
+  @if map.get($theme, "interactive") {
+    @if map.get($theme, "hoverable") {
+      @if $filled and  map.get($theme, "hover-filled") {
+        @include hover(
+          map.get($theme, "hover-fill-fg"), 
+          map.get($theme, "hover-fill-bg")
+        );
+      } @else {
+        @include hover(map.get($theme, "hover-fg"));
+      }
+    }
+    
+    @if map.get($theme, "activatable") {
+      @if $filled and  map.get($theme, "active-filled") {
+        @include activate(
+          map.get($theme, "active-fill-fg"), 
+          map.get($theme, "active-fill-bg")
+        );
+      } @else {
+        @include activate(map.get($theme, "active-fg"));
+      }
+    }
+    
+    @if map.get($theme, "focusable") {
+      @if $filled and  map.get($theme, "focus-filled") {
+        @include focus(
+          map.get($theme, "focus-fill-fg"), 
+          map.get($theme, "focus-fill-bg"),
+          map.get($theme, "focus-outline")
+        );
+      } @else {
+        @include focus(
+          map.get($theme, "focus-fg"), 
+          map.get($theme, "focus-outline")
+        );
+      }
+    }
+    
+    @if map.get($theme, "disableable") {
+      @if $filled and  map.get($theme, "disable-filled") {
+        @include disable(
+          map.get($theme, "disabled-fill-fg"), 
+          map.get($theme, "disabled-fill-bg")
+        );
+      } @else {
+        @include focus(map.get($theme, "disabled-fg"));
+      }
+    }
+  }
+}

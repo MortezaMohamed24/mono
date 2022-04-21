@@ -1,0 +1,137 @@
+@use "sass:map";
+@use "/style/icon";
+@use "/style/form";
+@use "/style/colors";
+@use "/style/button";
+@use "/style/typeography";
+
+
+.dropselect {
+  // 0. Dropselect
+  display: grid;
+  grid-template-areas: 
+  "title icon"
+  "view  view";
+  grid-template-columns: 1fr min-content;
+  grid-template-rows: min-content min-content;
+
+  color: map.get(button.$gray, "fill-fg");
+  background-color: map.get(button.$gray, "fill-bg");
+  padding: var(--jumbotron-xs);
+  border-radius: var(--radius-sm);
+
+  cursor: pointer;
+  
+  &:hover:not(.open) {
+    color: map.get(button.$gray, "hover-fill-fg");
+    background-color: map.get(button.$gray, "hover-fill-bg");
+  }
+
+  &:active {
+    color: map.get(button.$gray, "active-fill-fg");
+    background-color: map.get(button.$gray, "active-fill-bg");
+  }
+
+
+  // Label and selected option
+
+  > *:nth-child(1),
+  > *:nth-child(2) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    user-select: none;
+  }
+  
+  > *:nth-child(1) {
+    margin: 0;
+    grid-area: title;
+  }
+  
+  > *:nth-child(2) {
+    height: 2rem;
+    padding: var(--jumbotron-xxs) var(--jumbotron-xs);
+    line-height: calc(2rem - var(--jumbotron-xxs) * 2 - 4px);
+  
+    background-color: white;
+    border: 2px solid colors.get("hr-dark");
+    border-radius: var(--radius-sm);
+  
+    margin: 0;
+    outline: 0;
+    grid-area: view;
+  }
+
+  &.open > *:nth-child(2) {
+    border-color: colors.get("sky");
+  }
+  
+
+  // Toggle button
+
+  > button {
+    @include icon.create($code-point: icon.fa-plus());
+    @include icon.size("sm", $filled: true);
+    @include icon.shape("rect");
+    @include icon.apply-theme(icon.$gray);
+  
+    .dropselect.open &::before {
+      content: icon.fa-minus();
+    }
+  
+    grid-area: icon;
+  }
+  
+
+  // List of options
+  > ul {
+    // List
+    list-style-type: none;
+    width: 270px;
+    max-height: 400px;
+    overflow: auto;
+    margin: 0;
+  
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+  
+    visibility: hidden;
+    
+    background-color: white;
+    padding: var(--jumbotron-sm) 0;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 30px 14px #20202018;
+
+
+    li {
+      // Options
+      > button {
+        @include button.create();
+        @include button.size("md", $filled: true);
+        @include button.apply-theme(button.$h-gray-a-red);
+      
+        &.selected {
+          color: map.get(button.$h-gray-a-red, "active-fill-fg");
+          background-color: map.get(button.$h-gray-a-red, "active-fill-bg");
+        }
+      
+        width: 100%;
+        margin: 0 ;
+       
+        &:active { transform: none; }
+      }
+
+      // "No options" message
+      > P {
+        padding: 0 var(--jumbotron-xs);
+        text-align: center;
+        margin: 0;
+      }
+    } 
+  }
+
+  &.open > ul { 
+    visibility: visible; 
+  }
+}

@@ -1,0 +1,41 @@
+@use "sass:color";
+@use "sass:map";
+@use "/style/colors";
+@use "/style/button";
+
+$primary:  button.$primary;
+$gray:     button.$gray;
+$lightest: button.$lightest;
+$blue:     button.$blue;
+$red:      button.$red;
+$transparent-gold: (
+  filled: true,
+  interactive: true,
+  
+  fg: colors.get("yellow"),
+  normal-filled: true,
+  fill-fg: colors.get("yellow"),
+  fill-bg: color.adjust(colors.get("yellow"), $alpha: -.75%),
+
+  hoverable: true,
+  hover-fg: color.adjust(colors.get("yellow"), $alpha: -.3%),
+  hover-filled: true,
+  hover-fill-fg: colors.get("yellow"),
+  hover-fill-bg: color.adjust(colors.get("yellow"), $alpha: -.65%),
+
+  activatable: true,
+  active-filled: true,
+  active-fg: colors.get("yellow"),
+  active-fill-fg: #333,
+  active-fill-bg: colors.get("yellow"),
+
+  focusable: true,
+  focus-filled: true,
+  focus-outline: #333,
+
+  disableable: true,
+  disabled-fg: color.adjust(colors.get("yellow"), $alpha: -.7%),
+  disabled-filled: true,
+  disabled-fill-fg: #333,
+  disabled-fill-bg: color.adjust(colors.get("yellow"), $alpha: -.9%),
+);

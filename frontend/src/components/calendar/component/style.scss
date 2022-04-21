@@ -1,0 +1,126 @@
+@use "sass:map";
+@use "/style/icon";
+@use "/style/button";
+@use "/style/colors";
+@use "/style/typeography" as type;
+
+
+// 0. Calendar
+.calendar {
+  user-select: none;
+}
+
+// 1. Caption
+.calendar caption div {
+  display: grid;
+  grid-template-areas: "backward title forward";
+  grid-template-columns: min-content 1fr min-content;
+  align-items: center;
+  gap: var(--grid-gutter-sm);
+  padding: var(--jumbotron-xs);
+  margin-bottom: var(--grid-gutter-sm);
+  
+
+  // Title
+  > :nth-child(1) {
+    @include type.resize($type: "para", $size: "sm");
+
+    line-height: 1;
+    margin: 0;
+    grid-area: title;
+  }
+
+  // Backwarder and forwarder
+  > :nth-child(2),
+  > :nth-child(3) {
+    @include icon.create($code-point: "");
+    @include icon.size("sm", $filled: true);
+    @include icon.shape("circle");
+    @include icon.apply-theme(icon.$gray, (normal-filled: false));
+  }
+
+  > :nth-child(2) {
+    &::before { content: icon.fa-chevron-left(); }
+    grid-area: backward;
+  }
+
+  > :nth-child(3) {
+    &::before { content: icon.fa-chevron-right(); }
+    grid-area: forward;
+  }
+}
+
+// 2. Cell spacing
+.calendar {
+  th,
+  td {
+    width: 2.2rem;
+  
+    &:first-child { 
+      width: calc(2.2rem + var(--grid-gutter-xs));
+      padding-left: var(--grid-gutter-xs); 
+    }
+  
+    &:last-child { 
+      width: calc(var(--grid-gutter-xs) + 2.2rem);
+      padding-right: var(--grid-gutter-xs); 
+    }
+  }
+  
+  th {
+    padding-bottom: var(--grid-gutter-xs);
+  }
+  
+  td button {
+    padding-top: var(--grid-gutter-xs-half);
+    padding-bottom: var(--grid-gutter-xs-half);
+  } 
+}
+
+// 3. Cell style
+.calendar {
+  th,
+  td button {
+    @include type.resize($type: "text", $size: "sm");
+  }
+
+  th {
+    @include type.resize($type: "text", $size: "sm");
+
+    font-weight: normal;
+    text-align: center;
+  }
+
+  td button {
+    display: block;
+    width: 100%;
+    border: 0;
+    margin: 0;
+    cursor: pointer;
+    
+    text-align: center;
+    background-color: transparent;
+    border-radius: 0;
+
+    // Days of the previuos and next months 
+    &.muted {
+      color: rgba(51, 51, 51, 0.288);
+    }
+
+    &:hover {
+      color: var(--text-fg);
+      background-color: colors.get("light");
+    }
+
+    &.today:not(.selected) {
+      color: var(--text-fg);
+      outline: 2px solid colors.get("sky");
+      outline-offset: -2px;
+    }
+    
+    &.selected {
+      color: white;
+      background-color: colors.get("sky");
+    }
+  }
+}

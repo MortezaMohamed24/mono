@@ -1,0 +1,134 @@
+@use "sass:map";
+@use "sass:color";
+@use "../colors/css" as navbar;
+@use "/style/colors";
+@use "/style/icon";
+@use "/style/media";
+@use "/style/typeography";
+
+
+// Base navbar
+
+.navbar {
+  width: 100%;
+  height: var(--navbar-height);
+  padding: var(--jumbotron-xs);
+
+  display: grid;
+  gap: .3rem;
+  
+  grid-template-areas: "home ... list";
+  grid-template-columns: [left] min-content 1fr min-content [right];
+  grid-template-rows: [top] min-content [bottom];
+
+  @include navbar.all();
+}
+
+
+// Placing on grid
+
+.home    { grid-area: home; } 
+.search  { grid-area: search; }
+.boards  { grid-area: boards; } 
+.brand   { grid-area: top / left / bottom / right; }
+.create  { grid-area: create; } 
+.account { grid-area: account; } 
+.list    { grid-area: list; } 
+
+
+// Styling buttons
+
+.home,
+.boards,
+.search,
+.create,
+.account,
+.list {
+  @include icon.create($code-point: "");
+  @include icon.size("lg", $filled: true);
+  @include icon.shape("rect");
+  @include icon.apply-theme(icon.$lightest);
+  text-decoration: none; // In case of <a>
+}
+
+.account {
+  @include icon.shape("circle");
+  &-avatar {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &-initials {
+    display: none;
+  }
+
+  &-no-avatar &-avatar {
+    display: none;
+  }
+
+  &-no-avatar &-initials {
+    display: block;
+  }
+}
+
+.home::before   { content: icon.fa-home(); }
+.boards::before { content: icon.fa-columns(); }
+.search::before { content: icon.fa-search(); }
+.create::before { content: icon.fa-plus(); }
+.list::before   { content: icon.fa-list();}
+
+.boards,
+.search,
+.create,
+.account {
+  display: none;
+}
+
+.brand {
+  @include typeography.heading($size: "h3");
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  align-self: center;
+  line-height: 1;
+  margin: 0;
+
+  &-text {
+    all: inherit;
+    display: inline; // To keep the clickable area only as wide as the text
+    cursor: pointer;
+  }
+}
+
+
+// 300px and wider
+
+@include media.xs {
+  .navbar {
+    grid-template-areas: "home boards ... account list";
+    grid-template-columns: [left] repeat(2, min-content) 1fr repeat(2, min-content) [right];
+  }
+
+  .boards,
+  .account { 
+    display: flex;
+  }
+}
+
+
+// 400px and wider
+
+@include media.sm {
+  .navbar {
+    grid-template-areas: "home boards search ... create account";
+    grid-template-columns: [left] repeat(3, min-content) 1fr repeat(2, min-content) [right];
+  }
+  
+  .list { display: none; }
+
+  .search,
+  .create {
+    display: flex;
+  }
+}

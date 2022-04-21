@@ -1,0 +1,79 @@
+@use "sass:map";
+@use "/style/colors";
+@use "/style/icon";
+@use "/style/button";
+@use "/style/typeography";
+
+
+// Container
+.navbar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  > * { height: auto !important; } // Force items to stretch
+  gap: var(--grid-gutter-xs);
+
+  width: 100%;
+  height: var(--board-navbar-height);
+  padding: var(--jumbotron-xs);
+
+  background-color: rgba(255, 255, 255, 0.075);
+}
+
+
+// Buttons
+.star {
+  @include icon.create($code-point: icon.fa-star());
+  @include icon.size("md", $filled: true);
+  @include icon.shape("rect");
+  @include icon.apply-theme(icon.$lightest);
+
+  &.starred {
+    @include icon.apply-theme(icon.$transparent-gold);
+  }
+}
+
+.menu {
+  @include button.create();
+  @include button.size("md", $filled: true);
+  @include button.shape("rect");
+  @include button.apply-theme(button.$lightest);
+
+  > :nth-child(1) { display: inline; }
+  > :nth-child(2) { display: none; }
+
+  &.active {
+    > :nth-child(1) { display: none; }
+    > :nth-child(2) { display: inline; }
+  }
+}
+
+
+// The <TwoFacedInput /> component
+.view, 
+.input {
+  display: block;
+  width: 9rem;
+  height: auto;
+  margin: 0;
+  grid-area: title;
+}
+
+.view {
+  @extend .menu;
+  padding: var(--jumbotron-xs);
+  line-height: calc(2rem - var(--jumbotron-xs) * 2);
+}
+
+.input {
+  padding: calc(var(--jumbotron-xs) - 2px);
+  border: 2px solid colors.get("sky");
+  border-radius: var(--radius-sm);
+  outline: 0;
+
+  cursor: text;
+
+  &:invalid { border-color: colors.get("red"); }
+  &:valid { border-color: colors.get("sky"); }
+}

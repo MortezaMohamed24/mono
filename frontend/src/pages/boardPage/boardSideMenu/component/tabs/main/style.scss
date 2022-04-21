@@ -1,0 +1,32 @@
+@use "/style/icon";
+@use "/style/button";
+
+
+.main {
+  padding: var(--jumbotron-sm) 0;
+
+  > li {
+    margin-bottom: var(--grid-gutter-xs);
+
+    > * {
+      @include button.create();
+      @include button.icon($code-point: "");
+      @include button.size("md", $filled: true);
+      @include button.shape("rect");
+      @include button.apply-theme(button.$gray, (normal-filled: false));
+  
+      display: block;
+      width: 100%;
+      text-align: start;
+
+    }
+    
+    &:nth-child(1) > *::before { content: icon.fa-image(); }
+    &:nth-child(2) > *::before { content: icon.fa-search(); }
+    &:nth-child(3) > *::before { content: icon.fa-tags(); }
+    &:nth-child(4) > *::before { content: icon.fa-trash(); }
+
+
+    &:last-child { margin-bottom: 0; }
+  }
+}

@@ -1,0 +1,42 @@
+@use "/style/icon";
+@use "/boards/themes" as board;
+
+
+.board {
+  display: grid;
+  grid-template-areas: "title favor";
+  grid-template-columns: 1fr min-content;
+  
+  text-decoration: none;
+  color: white;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+
+  @include board.colors();
+  
+  // Title
+  > :nth-child(1) {
+    grid-area: title;
+    
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    
+    color: white;
+    padding: var(--jumbotron-xs);
+    margin: 0;
+  }
+  
+  // Star button
+  > :nth-child(2) {
+    @include icon.create($code-point: icon.fa-star());
+    @include icon.size("lg", $filled: true);
+    @include icon.apply-theme(icon.$lightest);
+  
+  }
+
+  &.starred > :nth-child(2) {
+    @include icon.apply-theme(icon.$transparent-gold);
+  }
+}
