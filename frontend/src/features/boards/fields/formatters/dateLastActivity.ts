@@ -4,18 +4,14 @@ import {NUMBER} from "/util/formatter";
 import {MIN_DATE} from "../constants";
 
 
-const dateLastActivity = OR({
-  name: "BoardEntity/DateLasyActivity",
-  or: [
-    NULL({
-      name: "Boardentity/DateLastActivity/NotDefined",
-    }),
-    NUMBER({
-      min: MIN_DATE,
-      name: "Boardentity/DateLastActivity/Defined",
-      finite: true,
-    }),
-  ]
+const dateLastActivity = OR([
+  NULL(),
+  NUMBER({
+    min: MIN_DATE,
+    finite: true,
+  }),
+], {
+  name: "Board/dateLasyActivity",
 });
 
 

@@ -1,21 +1,17 @@
-import {Or} from "/util/checker";
 import URLS from "../endpoints";
 import {Oid} from "/util/idUtil";
-import {OID} from "/util/checker";
-import {ARRAY} from "/util/checker";
-import {OBJECT} from "/util/checker";
-import {BOOLEAN} from "/util/checker";
-import ApiMutator from "/api/mutator";
-import {WithError} from "/util/checker";
+import {OID} from "/util/formatter";
+import {ARRAY} from "/util/formatter";
+import {OBJECT} from "/util/formatter";
+import {BOOLEAN} from "/util/formatter";
+import ApiMutator from "/core/api/mutator";
 import {LabelBase} from "/labels/entity";
-import {UNDEFINED} from "/util/checker";
 import BOARD_FIELDS from "/boards/fields";
 import LABEL_FIELDS from "/labels/fields";
 import LABEL_COLORS from "/labels/constants/colors";
 import {BoardNative} from "../entity";
 import {BoardRawUnnested} from "../entity";
 import {formatAsBoardRawUnnested} from "../entity";
-import {formatAsBoardRawUnnestedStrictly} from "../entity";
 
 
 // ---------- PREPARED REQUEST METAS
@@ -76,20 +72,24 @@ export const prepareBoardCreateRequestMeta = (meta: BoardCreateRequestMetaUnprep
 
 // ---------- REQUEST META FORMATTERS
 
-export const formatAsBoardEditRequestMeta = OBJECT<BoardEditRequestMeta>({
-  title: Or([BOARD_FIELDS.title, UNDEFINED()]),
-  theme: Or([BOARD_FIELDS.theme, UNDEFINED()]),
+export const formatAsBoardEditRequestMeta = OBJECT({
+  title: BOARD_FIELDS.title.copy({optional: true}),
+  theme: BOARD_FIELDS.theme.copy({optional: true}),
   idBoard: OID(),
-  isStarred: Or([BOARD_FIELDS.isStarred, UNDEFINED()]),
+  isStarred: BOARD_FIELDS.isStarred.copy({optional: true}),
+}, {
+  name: "BoardEditRequestMeta",
 });
 
-export const formatAsBoardCopyRequestMeta = OBJECT<BoardCopyRequestMeta>({
+export const formatAsBoardCopyRequestMeta = OBJECT({
   title: BOARD_FIELDS.title,
   idBoard: OID(), 
   keepCards: BOOLEAN({}),
+}, {
+  name: "BoardCopyRequestMeta",
 });
 
-export const formatAsBoardCreateRequestMeta = OBJECT<BoardCreateRequestMeta>({
+export const formatAsBoardCreateRequestMeta = OBJECT({
   id: OID(),
   title: BOARD_FIELDS.title, 
   theme: BOARD_FIELDS.theme,
@@ -100,27 +100,15 @@ export const formatAsBoardCreateRequestMeta = OBJECT<BoardCreateRequestMeta>({
       color: LABEL_FIELDS.color,
     }),
   ]),
+}, {
+  name: "BoardCreateRequestMeta",
 });
 
-export const formatAsBoardDestroyRequestMeta = OBJECT<BoardDestroyRequestMeta>({
+export const formatAsBoardDestroyRequestMeta = OBJECT({
   idBoard: OID(),
+}, {
+  name: "BoardDestroyRequestMeta",
 });
-
-export const formatAsBoardEditRequestMetaStrictly = WithError(formatAsBoardEditRequestMeta, () => (
-  new TypeError("invalid board edit request meta")
-));
-
-export const formatAsBoardCopyRequestMetaStrictly = WithError(formatAsBoardCopyRequestMeta, () => (
-  new TypeError("invalid board copy request meta")
-));
-
-export const formatAsBoardCreateRequestMetaStrictly = WithError(formatAsBoardCreateRequestMeta, () => (
-  new TypeError("invalid board create request meta")
-));
-
-export const formatAsBoardDestroyRequestMetaStrictly = WithError(formatAsBoardDestroyRequestMeta, () => (
-  new TypeError("invalid board destroy request meta")
-));
 
 
 // ---------- REQUEST CREATORS
@@ -168,10 +156,13 @@ export type BoardDestroyResponseBody = undefined;
 
 // ---------- RESPONSE BODY FORMATTERS
 
-export const formatAsBoardCopyResponseBody = formatAsBoardRawUnnested;
-export const formatAsBoardCreateResponseBody = formatAsBoardRawUnnested;
-export const formatAsBoardCopyResponseBodyStrictly = formatAsBoardRawUnnestedStrictly;
-export const formatAsBoardCreateResponseBodyStrictly = formatAsBoardRawUnnestedStrictly;
+export const formatAsBoardCopyResponseBody = formatAsBoardRawUnnested.copy({
+  name: "BoardCopyResponseBody",
+});
+
+export const formatAsBoardCreateResponseBody = formatAsBoardRawUnnested.copy({
+  name: "BoardCreateResponseBpdy",
+});
 
 
 // ---------- ACTION TYPES
@@ -419,7 +410,7 @@ export const copy = ApiMutator<
   BoardCopyRejectedAction,
   BoardCopyFulfilledAction
 >({
-  format: formatAsBoardCopyResponseBodyStrictly,
+  format: formatAsBoardCopyResponseBody.copy({optional: true}),
   request: BoardCopyRequest,
   pending: BoardCopyPendingAction,
   rejected: BoardCopyRejectedAction,
@@ -447,7 +438,7 @@ export const create = ApiMutator<
   BoardCreateFulfilledAction,
   BoardCreateRequestMetaUnprepared
 >({
-  format: formatAsBoardCreateResponseBodyStrictly,
+  format: formatAsBoardCreateResponseBody.copy({optional: true}),
   request: BoardCreateRequest,
   prepare: prepareBoardCreateRequestMeta,
   pending: BoardCreatePendingAction,
@@ -475,18 +466,12 @@ export default Object.freeze({
   formatAsBoardCopyRequestMeta,
   formatAsBoardCreateRequestMeta,
   formatAsBoardDestroyRequestMeta,
-  formatAsBoardEditRequestMetaStrictly,
-  formatAsBoardCopyRequestMetaStrictly,
-  formatAsBoardCreateRequestMetaStrictly,
-  formatAsBoardDestroyRequestMetaStrictly,
   BoardCopyRequest,
   BoardEditRequest,
   BoardCreateRequest,
   BoardDestroyRequest,
   formatAsBoardCopyResponseBody,
   formatAsBoardCreateResponseBody,
-  formatAsBoardCopyResponseBodyStrictly,
-  formatAsBoardCreateResponseBodyStrictly,
   EDIT_PENDING,
   EDIT_REJECTED,
   EDIT_FULFILLED,

@@ -1,12 +1,11 @@
-import card from "/cards/entity";
-import {OID} from "/util/checker";
+import {OID} from "/util/formatter";
 import {title} from "../fields";
-import {ARRAY} from "/util/checker";
-import {OBJECT} from "/util/checker";
+import {ARRAY} from "/util/formatter";
+import {OBJECT} from "/util/formatter";
 import ListBase from "./base";
 import {isWatched} from "../fields";
-import {WithError} from "/util/checker";
 import {sortMethod} from "../fields";
+import {formatAsCardRawNested} from "/cards/entity";
 
 
 /** 
@@ -20,28 +19,13 @@ export type ListRawNested = Pick<ListBase,
   | "sortMethod"
 >
 
-
-export const formatAsListRawNested = OBJECT<ListRawNested>({
+export const formatAsListRawNested = OBJECT({
   id: OID(),
   title: title,
-  cards: ARRAY([card.rawNested.format]),
+  cards: ARRAY([formatAsCardRawNested]),
   isWatched: isWatched,
   sortMethod: sortMethod,
 });
 
 
-export const formatAsListRawNestedStrictly = WithError(OBJECT<ListRawNested>({
-  id: OID(),
-  title: title,
-  cards: ARRAY([card.rawNested.formatStrictly]),
-  isWatched: isWatched,
-  sortMethod: sortMethod,
-}), () => (
-  new TypeError("invalid raw nested list")
-));
-
-
-export default Object.freeze({
-  format: formatAsListRawNested,
-  formatStrictly: formatAsListRawNestedStrictly,
-});
+export default formatAsListRawNested;

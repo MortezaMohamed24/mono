@@ -1,7 +1,9 @@
-import {BOOLEAN} from "/util/checker";
+import {BOOLEAN} from "/util/formatter";
 
 
-const isWatched = BOOLEAN({});
+const isWatched = BOOLEAN({
+  name: "List/isWatched",
+});
 
 
 export default isWatched;

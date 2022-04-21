@@ -6,7 +6,7 @@ import {BoardNative} from "/boards/entity/native";
 const theme = STRING({
   case: "lower",
   trim: "both",
-  name: "BoardEntity/Theme",
+  name: "Board/theme",
   type: "" as BoardNative["theme"],
   pattern: RegExp(THEME, "u"),
   compact: true,

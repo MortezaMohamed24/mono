@@ -1,9 +1,14 @@
-export * from "./raw";
-export * from "./base";
-export * from "./native";
+export {UserRaw} from "./raw";
+export {UserBase} from "./base";
+export {UserNative} from "./native";
+export {UserNativeIdle} from "./native";
+export {UserNativeFailed} from "./native";
+export {UserNativeLoading} from "./native";
+export {UserNativeSucceeded} from "./native";
 
 
-import raw from "./raw";
+import {formatAsUserRaw} from "./raw";
+export {formatAsUserRaw};
 
 
-export default Object.freeze({raw})
+export default formatAsUserRaw;

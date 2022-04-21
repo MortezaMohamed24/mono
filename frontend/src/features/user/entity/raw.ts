@@ -1,14 +1,13 @@
-import board from "/boards/entity";
-import {OID} from "/util/checker";
-import {ARRAY} from "/util/checker";
-import {OBJECT} from "/util/checker";
+import {OID} from "/util/formatter";
+import {ARRAY} from "/util/formatter";
+import {OBJECT} from "/util/formatter";
 import {avatar} from "/user/fields";
 import {username} from "/user/fields";
 import {initials} from "/user/fields";
 import {lastname} from "/user/fields";
 import {firstname} from "/user/fields";
-import {WithError} from "/util/checker";
 import {BoardRawNested} from "/boards/entity";
+import {formatAsBoardRawNested} from "/boards/entity";
 
 
 export type UserRaw = {
@@ -21,9 +20,9 @@ export type UserRaw = {
   firstname: string;
 }
 
-export const formatAsUserRaw = OBJECT<UserRaw>({
+export const formatAsUserRaw = OBJECT({
   id: OID(),
-  boards: ARRAY([board.rawNested.format]),
+  boards: ARRAY([formatAsBoardRawNested]),
   avatar: avatar,
   username: username,
   initials: initials,
@@ -32,20 +31,4 @@ export const formatAsUserRaw = OBJECT<UserRaw>({
 });
 
 
-export const formatAsUserRawStrictly = WithError(OBJECT<UserRaw>({
-  id: OID(),
-  boards: ARRAY([board.rawNested.formatStrictly]),
-  avatar: avatar,
-  username: username,
-  initials: initials,
-  lastname: lastname,
-  firstname: firstname,
-}), () => (
-  new TypeError("invalid raw user")
-));
-
-
-export default Object.freeze({
-  format: formatAsUserRaw,
-  formatStrictly: formatAsUserRaw,
-});
+export default formatAsUserRaw;

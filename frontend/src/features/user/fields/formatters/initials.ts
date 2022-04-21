@@ -1,4 +1,4 @@
-import {STRING} from "/util/checker";
+import {STRING} from "/util/formatter";
 import {INITIALS} from "../constants"; 
 import {MIN_INITIALS_LENGTH} from "../constants"; 
 import {MAX_INITIALS_LENGTH} from "../constants"; 
@@ -9,6 +9,7 @@ const initials = STRING({
   max: MAX_INITIALS_LENGTH,
   trim: "both",
   case: "upper",
+  name: "User/initials",
   pattern: new RegExp(INITIALS, "u"),
 });
 
