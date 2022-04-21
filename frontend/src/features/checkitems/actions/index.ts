@@ -3,7 +3,6 @@ import {Oid} from "/util/idUtil";
 import {OID} from "/util/formatter";
 import {OBJECT} from "/util/formatter";
 import {NUMBER} from "/util/formatter";
-import {BOOLEAN} from "/util/formatter";
 import {content} from "/checkitems/fields";
 import ApiMutator from "/core/api/mutator";
 import {isComplete} from "/checkitems/fields";
@@ -60,34 +59,35 @@ export const prepareCheckitemCreateRequestMeta = (meta: CheckitemCreateRequestMe
 
 export const formatAsCheckitemEditRequestMeta = OBJECT({
   content: content.copy({optional: true}),
+<<<<<<< HEAD
   isComplete: BOOLEAN({optional: true}),
+=======
+  isComplete: isComplete.copy({optional: true}),
+>>>>>>> useTheNewVersionOfFormatter
   idCheckitem: OID(),
 }, {
   name: "CheckitemEditRequestMeta",
 });
-
+  
 export const formatAsCheckitemMoveRequestMeta = OBJECT({
+  index: NUMBER({min: 0, name: "index"}),
+  idCheckitem: OID(),
+}, {
   name: "CheckitemMoveRequestMeta",
-  content: {
-    index: NUMBER({min: 0, name: "index"}),
-    idCheckitem: OID(),
-  }
 });
-
+  
 export const formatAsCheckitemCreateRequestMeta = OBJECT({
+  id: OID(),
+  content: content,
+  idChecklist: OID(),
+}, {
   name: "CheckitemCreateRequestMeta",
-  content: {
-    id: OID(),
-    content: content,
-    idChecklist: OID(),
-  },
 });
-
+  
 export const formatAsCheckitemDestroyRequestMeta = OBJECT({
+  idCheckitem: OID(),
+}, {
   name: "CheckitemDestroyRequestMeta",
-  content: {
-    idCheckitem: OID(),
-  },
 });
 
 

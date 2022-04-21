@@ -4,6 +4,10 @@ import {ChecklistBase} from "/checklists/entity";
 
 
 const filter = STRING({
+<<<<<<< HEAD
+=======
+  name: "Checklist/filter",
+>>>>>>> useTheNewVersionOfFormatter
   case: "upper",
   trim: "both",
   type: "" as ChecklistBase["filter"],

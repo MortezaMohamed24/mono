@@ -22,23 +22,4 @@ export type ListNative = Pick<ListBase,
 >
 
 
-export const formatAsListNative = OBJECT<ListNative>({
-  id: OID(),
-  title: title,
-  idUser: OID(),
-  idCards: ARRAY([OID()]),
-  idBoard: OID(),
-  isWatched: isWatched,
-  sortMethod: sortMethod,
-});
-
-
-export const formatAsListNativeStrictly = WithError(formatAsListNative, () => (
-  new TypeError("invalid native card")
-));
-
-
-export default Object.freeze({
-  format: formatAsListNative,
-  formatStrictly: formatAsListNativeStrictly,
-});
+export default ListNative;

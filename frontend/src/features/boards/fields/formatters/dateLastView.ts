@@ -4,19 +4,14 @@ import {NUMBER} from "/util/formatter";
 import {MIN_DATE} from "../constants";
 
 
-const dateLastView = OR({
-  name: "BoardEntity/DateLastView",
-  or: [
-    NULL({
-      name: "BoardEntity/DateLastView/NotDefined",
-    }),
-
-    NUMBER({
-      min: MIN_DATE,
-      name: "BoardEntity/DateLastView/Defined",
-      finite: true,
-    }),
-  ]
+const dateLastView = OR([
+  NULL(),
+  NUMBER({
+    min: MIN_DATE,
+    finite: true,
+  }),
+], {
+  name: "Board/dateLastView",
 });
 
 

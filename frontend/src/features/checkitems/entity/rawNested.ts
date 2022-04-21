@@ -15,13 +15,12 @@ export type CheckitemRawNested = Pick<CheckitemBase,
 >
 
 
-export const formatAsCheckitemRawNested = OBJECT({
+export const formatAsCheckitemRawNested = OBJECT({    
+  id: OID(),
+  content: content,
+  isComplete: isComplete,
+}, {
   name: "CheckitemRawNestedEntity",
-  content: {    
-    id: OID(),
-    content: content,
-    isComplete: isComplete,
-  },
 });
 
 

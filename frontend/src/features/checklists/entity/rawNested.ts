@@ -1,10 +1,15 @@
-import {OID} from "/util/checker";
-import {ARRAY} from "/util/checker";
+import {OID} from "/util/formatter";
+import {ARRAY} from "/util/formatter";
 import {title} from "../fields/formatters";
 import {filter} from "../fields/formatters";
+<<<<<<< HEAD
 import {OBJECT} from "/util/checker";
 import CHECKITEM from "/checkitems/entity";
+=======
+import {OBJECT} from "/util/formatter";
+>>>>>>> useTheNewVersionOfFormatter
 import ChecklistBase from "./base";
+import {formatAsCheckitemRawNested} from "/checkitems/entity";
 
 
 /** 
@@ -17,6 +22,7 @@ export type ChecklistRawNested = Pick<ChecklistBase,
   | "checkitems"
 >
 
+<<<<<<< HEAD
 
 export const format = OBJECT<ChecklistRawNested>({
   id: OID(),
@@ -27,3 +33,16 @@ export const format = OBJECT<ChecklistRawNested>({
 
 
 export default format;
+=======
+export const formatAsChecklistRawNested = OBJECT({
+  id: OID(),
+  title: title,
+  filter: filter,
+  checkitems: ARRAY([formatAsCheckitemRawNested]),
+}, {
+  name: "ChecklistRawNested",
+});
+
+
+export default formatAsChecklistRawNested;
+>>>>>>> useTheNewVersionOfFormatter

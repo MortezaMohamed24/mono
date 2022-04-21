@@ -1,9 +1,8 @@
-import {OID} from "/util/checker";
+import {OID} from "/util/formatter";
 import {name} from "../fields";
 import {color} from "../fields";
-import {OBJECT} from "/util/checker";
+import {OBJECT} from "/util/formatter";
 import LabelBase from "./base";
-import {WithError} from "/util/checker";
 
  
 /** 
@@ -15,20 +14,13 @@ export type LabelRawNested = Pick<LabelBase,
   | "color"
 >
 
-
-export const formatAsLabelRawNested = OBJECT<LabelRawNested>({
+export const formatAsLabelRawNested = OBJECT({
   id: OID(),
   name: name,
   color: color,
+}, {
+  name: "LabelRawNested",
 });
   
 
-export const formatAsLabelRawNestedStrictly = WithError(formatAsLabelRawNested, () => (
-  new TypeError("invalid raw nested label")
-));
-
-
-export default Object.freeze({
-  format: formatAsLabelRawNested,
-  formatStrictly: formatAsLabelRawNestedStrictly,
-});
+export default formatAsLabelRawNested;

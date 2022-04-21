@@ -1,12 +1,14 @@
-import {Or} from "/util/checker";
-import {NULL} from "/util/checker";
-import {STRING} from "/util/checker";
+import {OR} from "/util/formatter";
+import {NULL} from "/util/formatter";
+import {STRING} from "/util/formatter";
 
 
-const avatar = Or([
+const avatar = OR([
   NULL(), 
-  STRING({}),
-]);
+  STRING(),
+], {
+  name: "User/avatar",
+});
 
 
 export default avatar;

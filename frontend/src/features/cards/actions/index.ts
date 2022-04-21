@@ -1,19 +1,16 @@
 import URLS from "../endpoints";
-import {Or} from "/util/checker";
-import CARD from "../entity";
-import {OID} from "/util/checker";
+import {OID} from "/util/formatter";
 import {Oid} from "/util/idUtil";
-import LABEL from "/labels/entity";
 import FIELDS from "/cards/fields";
-import {ARRAY} from "/util/checker";
-import {OBJECT} from "/util/checker";
-import {NUMBER} from "/util/checker";
-import {BOOLEAN} from "/util/checker";
-import ApiMutater from "/api/mutator";
-import {UNDEFINED} from "/util/checker";
-import {WithError} from "/util/checker";
+import {ARRAY} from "/util/formatter";
+import {OBJECT} from "/util/formatter";
+import {NUMBER} from "/util/formatter";
+import {BOOLEAN} from "/util/formatter";
+import ApiMutater from "/core/api/mutator";
 import {CardRawUnnested} from "../entity/rawUnnested";
 import {LabelRawUnnested} from "/labels/entity";
+import {formatAsCardRawUnnested} from "/features/cards/entity";
+import {formatAsLabelRawUnnested} from "/features/labels/entity";
 
 
 // ---------- PREPARED REQUEST METAS
@@ -122,89 +119,71 @@ export const prepareCardCreateRequestMeta = (meta: CardCreateRequestMetaUnprepar
 
 // ---------- REQUEST META FORMATTERS
 
-export const formatAsCardEditRequestMeta = OBJECT<CardEditRequestMeta>({
+export const formatAsCardEditRequestMeta = OBJECT({
   idCard: OID(),
-  title: Or([FIELDS.title, UNDEFINED()]),
-  dateDue: Or([FIELDS.dateDue, UNDEFINED()]),
-  dateStart: Or([FIELDS.dateStart, UNDEFINED()]),
-  isWatched: Or([FIELDS.isWatched, UNDEFINED()]),
-  isComplete: Or([FIELDS.isComplete, UNDEFINED()]),
-  description: Or([FIELDS.description, UNDEFINED()]),
+  title: FIELDS.title.copy({optional: true}),
+  dateDue: FIELDS.dateDue.copy({optional: true}),
+  dateStart: FIELDS.dateStart.copy({optional: true}),
+  isWatched: FIELDS.isWatched.copy({optional: true}),
+  isComplete: FIELDS.isComplete.copy({optional: true}),
+  description: FIELDS.description.copy({optional: true}),
+}, {
+  name: "CardEditRequestMeta",
 });
 
-export const formatAsCardMoveRequestMeta = OBJECT<CardMoveRequestMeta>({
-  index: NUMBER({min: 0, nonNaN: true}),
+export const formatAsCardMoveRequestMeta = OBJECT({
+  index: NUMBER({sign: "+", min: 0}),
   idCard: OID(), 
   idList: OID(),
+}, {
+  name: "CardMoveRequestMeta",
 });
 
-export const formatAsCardCopyRequestMeta = OBJECT<CardCopyRequestMeta>({
+export const formatAsCardCopyRequestMeta = OBJECT({
   title: FIELDS.title,
-  index: NUMBER({min: 0, nonNaN: true}),
+  index: NUMBER({sign: "+", min: 0}),
   idList: OID(),
-  keepDates: Or([BOOLEAN({}), UNDEFINED()]),
-  keepLabels: Or([BOOLEAN({}), UNDEFINED()]),
-  keepChecklista: Or([BOOLEAN({}), UNDEFINED()]),
+  keepDates: BOOLEAN({optional: true}),
+  keepLabels: BOOLEAN({optional: true}),
+  keepChecklista: BOOLEAN({optional: true}),
 });
 
-export const formatAsCardLabelRequestMeta = OBJECT<CardLabelRequestMeta>({
+export const formatAsCardLabelRequestMeta = OBJECT({
   idCard: OID(),
   idLabel: OID(),
+}, {
+  name: "CardLabelRequestMeta",
 });
 
-export const formatAsCardCreateRequestMeta = OBJECT<CardCreateRequestMeta>({
+export const formatAsCardCreateRequestMeta = OBJECT({
   title: FIELDS.title,
-  index: NUMBER({min: 0, nonNaN: true}),
+  index: NUMBER({sign: "+", min: 0}),
   idList: OID(),
   idLabels: ARRAY([OID()]),
   description: FIELDS.description,
+}, {
+  name: "CardCreateRequestMeta",
 });
 
-export const formatAsCardUnlabelRequestMeta = OBJECT<CardUnlabelRequestMeta>({
+export const formatAsCardUnlabelRequestMeta = OBJECT({
   idCard: OID(),
   idLabel: OID(),
+}, {
+  name: "CardUnlabelRequestMeta",
 });
 
-export const formatAsCardDestroyRequestMeta = OBJECT<CardDestroyRequestMeta>({
+export const formatAsCardDestroyRequestMeta = OBJECT({
   idCard: OID(),
+}, {
+  name: "CardDestroyRequestMeta",
 });
 
-export const formatAsCardSetLabelsRequestMeta = OBJECT<CardSetLabelsRequestMeta>({
+export const formatAsCardSetLabelsRequestMeta = OBJECT({
   idCard: OID(),
   idLabels: ARRAY([OID()]),
+}, {
+  name: "CardSetLabelsRequestMeta",
 });
-
-export const formatAsCardEditRequestMetaStrictly = WithError(formatAsCardEditRequestMeta, () => (
-  new TypeError("invalid card edit request meta")
-));
-
-export const formatAsCardMoveRequestMetaStrictly = WithError(formatAsCardMoveRequestMeta, () => (
-  new TypeError("invalid card move request meta")
-));
-
-export const formatAsCardCopyRequestMetaStrictly = WithError(formatAsCardCopyRequestMeta, () => (
-  new TypeError("invalid card copy request meta")
-));
-
-export const formatAsCardLabelRequestMetaStrictly = WithError(formatAsCardLabelRequestMeta, () => (
-  new TypeError("invalid card label request meta")
-));
-
-export const formatAsCardCreateRequestMetaStrictly = WithError(formatAsCardCreateRequestMeta, () => (
-  new TypeError("invalid card create request meta")
-));
-
-export const formatAsCardUnlabelRequestMetaStrictly = WithError(formatAsCardUnlabelRequestMeta, () => (
-  new TypeError("invalid card unlabel request meta")
-));
-
-export const formatAsCardDestroyRequestMetaStrictly = WithError(formatAsCardDestroyRequestMeta, () => (
-  new TypeError("invalid card cestroy request meta")
-));
-
-export const formatAsCardSetLabelsRequestMetaStrictly = WithError(formatAsCardSetLabelsRequestMeta, () => (
-  new TypeError("invalid card set-labels request meta")
-));
 
 
 // ---------- RESPONSE BODIES
@@ -221,23 +200,19 @@ export type CardSetLabelsResponseBody = undefined
 
 // ---------- RESPONSE BODY FORMATTERS
 
-export const formatAsCardMoveResponseBody = OBJECT<CardMoveResponseBody>({
-  card: CARD.rawUnnested.formatStrictly, 
-  labels: ARRAY([LABEL.rawNested.formatStrictly]),
+export const formatAsCardMoveResponseBody = OBJECT({
+  card: formatAsCardRawUnnested, 
+  labels: ARRAY([formatAsLabelRawUnnested]),
+}, {
+  name: "CardMoveResponseBody",
 });
 
-export const formatAsCardCopyResponseBody = OBJECT<CardCopyResponseBody>({
-  card: CARD.rawUnnested.format, 
-  labels: ARRAY([LABEL.rawUnnested.formatStrictly]),
+export const formatAsCardCopyResponseBody = OBJECT({
+  card: formatAsCardRawUnnested, 
+  labels: ARRAY([formatAsLabelRawUnnested]),
+}, {
+  name: "CardCopyRequestMeta",
 });
-
-export const formatAsCardMoveResponseBodyStrictly = WithError(formatAsCardMoveResponseBody, () => (
-  new TypeError("invalid card move response body")
-));
-
-export const formatAsCardCopyResponseBodyStrictly = WithError(formatAsCardCopyResponseBody, () => (
-  new TypeError("invalid card copy response body")
-));
 
 
 // ---------- REQUEST CREATORS
@@ -767,7 +742,7 @@ export const move = ApiMutater<
   CardMoveRejectedAction,
   CardMoveFulfilledAction
 >({
-  format: formatAsCardMoveResponseBodyStrictly,
+  format: formatAsCardMoveResponseBody.copy({strict: true}),
   request: CardMoveRequest,
   pending: CardMovePendingAction,
   rejected: CardMoveRejectedAction,
@@ -781,7 +756,7 @@ export const copy = ApiMutater<
   CardCopyRejectedAction,
   CardCopyFulfilledAction
 >({
-  format: formatAsCardCopyResponseBodyStrictly,
+  format: formatAsCardCopyResponseBody.copy({strict: true}),
   request: CardCopyRequest,
   pending: CardCopyPendingAction,
   rejected: CardCopyRejectedAction,
@@ -879,18 +854,8 @@ export default Object.freeze({
   formatAsCardUnlabelRequestMeta,
   formatAsCardDestroyRequestMeta,
   formatAsCardSetLabelsRequestMeta,
-  formatAsCardEditRequestMetaStrictly,
-  formatAsCardMoveRequestMetaStrictly,
-  formatAsCardCopyRequestMetaStrictly,
-  formatAsCardLabelRequestMetaStrictly,
-  formatAsCardCreateRequestMetaStrictly,
-  formatAsCardUnlabelRequestMetaStrictly,
-  formatAsCardDestroyRequestMetaStrictly,
-  formatAsCardSetLabelsRequestMetaStrictly,
   formatAsCardMoveResponseBody,
   formatAsCardCopyResponseBody,
-  formatAsCardMoveResponseBodyStrictly,
-  formatAsCardCopyResponseBodyStrictly,
   CardMoveRequest,
   CardCopyRequest,
   CardEditRequest,

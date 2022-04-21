@@ -1,10 +1,9 @@
 import URLS from "../endpoints";
 import {Oid} from "/util/idUtil";
-import {OID} from "/util/checker";
+import {OID} from "/util/formatter";
 import FIELDS from "/checklists/fields";
-import {OBJECT} from "/util/checker";
-import {WithError} from "/util/checker";
-import ApiMutator from "/api/mutator";
+import {OBJECT} from "/util/formatter";
+import ApiMutator from "/core/api/mutator";
 import {ChecklistBase} from "../entity";
 
 
@@ -50,32 +49,26 @@ export const prepareChecklistCreateRequestMeta = (meta: ChecklistCreateRequestMe
 
 // ---------- REQUEST META FORMATTERS
 
-export const formatAsChecklistEditRequestMeta = OBJECT<ChecklistEditRequestMeta>({
-  title: FIELDS.title.optional(undefined),
-  filter: FIELDS.filter.optional(undefined),
+export const formatAsChecklistEditRequestMeta = OBJECT({
+  title: FIELDS.title.copy({optional: true}),
+  filter: FIELDS.filter.copy({optional: true}),
   idChecklist: OID(), 
+}, {
+  name: "ChecklistEditRequestMeta",
 });
 
-export const formatAsChecklistCreateRequestMeta = OBJECT<ChecklistCreateRequestMeta>({
+export const formatAsChecklistCreateRequestMeta = OBJECT({
   title: FIELDS.title,
   idCard: OID(), 
+}, {
+  name: "ChecklistCreateRequestMeta",
 });
 
-export const formatAsChecklistDestroyRequestMeta = OBJECT<ChecklistDestroyRequestMeta>({
+export const formatAsChecklistDestroyRequestMeta = OBJECT({
   idChecklist: OID(),
+}, {
+  name: "ChecklistDestroyRequestMeta",
 });
-
-export const formatAsChecklistEditRequestMetaStrictly = WithError(formatAsChecklistEditRequestMeta, () => (
-  new TypeError("invalid checklist edit request meta")
-));
-
-export const formatAsChecklistCreateRequestMetaStrictly = WithError(formatAsChecklistCreateRequestMeta, () => (
-  new TypeError("invalid checklist create request meta")
-));
-
-export const formatAsChecklistDestroyRequestMetaStrictly = WithError(formatAsChecklistDestroyRequestMeta, () => (
-  new TypeError("invalid checklist destroy request meta")
-));
 
 
 // ---------- RESPONSE BODIES
@@ -159,7 +152,6 @@ export type ChecklistEditFulfilledAction = {
   payload: undefined;
 }
 
-
 export type ChecklistCreatePendingAction = {
   type: CREATE_PENDING;
   meta: ChecklistCreateRequestMeta;
@@ -180,7 +172,6 @@ export type ChecklistCreateFulfilledAction = {
   error: undefined;
   payload: undefined;
 }
-
 
 export type ChecklistDestroyPendingAction = {
   type: DESTROY_PENDING;
@@ -237,65 +228,63 @@ export const ChecklistEditPendingAction = (meta: ChecklistEditRequestMeta): Chec
   meta: meta,
   error: undefined,
   payload: undefined,
-})
+});
 
 export const ChecklistEditRejectedAction = (meta: ChecklistEditRequestMeta, error: unknown): ChecklistEditRejectedAction => ({
   type: EDIT_REJECTED,
   meta: meta,
   error: error,
   payload: undefined,
-})
+});
 
 export const ChecklistEditFulfilledAction = (meta: ChecklistEditRequestMeta, payload?: ChecklistEditResponseBody): ChecklistEditFulfilledAction => ({
   type: EDIT_FULFILLED,
   meta: meta,
   error: undefined,
   payload: payload,
-})
-
+});
 
 export const ChecklistCreatePendingAction = (meta: ChecklistCreateRequestMeta): ChecklistCreatePendingAction => ({
   type: CREATE_PENDING,
   meta: meta,
   error: undefined,
   payload: undefined,
-})
+});
 
 export const ChecklistCreateRejectedAction = (meta: ChecklistCreateRequestMeta, error: unknown): ChecklistCreateRejectedAction => ({
   type: CREATE_REJECTED,
   meta: meta,
   error: error,
   payload: undefined,
-})
+});
 
 export const ChecklistCreateFulfilledAction = (meta: ChecklistCreateRequestMeta, payload?: ChecklistCreateResponseBody): ChecklistCreateFulfilledAction => ({
   type: CREATE_FULFILLED,
   meta: meta,
   error: undefined,
   payload: payload,
-})
-
+});
 
 export const ChecklistDestroyPendingAction = (meta: ChecklistDestroyRequestMeta): ChecklistDestroyPendingAction => ({
   type: DESTROY_PENDING,
   meta: meta,
   error: undefined,
   payload: undefined,
-})
+});
 
 export const ChecklistDestroyRejectedAction = (meta: ChecklistDestroyRequestMeta, error: unknown): ChecklistDestroyRejectedAction => ({
   type: DESTROY_REJECTED,
   meta: meta,
   error: error,
   payload: undefined,
-})
+});
 
 export const ChecklistDestroyFulfilledAction = (meta: ChecklistDestroyRequestMeta, payload?: ChecklistDestroyResponseBody): ChecklistDestroyFulfilledAction => ({
   type: DESTROY_FULFILLED,
   meta: meta,
   error: undefined,
   payload: payload,
-})
+});
 
 
 // ---------- THUNKS
@@ -311,7 +300,7 @@ export const edit = ApiMutator<
   pending: ChecklistEditPendingAction,
   rejected: ChecklistEditRejectedAction,
   fulfilled: ChecklistEditFulfilledAction,
-})
+});
 
 
 export const create = ApiMutator<
@@ -327,7 +316,7 @@ export const create = ApiMutator<
   pending: ChecklistCreatePendingAction,
   rejected: ChecklistCreateRejectedAction,
   fulfilled: ChecklistCreateFulfilledAction,
-})
+});
 
 export const destroy = ApiMutator<
   ChecklistDestroyRequestMeta,
@@ -340,7 +329,7 @@ export const destroy = ApiMutator<
   pending: ChecklistDestroyPendingAction,
   rejected: ChecklistDestroyRejectedAction,
   fulfilled: ChecklistDestroyFulfilledAction,
-})
+});
 
 
 
@@ -349,9 +338,6 @@ export default Object.freeze({
   formatAsChecklistEditRequestMeta,
   formatAsChecklistCreateRequestMeta,
   formatAsChecklistDestroyRequestMeta,
-  formatAsChecklistEditRequestMetaStrictly,
-  formatAsChecklistCreateRequestMetaStrictly,
-  formatAsChecklistDestroyRequestMetaStrictly,
   ChecklistEditRequest,
   ChecklistCreateRequest,
   ChecklistDestroyRequest,
