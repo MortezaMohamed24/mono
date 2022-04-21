@@ -59,12 +59,11 @@ export const prepareCheckitemCreateRequestMeta = (meta: CheckitemCreateRequestMe
 // ---------- REQUEST META FORMATTERS
 
 export const formatAsCheckitemEditRequestMeta = OBJECT({
+  content: content.copy({optional: true}),
+  isComplete: BOOLEAN({optional: true}),
+  idCheckitem: OID(),
+}, {
   name: "CheckitemEditRequestMeta",
-  content: {
-    content: content.copy({optional: true}),
-    isComplete: BOOLEAN({optional: true}),
-    idCheckitem: OID(),
-  },
 });
 
 export const formatAsCheckitemMoveRequestMeta = OBJECT({

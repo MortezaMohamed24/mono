@@ -20,21 +20,13 @@ export type ChecklistRawUnnested = Pick<ChecklistBase,
 >
 
 
-export const formatAsChecklistRawUnnested = OBJECT<ChecklistRawUnnested>({
+export const format = OBJECT<ChecklistRawUnnested>({
   id: OID(),
   title: title,
   idCard: OID(),
   filter: filter,
-  checkitems: ARRAY([CHECKITEM.rawNested.format]),
+  checkitems: ARRAY([CHECKITEM.rawNested]),
 });
 
 
-export const formatAsChecklistRawUnnestedStrictly = WithError(formatAsChecklistRawUnnested, () => {
-  new TypeError("invalid raw unnested checklist")
-});
-
-
-export default Object.freeze({
-  format: formatAsChecklistRawUnnested,
-  formatStrictly: formatAsChecklistRawUnnestedStrictly,
-});
+export default format;
