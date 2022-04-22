@@ -1,6 +1,6 @@
 import idUtil from "/util/idUtil";
 import {State} from "/store";
-import {CardLabelRequestMeta} from "/cards/actions";
+import {CardLabelRequestMeta} from "/features/cards/actions";
 
 
 function labelCard({ll, cd}: State, {idCard, idLabel}: CardLabelRequestMeta) {

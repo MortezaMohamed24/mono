@@ -18,7 +18,7 @@ export {
   unlabelCard,
   addManyCards,
   setCardLabels,
-}
+};
 
 
 export default Object.freeze({
@@ -30,4 +30,4 @@ export default Object.freeze({
   addMany: addManyCards,
   setLabels: setCardLabels,
   destroyOne: destroyOneCard,
-})
+});

@@ -4,7 +4,7 @@ import addOneBoard from "./reducers/addOne";
 import {navigate} from "/components/routerController/state";
 import {useEffect} from "/store";
 import {useReducer} from "/store";
-import {CREATE_PENDING, EDIT_PENDING} from "../actions";
+import {EDIT_PENDING} from "../actions";
 import {COPY_FULFILLED} from "../actions";
 import {DESTROY_PENDING} from "../actions";
 import {CREATE_FULFILLED} from "../actions";

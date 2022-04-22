@@ -1,6 +1,6 @@
-import {State} from "../../../../store";
-import {UserRaw} from "/user/entity";
-import {addManyBoards} from "/boards/reducers";
+import {State} from "/store";
+import {UserRaw} from "/features/user/entity";
+import {addManyBoards} from "/features/boards/reducers";
 
 
 function initUser(state: State, userRaw: UserRaw) {

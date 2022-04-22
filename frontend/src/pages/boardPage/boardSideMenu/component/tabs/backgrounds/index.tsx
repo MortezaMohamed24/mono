@@ -1,12 +1,12 @@
 import s from "./style";
-import bd from "/boards";
+import bd from "/features/boards";
 import React from "react";
 import tabify from "../../tabify";
 import {TABS} from "../../manager";
 import classNames from "classnames";
 import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
-import * as COLORS from "/boards/colors";
+import * as COLORS from "/features/boards/colors";
 
 
 const ID = Symbol("board-right-hand-side-menu-backgrounds-tab");

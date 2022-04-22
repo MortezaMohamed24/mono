@@ -1,13 +1,13 @@
 import "./types";
 
 import s from "./style";
-import bd from "/boards";
-import ll from "/labels";
+import bd from "/features/boards";
+import ll from "/features/labels";
 import ps from "/components/popupify/style";
 import btn from "/style/button/style";
 import BLCC from "/features/boardListCardCreator";
 import React from "react";
-import search from "/labels/util/search";
+import search from "/features/labels/util/search";
 import popupify from "/components/popupify";
 import classNames from "classnames";
 import DeepEquals from "/util/object/deepEquals";
@@ -23,8 +23,8 @@ import {LabelNative} from "/features/labels/entity";
 import {useDispatch} from "/store";
 
 import * as INPUT from "/components/inputDeferer";
-import * as EDITOR from "/popups/labelEditor";
-import * as CREATOR from "/popups/labelCreator";
+import * as EDITOR from "/components/labelEditorPopup";
+import * as CREATOR from "/components/labelCreatorPopup";
 
 
 const equal = DeepEquals<LabelNative[]>(1);

@@ -1,22 +1,22 @@
-import {useReducer} from "/store";
 import editList from "./reducers/edit";
 import sortList from "./reducers/sort";
 import addOneList from "./reducers/addOne";
 import createList from "./reducers/create";
-import {addManyCards} from "/cards/reducers";
-import {addManyLabels} from "/labels/reducers";
+import {useReducer} from "/store";
+import {addManyCards} from "/features/cards/reducers";
+import {addManyLabels} from "/features/labels/reducers";
 import destroyOneList from "./reducers/destroyOne";
+import {EDIT_PENDING} from "/features/lists/actions";
+import {MOVE_PENDING} from "/features/lists/actions";
+import {SORT_PENDING} from "/features/lists/actions";
+import {MOVE_FULFILLED} from "/features/lists/actions";
+import {COPY_FULFILLED} from "/features/lists/actions";
+import {CREATE_PENDING} from "/features/lists/actions";
+import {DESTROY_PENDING} from "/features/lists/actions";
 import destroyAllOwnCardsOfList from "./reducers/destroyAllOwnCards";
-import {EDIT_PENDING} from "/lists/actions";
-import {MOVE_PENDING} from "/lists/actions";
-import {SORT_PENDING} from "/lists/actions";
-import {MOVE_FULFILLED} from "/lists/actions";
-import {COPY_FULFILLED} from "/lists/actions";
-import {CREATE_PENDING} from "/lists/actions";
-import {DESTROY_PENDING} from "/lists/actions";
-import {MOVE_ALL_OWN_CARDS_PENDING} from "/lists/actions";
-import {MOVE_ALL_OWN_CARDS_FULFILLED} from "/lists/actions";
-import {DESTROY_ALL_OWN_CARDS_PENDING} from "/lists/actions";
+import {MOVE_ALL_OWN_CARDS_PENDING} from "/features/lists/actions";
+import {MOVE_ALL_OWN_CARDS_FULFILLED} from "/features/lists/actions";
+import {DESTROY_ALL_OWN_CARDS_PENDING} from "/features/lists/actions";
 
 
 useReducer(EDIT_PENDING, (state, {meta}) => {

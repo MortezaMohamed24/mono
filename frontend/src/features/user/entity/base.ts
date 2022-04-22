@@ -1,4 +1,4 @@
-import {BoardRawNested} from "/boards/entity";
+import {BoardRawNested} from "/features/boards/entity";
 
 
 export type UserBase = {

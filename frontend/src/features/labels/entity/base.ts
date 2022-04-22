@@ -1,4 +1,4 @@
-import * as Colors from "/labels/constants/colors";
+import * as Colors from "../constants/colors";
 
 
 /**

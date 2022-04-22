@@ -1,5 +1,5 @@
-import {State} from "../../../../store";
-import {ListDestroyAllOwnCardsRequestMeta} from "/lists/actions";
+import {State} from "/store";
+import {ListDestroyAllOwnCardsRequestMeta} from "/features/lists/actions";
 
 
 function destroyAllOwnCardsOfList({lt, cd, ct, cm}: State, {idList}: ListDestroyAllOwnCardsRequestMeta) {

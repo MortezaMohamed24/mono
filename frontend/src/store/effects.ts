@@ -27,8 +27,6 @@ export function EffectsMiddleware({dispatch, getState}: any) {
   return (next: Dispatch) => async (action: AnyAction) => {
     const returned = next(action);
 
-    console.log("RAN")
-
     for (let [actionType, effect] of effects) {
       if (actionType === action.type) {
         await effect({action, dispatch, getState});

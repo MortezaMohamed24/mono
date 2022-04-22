@@ -1,13 +1,10 @@
 import {STRING} from "/util/formatter";
 import {FILTER} from "../constants";
-import {ChecklistBase} from "/checklists/entity";
+import {ChecklistBase} from "/features/checklists/entity";
 
 
 const filter = STRING({
-<<<<<<< HEAD
-=======
   name: "Checklist/filter",
->>>>>>> useTheNewVersionOfFormatter
   case: "upper",
   trim: "both",
   type: "" as ChecklistBase["filter"],

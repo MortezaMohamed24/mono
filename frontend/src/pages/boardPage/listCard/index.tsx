@@ -1,5 +1,5 @@
 import s from "./style";
-import cd from "/cards";
+import cd from "/features/cards";
 import React from "react";
 import pathOf from "/util/event/outerPathOf";
 import ellipsify from "/util/string/ellipsify";
@@ -10,7 +10,7 @@ import {Link} from "react-router-dom";
 import {Toggler} from "/components/modulify";
 import {useState} from "react";
 import {useSelector} from "react-redux";
-import {QUICK_CARD_EDITOR_ID} from "../boardCardQuickEditor";
+import {QUICK_CARD_EDITOR_ID} from "../boardCardQuickEditorModule";
 
 
 interface Props {

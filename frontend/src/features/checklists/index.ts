@@ -1,6 +1,6 @@
 import "./state";
-import thunks from "/checklists/actions";
-import selectors from "/checklists/selectors";
+import thunks from "./actions";
+import selectors from "./selectors";
 
 
 const one = selectors.one;

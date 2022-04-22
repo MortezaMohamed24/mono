@@ -1,6 +1,6 @@
 import idUtil from "/util/idUtil";
 import {State} from "/store";
-import {ListDestroyRequestMeta} from "/lists/actions";
+import {ListDestroyRequestMeta} from "/features/lists/actions";
 
 
 function destroyOneList({bd, lt, cd, ct, cm}: State, {idList}: ListDestroyRequestMeta) {

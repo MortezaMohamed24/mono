@@ -1,6 +1,6 @@
 import {State} from "/store";
 import addOneLabel from "./addOne";
-import {LabelRawUnnested} from "/labels/entity";
+import {LabelRawUnnested} from "/features/labels/entity";
 
 
 function addManyLabels(state: State, labels: LabelRawUnnested[]) {

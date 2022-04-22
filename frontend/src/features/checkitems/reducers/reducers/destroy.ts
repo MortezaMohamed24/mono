@@ -1,6 +1,6 @@
 import idUtil from "/util/idUtil";
-import {State} from "../../../../store";
-import {CheckitemDestroyRequestMeta} from "/checkitems/actions";
+import {State} from "/store";
+import {CheckitemDestroyRequestMeta} from "/features/checkitems/actions";
 
 
 function destroyCheckitem({ct, cm}: State, {idCheckitem}: CheckitemDestroyRequestMeta) {

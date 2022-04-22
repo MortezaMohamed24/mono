@@ -1,9 +1,9 @@
 import s from "./style";
-import ur from "/user";
+import ur from "/features/user";
 import btn from "/style/button/style";
-import type from "/style/typeography/style";
 import React from "react";
 import {Link} from "react-router-dom";
+import typeography from "/style/typeography/style";
 import {useSelector} from "react-redux";
 
 
@@ -21,14 +21,14 @@ function BoardNotFoundPage() {
   return (
     <div className={s.page}>
 
-      <h2 className={type.h1}>
+      <h2 className={typeography.h1}>
         Board not found.
       </h2>
 
       <p>
         {`Not ${user.firstname} ${user.lastname}? `}
 
-        <Link to="/login" className={type.link}>
+        <Link to="/login" className={typeography.link}>
           Switch accounts
         </Link>
       </p>

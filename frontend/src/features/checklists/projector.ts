@@ -1,4 +1,4 @@
-import checkitem from "/checkitems/projector";
+import checkitem from "/features/checkitems/projector";
 import {CheckitemProjector} from "/features/checkitems/projector";
 
 

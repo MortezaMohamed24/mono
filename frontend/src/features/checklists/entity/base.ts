@@ -1,6 +1,6 @@
 import {ALL} from "../fields/constants";
 import {INCOMPLETE} from "../fields/constants";
-import {CheckitemRawNested} from "/checkitems/entity";
+import {CheckitemRawNested} from "/features/checkitems/entity";
 
 
 /** 

@@ -1,6 +1,6 @@
 import idUtil from "/util/idUtil";
-import {State} from "../../../../store";
-import {CheckitemRawUnnested} from "/checkitems/entity";
+import {State} from "/store";
+import {CheckitemRawUnnested} from "/features/checkitems/entity";
 
 
 function addOneCheckitem({ur, ct, cm}: State, checkitem: CheckitemRawUnnested) {

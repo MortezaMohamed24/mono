@@ -1,11 +1,10 @@
-import URLS from "/labels/endpoints";
+import URLS from "/features/labels/endpoints";
 import {Oid} from "/util/idUtil";
 import {OID} from "/util/formatter";
-import FIELDS from "/labels/fields";
+import FIELDS from "/features/labels/fields";
 import {OBJECT} from "/util/formatter";
-import {UNDEFINED} from "/util/formatter";
-import ApiMutator from "/core/api/mutator";
-import {LabelBase} from "/labels/entity";
+import ApiMutator from "/api/mutator";
+import {LabelBase} from "/features/labels/entity";
 
 
 // ---------- PREPARED REQUEST METAS

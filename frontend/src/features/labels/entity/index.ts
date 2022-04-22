@@ -1,16 +1,15 @@
-export * from "./base";
-export * from "./native";
-export * from "./rawNested";
-export * from "./rawUnnested";
+export {LabelBase} from "./base";
+export {LabelNative} from "./native";
+export {LabelRawNested} from "./rawNested";
+export {LabelRawUnnested} from "./rawUnnested";
 
+import {formatAsLabelRawNested} from "./rawNested";
+import {formatAsLabelRawUnnested} from "./rawUnnested";
 
-import native from "./native";
-import rawNested from "./rawNested";
-import rawUnnested from "./rawUnnested";
-
+export {formatAsLabelRawNested};
+export {formatAsLabelRawUnnested};
 
 export default Object.freeze({
-  native,
-  rawNested,
-  rawUnnested,
-})
+  formatAsLabelRawNested,
+  formatAsLabelRawUnnested,
+});

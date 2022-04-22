@@ -1,6 +1,6 @@
 import {State} from "/store";
 import addOneLabel from "./addOne";
-import {LabelCreateRequestMeta} from "/labels/actions";
+import {LabelCreateRequestMeta} from "/features/labels/actions";
 
 
 function createLabel(state: State, payload: LabelCreateRequestMeta) {

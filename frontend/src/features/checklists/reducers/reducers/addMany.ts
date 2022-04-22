@@ -1,4 +1,4 @@
-import {State} from "../../../../store";
+import {State} from "/store";
 import addOneChecklist from "./addOne";
 import {ChecklistRawUnnested} from "../../entity";
 

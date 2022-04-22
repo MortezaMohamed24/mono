@@ -1,6 +1,6 @@
-import checklist from "/checklists/projector";
-import {CheckitemProjector} from "/checkitems/projector";
-import {ChecklistProjector} from "/checklists/projector";
+import checklist from "/features/checklists/projector";
+import {CheckitemProjector} from "/features/checkitems/projector";
+import {ChecklistProjector} from "/features/checklists/projector";
 
 
 /**

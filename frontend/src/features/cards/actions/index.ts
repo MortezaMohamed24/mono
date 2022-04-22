@@ -1,14 +1,14 @@
 import URLS from "../endpoints";
 import {OID} from "/util/formatter";
 import {Oid} from "/util/idUtil";
-import FIELDS from "/cards/fields";
+import FIELDS from "/features/cards/fields";
 import {ARRAY} from "/util/formatter";
 import {OBJECT} from "/util/formatter";
 import {NUMBER} from "/util/formatter";
 import {BOOLEAN} from "/util/formatter";
-import ApiMutater from "/core/api/mutator";
+import ApiMutater from "/api/mutator";
 import {CardRawUnnested} from "../entity/rawUnnested";
-import {LabelRawUnnested} from "/labels/entity";
+import {LabelRawUnnested} from "/features/labels/entity";
 import {formatAsCardRawUnnested} from "/features/cards/entity";
 import {formatAsLabelRawUnnested} from "/features/labels/entity";
 
@@ -132,7 +132,7 @@ export const formatAsCardEditRequestMeta = OBJECT({
 });
 
 export const formatAsCardMoveRequestMeta = OBJECT({
-  index: NUMBER({sign: "+", min: 0}),
+  index: NUMBER({min: 0}),
   idCard: OID(), 
   idList: OID(),
 }, {
@@ -141,7 +141,7 @@ export const formatAsCardMoveRequestMeta = OBJECT({
 
 export const formatAsCardCopyRequestMeta = OBJECT({
   title: FIELDS.title,
-  index: NUMBER({sign: "+", min: 0}),
+  index: NUMBER({min: 0}),
   idList: OID(),
   keepDates: BOOLEAN({optional: true}),
   keepLabels: BOOLEAN({optional: true}),
@@ -157,7 +157,7 @@ export const formatAsCardLabelRequestMeta = OBJECT({
 
 export const formatAsCardCreateRequestMeta = OBJECT({
   title: FIELDS.title,
-  index: NUMBER({sign: "+", min: 0}),
+  index: NUMBER({min: 0}),
   idList: OID(),
   idLabels: ARRAY([OID()]),
   description: FIELDS.description,

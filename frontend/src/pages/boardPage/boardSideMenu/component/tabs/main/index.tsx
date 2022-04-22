@@ -1,5 +1,5 @@
 import s from "./style";
-import bd from "/boards";
+import bd from "/features/boards";
 import React from "react";
 import tabify from "../../tabify";
 import {TABS} from "../../manager";
@@ -9,7 +9,7 @@ import {Toggler} from "/components/popupify";
 import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
 import {LABELS_TAB_ID} from "../labels";
-import {DELETER_POPUP_ID} from "/popups/deleter";
+import {DELETER_POPUP_ID} from "/components/deleterPopup";
 import {BACKGROUNDS_TAB_ID} from "../backgrounds";
 
 

@@ -1,5 +1,5 @@
 import s from "./style";
-import cd from "/cards";
+import cd from "/features/cards";
 import btn from "/style/button/style";
 import icon from "/style/icon/style";
 import stop from "/util/event/stop";
@@ -10,11 +10,11 @@ import {useRef} from "react";
 import {Toggler} from "/components/popupify";
 import {useState} from "react";
 import {useEffect} from "react";
-import {useSelector} from "../../../core/store";
+import {useSelector} from "/store";
 import {useDispatch} from "react-redux";
 import {TextareaMeta} from "/components/textarea/statefull";
-import {MAX_TITLE_LENGTH} from "/cards/fields/constants";
-import {MIN_TITLE_LENGTH} from "/cards/fields/constants";
+import {MAX_TITLE_LENGTH} from "/features/cards/fields/constants";
+import {MIN_TITLE_LENGTH} from "/features/cards/fields/constants";
 import BoardListCardLabels from "../listCardLabels";
 import {CARD_CREATOR_OPTIONS_POPUP_ID} from "../listCardCreatorOptionsPopup";
 

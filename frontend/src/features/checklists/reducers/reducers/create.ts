@@ -1,5 +1,5 @@
 import {ALL} from "../../fields";
-import {State} from "../../../../store";
+import {State} from "/store";
 import addOneChecklist from "./addOne";
 import {ChecklistCreateRequestMeta} from "../../actions";
 

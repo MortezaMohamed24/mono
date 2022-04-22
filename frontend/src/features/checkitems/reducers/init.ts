@@ -1,4 +1,4 @@
-import {useReducer} from "../../../store";
+import {useReducer} from "/store";
 
 import moveCheckitem from "./reducers/move";
 import editCheckitem from "./reducers/edit";

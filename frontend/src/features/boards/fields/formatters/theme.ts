@@ -1,6 +1,6 @@
 import {THEME} from "../constants";
 import {STRING} from "/util/formatter";
-import {BoardNative} from "/boards/entity/native";
+import {BoardNative} from "/features/boards/entity/native";
 
 
 const theme = STRING({

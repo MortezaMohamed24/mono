@@ -4,7 +4,7 @@ import {title} from "../fields/formatters";
 import {filter} from "../fields/formatters";
 import {OBJECT} from "/util/formatter";
 import ChecklistBase from "./base";
-import {formatAsCheckitemRawUnnested} from "/checkitems/entity";
+import {formatAsCheckitemRawUnnested} from "/features/checkitems/entity";
 
 
 /** 
@@ -19,22 +19,11 @@ export type ChecklistRawUnnested = Pick<ChecklistBase,
 >
 
 
-<<<<<<< HEAD
-export const format = OBJECT<ChecklistRawUnnested>({
-=======
 export const formatAsChecklistRawUnnested = OBJECT({
->>>>>>> useTheNewVersionOfFormatter
   id: OID(),
   title: title,
   idCard: OID(),
   filter: filter,
-<<<<<<< HEAD
-  checkitems: ARRAY([CHECKITEM.rawNested]),
-});
-
-
-export default format;
-=======
   checkitems: ARRAY([formatAsCheckitemRawUnnested]),
 }, {
   name: "ChecklistRawUnnested",
@@ -42,4 +31,3 @@ export default format;
 
 
 export default formatAsCheckitemRawUnnested;
->>>>>>> useTheNewVersionOfFormatter

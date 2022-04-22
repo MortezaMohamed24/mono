@@ -1,4 +1,4 @@
-import LT from "/lists";
+import LT from "/features/lists";
 import PS from "/components/popupify/style";
 import BLCC from "/features/boardListCardCreator";
 import React from "react";
@@ -11,7 +11,7 @@ import {Toggler} from "/components/popupify";
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
 
-import {DELETER_POPUP_ID} from "/popups/deleter";
+import {DELETER_POPUP_ID} from "/components/deleterPopup";
 import {BOARD_LIST_MOVER_POPUP_ID} from "../listMoverPopup";
 import {BOARD_LIST_COPIER_POPUP_ID} from "../listCopierPopup";
 import {BOARD_LIST_SORTER_POPUP_ID} from "../listSorterPopup";

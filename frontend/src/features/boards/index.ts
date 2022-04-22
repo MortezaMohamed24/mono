@@ -1,7 +1,7 @@
 import "./state";
-import search from "/boards/util/search";
-import thunks from "/boards/actions";
-import selectors from "/boards/selectors";
+import search from "./util/search";
+import thunks from "./actions";
+import selectors from "./selectors";
 
 
 const ids = selectors.ids;

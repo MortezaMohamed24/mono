@@ -1,5 +1,5 @@
 import React from "react";
-import Loading from "/pages/loading";
+import Loading from "../../pages/mainLoadingPage";
 import {Errors} from "/api/login/status";
 import LoadError from "/pages/loadError";
 import {useState} from "react";

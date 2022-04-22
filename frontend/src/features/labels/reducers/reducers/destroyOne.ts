@@ -1,6 +1,6 @@
 import idUtil from "/util/idUtil";
 import {State} from "/store";
-import {LabelDestroyRequestMeta} from "/labels/actions";
+import {LabelDestroyRequestMeta} from "/features/labels/actions";
 
 
 function destroyOneLabel({bd, ll}: State, {idLabel}: LabelDestroyRequestMeta) {  

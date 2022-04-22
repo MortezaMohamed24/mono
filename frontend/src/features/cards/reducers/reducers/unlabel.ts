@@ -1,6 +1,6 @@
 import idUtil from "/util/idUtil";
 import {State} from "/store";
-import {CardUnlabelRequestMeta} from "/cards/actions";
+import {CardUnlabelRequestMeta} from "/features/cards/actions";
 
 
 function unlabelCard({cd, ll}: State, {idCard, idLabel}: CardUnlabelRequestMeta) {

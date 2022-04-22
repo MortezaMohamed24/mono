@@ -1,4 +1,4 @@
-import {CardRawNested} from "/cards/entity/rawNested";
+import {CardRawNested} from "/features/cards/entity/rawNested";
 import {DATE_CREATED_ASCENDING} from "../fields";
 import {DATE_CREATED_DESCENDING} from "../fields";
 import {ALPHABETICALLY_ASCENDING} from "../fields";

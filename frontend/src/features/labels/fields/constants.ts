@@ -1,4 +1,4 @@
-import {NAMES} from "/labels/constants/colors";
+import {NAMES} from "/features/labels/constants/colors";
 
 
 /** 

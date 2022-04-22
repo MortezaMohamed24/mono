@@ -1,6 +1,6 @@
 import idUtil from "/util/idUtil";
 import {State} from "/store";
-import {addManyCheckitems} from "/checkitems/reducers";
+import {addManyCheckitems} from "/features/checkitems/reducers";
 import {ChecklistRawUnnested} from "../../entity";
 
 

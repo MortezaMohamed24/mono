@@ -1,6 +1,6 @@
 import {State} from "/store";
 import addOneList from "./addOne";
-import {ListRawUnnested} from "/lists/entity";
+import {ListRawUnnested} from "/features/lists/entity";
 
 
 function addManyLists(state: State, lists: ListRawUnnested[]) {

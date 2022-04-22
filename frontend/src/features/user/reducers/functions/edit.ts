@@ -1,5 +1,5 @@
 import {State} from "/store";
-import {UserEditRequestMeta} from "/user/actions";
+import {UserEditRequestMeta} from "../../actions";
 
 
 function onUserEditFulfilled({ur}: State, meta: UserEditRequestMeta) {

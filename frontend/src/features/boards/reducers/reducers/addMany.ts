@@ -1,6 +1,6 @@
 import {State} from "/store";
 import addOneBoard from "./addOne";
-import {BoardRawUnnested} from "/boards/entity/rawUnnested";
+import {BoardRawUnnested} from "/features/boards/entity/rawUnnested";
 
 
 function addManyBoards(state: State, boards: BoardRawUnnested[]) {

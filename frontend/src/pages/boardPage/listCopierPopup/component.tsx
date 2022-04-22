@@ -1,4 +1,4 @@
-import ll from "/lists";
+import ll from "/features/lists";
 import ps from "/components/popupify/style";
 import btn from "/style/button/style";
 import {ID} from "./constants";
@@ -14,8 +14,8 @@ import {InputMeta} from "/components/input/statefull";
 import {useEffect} from "react";
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
-import {MAX_TITLE_LENGTH} from "/lists/fields/constants";
-import {MIN_TITLE_LENGTH} from "/lists/fields/constants";
+import {MAX_TITLE_LENGTH} from "/features/lists/fields/constants";
+import {MIN_TITLE_LENGTH} from "/features/lists/fields/constants";
 
 
 const BoardListCopierPopup = popupify(ID, ({payload: {idList}}) => {

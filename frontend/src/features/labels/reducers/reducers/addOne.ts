@@ -1,6 +1,6 @@
 import idUtil from "/util/idUtil";
 import {State} from "/store";
-import {LabelRawUnnested} from "/labels/entity";
+import {LabelRawUnnested} from "/features/labels/entity";
 
 
 function addOneLabel({bd, ll}: State, label: LabelRawUnnested) {

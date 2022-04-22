@@ -1,7 +1,7 @@
-import f from "/checkitems/fields/formatters";
-import {State} from "../../../../store";
-import {INVALID} from "/util/checker";
-import {CheckitemEditRequestMeta} from "/checkitems/actions";
+import f from "/features/checkitems/fields/formatters";
+import {State} from "/store";
+import {INVALID} from "/util/formatter";
+import {CheckitemEditRequestMeta} from "/features/checkitems/actions";
 
 
 function editCheckitem({cm}: State, meta: CheckitemEditRequestMeta) {

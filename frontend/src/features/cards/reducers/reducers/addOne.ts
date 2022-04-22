@@ -2,7 +2,7 @@ import idUtil from "/util/idUtil";
 import {State} from "/store";
 import setCardLabels from "./setLabels";
 import {CardRawUnnested} from "../../entity/rawUnnested";
-import {addManyChecklists} from "/checklists/reducers";
+import {addManyChecklists} from "/features/checklists/reducers";
 
 
 function addOneCard(state: State, card: CardRawUnnested) {

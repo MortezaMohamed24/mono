@@ -1,18 +1,20 @@
-import {useSlice} from "../../store";
 import {UserNative} from "./entity";
 
 
+export const NAME = "ur";
+
+export function initialState() {
+  return {
+    $error: null,
+    $status: "idle",
+  };
+}
+
 declare global {
   export interface __INTERNAL_REDUX_STATE__ {
-    [USER_SLICE_NAME]: UserNative
+    [NAME]: UserNative
   }
 }
 
 
-const USER_SLICE_NAME = "ur";
-
-
-useSlice(USER_SLICE_NAME, () => ({
-  $error: null,
-  $status: "idle",
-} as any));
+export default Object.freeze({NAME, initialState});

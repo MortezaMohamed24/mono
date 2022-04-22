@@ -1,5 +1,4 @@
 import s from "./style";
-import type from "/style/typeography/style";
 import React from "react";
 import idAttr from "/util/dom/idAttr";
 import {VALID} from "./validation";
@@ -8,6 +7,7 @@ import {Options} from "./validation";
 import {useMemo} from "react";
 import classNames from "classnames";
 import {useEffect} from "react";
+import typeography from "/style/typeography/style";
 import useMergedState from "/util/hooks/useMergedState";
 
 
@@ -123,7 +123,7 @@ const InputWithValidityStatus = ({
         onChange={onChange}
       />
 
-      {isFocused ? <p className={type.xs}>{status}</p> : null}
+      {isFocused ? <p className={typeography.xs}>{status}</p> : null}
     </div>
   )
 };

@@ -1,4 +1,4 @@
-import lt from "/lists";
+import lt from "/features/lists";
 import ps from "/components/popupify/style";
 import {ID} from "./constants";
 import React from "react";

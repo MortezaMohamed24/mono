@@ -1,5 +1,5 @@
-import {useReducer} from "/store";
 import {editLabel} from ".";
+import {useReducer} from "/store";
 import {createLabel} from ".";
 import {destroyOneLabel} from ".";
 import {EDIT_PENDING} from "../actions";

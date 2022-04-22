@@ -58,16 +58,7 @@ const module_ = {rules: [{
 const resolve = {
   alias: {
     "/app": path.resolve(dirname, "./src/app"),
-    "/api": path.resolve(dirname, "./src/api"),
-    "/store": path.resolve(dirname, "./src/store"),
-    "/user": path.resolve(dirname, "./src/features/user"),
-    "/boards": path.resolve(dirname, "./src/features/boards"),
-    "/lists": path.resolve(dirname, "./src/features/lists"),
-    "/cards": path.resolve(dirname, "./src/features/cards"),
-    "/labels": path.resolve(dirname, "src/features/labels"),
-    "/checklists": path.resolve(dirname, "./src/features/checklists"),
-    "/checkitems": path.resolve(dirname, "./src/features/checkitems"),
-    
+    "/core": path.resolve(dirname, "./src/core"),
     "/util": path.resolve(dirname, "./src/util"),
     "/pages": path.resolve(dirname, "./src/pages"),
     "/style": path.resolve(dirname, "./src/style"),

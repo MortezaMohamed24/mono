@@ -1,7 +1,7 @@
-import card from "/cards/projector";
-import {CardProjector} from "/cards/projector";
-import {ChecklistProjector} from "/checklists/projector";
-import {CheckitemProjector} from "/checkitems/projector";
+import card from "/features/cards/projector";
+import {CardProjector} from "/features/cards/projector";
+import {ChecklistProjector} from "/features/checklists/projector";
+import {CheckitemProjector} from "/features/checkitems/projector";
 
 
 /**

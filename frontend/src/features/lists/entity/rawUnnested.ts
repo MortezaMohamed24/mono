@@ -5,7 +5,7 @@ import {OBJECT} from "/util/formatter";
 import {ListBase} from "./base";
 import {isWatched} from "../fields";
 import {sortMethod} from "../fields";
-import {formatAsCardRawNested} from "/cards/entity";
+import {formatAsCardRawNested} from "/features/cards/entity";
 
 
 /**
@@ -21,13 +21,15 @@ export type ListRawUnnested = Pick<ListBase,
 >
 
 
-export const formatAsListRawUnnested = OBJECT<ListRawUnnested>({
+export const formatAsListRawUnnested = OBJECT({
   id: OID(),
   title: title,
   cards: ARRAY([formatAsCardRawNested]),
   idBoard: OID(),
   isWatched: isWatched,
   sortMethod: sortMethod,
+}, {
+  name: "ListRawUnnested",
 });
 
 

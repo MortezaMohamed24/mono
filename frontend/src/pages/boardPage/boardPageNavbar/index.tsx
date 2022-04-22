@@ -1,13 +1,13 @@
 import s from "./style";
-import bd from "/boards";
+import bd from "/features/boards";
 import React from "react";
 import {Toggler} from "../boardSideMenu";
 import classNames from "classnames";
 import TwoModeInput from "/components/twoFacedInput";
 import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
-import {MIN_TITLE_LENGTH} from "/boards/fields/constants";
-import {MAX_TITLE_LENGTH} from "/boards/fields/constants";
+import {MIN_TITLE_LENGTH} from "/features/boards/fields/constants";
+import {MAX_TITLE_LENGTH} from "/features/boards/fields/constants";
 
 
 const BoardNavbar = React.memo<{}>(() => {

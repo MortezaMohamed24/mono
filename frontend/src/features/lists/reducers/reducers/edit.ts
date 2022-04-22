@@ -1,7 +1,7 @@
 import v from "../../fields/formatters";
-import {State} from "../../../../store";
-import {INVALID} from "/util/checker";
-import {ListEditRequestMeta} from "/lists/actions";
+import {State} from "/store";
+import {INVALID} from "/util/formatter";
+import {ListEditRequestMeta} from "/features/lists/actions";
 
 
 function editList({lt}: State, meta: ListEditRequestMeta) {

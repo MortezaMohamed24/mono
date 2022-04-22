@@ -5,7 +5,7 @@ import {OBJECT} from "/util/formatter";
 import ListBase from "./base";
 import {isWatched} from "../fields";
 import {sortMethod} from "../fields";
-import {formatAsCardRawNested} from "/cards/entity";
+import {formatAsCardRawNested} from "/features/cards/entity";
 
 
 /** 
@@ -25,6 +25,8 @@ export const formatAsListRawNested = OBJECT({
   cards: ARRAY([formatAsCardRawNested]),
   isWatched: isWatched,
   sortMethod: sortMethod,
+}, {
+  name: "ListRawNested",
 });
 
 

@@ -1,8 +1,9 @@
 import S from "./style";
 import GL from "/features/global";
-import BD from "/boards";
-import React, { useRef, useState } from "react";
+import BD from "/features/boards";
+import React from "react";
 import SideMenu from "../boardSideMenu";
+import {useState} from "react";
 import ListsPanel from "/pages/boardPage/boardPageListsPanel";
 import classNames from "classnames";
 import BoardNavbar from "../boardPageNavbar";
@@ -11,11 +12,11 @@ import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
 import WithMainNavbar from "/templates/withMainNavbar";
 
-import {Labler} from "/popups/cardLabeler";
-import {Deleter} from "/popups/deleter";
+import {Labler} from "/components/cardLabelerPopup";
+import {Deleter} from "/components/deleterPopup";
 import {Redirect} from "react-router";
-import {LabelEditor} from "/popups/labelEditor";
-import {LabelCreator} from "/popups/labelCreator";
+import {LabelEditor} from "/components/labelEditorPopup";
+import {LabelCreator} from "/components/labelCreatorPopup";
 import {BoardListMoverPopup} from "../listMoverPopup";
 import {BoardListCopierPopup} from "../listCopierPopup";
 import {BoardListDorterPopup} from "../listSorterPopup";

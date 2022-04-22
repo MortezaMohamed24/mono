@@ -1,7 +1,7 @@
 import v from "../../fields/formatters";
-import {State} from "../../../../store";
-import {INVALID} from "/util/checker";
-import {CardEditRequestMeta} from "/cards/actions";
+import {State} from "/store";
+import {INVALID} from "/util/formatter";
+import {CardEditRequestMeta} from "/features/cards/actions";
 
 
 function editCard({cd}: State, meta: CardEditRequestMeta) {

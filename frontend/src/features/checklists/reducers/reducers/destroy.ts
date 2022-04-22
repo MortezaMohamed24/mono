@@ -1,5 +1,5 @@
 import idUtil from "/util/idUtil";
-import {State} from "../../../../store";
+import {State} from "/store";
 import {ChecklistDestroyRequestMeta} from "../../actions";
 
 

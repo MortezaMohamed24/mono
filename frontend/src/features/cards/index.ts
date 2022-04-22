@@ -1,6 +1,6 @@
 import "./state";
-import thunks from "/cards/actions";
-import selectors from "/cards/selectors";
+import thunks from "./actions";
+import selectors from "./selectors";
 
 const move = thunks.move;
 const copy = thunks.copy;

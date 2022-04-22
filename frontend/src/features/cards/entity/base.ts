@@ -1,4 +1,4 @@
-import {ChecklistRawNested} from "/checklists/entity";
+import {ChecklistRawNested} from "/features/checklists/entity";
 
 
 /** 

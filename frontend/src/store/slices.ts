@@ -1,4 +1,5 @@
-import { dispatch } from ".";
+import {init} from "./initReduxStateAction";
+import {dispatch} from ".";
 import {ReadonlyState} from "./state";
 
 
@@ -8,17 +9,18 @@ type AnyStateKey = keyof State
 type AnySliceName = keyof State
 
 
-type SliceInitiator<Name extends AnySliceName> = () => State[Name]
-type SliceInitiators = [AnySliceName, SliceInitiator<AnySliceName>][]
+type SliceInitializer<Name extends AnySliceName> = () => State[Name]
+type SliceInitailizers = [AnySliceName, SliceInitializer<AnySliceName>][]
 
 
-const initiators: SliceInitiators = [];
+const initiators: SliceInitailizers = [];
 
 
-const useSlice = <Name extends AnySliceName>(name: Name, initiator: () => State[Name]) => {
-  initiators.push([name, initiator]);
-  console.log([name]);
-  dispatch({type: "jhgjhgjhg"} as any)
+const useSlice = <Name extends AnySliceName>(name: Name, initializer: () => State[Name]) => {
+  initiators.push([name, initializer]);
+
+  // dispatch this event to allow `initator` to initialize the new slice
+  dispatch(init());
 };
 
 const initialize = (uninitializedState: Partial<ReadonlyState> = {}) => {

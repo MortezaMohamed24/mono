@@ -1,4 +1,4 @@
-import {CardNative} from "/cards/entity";
+import {CardNative} from "/features/cards/entity";
 
 
 export function sortByDateCreationAscending(cards: CardNative[]): CardNative[] {

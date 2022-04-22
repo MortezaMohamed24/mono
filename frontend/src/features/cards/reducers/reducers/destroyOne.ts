@@ -1,6 +1,6 @@
 import idUtil from "/util/idUtil";
 import {State} from "/store";
-import {CardDestroyRequestMeta} from "/cards/actions";
+import {CardDestroyRequestMeta} from "/features/cards/actions";
 
 
 function destroyOneCard({lt, cd, ct, cm}: State, {idCard}: CardDestroyRequestMeta) {

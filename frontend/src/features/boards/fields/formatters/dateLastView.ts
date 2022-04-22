@@ -6,10 +6,7 @@ import {MIN_DATE} from "../constants";
 
 const dateLastView = OR([
   NULL(),
-  NUMBER({
-    min: MIN_DATE,
-    finite: true,
-  }),
+  NUMBER({min: MIN_DATE, finite: true}),
 ], {
   name: "Board/dateLastView",
 });

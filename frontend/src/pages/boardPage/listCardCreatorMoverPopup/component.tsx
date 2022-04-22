@@ -1,5 +1,5 @@
-import bd from "/boards";
-import lt from "/lists";
+import bd from "/features/boards";
+import lt from "/features/lists";
 import ps from "/components/popupify/style";
 import btn from "/style/button/style";
 import BLCC from "/features/boardListCardCreator";
@@ -13,8 +13,8 @@ import {Toggler} from "/components/popupify";
 import {useEffect} from "react";
 import {ListOption} from "./selectorOptions";
 import {IndexOption} from "./selectorOptions";
-import {useDispatch} from "../../../core/store";
-import {useSelector} from "../../../core/store";
+import {useDispatch} from "/store";
+import {useSelector} from "/store";
 import {useSelectorState} from "/components/selector/stateless";
 
 

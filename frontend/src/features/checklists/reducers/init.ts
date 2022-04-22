@@ -1,5 +1,5 @@
-import {useReducer} from "../../../store";
 import {ALL} from "../fields";
+import {useReducer} from "/store";
 import editChecklist from "./reducers/edit";
 import addOneChecklist from "./reducers/addOne";
 import destroyChecklist from "./reducers/destroy";

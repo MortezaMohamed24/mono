@@ -1,7 +1,7 @@
 import v from "../../fields/formatters";
 import {State} from "/store";
-import {INVALID} from "/util/checker";
-import {LabelEditRequestMeta} from "/labels/actions";
+import {INVALID} from "/util/formatter";
+import {LabelEditRequestMeta} from "/features/labels/actions";
 
 
 function editLabel({ll}: State, meta: LabelEditRequestMeta) {

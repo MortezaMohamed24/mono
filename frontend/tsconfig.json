@@ -11,22 +11,11 @@
     "./src/*/*/*/*/*/*/*/*", 
     "./src/*/*/*/*/*/*/*/*/*", 
     "./src/*/*/*/*/*/*/*/*/*/*", 
-
-    "./packages/*",
-    "./packages/*/*",
-    "./packages/*/*/*", 
-    "./packages/*/*/*/*", 
-    "./packages/*/*/*/*", 
-    "./packages/*/*/*/*/*", 
-    "./packages/*/*/*/*/*/*", 
-    "./packages/*/*/*/*/*/*/*", 
-    "./packages/*/*/*/*/*/*/*/*", 
-    "./packages/*/*/*/*/*/*/*/*/*", 
-    "./packages/*/*/*/*/*/*/*/*/*/*", 
   ],
+  "exclude": ["./node_modules"],
 
   "compilerOptions": {
-    "lib": ["es2020", "es2020", "es2020", "dom"],
+    "lib": ["es2020", "dom"],
     "jsx": "react",
     "strict": true,
     "module": "ES2020",
@@ -35,35 +24,7 @@
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
-      "@*": ["./packages/*"],
       "/*": ["./src/*"],
-      "/app": ["./src/app"],
-      "/api": ["./src/api/index"],
-      "/api/*": ["./src/api/*"],
-      "/user": ["./src/features/user/index"],
-      "/user/*": ["./src/features/user/*"],
-      "/boards": ["./src/features/boards/index"],
-      "/boards/*": ["./src/features/boards/*"],
-      "/lists": ["./src/features/lists/index"],
-      "/lists/*": ["./src/features/lists/*"],
-      "/cards": ["./src/features/cards/index"],
-      "/cards/*": ["./src/features/cards/*"],
-      "/board": ["./src/features/boards/board"],
-      "/labels": ["src/features/labels/index.ts"],
-      "/labels/*": ["./src/features/labels/*"],
-      "/checklists": ["./src/features/checklists/index"],
-      "/checklists/*": ["./src/features/checklists/*"],
-      "/checkitems": ["./src/features/checkitems/index"],
-      "/checkitems/*": ["./src/features/checkitems/*"],
-
-      "/pages/*": ["./src/pages/*"],
-      "/templates*": ["./src/templates/*"],
-      "/popups/*": ["./src/components/popups/*"],
-      "/modules/*": ["./src/components/modules/*"],
-      "/checker": ["./src/util/checker/index"],
-      "/style/*": ["./src/style/*"],
-      "/components/*": ["./src/components/*"],
-      "/util/*": ["./src/util/*"]
     },
     "typeRoots": ["./"],
     "sourceMap": false,
@@ -77,12 +38,10 @@
     "forceConsistentCasingInFileNames": true,
   },
   
-
   "watchOptions": {
     "watchFile": "useFsEvents",
     "watchDirectory": "useFsEvents",
     "fallbackPolling": "dynamicPriority",
-    // "excludeDirectories": ["**/node_modules", "_build"],
     "synchronousWatchDirectory": true,
   }
 }

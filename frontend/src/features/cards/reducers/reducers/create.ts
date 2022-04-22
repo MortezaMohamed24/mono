@@ -1,7 +1,7 @@
 import idUtil from "/util/idUtil";
 import {State} from "/store";
 import addOneCard from "./addOne";
-import {CardCreateRequestMeta} from "/cards/actions";
+import {CardCreateRequestMeta} from "/features/cards/actions";
 
 
 function createCard(state: State, meta: CardCreateRequestMeta) {

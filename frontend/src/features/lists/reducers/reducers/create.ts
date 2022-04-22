@@ -1,7 +1,7 @@
-import {State} from "../../../../store";
+import {State} from "/store";
 import addOneList from "./addOne";
-import {ListCreateRequestMeta} from "/lists/actions";
-import {DATE_CREATED_ASCENDING} from "/lists/fields";
+import {ListCreateRequestMeta} from "/features/lists/actions";
+import {DATE_CREATED_ASCENDING} from "/features/lists/fields";
 
 
 function createList(state: State, meta: ListCreateRequestMeta) {

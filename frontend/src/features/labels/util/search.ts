@@ -1,4 +1,4 @@
-import {LabelNative} from "/labels/entity";
+import {LabelNative} from "../entity";
 import {objectSearch} from "search-filterer";
 
 

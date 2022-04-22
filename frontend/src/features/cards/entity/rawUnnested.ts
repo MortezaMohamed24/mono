@@ -9,7 +9,7 @@ import {isWatched} from "../fields/formatters";
 import {isComplete} from "../fields/formatters";
 import {description} from "../fields/formatters";
 import {dateCreation} from "../fields/formatters";
-import {formatAsChecklistRawNested} from "/checklists/entity";
+import {formatAsChecklistRawNested} from "/features/checklists/entity";
 
 
 /**

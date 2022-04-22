@@ -1,9 +1,9 @@
 import s from "./style";
-import bd from "/boards";
+import bd from "/features/boards";
 import React from "react";
 import SideMenu from "../boardSideMenu";
 import BoardList from "../list";
-import {useSelector} from "../../../core/store";
+import {useSelector} from "/store";
 import boardPanelify from "../boardPagePanel";
 import BoardListCreator from "../listCreator";
 

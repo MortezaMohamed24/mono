@@ -1,6 +1,6 @@
 import v from "../../fields/formatters";
-import {State} from "../../../../store";
-import {INVALID} from "/util/checker";
+import {State} from "/store";
+import {INVALID} from "/util/formatter";
 import {ChecklistEditRequestMeta} from "../../actions";
 
 

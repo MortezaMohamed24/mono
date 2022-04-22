@@ -1,6 +1,6 @@
 import idUtil from "/util/idUtil";
-import {State} from "../../../../store";
-import {addManyCards} from "/cards/reducers";
+import {State} from "/store";
+import {addManyCards} from "/features/cards/reducers";
 import {ListRawUnnested} from "../../entity";
 
 

@@ -2,13 +2,13 @@ import "./style/style";
 
 import User from "./user";
 import React from "react";
-import Login from "./pages/login";
-import Signup from "./pages/signup";
+import Login from "./pages/loginPage";
+import Signup from "./pages/signupPage";
 import {store} from "./store";
 import {Route} from "react-router-dom";
 import {Switch} from "react-router-dom";
 import {Provider} from "react-redux";
-import PageNotFound from "./pages/pageNotFound";
+import PageNotFound from "./pages/NotFoundPage";
 import {BrowserRouter} from "react-router-dom";
 import ReduxReactRouter from "./components/routerController";
 
@@ -21,8 +21,8 @@ import "/cards/reducers/init";
 import "/labels/reducers/init";
 import "/checklists/reducers/init";
 import "/checkitems/reducers/init";
-import "/pages/login/state/reducers/init";
-import "/pages/signup/state/reducers/init";
+import "./pages/loginPage/state/reducers/init";
+import "./pages/signupPage/state/reducers/init";
 import "./features/boardListCardCreator/index";
 import "/components/routerController/state/reducers/init";
 

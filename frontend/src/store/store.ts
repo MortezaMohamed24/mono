@@ -6,9 +6,13 @@ import {configureStore} from "@reduxjs/toolkit";
 import {EffectsMiddleware} from "./effects";
 
 
-export type Dispatch = (
-  action: AnyAction
-) => void
+export type Dispatch = <TAction extends AnyAction | ((...anys: any[]) => any)>(
+  action: TAction
+) => (
+  TAction extends (...anys: any[]) => AnyAction 
+    ? ReturnType<TAction>
+    : AnyAction 
+)
 
 export type GetState<Writablity extends "readonly" | "writable" = "readonly"> = 
   Writablity extends "readonly"

@@ -1,6 +1,6 @@
 import "./state";
-import thunks from "/user/actions";
-import selectors from "/user/selectors";
+import thunks from "/features/user/actions";
+import selectors from "/features/user/selectors";
 
 
 export const edit = thunks.edit;

@@ -1,4 +1,4 @@
-import {State} from "../../store";
+import {State} from "/store";
 
 
 type FindOneParam = Parameters<State["ll"]["findOne"]>[0]

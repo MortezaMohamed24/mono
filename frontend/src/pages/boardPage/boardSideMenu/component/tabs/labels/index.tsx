@@ -1,19 +1,19 @@
 import s from "./style";
-import bd from "/boards";
-import ll from "/labels";
+import bd from "/features/boards";
+import ll from "/features/labels";
 import btn from "/style/button/style";
 import React from "react";
 import tabify from "../../tabify";
 import {TABS} from "../../manager";
-import {search} from "/labels/util";
+import {search} from "/features/labels/util";
 import {Toggler} from "/components/popupify";
 import {useState} from "react";
 import {useEffect} from "react";
 import InputDeferer from "/components/inputDeferer";
 import {useSelector} from "react-redux";
 import {InputDefererMeta} from "/components/inputDeferer";
-import {LABEL_EDITOR_POPUP_ID} from "/popups/labelEditor";
-import {LABEL_CREATOR_POPUP_ID} from "/popups/labelCreator";
+import {LABEL_EDITOR_POPUP_ID} from "/components/labelEditorPopup";
+import {LABEL_CREATOR_POPUP_ID} from "/components/labelCreatorPopup";
 
 
 const ID = Symbol("board-right-hand-side-menu-labels-tab");

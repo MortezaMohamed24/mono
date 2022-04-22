@@ -1,10 +1,10 @@
-import {State} from "../../../../store";
-import sorters from "/lists/util/sorters";
-import {ListSortRequestMeta} from "/lists/actions";
-import {DATE_CREATED_ASCENDING} from "/lists/fields";
-import {DATE_CREATED_DESCENDING} from "/lists/fields";
-import {ALPHABETICALLY_ASCENDING} from "/lists/fields";
-import {ALPHABETICALLY_DESCENDING} from "/lists/fields";
+import {State} from "/store";
+import sorters from "/features/lists/util/sorters";
+import {ListSortRequestMeta} from "/features/lists/actions";
+import {DATE_CREATED_ASCENDING} from "/features/lists/fields";
+import {DATE_CREATED_DESCENDING} from "/features/lists/fields";
+import {ALPHABETICALLY_ASCENDING} from "/features/lists/fields";
+import {ALPHABETICALLY_DESCENDING} from "/features/lists/fields";
 
 
 function sortList({lt, cd}: State, {idList, method}: ListSortRequestMeta) {

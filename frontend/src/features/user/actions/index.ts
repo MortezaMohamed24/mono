@@ -1,16 +1,13 @@
-import URLS from "/user/endpoints";
-import {OR} from "/util/formatter";
-import {NULL} from "/util/formatter";
+import URLS from "/features/user/endpoints";
 import {OBJECT} from "/util/formatter";
 import {UserRaw} from "../entity";
-import {password} from "/user/fields";
-import ApiQuerier from "/core/api/querier";
-import ApiMutator from "/core/api/mutator";
-import {initials} from "/user/fields";
-import {username} from "/user/fields";
-import {lastname} from "/user/fields";
-import {firstname} from "/user/fields";
-import {UNDEFINED} from "/util/formatter";
+import {password} from "/features/user/fields";
+import ApiQuerier from "/api/querier";
+import ApiMutator from "/api/mutator";
+import {initials} from "/features/user/fields";
+import {username} from "/features/user/fields";
+import {lastname} from "/features/user/fields";
+import {firstname} from "/features/user/fields";
 import {formatAsUserRaw} from "../entity";
 
 

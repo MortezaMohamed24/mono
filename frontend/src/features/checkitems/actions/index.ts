@@ -3,9 +3,9 @@ import {Oid} from "/util/idUtil";
 import {OID} from "/util/formatter";
 import {OBJECT} from "/util/formatter";
 import {NUMBER} from "/util/formatter";
-import {content} from "/checkitems/fields";
-import ApiMutator from "/core/api/mutator";
-import {isComplete} from "/checkitems/fields";
+import {content} from "/features/checkitems/fields";
+import ApiMutator from "/api/mutator";
+import {isComplete} from "/features/checkitems/fields";
 
 
 // ---------- UNPREPARED REQUEST METAS
@@ -59,11 +59,7 @@ export const prepareCheckitemCreateRequestMeta = (meta: CheckitemCreateRequestMe
 
 export const formatAsCheckitemEditRequestMeta = OBJECT({
   content: content.copy({optional: true}),
-<<<<<<< HEAD
-  isComplete: BOOLEAN({optional: true}),
-=======
   isComplete: isComplete.copy({optional: true}),
->>>>>>> useTheNewVersionOfFormatter
   idCheckitem: OID(),
 }, {
   name: "CheckitemEditRequestMeta",

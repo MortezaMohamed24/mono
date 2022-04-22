@@ -1,6 +1,6 @@
 import {Name} from "../colors";
-import {ListRawNested} from "/lists/entity";
-import {LabelRawNested} from "/labels/entity";
+import {ListRawNested} from "/features/lists/entity";
+import {LabelRawNested} from "/features/labels/entity";
 
 
 export type BoardBase = {

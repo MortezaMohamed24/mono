@@ -1,6 +1,6 @@
 import {COLOR} from "../constants";
 import {STRING} from "/util/formatter";
-import {LabelBase} from "/labels/entity";
+import {LabelBase} from "/features/labels/entity";
 
 
 const color = STRING({

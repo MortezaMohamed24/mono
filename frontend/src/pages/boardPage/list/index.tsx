@@ -1,5 +1,5 @@
 import s from "./style";
-import ll from "/lists";
+import ll from "/features/lists";
 import BLCC from "/features/boardListCardCreator";
 import Cards from "../listCards";
 import React from "react";

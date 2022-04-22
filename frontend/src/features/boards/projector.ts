@@ -1,10 +1,10 @@
-import list from "/lists/projector";
-import label from "/labels/projector";
-import {ListProjector} from "/lists/projector";
-import {CardProjector} from "/cards/projector";
-import {LabelProjector} from "/labels/projector";
-import {ChecklistProjector} from "/checklists/projector";
-import {CheckitemProjector} from "/checkitems/projector";
+import list from "/features/lists/projector";
+import label from "/features/labels/projector";
+import {ListProjector} from "/features/lists/projector";
+import {CardProjector} from "/features/cards/projector";
+import {LabelProjector} from "/features/labels/projector";
+import {ChecklistProjector} from "/features/checklists/projector";
+import {CheckitemProjector} from "/features/checkitems/projector";
 
 
 export interface BoardProjector {
