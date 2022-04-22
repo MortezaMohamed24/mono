@@ -1,29 +1,23 @@
-import fetch from "../fetch";
+import mutate from "./mutate";
 import {ApplyPatches} from "/features/global";
 import generateUndoerPatches from "/util/redux/generateUndoerPatches";
 
 
-function ApiMutator({
-  format: formatResponseBody, 
-  prepare: prepareRequestMeta,
-  request: createRequest, 
-  pending: PendingAction, 
-  rejected: RejectedAction, 
-  fulfilled: FulfilledAction, 
-}) {
-  function thunk(unpreparedMeta) {
-    return async (dispatch, getState) => {
+function ApiMutator({format, pending, request, prepare, rejected, fulfilled}) {
+
+
+  return function Thunk(unpreparedMeta) {
+    const meta = prepare ? prepare(unpreparedMeta) : unpreparedMeta;
+
+
+    async function ThunkTommy(dispatch, getState) {
       const stateBeforeUptimisticUpdates = getState();
-      dispatch(PendingAction(meta));
+      dispatch(pending(meta));
       const stateAfterUptimisticUpdates = getState();
 
       try {
-        const meta = prepare ? prepareRequestMeta(unpreparedMeta) : unpreparedMeta;
-        const request = createRequest(meta);
-        const body = await fetch({request, formatResponseBody});
-
-        dispatch(FulfilledAction(meta, body));  
-
+        const body = await mutate(request(meta), format);
+        dispatch(fulfilled(meta, body));  
         return body;
       } 
       
@@ -33,21 +27,18 @@ function ApiMutator({
           stateAfterUptimisticUpdates,
         );
 
-        dispatch(RejectedAction(meta, e));
+        dispatch(rejected(meta, e));
         dispatch(ApplyPatches(undoers));
 
         throw e;
       }
     }
+
+
+    return ThunkTommy;
   }
 
 
-  thunk.pending = PendingAction;
-  thunk.rejected = RejectedAction;
-  thunk.fulfilled = FulfilledAction;
-
-
-  return thunk;
 }
 
 

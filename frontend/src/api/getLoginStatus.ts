@@ -1,8 +1,8 @@
-import fetch from "./fetch";
+import fetch from "../util/fetch";
 import {OBJECT} from "/util/formatter";
 import {BOOLEAN} from "/util/formatter";
-import {BODY_ERROR} from "./fetch";
-import {CONNECTION_ERROR} from "./fetch";
+import {BODY_ERROR} from "../util/fetch";
+import {CONNECTION_ERROR} from "../util/fetch";
 import {LOGIN_STATUS_URL} from "./url";
 
 
