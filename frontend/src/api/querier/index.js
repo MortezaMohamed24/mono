@@ -1,19 +1,16 @@
-import fetch from "../../util/fetch";
+import query from "./query";
 
 
 function ApiQuerier({format, request, pending, rejected, fulfilled}) {
-  function thunk(meta) {
+
+
+  return function thunk(meta) {
     return async (dispatch) => {
       dispatch(pending(meta));
 
       try {
-        const body = await fetch({
-          format: format, 
-          request: request(meta),
-        });
-        
+        const body = await query(request(meta), format);
         dispatch(fulfilled(meta, body));
-        
         return body;
       } 
       
@@ -25,12 +22,6 @@ function ApiQuerier({format, request, pending, rejected, fulfilled}) {
   }
 
 
-  thunk.pending = pending;
-  thunk.rejected = rejected;
-  thunk.fulfilled = fulfilled;
-
-
-  return thunk;
 }
 
 
