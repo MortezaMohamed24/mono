@@ -1,10 +1,12 @@
 import fetch from "/util/fetch";
+import {OBJECT} from "/util/formatter";
 import {BOOLEAN} from "/util/formatter";
 import {LOGIN_STATUS_URL} from "./url";
 
 
-const format = BOOLEAN({
-  name: "isAuthorized",
+const format = OBJECT({
+  isAuthorized: BOOLEAN({name: "isAuthorized"}),
+}, {
   strict: true,
 });
 
@@ -24,7 +26,7 @@ const isAuthorized = async () => {
   const {ok, body, status} = await fetch(req, {body: true});
 
   if (ok) {
-    return format(body);
+    return format(body).isAuthorized;
   }
 
   if (status === 401) {
