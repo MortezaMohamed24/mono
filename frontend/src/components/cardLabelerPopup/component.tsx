@@ -3,23 +3,21 @@ import ll from "/features/labels";
 import cd from "/features/cards";
 import ps from "/components/popupify/style";
 import btn from "/style/button/style";
+import {ID} from "./constants";
 import React from "react";
 import search from "/features/labels/util/search";
-import popupify from "/components/popupify";
-import classNames from "classnames";
-
-import {ID} from "./constants";
 import {Header} from "/components/popupify";
 import {useRef} from "react";
+import popupify from "/components/popupify";
 import {Toggler} from "/components/popupify";
+import * as INPUT from "/components/inputDeferer";
 import {useState} from "react";
 import {useEffect} from "react";
+import classNames from "classnames";
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
 import {LABEL_EDITOR_ID} from "/components/labelEditorPopup";
 import {LABEL_CREATOR_ID} from "/components/labelCreatorPopup";
-
-import * as INPUT from "/components/inputDeferer";
 
 
 const AutoLabelsListPopup = popupify(ID, ({payload: {idCard}, reference}) => {

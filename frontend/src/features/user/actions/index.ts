@@ -380,8 +380,7 @@ export const create = ApiMutator<
   UserCreateResponseBody,
   UserCreatePendingAction,
   UserCreateRejectedAction,
-  UserCreateFulfilledAction,
-  UserCreateRequestMeta
+  UserCreateFulfilledAction
 >({
   request: UserCreateRequest,
   pending: UserCreatePendingAction,

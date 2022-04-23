@@ -1,5 +1,4 @@
 import {useSlice} from "/store";
-import {Errors} from "/api/signup";
 
 
 declare global {
@@ -18,7 +17,7 @@ export type SignupState = {
   readonly lastname: Readonly<{value: string, isValid: boolean}>;
   readonly firstname: Readonly<{value: string, isValid: boolean}>;
 } | {
-  readonly error: Errors;
+  readonly error: unknown;
   readonly status: "failed";
   readonly validity: boolean;
   readonly username: Readonly<{value: string, isValid: boolean}>;

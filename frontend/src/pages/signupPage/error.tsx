@@ -2,12 +2,12 @@ import s from "./style";
 import sp from "./state";
 import btn from "/style/button/style";
 import React from "react";
-import {Errors} from "./state";
+import {signup} from "./state";
 import {useDispatch} from "react-redux";
 
 
 interface Props {
-  error: Errors.OFFLINE | Errors.CONNECTION | Errors.UNRECOGNIZED;
+  error: unknown;
 }
 
 const Error = React.memo<Props>(({error}) => {
@@ -18,13 +18,9 @@ const Error = React.memo<Props>(({error}) => {
     <div className={s.error}>
       <p>
         {
-          error === Errors.OFFLINE
-          ? "You are not connected to the internet"
-          : error === Errors.CONNECTION
+          error === signup.ERRORS.CONNECTION_ERROR
             ? "Couldn't connect to the server, check your connection and proxy settings or try again later"
-            : error === Errors.UNRECOGNIZED
-              ? "Unexpected error occured"
-              : ""
+            : "Unexpected error occured"
         }
       </p>
   

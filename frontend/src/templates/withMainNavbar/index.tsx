@@ -1,10 +1,10 @@
 import s from "./style";
 import React from "react";
-import Navbar from "/core/components/mainNavbar";
-import {BoardsPopup} from "/popups/boards";
-import {BoardCreator} from "/modules/boardCreator";
-import {AccountPopup} from "/popups/account";
-import {NavbarListPopup} from "/core/components/mainNavbar/list";
+import Navbar from "/components/mainNavbar";
+import BoardsPopup from "/components/boardsPopup";
+import AccountPopup from "/components/userAccountPopup";
+import NavbarListPopup from "/components/mainNavbarOtherButtonsPopup";
+import BoardCreatorModule from "/components/boardCreatorModule";
 
 
 const WithMainNavbarTemplate = ({children}: {children: React.ReactElement}) => (
@@ -18,9 +18,9 @@ const WithMainNavbarTemplate = ({children}: {children: React.ReactElement}) => (
     </main>
 
     <BoardsPopup />
-    <BoardCreator />
     <AccountPopup />
     <NavbarListPopup />  
+    <BoardCreatorModule />
   </>
 );
 

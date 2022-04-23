@@ -4,7 +4,7 @@ import Form from "./form";
 import React from "react";
 import Error from "./error";
 import Loading from "../mainLoadingPage";
-import {Errors} from "./state";
+import {signup} from "./state";
 import {Redirect} from "react-router-dom";
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
@@ -37,15 +37,15 @@ const SignUpPage = React.memo(() => {
     content = <Redirect to="/login" />;
   } else {
     if ((
-      error === Errors.USERNAME
+      error === signup.ERRORS.INVALID_USERNAME_ERROR
     ) || (
-      error === Errors.PASSWORD
+      error === signup.ERRORS.INVALID_PASSWORD_ERROR
     ) || (
-      error === Errors.LASTNAME
+      error === signup.ERRORS.INVALID_LASTNAME_ERROR
     ) || (
-      error === Errors.FIRSTNAME
+      error === signup.ERRORS.INVALID_FIRSTNAME_ERROR
     ) || (
-      error === Errors.UNAVAILABLE
+      error === signup.ERRORS.UNAVAILABLE_USERNAME_ERROR
     )) {
       content = <Form error={error} />;
     } else {

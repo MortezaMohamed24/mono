@@ -1,8 +1,8 @@
 import idUtil from "/util/idUtil";
 import {State} from "/store";
-import {addManyLists} from "/lists/reducers";
-import {addManyLabels} from "/labels/reducers";
-import {BoardRawUnnested} from "/boards/entity";
+import {addManyLists} from "/features/lists/reducers";
+import {addManyLabels} from "/features/labels/reducers";
+import {BoardRawUnnested} from "/features/boards/entity";
 
 
 function addOneBoard(state: State, board: BoardRawUnnested) {

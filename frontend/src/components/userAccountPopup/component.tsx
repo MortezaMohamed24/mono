@@ -1,17 +1,16 @@
 import s from "./style";
-import ur from "/user";
+import ur from "/features/user";
 import ps from "/components/popupify/style";
-import type from "/style/typeography/style";
+import {ID} from "./constants";
 import React from "react";
 import Avatar from "/components/avatar";
-import popupify from "/components/popupify";
-
-import {ID} from "./constants";
 import {Header} from "/components/popupify";
-import {useSelector} from "react-redux";
+import popupify from "/components/popupify";
+import typeography from "/style/typeography/style";
+import {useSelector} from "/store";
 
 
-const Account = popupify(ID, () => {
+const UserAccountPopup = popupify(ID, () => {
   const user = useSelector(ur.user);
 
   return (
@@ -23,7 +22,7 @@ const Account = popupify(ID, () => {
           <>
             <header className={s.header}>
               <h3 className={s.username}>{user.username}</h3>
-              <p className={`${s["full-name"]} ${type.xxs}`}>{`${user.firstname} ${user.lastname}`}</p>
+              <p className={`${s["full-name"]} ${typeography.xxs}`}>{`${user.firstname} ${user.lastname}`}</p>
               <Avatar imgClass={s.img} initialsClass={s.initials} />
             </header>
 
@@ -70,4 +69,4 @@ const Account = popupify(ID, () => {
 });
 
 
-export default Account;
+export default UserAccountPopup;

@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {LIST_POPUP_ID} from "/components/mainNavbarOtherButtonsPopup";
+import {MAIN_NAVBAR_OTHER_BUTTONS_POPUP} from "/components/mainNavbarOtherButtonsPopup";
 import {BOARDS_POPUP_ID} from "/components/boardsPopup";
 import {ACCOUNT_POPUP_ID} from "/components/userAccountPopup";
 
@@ -46,7 +46,7 @@ function Navbar() {
         />
 
         <POPUPIFY.Toggler 
-          target={LIST_POPUP_ID}
+          target={MAIN_NAVBAR_OTHER_BUTTONS_POPUP}
           className={s.list}
         />
       </nav>

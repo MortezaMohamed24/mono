@@ -1,4 +1,4 @@
-import {Name} from "/labels/constants/colors";
+import {Name} from "/features/labels/constants/colors";
 
 export default {} as Record<
   | "colors"

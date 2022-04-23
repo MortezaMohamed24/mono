@@ -1,5 +1,5 @@
 declare global {
-  export interface __INTERNAL_REDUX_ACTIONS {
+  export interface __INTERNAL_REDUX_ACTIONS__ {
     [INIT]: InitReduxStateAction;
   }
 }

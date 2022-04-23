@@ -1,9 +1,9 @@
 import s from "./style";
-import type from "/style/typeography/style";
 import React from "react";
 import classNames from "classnames";
 import {useState} from "react";
 import {useEffect} from "react";
+import typeography from "/style/typeography/style";
 
 
 interface Props {
@@ -47,7 +47,7 @@ const Accordion = React.memo(({meta = {}, title, Heading = "h2", children, class
   return (
     <section className={classNames(className, s.accordion, {[s.open]: isOpen})}>
 
-      <Heading className={type.h}>
+      <Heading className={typeography.h}>
         {title}
       </Heading>
 

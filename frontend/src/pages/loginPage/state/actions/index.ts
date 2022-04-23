@@ -1,9 +1,5 @@
 import {O} from "ts-toolbelt";
-import ApiLogin from "../../../../api/login";
-import {Dispatch} from "/store";
-import {GetState} from "/store";
 import {LoginState} from "../state";
-import {RequestQuery} from "../../../../api/login";
 
 
 // ---------- ACTION TYPES
@@ -79,35 +75,35 @@ export type AllActions = {
 
 // ---------- ACTION CREATORS
 
-export const edit = (payload: EditAction["payload"]): EditAction => ({
+export const EditAction = (payload: EditAction["payload"]): EditAction => ({
   type: EDIT,
   meta: undefined,
   error: undefined,
   payload: payload,
 });
 
-export const clear = (): ClearAction => ({
+export const ClearAction = (): ClearAction => ({
   type: CLEAR,
   meta: undefined,
   error: undefined,
   payload: undefined,
 });
 
-export const loginPending = (): LoginPendingAction => ({
+export const LoginActionPending = (): LoginPendingAction => ({
   type: LOGIN_PENDING,
   meta: undefined,
   error: undefined,
   payload: undefined,
 });
 
-export const loginRejected = (error: unknown): LoginRejectedAction => ({
+export const LoginActionRejected = (error: unknown): LoginRejectedAction => ({
   type: LOGIN_REJECTED,
   meta: undefined,
   error: error,
   payload: undefined,
 });
 
-export const loginFulfilled = (): LoginFulfilledAction => ({
+export const LoginActionFulfilled = (): LoginFulfilledAction => ({
   type: LOGIN_FULFILLED,
   meta: undefined,
   error: undefined,
@@ -115,26 +111,10 @@ export const loginFulfilled = (): LoginFulfilledAction => ({
 });
 
 
-// ---------- THUNKS
+// ---------- ACTION CREATORS ALIASES
 
-export const login = (payload: RequestQuery) => async (dispatch: Dispatch, getState: GetState) => {
-  let state = getState().lg;
-
-  if (state.status === "loading") {
-    return;
-  }
-
-
-  dispatch(loginPending());
-
-  
-  try {
-    await ApiLogin(payload);
-    dispatch(loginFulfilled());
-  } catch (error: any) {
-    dispatch(loginRejected(error));
-  }
-};
+export const edit = EditAction;
+export const clear = ClearAction;
 
 
 
@@ -146,8 +126,9 @@ export default Object.freeze({
   LOGIN_FULFILLED,
   edit,
   clear,
-  loginPending,
-  loginRejected,
-  loginFulfilled,
-  login,
+  EditAction,
+  ClearAction,
+  LoginActionPending,
+  LoginActionRejected,
+  LoginActionFulfilled,
 });

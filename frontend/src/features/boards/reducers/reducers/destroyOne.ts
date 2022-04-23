@@ -1,6 +1,6 @@
 import idUtil from "/util/idUtil";
 import {State} from "/store";
-import {BoardDestroyRequestMeta} from "/boards/actions";
+import {BoardDestroyRequestMeta} from "/features/boards/actions";
 
 
 function destroyOneBoard({ur, bd, ll, lt, cd, ct, cm}: State, {idBoard}: BoardDestroyRequestMeta) {

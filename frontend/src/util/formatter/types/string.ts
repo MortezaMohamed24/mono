@@ -34,7 +34,7 @@ function STRING<TConfigs extends Configs>(options: Options<TConfigs> = {} as Opt
     typeNames: ["String"],
   },
 
-  (unformatted, {error}) => {
+  (unformatted) => {
     if (options.compact === true) {
       unformatted = unformatted.replace(/\s+/ug, " ");
     } else if (options.compact) {

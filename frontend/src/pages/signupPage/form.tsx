@@ -1,29 +1,29 @@
 import s from "./style";
 import sp from "./state";
 import btn from "/style/button/style";
-import type from "/style/typeography/style";
 import React from "react";
 import {Link} from "react-router-dom";
-import {Errors} from "./state";
-import {USERNAME} from "/user/fields/constants";
-import {PASSWORD} from "/user/fields/constants";
-import {LASTNAME} from "/user/fields/constants";
-import {FIRSTNAME} from "/user/fields/constants";
+import {signup} from "./state";
+import {USERNAME} from "/features/user/fields/constants";
+import {PASSWORD} from "/features/user/fields/constants";
+import {LASTNAME} from "/features/user/fields/constants";
+import typeography from "/style/typeography/style";
+import {FIRSTNAME} from "/features/user/fields/constants";
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
 import InputWithStatus from "/components/inputWithStatus";
-import {MIN_USERNAME_LENGTH} from "/user/fields/constants";
-import {MAX_USERNAME_LENGTH} from "/user/fields/constants";
-import {MIN_PASSWORD_LENGTH} from "/user/fields/constants";
-import {MAX_PASSWORD_LENGTH} from "/user/fields/constants";
-import {MIN_LASTNAME_LENGTH} from "/user/fields/constants";
-import {MAX_LASTNAME_LENGTH} from "/user/fields/constants";
-import {MIN_FIRSTNAME_LENGTH} from "/user/fields/constants";
-import {MAX_FIRSTNAME_LENGTH} from "/user/fields/constants";
+import {MIN_USERNAME_LENGTH} from "/features/user/fields/constants";
+import {MAX_USERNAME_LENGTH} from "/features/user/fields/constants";
+import {MIN_PASSWORD_LENGTH} from "/features/user/fields/constants";
+import {MAX_PASSWORD_LENGTH} from "/features/user/fields/constants";
+import {MIN_LASTNAME_LENGTH} from "/features/user/fields/constants";
+import {MAX_LASTNAME_LENGTH} from "/features/user/fields/constants";
+import {MIN_FIRSTNAME_LENGTH} from "/features/user/fields/constants";
+import {MAX_FIRSTNAME_LENGTH} from "/features/user/fields/constants";
 
 
 interface Props {
-  error: Errors.USERNAME | Errors.PASSWORD | Errors.LASTNAME | Errors.FIRSTNAME | Errors.UNAVAILABLE | undefined | null;
+  error: unknown;
 }
 
 
@@ -83,21 +83,21 @@ const Form = React.memo<Props>(({error}) => {
 
   return (
     <div className={s.form}>
-      <h1 className={type.h1}>
+      <h1 className={typeography.h1}>
         Sign up to Mono
       </h1>
 
       <p style={{display: error ? "block" : "none"}}>
         {
-          error === Errors.USERNAME 
+          error === signup.ERRORS.INVALID_USERNAME_ERROR 
             ? "Username is invalid"
-            : error === Errors.PASSWORD
+            : error === signup.ERRORS.INVALID_PASSWORD_ERROR
               ? "Password is invalid"
-              : error === Errors.LASTNAME
+              : error === signup.ERRORS.INVALID_LASTNAME_ERROR
                 ? "Last name is invalid"
-                : error === Errors.FIRSTNAME
+                : error === signup.ERRORS.INVALID_FIRSTNAME_ERROR
                   ? "First name was invalid"
-                  : error === Errors.UNAVAILABLE
+                  : error === signup.ERRORS.UNAVAILABLE_USERNAME_ERROR
                     ? `Username "${username.value}" is not available`
                     : "Unexpected error occured"
         }
@@ -159,10 +159,10 @@ const Form = React.memo<Props>(({error}) => {
         className={btn.blue}
       />
 
-      <hr className={type.hr} />
+      <hr className={typeography.hr} />
 
       <p>
-        Already have an account? <Link to="/login" className={type.link}>Log In</Link>
+        Already have an account? <Link to="/login" className={typeography.link}>Log In</Link>
       </p>
     </div>
   );

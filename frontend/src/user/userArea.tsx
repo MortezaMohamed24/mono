@@ -1,5 +1,5 @@
 import Home from "/pages/homePage";
-import Card from "/pages/card";
+import Card from "../pages/cardPage";
 import React from "react";
 import {Route} from "react-router-dom";
 import {Switch} from "react-router-dom";

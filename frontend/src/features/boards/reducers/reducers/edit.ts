@@ -1,7 +1,7 @@
-import v from "/boards/fields/formatters";
+import v from "/features/boards/fields/formatters";
 import {State} from "/store";
-import {INVALID} from "/util/checker";
-import {BoardEditRequestMeta} from "/boards/actions";
+import {INVALID} from "/util/formatter";
+import {BoardEditRequestMeta} from "/features/boards/actions";
 
 
 function editBoard({bd}: State, meta: BoardEditRequestMeta) {

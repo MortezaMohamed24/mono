@@ -11,7 +11,7 @@ type Thunk<
   FulfilledAction extends AnyAction = AnyAction,
   UnpreparedRequestMeta extends unknown = undefined,
 > = (
-  meta: RequestMeta
+  meta: UnpreparedRequestMeta extends undefined ? RequestMeta : UnpreparedRequestMeta
 ) => (
   dispatch: Dispatch, 
   getState: GetState,

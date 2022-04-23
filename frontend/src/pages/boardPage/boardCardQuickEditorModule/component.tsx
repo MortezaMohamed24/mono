@@ -7,6 +7,7 @@ import {Toggler} from "/components/popupify";
 import ellipsify from "/util/string/ellipsify";
 import CardBadges from "../listCardBadges";
 import {useState} from "react";
+import URLModulify from "/components/URLModulify";
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
@@ -18,7 +19,6 @@ import {DELETER_POPUP_ID} from "/components/deleterPopup";
 import {CARD_DATES_POPUP_ID} from "/components/cardDatesPopup";
 import {CARD_MOVER_POPUP_ID} from "/components/cardMoverPopup";
 import {CARD_COPIER_POPUP_ID} from "/components/cardCopierPopup";
-import URLModulify from "/components/URLModulify";
 
 
 interface Props {

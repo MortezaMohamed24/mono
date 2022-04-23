@@ -1,6 +1,6 @@
 import React from "react";
 import Loading from "/pages/mainLoadingPage";
-import LoadError from "/pages/loadError";
+import LoadError from "../pages/loadErrorPage";
 import {useState} from "react";
 import {Redirect} from "react-router-dom";
 import {useEffect} from "react";

@@ -1,13 +1,8 @@
 import {O} from "ts-toolbelt";
-import * as API from "/api/signup";
-import {Errors} from "/api/signup";
-import {GetState} from "/store";
-import {Dispatch} from "/store";
 import {SignupState} from "../state";
 
 
 // ---------- ACTION TYPES
-
 
 export const EDIT = "signup/edit";
 export const CLEAR = "signup/clear";
@@ -48,7 +43,7 @@ export type SignupPendingAction = {
 export type SignupRejectedAction = {
   readonly type: SIGNUP_REJECTED;
   readonly meta: undefined;
-  readonly error: Errors;
+  readonly error: unknown;
   readonly payload: undefined;
 }
 
@@ -80,35 +75,35 @@ export type AllActions = {
 
 // ---------- ACTION CREATORS
 
-export const edit = (payload: EditAction["payload"]): EditAction => ({
+export const EditAction = (payload: EditAction["payload"]): EditAction => ({
   type: EDIT, 
   meta: undefined,
   error: undefined,
   payload: payload,
 });
 
-export const clear = (): ClearAction => ({
+export const ClearAction = (): ClearAction => ({
   type: CLEAR,
   meta: undefined,
   error: undefined,
   payload: undefined,
 });
 
-export const signupPending = (): SignupPendingAction => ({
+export const SignupActionPending = (): SignupPendingAction => ({
   type: SIGNUP_PENDING,
   meta: undefined,
   error: undefined,
   payload: undefined,
 });
 
-export const signupRejected = (error: SignupRejectedAction["error"]): SignupRejectedAction => ({
+export const SignupActionRejected = (error: SignupRejectedAction["error"]): SignupRejectedAction => ({
   type: SIGNUP_REJECTED,
   meta: undefined,
   error: error,
   payload: undefined,
 });
 
-export const signupFulfilled = (): SignupFulfilledAction => ({
+export const SignupActionFulfilled = (): SignupFulfilledAction => ({
   type: SIGNUP_FULFILLED,
   meta: undefined,
   error: undefined,
@@ -116,28 +111,10 @@ export const signupFulfilled = (): SignupFulfilledAction => ({
 });
 
 
-// ---------- THUNKS
+// ---------- ACTION CREATORES ALIASES
 
-export const signup = (payload: API.Payload) => async (dispatch: Dispatch, getState: GetState) => {
-  const state = getState().sp;
-
-  if ((
-    state.status !== "idle"
-  ) || (
-    state.validity !== true
-  )) {
-    return;
-  }
-
-  dispatch(signupPending());
-
-  try {
-    await API.signup(payload)
-    dispatch(signupFulfilled())
-  } catch (e: any) {
-    dispatch(signupRejected(e));
-  }
-};
+export const edit = EditAction;
+export const clear = ClearAction;
 
 
 export default Object.freeze({
@@ -148,8 +125,9 @@ export default Object.freeze({
   SIGNUP_FULFILLED,
   edit,
   clear,
-  signupPending,
-  signupRejected,
-  signupFulfilled,
-  signup,
-})
+  EditAction,
+  ClearAction,
+  SignupActionPending,
+  SignupActionRejected,
+  SignupActionFulfilled,
+});

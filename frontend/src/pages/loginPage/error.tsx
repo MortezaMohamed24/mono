@@ -2,11 +2,10 @@ import s from "./style";
 import lg from "./state";
 import btn from "/style/button/style";
 import React from "react";
+import {login} from "./state";
 import typeography from "/style/typeography/style";
 import {useDispatch} from "/store";
 import {useSelector} from "/store";
-import {WRONG_PASSWORD_ERROR} from "../../api/login";
-import {WRONG_USERNAME_ERROR} from "../../api/login";
 
 
 interface Props {
@@ -29,13 +28,11 @@ const Error = React.memo<Props>(({error}) => {
 
       <h1 className={typeography.para}>
         { 
-          error === Errors.OFFLINE 
-            ? "You are not connected to the internet"
-            : error === Errors.CONNECTION
+          error === login.ERRORS.CONNECTION_ERROR
               ? "Couldn't connect to the server, check your connection and proxy settings or try again later"
-              : error === Errors.USERNAME 
+              : error === login.ERRORS.WRONG_USERNAME_ERROR
                 ? `There is no user with the username "${username}"`
-                : error === Errors.PASSWORD
+                : error === login.ERRORS.WRONG_PASSWORD_ERROR
                   ? "Password is incorrect"
                   : "Unexpected error occourd. \nTry reloading the page."
         }

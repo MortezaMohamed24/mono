@@ -14,13 +14,13 @@ import ReduxReactRouter from "./components/routerController";
 
 
 
-import "/user/reducers/init";
-import "/boards/reducers/init";
-import "/lists/reducers/init";
-import "/cards/reducers/init";
-import "/labels/reducers/init";
-import "/checklists/reducers/init";
-import "/checkitems/reducers/init";
+import "/features/user/reducers/init";
+import "/features/boards/reducers/init";
+import "/features/lists/reducers/init";
+import "/features/cards/reducers/init";
+import "/features/labels/reducers/init";
+import "/features/checklists/reducers/init";
+import "/features/checkitems/reducers/init";
 import "./pages/loginPage/state/reducers/init";
 import "./pages/signupPage/state/reducers/init";
 import "./features/boardListCardCreator/index";

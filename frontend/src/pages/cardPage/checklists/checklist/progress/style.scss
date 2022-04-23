@@ -1,0 +1,53 @@
+@use "sass:map";
+@use "/style/icon";
+@use "/style/colors";
+@use "/style/button";
+@use "/style/typeography";
+@use "/pages/cardPage/section";
+
+
+.progress {
+  width: 100%;
+  padding: 0 section.$jumbotron 0 0;
+  margin-top: var(--grid-gutter-xs);
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+
+  > :nth-child(1) {
+    width: section.$left-gap;
+    text-align: center;
+    margin: 0;
+  }
+
+
+  > :nth-child(2) {
+    width: calc(100% - #{section.$left-gap});
+    height: .7rem;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background-color: map.get(button.$gray, "fill-bg");
+    
+    &:hover {
+      background-color: map.get(button.$gray, "hover-fill-bg");
+    }
+
+    > :first-child {
+      width: 0;
+      height: 100%;
+      background-color: colors.get("sky");
+      transition: width .3s, background-color .3s;
+    }
+  }
+
+
+  &.complete {
+    > :nth-child(2) {
+      > :first-child {
+        background-color: colors.get("lime");
+      }
+    } 
+  }
+}

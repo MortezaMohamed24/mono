@@ -1,4 +1,4 @@
-import {BoardNative} from "/boards/entity";
+import {BoardNative} from "../entity";
 import {objectSearch} from "search-filterer";
 
 

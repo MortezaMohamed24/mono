@@ -1,13 +1,13 @@
 import s from "./style";
-import cd from "/cards";
-import cm from "/checkitems";
+import cd from "/features/cards";
+import cm from "/features/checkitems";
 import badge from "/style/badge/style";
 import React from "react";
 import Dates from "./datesBadge";
 import DeepEquals from "/util/object/deepEquals";
 import classNames from "classnames";
-import {useSelector} from "react-redux";
-import {CheckitemNative} from "/checkitems/entity";
+import {useSelector} from "/store";
+import {CheckitemNative} from "/features/checkitems/entity";
 import WithHTMLAttributes from "/util/ts/withHTMLAttributes";
 
 

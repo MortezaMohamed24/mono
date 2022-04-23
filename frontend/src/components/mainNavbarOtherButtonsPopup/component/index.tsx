@@ -12,7 +12,7 @@ import * as POPUPIFY from "/components/popupify";
 import * as MODULIFY from "/components/modulify";
 
 
-const List = POPUPIFY.popupify(ID, ({reference, id}) => (
+const OtherButtons = POPUPIFY.popupify(ID, ({reference, id}) => (
   <>
     <POPUPIFY.Header title="Other Options" />
 
@@ -63,4 +63,4 @@ const List = POPUPIFY.popupify(ID, ({reference, id}) => (
 ));
 
 
-export default List;
+export default OtherButtons;

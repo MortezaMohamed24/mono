@@ -4,7 +4,6 @@ import Form from "./form";
 import React from "react";
 import Error from "./error";
 import Loading from "../mainLoadingPage";
-import {Errors} from "./state";
 import {Redirect} from "react-router-dom";
 import {useEffect} from "react";
 import {useSelector} from "react-redux";
@@ -37,7 +36,7 @@ const Login = React.memo(() => {
   } else if (status === "succeeded") {
     content = <Redirect to="/" />;
   } else {
-    content = <Error error={error as Errors} />;
+    content = <Error error={error} />;
   }
 
   return (

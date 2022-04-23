@@ -2,7 +2,7 @@ import s from "./style";
 import React from "react";
 import {useRef} from "react";
 import {useEffect} from "react";
-import {LabelNative} from "/labels/entity";
+import {LabelNative} from "/features/labels/entity";
 
 
 interface Props {

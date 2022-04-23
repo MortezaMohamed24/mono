@@ -10,10 +10,10 @@ import {StarredBoards} from "../boards";
 
 import * as DELETER from "/components/deleterPopup";
 import * as MODULIFY from "/components/modulify";
-import * as BOARD_THEMER from "../popups/boardThemerPopup";
+import * as BOARD_THEMER from "../boardThemerPopup";
 import * as BOARD_CREATOR from "/components/boardCreatorModule";
 import * as BOARD_OPTIONS from "../boardOptionsPopup";
-import * as BOARD_RENAMER from "../popups/boardRenamerPopup";
+import * as BOARD_RENAMER from "../boardRenamerPopup";
 
 
 function Home() {
@@ -57,5 +57,4 @@ function Home() {
 }
 
 
-// this component doesn't care about props
-export default React.memo(Home, () => true);
+export default React.memo(Home);

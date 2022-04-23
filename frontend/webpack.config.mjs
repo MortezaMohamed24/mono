@@ -28,42 +28,60 @@ const plugins  = [
 ];
 
 
-const module = {rules: [{
-  test: /\.(ts|tsx)$/,
-  use: 'ts-loader',
-  exclude: /node_modules/,
-},{
-  test: /\.js?$/,
-  use: {
-    loader: "babel-loader",
-    options: {presets: ["@babel/preset-react"]}
-  },
-  exclude: /nodemodules_/,
-}, { 
-  test: /\.scss$/u, 
-  use: [ 
+const module = {
+  rules: [
     {
-      loader: "style-loader",
-      // options: { injectType: "singletonStyleTag" }
-    }, {
-      loader: "css-loader",
-      options: { 
-        modules: "local", 
-        sourceMap: true, 
-      }
+      test: /\.(ts|tsx)$/,
+      use: 'ts-loader',
+      exclude: /node_modules/,
+    },
+    {
+      test: /\.js?$/,
+      use: {
+        loader: "babel-loader",
+        options: {
+          presets: [
+            "@babel/preset-react"
+          ]
+        }
+      },
+      exclude: /node_modules/,
     }, 
-    "sass-loader" 
-  ]
-}, {
-  test: /\.(png|svg|jpg|jpeg|gif)$/i,
-  type: 'asset/resource',
-}, {
-    test: /\.(woff|woff2|eot|ttf|otf)$/i,
-    type: 'asset/resource',
-} ] };
+    { 
+      test: /\.scss$/u, 
+      use: [ 
+        {
+          loader: "style-loader",
+          // options: { injectType: "singletonStyleTag" }
+        }, {
+          loader: "css-loader",
+          options: { 
+            modules: "local", 
+            sourceMap: true, 
+          }
+        }, 
+        "sass-loader" 
+      ]
+    }, 
+    {
+      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      type: 'asset/resource',
+    }, 
+    {
+      test: /\.(woff|woff2|eot|ttf|otf)$/i,
+      type: 'asset/resource',
+    } 
+  ] 
+};
 
 
 const resolve = {
+  alias: {
+    // TODO: Remove alias
+    boards: "/features/boards",
+    // TODO: Remove alias
+    labels: "/features/labels",
+  },
   extensions: [".scss", ".tsx", ".ts", ".js", ".jsx"]
 };
 

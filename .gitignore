@@ -1,6 +1,6 @@
 # Distribution Files
-*/backend/dist
-*/frontend/dist
+backend/dist/
+frontend/dist/
 
 # Logs
 logs

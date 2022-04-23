@@ -3,7 +3,7 @@ import {Oid} from "/util/idUtil";
 import {OID} from "/util/formatter";
 import FIELDS from "/features/checklists/fields";
 import {OBJECT} from "/util/formatter";
-import ApiMutator from "../../../api/mutator";
+import ApiMutator from "/api/mutator";
 import {ChecklistBase} from "../entity";
 
 

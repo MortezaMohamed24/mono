@@ -4,7 +4,7 @@ import Loading from "/pages/mainLoadingPage";
 import UserArea from "./userArea";
 import {useEffect} from "react";
 import useListener from "/util/hooks/useListener";
-import LoadErrorPage from "/pages/loadError";
+import LoadErrorPage from "../pages/loadErrorPage";
 import {useDispatch} from "/store";
 import {useSelector} from "/store";
 
