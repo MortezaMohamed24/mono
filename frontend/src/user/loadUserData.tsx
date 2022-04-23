@@ -1,25 +1,16 @@
-import ur from "/user";
+import ur from "/features/user";
 import React from "react";
-import Loading from "../pages/mainLoadingPage";
-import {Errors} from "../util/fetch";
-import LoadError from "/pages/loadError";
+import Loading from "/pages/mainLoadingPage";
+import UserArea from "./userArea";
 import {useEffect} from "react";
 import useListener from "/util/hooks/useListener";
-import {useDispatch} from "react-redux";
-import {useSelector} from "react-redux";
+import LoadErrorPage from "/pages/loadError";
+import {useDispatch} from "/store";
+import {useSelector} from "/store";
 
 
-const verbalizeError = (error: Errors): string => {
-  switch (error) {
-    case Errors.BODY: return "An unexpected error occured: Server responded with invalid data. \n Try again later";
-    case Errors.OFFLINE: return "You are not connected to the internet";
-    case Errors.SERVER: return "Something on the server went wrong, try again later";
-    case Errors.CONNECTION: return "Couldn't connect to the server, check your connection and proxy settings or try again later";
-    default: return "An unkown error occured.\nTry reloading the page ";
-  }
-};
-
-const automateLoading = (Component: React.FunctionComponent<{}>) => {
+// TODO: This is not a complete implementation, complete it
+function LoadUserData() {
   const user = useSelector(ur.user);
   const dispatch = useDispatch();
 
@@ -82,15 +73,15 @@ const automateLoading = (Component: React.FunctionComponent<{}>) => {
   
   if (user?.$status === "failed") {
     return (
-      <LoadError 
-        error={verbalizeError(user?.$error as any)} 
+      <LoadErrorPage 
+        error={user.$error} 
         retry={load}
       />
     );
   } 
   
-  return <Component />;
-};
+  return <UserArea />;
+}
 
 
-export default automateLoading;
+export default LoadUserData;

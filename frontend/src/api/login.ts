@@ -1,4 +1,4 @@
-import fetch from "../util/fetch";
+import fetch from "/util/fetch";
 import {LOGIN_URL} from "./url";
 
 
@@ -7,47 +7,45 @@ export type RequestQuery = {
   password: string;
 }
 
-
-export const UNAUTHORIZED_ERROR = Symbol("UNAUTHORIZED_ERROR");
-export const WRONG_USERNAME_ERROR = Symbol("WRONG_USERNAME_ERROR");
-export const WRONG_PASSWORD_ERROR = Symbol("WRONG_PASSWORD_ERROR");
-export const INTERNAL_SERVER_ERROR = Symbol("INTERNAL_SERVER_ERROR");
-export const WRONG_USERNAME_MESSAGE = "auth: wrong username";
-export const WRONG_PASSWORD_MESSAGE = "auth: wrong password";
+const WRONG_USERNAME_MESSAGE = "auth: wrong username";
+const WRONG_PASSWORD_MESSAGE = "auth: wrong password";
 
 
-export function login(query: RequestQuery) {
-  return fetch({
-    url: LOGIN_URL,
-    query: query,
+export async function login(query: RequestQuery) {
+  const url = new URL(LOGIN_URL);
+
+  url.searchParams.set("username", query.username);
+  url.searchParams.set("password", query.password);
+
+  const req = new Request(url.href, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
-    validateStatus({ok, body, status}) {
-      if (ok) {
-        return;
-      } 
-      
-      if (status === 400) {
-        switch (body) {
-          case WRONG_USERNAME_MESSAGE: throw WRONG_USERNAME_ERROR;
-          case WRONG_PASSWORD_MESSAGE: throw WRONG_PASSWORD_ERROR;
-        }
-      }
-  
-      if (status === 500) {
-        throw INTERNAL_SERVER_ERROR;
-      }
-  
-      throw UNAUTHORIZED_ERROR;
-    },
   });
+
+  const {ok, status, body} = await fetch(req, {body: true});
+  
+  if (ok) {
+    return;
+  } 
+
+  switch (status) {
+    case 500: throw login.INTERNAL_SERVER_ERROR;
+    case 400:
+      switch (body) {
+        case WRONG_USERNAME_MESSAGE: throw login.WRONG_USERNAME_ERROR;
+        case WRONG_PASSWORD_MESSAGE: throw login.WRONG_PASSWORD_ERROR;
+      }
+  }
+
+  throw login.UNAUTHORIZED_ERROR;
 }
 
-
-login.UNAUTHORIZED_ERROR = UNAUTHORIZED_ERROR;
-login.WRONG_USERNAME_ERROR = WRONG_USERNAME_ERROR;
-login.WRONG_PASSWORD_ERROR = WRONG_PASSWORD_ERROR;
-login.INTERNAL_SERVER_ERROR = INTERNAL_SERVER_ERROR;
+login.BODY_ERROR = fetch.BODY_ERROR;
+login.CONNECTION_ERROR = fetch.CONNECTION_ERROR;
+login.UNAUTHORIZED_ERROR = Symbol("UNAUTHORIZED_ERROR");
+login.WRONG_USERNAME_ERROR = Symbol("WRONG_USERNAME_ERROR");
+login.WRONG_PASSWORD_ERROR = Symbol("WRONG_PASSWORD_ERROR");
+login.INTERNAL_SERVER_ERROR = Symbol("INTERNAL_SERVER_ERROR");
 
 
 export default login;

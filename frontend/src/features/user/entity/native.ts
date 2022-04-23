@@ -6,12 +6,12 @@ export type UserNative =
 
 
 export type UserNativeIdle = {
-  $error: unknown;
+  $error: string;
   $status: "idle";
 }
 
 export type UserNativeFailed = {
-  $error: unknown;
+  $error: string;
   $status: "failed";
 }
 

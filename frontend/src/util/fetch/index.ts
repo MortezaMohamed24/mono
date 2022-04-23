@@ -1,3 +1,6 @@
+import {O} from "ts-toolbelt";
+
+
 type Output = {
   ok: boolean;
   url: string;    
@@ -20,7 +23,7 @@ type Options<TConfigs extends Configs> = TConfigs & {
 type ReturnType<TConfigs extends Configs> = 
   TConfigs extends {body: true}
     ? Output
-    : Output & {body: undefined}
+    : O.Overwrite<Output, {body: undefined}>
 
 
 const NativeFetch = window.fetch;
