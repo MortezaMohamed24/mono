@@ -1,13 +1,18 @@
-const path = require("path");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
+import url from "node:url";
+import path from "node:path";
+import HTMLWebpackPlugin from "html-webpack-plugin";
 
 
-const dirname = __dirname;
+const fileurl = import.meta.url
+const filename = url.fileURLToPath(fileurl);
+const dirname = path.dirname(filename);
+
 
 const mode    = "development";
 const entry   = "./index";
 const devtool = "inline-source-map";
 const context = path.join(dirname, "src");
+
 
 const output  = {
   filename: "[name].bundle.js",
@@ -15,16 +20,18 @@ const output  = {
   clean: false,
 };
 
+
 const plugins  = [
   // new HTMLWebpackPlugin({ 
   //   template: "../public/index.html",
   // })
 ];
 
-const module_ = {rules: [{
+
+const module = {rules: [{
   test: /\.(ts|tsx)$/,
   use: 'ts-loader',
-  exclude: /nodemodules_/,
+  exclude: /node_modules/,
 },{
   test: /\.js?$/,
   use: {
@@ -55,31 +62,19 @@ const module_ = {rules: [{
     type: 'asset/resource',
 } ] };
 
+
 const resolve = {
-  alias: {
-    "/app": path.resolve(dirname, "./src/app"),
-    "/core": path.resolve(dirname, "./src/core"),
-    "/util": path.resolve(dirname, "./src/util"),
-    "/pages": path.resolve(dirname, "./src/pages"),
-    "/style": path.resolve(dirname, "./src/style"),
-    "/popups": path.resolve(dirname, "./src/components/popups"),
-    "/modules": path.resolve(dirname, "./src/components/modules"),
-    "/checker": path.resolve(dirname, "./src/util/checker"),
-    "/features": path.resolve(dirname, "./src/features"),
-    "/templates": path.resolve(dirname, "./src/templates"),
-    "/components": path.resolve(dirname, "./src/components"),
-  },
   extensions: [".scss", ".tsx", ".ts", ".js", ".jsx"]
 };
 
 
-module.exports = {
+export default {
   mode,
-  context,
   entry,
+  module,
   output, 
+  context,
   devtool,
   plugins, 
-  module: module_,
   resolve,
-};
+}
