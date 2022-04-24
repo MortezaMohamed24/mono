@@ -1,60 +1,70 @@
-import store from "./store";
-import {Dispatch} from "./store";
-import {GetState} from "./store";
-import {dispatch} from "./store";
+import {store} from "./store";
+import {State} from "./store";
+import {Actions} from "./store";
+import {reducer} from "./store";
+import {AnySlice} from "./store";
+import {RawState} from "./store";
+import {useSlice} from "./store";
 import {getState} from "./store";
-import {Actions} from "./actions";
-import {AnyAction} from "./actions";
-import {AnyActionKey} from "./actions";
-import {AnyActionType} from "./actions";
-import {useEffect} from "./effects";
-import {useReducer} from "./reducers";
-import {useSlice} from "./slices";
-import {AnySlice} from "./slices";
-import {AnySliceName} from "./slices";
-import {ReadonlyState} from "./state";
-import {WritableState} from "./state";
-import {UseDispatch} from "./useDispatch";
-import {useDispatch} from "./useDispatch";
-import {UseSelector} from "./useSelector";
-import {useSelector} from "./useSelector";
-
-
-type State = WritableState
+import {dispatch} from "./store";
+import {Dispatch} from "./types";
+import {GetState} from "./types";
+import {useEffect} from "./store";
+import {AnyAction} from "./store";
+import {subscribe} from "./store";
+import {initialize} from "./store";
+import {useReducer} from "./store";
+import {AnyStateKey} from "./store";
+import {useDispatch} from "./hooks";
+import {useSelector} from "./hooks";
+import {AnyActionKey} from "./store";
+import {AnySliceName} from "./store";
+import {AnyActionType} from "./store";
+import {ReadonlyState} from "./store";
+import {WritableState} from "./store";
+import {EffectsMiddleware} from "./store";
 
 
 export {
   store,
   State,
+  Actions,
+  reducer,
+  AnySlice,
+  RawState,
+  useSlice,
+  getState,
+  dispatch,
   Dispatch,
   GetState,
-  dispatch,
-  getState,
-  Actions,
-  AnyAction,
-  AnyActionKey,
-  AnyActionType,
   useEffect,
+  AnyAction,
+  subscribe,
+  initialize,
   useReducer,
-  useSlice,
-  AnySlice,
+  useDispatch,
+  useSelector,
+  AnyStateKey,
   AnySliceName,
+  AnyActionKey,
   ReadonlyState,
   WritableState,
-  UseDispatch,
-  useDispatch,
-  UseSelector,
-  useSelector,
+  AnyActionType,
+  EffectsMiddleware,
 }
 
 
 export default Object.freeze({
   store,
-  dispatch,
-  getState,
-  useEffect,
-  useReducer,
+  reducer,
   useSlice,
+  getState,
+  dispatch,
+  useEffect,
+  subscribe,
+  initialize,
+  useReducer,
   useDispatch,
   useSelector,
-})
+  EffectsMiddleware,
+});

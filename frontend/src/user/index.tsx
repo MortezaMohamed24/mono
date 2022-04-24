@@ -1,7 +1,7 @@
-import CheckWhetherUserIsLoggedIn from "./checkWhetherUserIsLoggedIn";
+import CheckWhetherUserIsAuthorized from "./checkWhetherUserIsAuthorized";
 
 
-const User = CheckWhetherUserIsLoggedIn;
+const User = CheckWhetherUserIsAuthorized;
 
 
 export default User;

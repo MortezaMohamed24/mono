@@ -2,18 +2,16 @@ import s from "./style";
 import bd from "/features/boards";
 import btn from "/style/button/style";           
 import React from "react";
-import PageWithMainNavigation from "/templates/withMainNavbar";
-
 import {AllBoards} from "../boards";
 import {useSelector} from "react-redux";
-import {StarredBoards} from "../boards";
-
 import * as DELETER from "/components/deleterPopup";
 import * as MODULIFY from "/components/modulify";
 import * as BOARD_THEMER from "../boardThemerPopup";
 import * as BOARD_CREATOR from "/components/boardCreatorModule";
 import * as BOARD_OPTIONS from "../boardOptionsPopup";
 import * as BOARD_RENAMER from "../boardRenamerPopup";
+import {StarredBoards} from "../boards";
+import PageWithMainNavigation from "/templates/withMainNavbar";
 
 
 function Home() {

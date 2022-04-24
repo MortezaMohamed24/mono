@@ -5,7 +5,7 @@ import bd from "/features/boards";
 import ll from "/features/labels";
 import ps from "/components/popupify/style";
 import btn from "/style/button/style";
-import BLCC from "/features/boardListCardCreator";
+import BLCC from "../listCardCreator/state";
 import React from "react";
 import search from "/features/labels/util/search";
 import popupify from "/components/popupify";

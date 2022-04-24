@@ -1,14 +1,9 @@
 import "./actions/init";
 import "./reducers/init";
+import {useSlice} from "/store";
 import Collection from "/util/redux/collection";
 import {CheckitemNative} from "./entity";
 
-
-export const NAME = "cm";
-
-export function initialState() {
-  return new Collection<CheckitemNative>();
-}
 
 declare global {
   export interface __INTERNAL_REDUX_STATE__ {
@@ -17,4 +12,9 @@ declare global {
 }
 
 
-export default Object.freeze({NAME, initialState});
+export const NAME = "cm";
+
+
+useSlice(NAME, () => (
+  new Collection<CheckitemNative>()
+));

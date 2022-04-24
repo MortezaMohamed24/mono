@@ -49,12 +49,11 @@ function ARRAY<TContent extends Content, TConfigs extends Configs>(content: TCon
   
 
   const name = "Array";
-  const {strict} = options;
   const typeNames = ["Array"];
 
 
   return formatterify<TConfigs, unknown[], Return>({name, options, typeNames},
-    (unformatted, {INVALID}) => {
+    (unformatted, {strict, INVALID}) => {
       const copy: unknown[] = [];
       
       for (let item of unformatted) {

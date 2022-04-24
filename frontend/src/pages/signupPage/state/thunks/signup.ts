@@ -11,6 +11,7 @@ import {SignupActionFulfilled} from "../actions";
 const thunk = (body: RequestBody) => async (dispatch: Dispatch, getState: GetState) => {
   const state = getState().sp;
 
+  console.log(state);
   if ((
     state.status !== "idle"
   ) || (
@@ -23,13 +24,11 @@ const thunk = (body: RequestBody) => async (dispatch: Dispatch, getState: GetSta
 
   try {
     await signup(body);
-  } 
-  
-  catch (e: any) {
+    dispatch(SignupActionFulfilled())
+  } catch (e) {
     dispatch(SignupActionRejected(e));
   }
 
-  dispatch(SignupActionFulfilled())
 };
 
 thunk.ERRORS = ERRORS;

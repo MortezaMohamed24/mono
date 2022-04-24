@@ -1,6 +1,6 @@
 import {OPEN} from "../actions";
 import {MOVE} from "../actions";
-import {NAME} from "../slice";
+import {NAME} from "../init";
 import {CLOSE} from "../actions";
 import {useReducer} from "/store";
 import {CHECK_LABELS} from "../actions";

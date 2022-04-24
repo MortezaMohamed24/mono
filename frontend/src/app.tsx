@@ -1,4 +1,5 @@
 import "./style/style";
+import "./features/init";
 
 import User from "./user";
 import React from "react";
@@ -11,22 +12,6 @@ import {Provider} from "react-redux";
 import PageNotFound from "./pages/NotFoundPage";
 import {BrowserRouter} from "react-router-dom";
 import ReduxReactRouter from "./components/routerController";
-
-
-
-import "/features/user/reducers/init";
-import "/features/boards/reducers/init";
-import "/features/lists/reducers/init";
-import "/features/cards/reducers/init";
-import "/features/labels/reducers/init";
-import "/features/checklists/reducers/init";
-import "/features/checkitems/reducers/init";
-import "./pages/loginPage/state/reducers/init";
-import "./pages/signupPage/state/reducers/init";
-import "./features/boardListCardCreator/index";
-import "/components/routerController/state/reducers/init";
-
-
 
 
 const Application = () => {

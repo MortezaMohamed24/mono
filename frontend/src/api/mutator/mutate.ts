@@ -9,8 +9,8 @@ async function mutate<TBody>(req: Request, format?: (body: unknown) => TBody): P
     body,
     status,
   } = format
-    ? await fetch(req, {body: true})
-    : await fetch(req, {body: false})
+    ? await fetch(req, {timeout: 8000, body: "json"})
+    : await fetch(req, {timeout: 8000})
   
   if (ok) {
     return format ? format(body) : undefined;

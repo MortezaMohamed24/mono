@@ -1,4 +1,4 @@
-import "./state";
+import "./init";
 import thunks from "/features/user/actions";
 import selectors from "/features/user/selectors";
 

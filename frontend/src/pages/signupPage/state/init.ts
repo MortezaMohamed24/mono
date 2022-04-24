@@ -3,10 +3,9 @@ import {useSlice} from "/store";
 
 declare global {
   export interface __INTERNAL_REDUX_STATE__ {
-    [SIGNUP_SLICE_NAME]: SignupState;
+    [NAME]: SignupState;
   }
 }
-
 
 export type SignupState = {
   readonly error: null; 
@@ -26,11 +25,9 @@ export type SignupState = {
   readonly firstname: Readonly<{value: string, isValid: boolean}>;
 }
 
+export const NAME = "sp";
 
-export const SIGNUP_SLICE_NAME = "sp";
-
-
-useSlice(SIGNUP_SLICE_NAME, (): SignupState => ({
+useSlice(NAME, () => ({
   error: null,
   status: "idle", 
   validity: false,
@@ -39,3 +36,5 @@ useSlice(SIGNUP_SLICE_NAME, (): SignupState => ({
   lastname: {value: "", isValid: false},
   firstname: {value: "", isValid: false},
 }));
+
+export default Object.freeze({NAME});

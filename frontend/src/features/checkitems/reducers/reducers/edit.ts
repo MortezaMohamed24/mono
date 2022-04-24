@@ -5,9 +5,9 @@ import {CheckitemEditRequestMeta} from "/features/checkitems/actions";
 
 
 function editCheckitem({cm}: State, meta: CheckitemEditRequestMeta) {
-  const content = f.content(meta.content);
+  const content = f.content(meta.content, {strict: false});
   const checkitem = cm.findOne({id: meta.idCheckitem});
-  const isComplete = f.isComplete(meta.isComplete);
+  const isComplete = f.isComplete(meta.isComplete, {strict: false});
 
   if (!checkitem) { 
     return; 

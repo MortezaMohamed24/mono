@@ -10,20 +10,20 @@ import mongoose from "mongoose";
 
 
 const schema = new mongoose.Schema<DocType, Model, Methods>({
-  _id: {type: "ObjectID", required: true, default: () => new Oid()},
+  _id: {type: "ObjectID", default: () => new Oid()},
   title: {type: "String", required: true, set: setters.title},
   idUser: {type: "ObjectID", required: true},
   idList: {type: "ObjectID", required: true},
   idBoard: {type: "ObjectID", required: true},
-  dateDue: {type: "Number", required: true, default: null},
+  dateDue: {type: "Number", default: null},
   idLabels: {type: ["ObjectID"], default: [], required: true},
-  dateStart: {type: "Number", required: true, default: null},
-  isWatched: {type: "Boolean", default: false, required: true},
-  isComplete: {type: "Boolean", default: false, required: true},
-  description: {type: "String", required: false},
-  idChecklists: {type: ["ObjectID"], default: [], required: true},
-  dateCreation: {type: "Number", required: true, default: () => Date.now(), immutable: true},
-  dateLastView: {type: "Number", default: null, required: false},
+  dateStart: {type: "Number", default: null},
+  isWatched: {type: "Boolean", default: false},
+  isComplete: {type: "Boolean", default: false},
+  description: {type: "String", default: null},
+  idChecklists: {type: ["ObjectID"], default: []},
+  dateCreation: {type: "Number", default: () => Date.now(), immutable: true},
+  dateLastView: {type: "Number", default: null},
 });
 
 Object.entries(statics).forEach(([key, value]) => {

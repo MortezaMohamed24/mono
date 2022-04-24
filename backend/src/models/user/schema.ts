@@ -10,13 +10,13 @@ import DocumentType from "./document/documentType.js";
 
 
 const schema = new mongoose.Schema<DocumentType, Model, Methods>({
-  _id: {type: "ObjectID", required: true, default: () => new Oid()},
+  _id: {type: "ObjectID", default: () => new Oid()},
   username: {type: "String", required: true}, 
   password: {hash: {type: "String", required: true}, salt: {type: "String", required: true}}, 
-  avatar: {type: "String", required: false, default: null, set: setters.avatar},
-  idBoards: {type: ["ObjectID"], required: true, default: []},
+  avatar: {type: "String", default: null, set: setters.avatar},
+  idBoards: {type: ["ObjectID"], default: []},
   lastname: {type: "String", required: true, set: setters.lastname}, 
-  initials: {type: "String", required: true, }, 
+  initials: {type: "String", required: true}, 
   firstname: {type: "String", required: true, set: setters.firstname},
 }, {id: true});
 

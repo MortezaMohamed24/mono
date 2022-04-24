@@ -410,7 +410,7 @@ export const copy = ApiMutator<
   BoardCopyRejectedAction,
   BoardCopyFulfilledAction
 >({
-  format: formatAsBoardCopyResponseBody.copy({optional: true}),
+  format: formatAsBoardCopyResponseBody.copy({strict: true}),
   request: BoardCopyRequest,
   pending: BoardCopyPendingAction,
   rejected: BoardCopyRejectedAction,
@@ -438,7 +438,7 @@ export const create = ApiMutator<
   BoardCreateFulfilledAction,
   BoardCreateRequestMetaUnprepared
 >({
-  format: formatAsBoardCreateResponseBody.copy({optional: true}),
+  format: formatAsBoardCreateResponseBody.copy({strict: true}),
   request: BoardCreateRequest,
   prepare: prepareBoardCreateRequestMeta,
   pending: BoardCreatePendingAction,

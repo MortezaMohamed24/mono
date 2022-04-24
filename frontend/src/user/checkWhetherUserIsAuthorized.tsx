@@ -39,11 +39,13 @@ const getMessageForError = (error: unknown) => {
   }
 };
 
-const CheckWhetherUserIsLoggedIn = () => {
+const CheckWhetherUserIsAuthorized = () => {
   const [{error, status, authorized}, setState] = useState<State>(init);
 
+  console.log({error, status, authorized})
 
   async function checkAuthority() {
+    console.log({error, status, authorized})
     if (status !== "loading") {
       setState({
         error: null, 
@@ -91,4 +93,4 @@ const CheckWhetherUserIsLoggedIn = () => {
 };
 
 
-export default CheckWhetherUserIsLoggedIn;
+export default CheckWhetherUserIsAuthorized;

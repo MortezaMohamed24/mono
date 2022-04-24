@@ -1,10 +1,13 @@
-import { useSlice } from "/store";
+import {useSlice} from "/store";
+
 
 declare global {
   export interface __INTERNAL_REDUX_STATE__ {
     [NAME]: State; 
   }
 }
+
+export const NAME = "boardCardCreator";
 
 export type State = BoardCardCreatorState
 
@@ -26,11 +29,7 @@ export type BoardCardCreatorState = {
   idLabelsChecked: string[];
 }
 
-export const NAME = "boardCardCreator";
 
-useSlice(NAME, (): BoardCardCreatorState => ({
+useSlice(NAME, () => ({
   isOpen: false,
 }));
-
-
-export default Object.freeze({NAME});

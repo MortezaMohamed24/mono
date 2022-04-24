@@ -7,6 +7,7 @@ import {useSelector} from "react-redux";
 
 
 const AllBoards = () => {
+  console.log(bd.ids);
   const ids = useSelector(bd.ids);
 
 

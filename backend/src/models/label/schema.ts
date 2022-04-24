@@ -10,8 +10,8 @@ import DocumentType from "./document/documentType.js";
 
 
 const schema = new mongoose.Schema<DocumentType, Model, Methods>({
-  _id: {type: "ObjectID", required: true, default: () => new Oid()},
-  name: {type: "String", required: false, set: setters.name},
+  _id: {type: "ObjectID", default: () => new Oid()},
+  name: {type: "String", default: null, set: setters.name},
   color: {type: "String", required: true, set: setters.color},
   idUser: {type: "ObjectID", required: true},
   idBoard: {type: "ObjectID", required: true},

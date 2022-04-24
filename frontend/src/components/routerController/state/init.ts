@@ -4,7 +4,7 @@ import {AnyRequest} from "../requests";
 
 declare global {
   export interface __INTERNAL_REDUX_STATE__ {
-    [REDUX_REACT_ROUTER_SLICE_NAME]: RouterState;
+    [NAME]: RouterState;
   }
 }
 
@@ -13,9 +13,9 @@ export type RouterState = {
 }
 
 /** A short for "Redux Router" */
-export const REDUX_REACT_ROUTER_SLICE_NAME = "rr";
+export const NAME = "rr";
 
 
-useSlice(REDUX_REACT_ROUTER_SLICE_NAME, () => ({
+useSlice(NAME, () => ({
   request: {current: null},
-}));
+}))

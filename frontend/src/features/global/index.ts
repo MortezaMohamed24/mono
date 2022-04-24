@@ -1,9 +1,9 @@
-import "./state";
+import "./init";
 import "./actions/init";
 import "./reducers/init";
 
 
-export * from "./state";
+export * from "./init";
 export * from "./actions";
 
 import actions from "./actions";

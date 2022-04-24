@@ -3,7 +3,7 @@ import cd from "/features/cards";
 import btn from "/style/button/style";
 import icon from "/style/icon/style";
 import stop from "/util/event/stop";
-import slice from "/features/boardListCardCreator";
+import state from "./state";
 import React from "react";
 import Textarea from "/components/textarea/statefull";
 import {useRef} from "react";
@@ -29,7 +29,7 @@ const BoardListCardCreator = React.memo<Props>(({idList, index}) => {
   const self = useRef<HTMLElement | null>(null);
   const [title] = useState<TextareaMeta>({});
   const dispatch = useDispatch();
-  const idLabels = useSelector(slice.idLabelsChecked) ?? [];
+  const idLabels = useSelector(state.idLabelsChecked) ?? [];
   const [titleIsValid, setTitleIsValid] = useState<boolean>(false);
 
   
@@ -49,18 +49,18 @@ const BoardListCardCreator = React.memo<Props>(({idList, index}) => {
       title.select?.();
 
       scrollIntoView()
-      dispatch(slice.uncheck(idLabels));
+      dispatch(state.uncheck(idLabels));
     }
   }
 
   function cancel() {
-    dispatch(slice.close({idList}));
+    dispatch(state.close({idList}));
   }
 
   function onMount() {
     title.set?.("New Card");
     title.select?.();
-    dispatch(slice.check(idLabels));
+    dispatch(state.check(idLabels));
   }
 
   function onUnmount() {

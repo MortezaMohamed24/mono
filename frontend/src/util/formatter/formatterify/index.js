@@ -5,8 +5,8 @@ import {FormatterFactory} from "../formatter";
 
 /** A wraaper around `Formatter()` that just supply default values */
 function formatterify(options, formatCompleter) {
-  const name = options.name || options.options?.name || "Type"; 
-  const typeNames = options.typeNames ?? options.options?.typeNames ?? [ANY];
+  const name = options.options?.name || options.name || "Type"; 
+  const typeNames = options.options?.typeNames ?? options.typeNames ?? [ANY];
 
 
   const {

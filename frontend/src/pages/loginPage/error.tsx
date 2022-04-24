@@ -22,7 +22,6 @@ const Error = React.memo<Props>(({error}) => {
     dispatch(lg.clear());
   }
 
-
   return (
     <div className={s.error}>
 

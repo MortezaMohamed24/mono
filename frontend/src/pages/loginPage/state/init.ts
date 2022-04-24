@@ -1,3 +1,6 @@
+import {useSlice} from "/store";
+
+
 declare global {
   export interface __INTERNAL_REDUX_STATE__ {
     [NAME]: LoginState
@@ -16,17 +19,14 @@ export type LoginState = {
   readonly password: Readonly<{value: string, isValid: boolean}>;
 }
 
-
 export const NAME = "lg";
 
-export function initialState() {
-  return {
-    error: null,
-    status: "idle", 
-    username: {value: "", isValid: false},
-    password: {value: "", isValid: false},
-  };
-}
+useSlice(NAME, () => ({
+  error: null,
+  status: "idle", 
+  username: {value: "", isValid: false},
+  password: {value: "", isValid: false},
+}));
 
 
-export default Object.freeze({NAME, initialState});
+export default Object.freeze({NAME});

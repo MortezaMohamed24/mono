@@ -7,7 +7,11 @@ type FormattingCompleter<TFormatted, TUnformatted> = (
 ) => TFormatted
 
 type FormattingCompleterApi = {
+  strict?: boolean;
   INVALID: INVALID;
+  boolean?: boolean;
+  optional?: boolean;
+  fallback?: unknown;
 }
 
 

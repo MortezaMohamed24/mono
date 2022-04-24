@@ -1,12 +1,12 @@
-import v from "../../fields/formatters";
 import {State} from "/store";
 import {INVALID} from "/util/formatter";
+import formatters from "../../fields/formatters";
 import {ChecklistEditRequestMeta} from "../../actions";
 
 
 function editChecklist({ct}: State, meta: ChecklistEditRequestMeta) {
-  const title = v.title(meta.title);
-  const filter = v.filter(meta.filter);
+  const title = formatters.title(meta.title, {strict: false});
+  const filter = formatters.filter(meta.filter, {strict: false});
   const checklist = ct.findOne({id: meta.idChecklist});
 
   if (!checklist) { 

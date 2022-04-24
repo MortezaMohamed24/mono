@@ -1,6 +1,6 @@
 import s from "./style";
 import ll from "/features/lists";
-import BLCC from "/features/boardListCardCreator";
+import BLCC from "../listCardCreator/state";
 import Cards from "../listCards";
 import React from "react";
 import {Toggler} from "/components/popupify";

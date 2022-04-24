@@ -10,13 +10,13 @@ import DocumentType from "./document/documentType.js";
 
 
 const schema = new mongoose.Schema<DocumentType, Model, Methods>({
-  _id: {type: "ObjectID", required: true, default: () => new Oid()},
+  _id: {type: "ObjectID", default: () => new Oid(), immutable: true},
   idUser: {type: "ObjectID", required: true},
   idList: {type: "ObjectID", required: true},
   idCard: {type: "ObjectID", required: true},
   idBoard: {type: "ObjectID", required: true},
   content: {type: "String", required: true, set: setters.content},
-  isComplete: {type: "Boolean", required: true, default: false, set: setters.isComplete},
+  isComplete: {type: "Boolean", default: false, set: setters.isComplete},
   idChecklist: {type: "ObjectID", required: true},
 }, {id: false});
 

@@ -11,13 +11,13 @@ import {DATE_CREATED_ASCENDING} from "./fields/constants.js";
 
 
 const schema = new mongoose.Schema<DocumentType, Model, Methods>({
-  _id: {type: "ObjectID", required: true, default: () => new Oid()},
+  _id: {type: "ObjectID", default: () => new Oid()},
   title: {type: "String", required: true, set: setters.title},
   idUser: {type: "ObjectID", required: true},
   idBoard: {type: "ObjectID", required: true},
-  idCards: {type: ["ObjectID"], required: true, default: []},
-  isWatched: {type: "Boolean", required: true, default: false, set: setters.isWatched},
-  sortMethod: {type: "String", required: true, default: DATE_CREATED_ASCENDING},
+  idCards: {type: ["ObjectID"], default: []},
+  isWatched: {type: "Boolean", default: false, set: setters.isWatched},
+  sortMethod: {type: "String", default: DATE_CREATED_ASCENDING},
 }, {id: false});
 
 Object.entries(statics).forEach(([key, value]) => {

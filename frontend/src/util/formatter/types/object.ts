@@ -60,12 +60,11 @@ function OBJECT<TContent extends Content, TConfigs extends Configs>(content: TCo
 
 
   const name = "Object";
-  const {strict} = options;
   const typeNames = ["Object"];
 
 
   return formatterify<TConfigs, Record<any, unknown>, Return>({name, options, typeNames}, 
-    (unformatted, {INVALID}) => {
+    (unformatted, {strict, INVALID}) => {
       const copy: Record<any, unknown> = {};
       
 

@@ -2,7 +2,7 @@ import bd from "/features/boards";
 import lt from "/features/lists";
 import ps from "/components/popupify/style";
 import btn from "/style/button/style";
-import BLCC from "/features/boardListCardCreator";
+import BLCC from "../listCardCreator/state";
 import React from "react";
 import popupify from "/components/popupify";
 import Selector from "/components/selector/stateless";

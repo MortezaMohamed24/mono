@@ -35,10 +35,21 @@ const Form = React.memo<Props>(({error}) => {
   const password = useSelector(sp.password);
   const lastname = useSelector(sp.lastname);
   const firstname = useSelector(sp.firstname);
+
+
+  console.log({
+    validity, 
+    status, 
+    username, 
+    password, 
+    lastname, 
+    firstname,
+  });
   
 
   function commit() {
     if (validity === true && status === "idle") {
+      console.log("JHGJHG")
       dispatch(sp.signup({
         username: username.value, 
         password: password.value, 
@@ -154,7 +165,7 @@ const Form = React.memo<Props>(({error}) => {
       <button
         type="button"
         onClick={commit}
-        disabled={!(validity === true && status === "idle")}
+        disabled={validity !== true || status !== "idle"}
         children="Sign up!"
         className={btn.blue}
       />

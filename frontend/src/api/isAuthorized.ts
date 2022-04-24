@@ -23,7 +23,7 @@ const isAuthorized = async () => {
     headers: {"Content-Type": "application/json"},
   });
 
-  const {ok, body, status} = await fetch(req, {body: true});
+  const {ok, body, status} = await fetch(req, {body: "json", timeout: 7000});
 
   if (ok) {
     return format(body).isAuthorized;

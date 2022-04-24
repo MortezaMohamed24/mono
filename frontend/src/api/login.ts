@@ -33,7 +33,7 @@ export async function login(query: RequestQuery) {
     headers: {"Content-Type": "application/json"},
   });
 
-  const {ok, status, body} = await fetch(req, {body: true});
+  const {ok, status, body} = await fetch(req, {body: "text"});
   
   if (ok) {
     return;

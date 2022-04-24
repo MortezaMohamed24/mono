@@ -13,7 +13,7 @@ type Output = {
 }
 
 type Configs = {
-  body?: boolean;
+  body?: boolean | "text" | "json" | "blob" | "formData" | "arrayBuffer";
 }
 
 type Options<TConfigs extends Configs> = TConfigs & {
@@ -23,24 +23,35 @@ type Options<TConfigs extends Configs> = TConfigs & {
 type ReturnType<TConfigs extends Configs> = 
   TConfigs extends {body: true}
     ? Output
-    : O.Overwrite<Output, {body: undefined}>
+    : TConfigs extends {body: "text"}
+      ? O.Overwrite<Output, {body: string}>
+      : TConfigs extends {body: "json"}
+        ? O.Overwrite<Output, {body: unknown}>
+        : TConfigs extends {body: "blob"}
+          ? O.Overwrite<Output, {body: Blob}>
+          : TConfigs extends {body: "formData"}
+            ? O.Overwrite<Output, {body: FormData}>
+            : TConfigs extends {body: "arrayBuffer"}
+              ? O.Overwrite<Output, {body: ArrayBuffer}>
+              : O.Overwrite<Output, {body: undefined}>
 
 
 const NativeFetch = window.fetch;
-const aborter = new AbortController();
-const signal = aborter.signal;
-const abort = () => aborter.abort();
 
 
 /** Response body is missing when it's required or body is not valid JSON */
-const BODY_ERROR = Symbol();
+const BODY_ERROR = Symbol("BODY_ERROR");
 /** Client is offline or server is shutdown */
-const CONNECTION_ERROR = Symbol();
+const CONNECTION_ERROR = Symbol("CONNECTION_ERROR");
 
 
 async function fetch<TConfigs extends Configs>(req: Request, options?: Options<TConfigs>): Promise<ReturnType<TConfigs>> {  
-  const timeout = options?.timeout ?? 0;
-  const includeBody = options?.body ?? false;
+  const aborter = new AbortController();
+  const signal = aborter.signal;
+  const abort = () => aborter.abort();
+
+  const timeout = options?.timeout ?? 3000;
+  const bodyType = options?.body;
 
   let response: Response;
   
@@ -48,7 +59,8 @@ async function fetch<TConfigs extends Configs>(req: Request, options?: Options<T
 
   try { 
     response = await NativeFetch(req, {signal}); 
-  } catch { 
+  } catch (e) { 
+    console.log({e, timeout})
     throw CONNECTION_ERROR; 
   }
   
@@ -62,9 +74,14 @@ async function fetch<TConfigs extends Configs>(req: Request, options?: Options<T
   output.redirected = response.redirected;
   output.statusText = response.statusText;
 
-  if (includeBody) {
+  if (bodyType) {
     try {
-      output.body = await response.json();
+      // for backward compatablity, true is just like "json"
+      if (bodyType === true) {
+        output.body = await response.json();
+      } else {
+        output.body = await response[bodyType](); 
+      }
     } catch {
       throw BODY_ERROR;
     }

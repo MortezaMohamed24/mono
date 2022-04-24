@@ -21,20 +21,31 @@ function Formatter({name, error, format, typeNames, ...baseFormattingModifiers})
     };
 
     const formattingCompleterApi = {
-      INVALID: INVALID,
+      strict,
+      INVALID,
+      boolean,
+      optional,
+      fallback,
     };
-
 
     try {
       if (checkTypeName(value)) {
         const formatted = format(value, formattingCompleterApi);
   
         if (boolean) {
-          return false;
+          return true;
         }
         
         return formatted;
-      } 
+      }
+
+      if (optional) {
+        if (value === undefined) {
+          return fallback;
+        }
+      }
+  
+      throw null;
     }
   
     catch (e) {
@@ -49,15 +60,7 @@ function Formatter({name, error, format, typeNames, ...baseFormattingModifiers})
       } 
       
       return INVALID;
-    }
-       
-    if (optional) {
-      if (value === undefined) {
-        return fallback;
-      }
-    }
-
-    throw new TypeError(error(value));
+    }     
   }
 
 

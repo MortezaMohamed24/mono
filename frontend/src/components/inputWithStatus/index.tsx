@@ -102,7 +102,6 @@ const InputWithValidityStatus = ({
   }, [value]);
 
   useEffect(() => {
-    console.log(`${label} is ${isValid ? "valid" : "invalid"}`)
     onValidity?.(isValid);
   }, [isValid]);
 

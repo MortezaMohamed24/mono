@@ -1,5 +1,5 @@
 import {O} from "ts-toolbelt";
-import {SignupState} from "../state";
+import {SignupState} from "../init";
 
 
 // ---------- ACTION TYPES

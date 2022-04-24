@@ -14,7 +14,6 @@ const Login = React.memo(() => {
   const error = useSelector(lg.error);
   const status = useSelector(lg.status);
   const dispatch = useDispatch();
-
   
   useEffect(() => {
     dispatch(lg.clear()); 
@@ -24,10 +23,7 @@ const Login = React.memo(() => {
     };
   }, []);
 
-
-
   let content: JSX.Element;
-
 
   if (status === "idle") {
     content = <Form />;

@@ -1,6 +1,6 @@
 import LT from "/features/lists";
 import PS from "/components/popupify/style";
-import BLCC from "/features/boardListCardCreator";
+import BLCC from "../listCardCreator/state";
 import React from "react";
 import popupify from "/components/popupify";
 

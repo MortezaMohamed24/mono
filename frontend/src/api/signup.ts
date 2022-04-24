@@ -13,7 +13,7 @@ export interface RequestBody {
 export const ERRORS = Object.freeze({
   BODY_ERROR: fetch.BODY_ERROR,
   CONNECTION_ERROR: fetch.CONNECTION_ERROR,
-  UNAUTHORIZED_ERROR: Symbol("UNAUTHORIZED_ERROR"),
+  UNRECOGNIZED_ERROR: Symbol("UNRECOGNIZED_ERROR"),
   INTERNAL_SERVER_ERROR: Symbol("INTERNAL_SERVER_ERROR"),
   INVALID_USERNAME_ERROR: Symbol("INVALID_USERNAME_ERROR"),
   INVALID_PASSWORD_ERROR: Symbol("INVALID_PASSWORD_ERROR"),
@@ -41,7 +41,7 @@ export async function signup(requestBody: RequestBody) {
     ok, 
     body, 
     status,
-  } = await fetch(req, {body: true});
+  } = await fetch(req, {body: "text"});
 
   if (ok) { return; }
 
@@ -59,7 +59,7 @@ export async function signup(requestBody: RequestBody) {
     throw ERRORS.INTERNAL_SERVER_ERROR;
   }
 
-  throw ERRORS.UNAUTHORIZED_ERROR;
+  throw ERRORS.UNRECOGNIZED_ERROR;
 }
 
 

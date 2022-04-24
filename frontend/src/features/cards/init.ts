@@ -1,14 +1,9 @@
 import "./actions/init";
 import "./reducers/init";
+import {useSlice} from "/store";
 import Collection from "/util/redux/collection";
 import {CardNative} from "./entity";
 
-
-export const NAME = "cd";
-
-export function initialState() {
-  return new Collection<CardNative>();
-}
 
 declare global {
   export interface __INTERNAL_REDUX_STATE__ {
@@ -17,4 +12,9 @@ declare global {
 }
 
 
-export default Object.freeze({NAME, initialState});
+export const NAME = "cd";
+
+
+useSlice(NAME, () => (
+  new Collection<CardNative>()
+));

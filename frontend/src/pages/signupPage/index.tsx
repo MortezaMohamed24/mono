@@ -29,6 +29,8 @@ const SignUpPage = React.memo(() => {
   let content: JSX.Element;
 
 
+  console.log({error, status});
+
   if (status === "idle") {
     content = <Form error={null} />;
   } else if (status === "loading") {

@@ -1,4 +1,4 @@
-import "./state";
+import "./init";
 import search from "./util/search";
 import thunks from "./actions";
 import selectors from "./selectors";

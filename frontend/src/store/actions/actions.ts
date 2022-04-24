@@ -8,6 +8,7 @@ declare global {
 export type INIT = typeof INIT;
 export const INIT = "__INIT__";
 
+
 export type InitReduxStateAction = {
   type: INIT;
   meta: undefined;
@@ -15,12 +16,14 @@ export type InitReduxStateAction = {
   payload: undefined;
 }
 
+
 export const InitReduxStateAction = (): InitReduxStateAction => ({
   type: INIT,
   meta: undefined,
   error: undefined,
   payload: undefined,
 });
+
 
 export const init = InitReduxStateAction;
 

@@ -19,13 +19,10 @@ export const thunk = (payload: RequestQuery) => async (dispatch: Dispatch, getSt
 
   try {
     await login(payload);
-  } 
-  
-  catch (error) {
+    dispatch(LoginActionFulfilled());
+  } catch (error) {
     dispatch(LoginActionRejected(error));
   }
-
-  dispatch(LoginActionFulfilled());
 };
 
 

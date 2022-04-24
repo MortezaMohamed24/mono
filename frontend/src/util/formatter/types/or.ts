@@ -43,26 +43,21 @@ type FallbackType<TConfigs extends Configs> =
 function OR<TOr extends Or, TConfigs extends Configs>(or: TOr, options: Options<TConfigs> = {} as Options<TConfigs>) {
   type Return = ReturnType<TOr, TConfigs>
 
-
   const name = "Or";
-  const {strict} = options;
-
 
   return formatterify<TConfigs, unknown[], Return>({name, options},
-    (unformatted, {INVALID}) => {
-      for (let item of unformatted) {
-        for (let formatter of or) {
-          let formatted: unknown;
+    (unformatted, {strict, INVALID}) => {
+      for (let formatter of or) {
+        let formatted: unknown;
 
-          try {
-            formatted = formatter(item, strict ? {strict} : undefined);
-          } catch (e) {
-            formatted = INVALID;
-          }
+        try {
+          formatted = formatter(unformatted, strict ? {strict} : undefined);
+        } catch (e) {
+          formatted = INVALID;
+        }
 
-          if (formatted !== INVALID) {
-            return formatted as Return;
-          }
+        if (formatted !== INVALID) {
+          return formatted as Return;
         }
       }
                 

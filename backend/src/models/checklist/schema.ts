@@ -11,14 +11,14 @@ import DocumentType from "./document/documentType.js";
 
 
 const schema = new mongoose.Schema<DocumentType, Model, Methods>({
-  _id: {type: "ObjectID", require: true, default: () => new Oid()},
+  _id: {type: "ObjectID", default: () => new Oid()},
   title: {type: "String", required: true, set: setters.title},
-  filter: {type: "String", required: true, default: ALL, set: setters.filter},
+  filter: {type: "String", default: ALL, set: setters.filter},
   idUser: {type: "ObjectID", required: true},
   idList: {type: "ObjectID", required: true},
   idCard: {type: "ObjectID", required: true},
   idBoard: {type: "ObjectID", required: true},
-  idCheckitems: {type: ["ObjectID"], required: true, default: []},
+  idCheckitems: {type: ["ObjectID"], default: []},
 }, {id: false});
 
 Object.entries(statics).forEach(([key, value]) => {

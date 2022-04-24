@@ -3,15 +3,15 @@ import React from "react";
 import {useEffect} from "react";
 import {GoRequest} from "./requests";
 import {useHistory} from "react-router-dom";
-import {useDispatch} from "../../store";
-import {useSelector} from "../../store";
+import {useDispatch} from "/store";
+import {useSelector} from "/store";
 import {PushRequest} from "./requests";
 import {GoBackRequest} from "./requests";
 import {ReplaceRequest} from "./requests";
 import {GoForwardRequest} from "./requests";
 
 
-const ReduxReactRouter = React.memo<{}>(() => {
+const ReduxReactRouter = React.memo(() => {
   const request = useSelector(({rr}) => rr.request.current);
   const history = useHistory();
   const dispatch = useDispatch();
