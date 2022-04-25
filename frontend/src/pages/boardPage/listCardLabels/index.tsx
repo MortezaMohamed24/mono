@@ -7,8 +7,6 @@ import classNames from "classnames";
 import {useState} from "react";
 import DeepEquals from "/util/object/deepEquals";
 import {useSelector} from "react-redux";
-import {LabelNative} from "/features/labels/entity";
-
 
 
 type Props = ({
@@ -34,15 +32,15 @@ type Props = ({
 }
 
 
-const equal = DeepEquals<LabelNative[]>(1);
+const equal = DeepEquals<any[]>(1);
 
 
 const BoardListCardLabelsByIdsOfLabels = React.memo<Props>(({idCard, idLabels, className, preventDefault = false}) => {
-  const idLabelsByCard = useSelector(idCard ? CD.one.idLabels(idCard) : () => []);
+  const idLabelsByCard = useSelector(idCard ? CD.one.idLabels(idCard) : () => undefined);
   const idLabelsFinal = idLabelsByCard ?? idLabels ?? [];
   const finalLabels = useSelector(LL.many(idLabelsFinal), equal);
   
-  
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
 

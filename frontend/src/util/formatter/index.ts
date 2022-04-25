@@ -1,9 +1,12 @@
-import {OR} from "./types";
 import {ANY} from "./constants";
+
+import {TypeName} from "./typeNameChecker";
+import {CheckTypeName} from "./typeNameChecker";
+import {checkTypeName} from "./typeNameChecker";
+
+import {OR} from "./types";
 import {OID} from "./types";
 import {NULL} from "./types";
-import {Type} from "./formatter";
-import Format from "./format";
 import {ARRAY} from "./types";
 import {TUBLE} from "./types";
 import {NUMBER} from "./types";
@@ -11,27 +14,24 @@ import {STRING} from "./types";
 import {OBJECT} from "./types";
 import {BOOLEAN} from "./types";
 import {INVALID} from "./constants";
-import {TypeName} from "./typeNameChecker";
-import {Options} from "./formatter";
-import {Modifiers} from "./formatter";
 import {UNDEFINED} from "./types";
-import {typeNameOf} from "./typeNameChecker";
-import {FormatterFactory} from "./formatter";
+
+import {Formatter} from "./formatter";
+import {ReturnType} from "./formatter";
+import {CopyOptions} from "./formatter";
 import {FallbackType} from "./formatter";
-import {CheckTypeName} from "./typeNameChecker";
-import {checkTypeName} from "./typeNameChecker";
-import {TypeReturnType} from "./formatter";
+import {FactoryOptions} from "./formatter";
+import {FormatterFactory} from "./formatter";
 import {FormattingCompleter} from "./formatter";
-import {FormattingCompleterApi} from "./formatter";
+import {FormattingModifiers} from "./formatter";
+import {FormattingCompleterSecondArgument} from "./formatter";
 
 
 export {
   OR,
-  ANY,
   OID,
+  ANY,
   NULL,
-  Type,
-  Format,
   ARRAY,
   TUBLE,
   NUMBER,
@@ -40,17 +40,18 @@ export {
   BOOLEAN,
   INVALID,
   TypeName,
-  Options,
-  Modifiers,
   UNDEFINED,
-  typeNameOf,
-  FormatterFactory as TypeFactory,
+  Formatter,
+  ReturnType,
+  CopyOptions,
   FallbackType,
   CheckTypeName,
   checkTypeName,
-  TypeReturnType,
+  FactoryOptions,
+  FormatterFactory,
   FormattingCompleter,
-  FormattingCompleterApi,
+  FormattingModifiers,
+  FormattingCompleterSecondArgument,
 };
 
 
@@ -59,7 +60,6 @@ export default Object.freeze({
   ANY,
   OID,
   NULL,
-  Format,
   ARRAY,
   TUBLE,
   NUMBER,
@@ -68,8 +68,7 @@ export default Object.freeze({
   BOOLEAN,
   INVALID,
   UNDEFINED,
-  typeNameOf,
-  TypeFactory: FormatterFactory,
   CheckTypeName,
   checkTypeName,
+  FormatterFactory,
 });

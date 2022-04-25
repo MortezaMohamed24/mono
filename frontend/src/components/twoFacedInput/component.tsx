@@ -37,6 +37,12 @@ const TwoFacedInput = React.memo<Props>(({
 
   // ---- functions ----
 
+  function set({target}: React.ChangeEvent) {
+    if (target instanceof HTMLInputElement) {
+      setView(target.value);
+    }
+  }
+
   function cancel() {
     setMode("VIEWING");
     setView("");
@@ -54,7 +60,6 @@ const TwoFacedInput = React.memo<Props>(({
   function activate() {
     setMode("EDITING");
     setView(value);
-    setShouldFocus(true);
   }
 
   function onKeyDown(event: React.KeyboardEvent) {
@@ -64,12 +69,6 @@ const TwoFacedInput = React.memo<Props>(({
     } if (event.key === "Escape") {
       cancel;
       stop(event);
-    }
-  }
-  
-  function setValueByChangeEvent({target}: React.ChangeEvent) {
-    if (target instanceof HTMLInputElement) {
-      setView(target.value);
     }
   }
 
@@ -120,6 +119,12 @@ const TwoFacedInput = React.memo<Props>(({
     onNode?.(node);
   }, [node]);
 
+  useEffect(() => {
+    if (mode === "EDITING") {
+      setShouldSelect(true);
+    }
+  }, [mode]);
+
   useOnOuterClick(node, cancel);
 
 
@@ -131,7 +136,7 @@ const TwoFacedInput = React.memo<Props>(({
         {...inputProps}
         ref={setNode}
         value={view}
-        onChange={setValueByChangeEvent}
+        onChange={set}
         className={classnames(inputClass, {[s.fancy]: styled})}
         onKeyDown={onKeyDown}
       />

@@ -81,7 +81,7 @@ export type FormattingCompleterSecondArgument = {
 }
 
 
-export declare function FormatterFactory<
+declare function FormatterFactory<
   TUnformatted extends unknown = unknown, 
   TFormatted extends unknown = unknown,
   TOptions extends FactoryOptions = FactoryOptions, 

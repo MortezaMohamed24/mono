@@ -1,5 +1,5 @@
 import {Formatter} from "../formatter";
-import {FormatterFactory} from "../formatter";
+import FormatterFactory from "../formatter";
 
 
 type Content = Formatter[];

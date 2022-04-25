@@ -1,5 +1,4 @@
 import {ANY} from "../constants";
-import {Type} from ".";
 import {INVALID} from "../constants";
 import TypeError from "../TypeError";
 import CheckTypeName from "../typeNameChecker/factory";
@@ -34,7 +33,7 @@ function merge(baseModifiers, overriderModifiers) {
   };
 }
 
-function Type(format, options) {
+function FormatterFactory(format, options) {
   const {name, typeNames, baseModifiers} = prepare(options);
 
 
@@ -86,7 +85,7 @@ function Type(format, options) {
   }
 
   function copy(overriderOptions) {
-    return Type(format, {
+    return FormatterFactory(format, {
       ...options,
       ...overriderOptions,
     });
@@ -103,4 +102,5 @@ function Type(format, options) {
 }
 
 
-export default Type;
+export {FormatterFactory};
+export default FormatterFactory;

@@ -1,4 +1,4 @@
-import Type from "../formatter";
+import Formatter from "../formatter";
 
 
 type Options = {
@@ -6,7 +6,7 @@ type Options = {
 }
 
 function UNDEFINED({name}: Options = {}) {
-  return Type(() => (
+  return Formatter(() => (
     undefined
   ), {
     name: name || "Undefined", 

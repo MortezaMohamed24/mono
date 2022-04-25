@@ -1,4 +1,3 @@
-import v from "#models/list/fields/validators";
 import List from "#models/list";
 import {Oid} from "#util/oid";
 import Argument from "./argument.js";
@@ -13,8 +12,8 @@ async function make({
 }: Argument) {
   const list = new List({
     id: id,
-    title: v.title(title), 
-    sortMethod: v.sortMethod(sortMethod),
+    title: title, 
+    sortMethod: sortMethod,
   });
 
   await list.attach(board);

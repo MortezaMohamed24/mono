@@ -13,7 +13,7 @@ export type BoardBase = {
   idLists: string[];
   idLabels: string[];
   isStarred: boolean;
-  dateLastView: number;
+  dateLastView: number | null;
 } 
 
 

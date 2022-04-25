@@ -3,7 +3,7 @@ import lt from "/features/lists";
 import ps from "/components/popupify/style";
 import btn from "/style/button/style";
 import BLCC from "../listCardCreator/state";
-import React from "react";
+import React, { useMemo, useState } from "react";
 import popupify from "/components/popupify";
 import Selector from "/components/selector/stateless";
 
@@ -19,22 +19,15 @@ import {useSelectorState} from "/components/selector/stateless";
 
 
 const BoardListCardCreatorMoverPopup = popupify(ID, () => {
-  const state = useSelector(BLCC.slice);
- 
-  const list = useSelector(lt.one(state.isOpen ? {id: state.idList} : {}));
-  const board = useSelector(bd.opened);
-  const allLists = useSelector(lt.many({id: board ? board.idLists : []}));
-
-  const listSelector = useSelectorState<ListOption>();
-  const indexSelector = useSelectorState<IndexOption>();
+  const {isOpen, index, idList} = useSelector(BLCC.slice);
   
-  const selectedListOption = listSelector.selected;
-  const selectedIndexOption = indexSelector.selected;
-
-  const selectedList = useSelector(selectedListOption ? lt.one({id: selectedListOption.id}) : () => undefined);
-
+  const list = useSelector(isOpen ? lt.one({id: idList}) : () => undefined);
+  const idLists = useSelector(bd.opened.idLists);
   const dispatch = useDispatch();
-  
+
+  const [selectedList, setSelectedList] = useState<any>({});
+  const [selectedIndex, setSelectedIndex] = useState<any>({});
+
 
   /**
    * It is an error if this popup is opened while: 
@@ -42,7 +35,7 @@ const BoardListCardCreatorMoverPopup = popupify(ID, () => {
    *   - the <CardCreator /> component is not open
    *   - the list in which the <CardCreator /> is displayed not found.
   */
-  if (!list || !board || !state.isOpen) {
+  if (!list || !idLists || !isOpen) {
     return (
       <>
         <Header title="Labels" />
@@ -64,79 +57,14 @@ const BoardListCardCreatorMoverPopup = popupify(ID, () => {
   }
 
 
-  const {index, idList} = state;
-
-
-  const commit = () => {
-    if (selectedListOption && selectedIndexOption) {
+  function commit() {
+    if (selectedList && selectedIndex) {
       dispatch(BLCC.move({
-        index: selectedIndexOption.value,
-        idList: selectedListOption.id,
+        index: selectedIndex.value,
+        idList: selectedList.id,
       }));
     }
-  };
-
-  const allIndexes = () => {
-    if (selectedList) {
-      if (selectedList.id === list.id) {
-        return selectedList.idCards.slice();
-      } else {
-        const indexes: (string | symbol)[] = [...selectedList.idCards];
-
-        indexes.splice(index, 0, Symbol());
-
-        return indexes;
-      }
-    }
-
-    return [];
-  };
-
-  const setListsOptions = () => {
-    listSelector.set(allLists.map(({title, id}) => ({
-      id: id,
-      name: `${title}${id === idList ? " (current)" : ""}`,
-      label: title,
-    })));
-  };
-
-  const setIndexesOptions = () => {
-    if (indexSelector.selected) {
-      indexSelector.set(allIndexes().map((idCard, index) => ({
-        id: String(index),
-        name: `${index + 1}${typeof idCard === "symbol" ? " (current)" : ""}`,
-        label: String(index + 1),
-        value: index,
-      })));
-    } 
-  };
-
-  const selectDefaultList = () => {
-    if (list) {
-      listSelector.select({id: list.id});
-    }
-  };
-
-  const selectDefaultIndex = () => {
-    if (selectedListOption) {
-      if (selectedListOption.id === idList) {
-        indexSelector.select({index});
-      } else {
-        indexSelector.select({index: 0});
-      }
-    }
-  };
-
-
-  useEffect(() => {
-    setListsOptions();
-    selectDefaultList();
-  }, []);
-  
-  useEffect(() => {
-    setIndexesOptions();
-    selectDefaultIndex();
-  }, [listSelector.selected?.id]);
+  }
 
 
   return (
@@ -144,15 +72,24 @@ const BoardListCardCreatorMoverPopup = popupify(ID, () => {
       <Header title="Select position" />
 
       <section className={ps.body}>
-        <Selector caption="List" state={listSelector} />
-        <Selector caption="Index" state={indexSelector} />
+        <ListSelector 
+          idList={idList}
+          idLists={idLists}
+          onSelect={setSelectedList}
+        />
+        <Selector
+          list={list}
+          onSelect={setSelectedIndex}
+          targetIndex={index}
+          selectedList={selectedList}
+        />
       </section>
 
       <footer className={ps.footer}>
         <Toggler
           action="close"
           onClick={commit}
-          disabled={!(list && selectedList && indexSelector.selected && listSelector.selected)}
+          disabled={!selectedList || !selectedIndex}
           children="Select"
           className={btn.blue}
         />
@@ -160,6 +97,80 @@ const BoardListCardCreatorMoverPopup = popupify(ID, () => {
     </>
   );
 });
+
+
+const Selector = "" as any;
+
+const ListSelector = ({idList, idLists, onSelect}: any) => {
+  const lists = useSelector(lt.many(idLists));
+  const [meta] = useState<any>({});
+
+
+  const options = lists.map(({id, title}) => ({
+    id: id,
+    name: `${title}${id === idList ? " (current)" : ""}`,
+    label: title,
+  }));
+
+
+  useEffect(() => {
+    meta.$?.select({id: idList});
+  }, [idList]);
+
+
+  return (
+    <Selector
+      meta={meta}
+      caption="List"
+      options={options}
+      onSelect={onSelect} 
+    />
+  )
+};
+
+const IndexSelector = ({list, onSelect, targetIndex, selectedList}: any) => {
+  const [meta] = useState<any>({});
+
+
+  const indexes: (string | symbol)[] = [];
+
+  if (selectedList) {
+    if (selectedList.id === list.id) {
+      indexes.push(...selectedList.idCards);
+    } else {
+      indexes.push(...selectedList.idCards);
+      indexes.splice(targetIndex, 0, Symbol());
+    }
+  }
+
+
+  const options = indexes.map((idCard, index) => ({
+    id: String(index),
+    name: `${index + 1}${typeof idCard === "symbol" ? " (current)" : ""}`,
+    label: String(index + 1),
+    value: index,
+  }));
+
+
+  useEffect(() => {
+    if (idListSelected) {
+      if (idListSelected === idList) {
+        meta.select({index: targetIndex});
+      } else {
+        meta.select({index: 0});
+      }
+    }
+  }, [])
+
+
+  return (
+    <Selector 
+      caption="Index"
+      options={options}
+      onSelect={onSelect}
+    />
+  );
+};
 
 
 export default BoardListCardCreatorMoverPopup;

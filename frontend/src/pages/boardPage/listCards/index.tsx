@@ -10,7 +10,7 @@ interface CardsProps {
   shouldRenderCardCreator: boolean;
 }
 
-function Cards({idList, idCards, indexOfCardCreator, shouldRenderCardCreator}: CardsProps) {
+const Cards = React.memo<CardsProps>(({idList, idCards, indexOfCardCreator, shouldRenderCardCreator}) => {
   let cards = [];
 
 
@@ -42,7 +42,7 @@ function Cards({idList, idCards, indexOfCardCreator, shouldRenderCardCreator}: C
 
 
   return <>{cards}</>;
-}
+});
 
 
-export default React.memo(Cards);
+export default Cards;
