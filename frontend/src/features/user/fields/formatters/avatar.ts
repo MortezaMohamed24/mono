@@ -7,7 +7,7 @@ const avatar = OR([
   NULL(), 
   STRING(),
 ], {
-  name: "User/avatar",
+  name: "User.avatar",
 });
 
 

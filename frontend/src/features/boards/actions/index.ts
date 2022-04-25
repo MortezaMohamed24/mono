@@ -3,6 +3,7 @@ import {Oid} from "/util/idUtil";
 import {OID} from "/util/formatter";
 import {ARRAY} from "/util/formatter";
 import {OBJECT} from "/util/formatter";
+import {Format} from "/util/formatter";
 import {BOOLEAN} from "/util/formatter";
 import ApiMutator from "/api/mutator";
 import {LabelBase} from "/features/labels/entity";
@@ -84,7 +85,7 @@ export const formatAsBoardEditRequestMeta = OBJECT({
 export const formatAsBoardCopyRequestMeta = OBJECT({
   title: BOARD_FIELDS.title,
   idBoard: OID(), 
-  keepCards: BOOLEAN({}),
+  keepCards: BOOLEAN(),
 }, {
   name: "BoardCopyRequestMeta",
 });

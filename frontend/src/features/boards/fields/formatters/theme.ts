@@ -3,11 +3,10 @@ import {STRING} from "/util/formatter";
 import {BoardNative} from "/features/boards/entity/native";
 
 
-const theme = STRING({
+const theme = STRING<BoardNative["theme"]>({
   case: "lower",
   trim: "both",
-  name: "Board/theme",
-  type: "" as BoardNative["theme"],
+  name: "Board.theme",
   pattern: RegExp(THEME, "u"),
   compact: true,
 });

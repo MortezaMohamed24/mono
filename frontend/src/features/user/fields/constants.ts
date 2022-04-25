@@ -1,4 +1,4 @@
-export const USERNAME = `^[a-zA-z_-]+$` as const;
+export const USERNAME = `^[a-zA-Z_-]+$` as const;
 export const PASSWORD = `^[\\w\\d _-]+$` as const;
 export const INITIALS = `^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]+$` as const;
 export const LASTNAME = `^[\\w-]+$` as const;

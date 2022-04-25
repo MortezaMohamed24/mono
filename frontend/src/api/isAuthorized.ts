@@ -7,7 +7,7 @@ import {LOGIN_STATUS_URL} from "./url";
 const format = OBJECT({
   isAuthorized: BOOLEAN({name: "isAuthorized"}),
 }, {
-  strict: true,
+  name: "authorityStatus",
 });
 
 
@@ -26,7 +26,7 @@ const isAuthorized = async () => {
   const {ok, body, status} = await fetch(req, {body: "json", timeout: 7000});
 
   if (ok) {
-    return format(body).isAuthorized;
+    return format(body, {strict: true}).isAuthorized;
   }
 
   if (status === 401) {

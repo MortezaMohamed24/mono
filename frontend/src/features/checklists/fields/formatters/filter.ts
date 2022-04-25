@@ -3,11 +3,10 @@ import {FILTER} from "../constants";
 import {ChecklistBase} from "/features/checklists/entity";
 
 
-const filter = STRING({
-  name: "Checklist/filter",
+const filter = STRING<ChecklistBase["filter"]>({
+  name: "Checklist.filter",
   case: "upper",
   trim: "both",
-  type: "" as ChecklistBase["filter"],
   pattern: RegExp(FILTER, "u"),
 });
 

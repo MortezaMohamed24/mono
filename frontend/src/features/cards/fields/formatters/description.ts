@@ -13,7 +13,7 @@ export const description = OR([
     escape: "html",
   }),
 ], {
-  name: "Card/description",
+  name: "Card.description",
 });
 
 

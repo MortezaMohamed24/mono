@@ -4,12 +4,11 @@ import {MAX_CONTENT_LENGTH} from "../constants";
 import {MIN_CONTENT_LENGTH} from "../constants";
 
 
-const content = STRING({
+const content = STRING<CheckitemBase["content"]>({
   min: MIN_CONTENT_LENGTH,
   max: MAX_CONTENT_LENGTH,
-  type: "" as CheckitemBase["content"],
   trim: "both",
-  name: "Checkitem/content",
+  name: "Checkitem.content",
   escape: "html",
   compact: true,
 });

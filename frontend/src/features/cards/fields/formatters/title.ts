@@ -7,7 +7,7 @@ const title = STRING({
   max: MAX_TITLE_LENGTH,
   min: MIN_TITLE_LENGTH,
   trim: "both",
-  name: "Card/title",
+  name: "Card.title",
   escape: "html",
   compact: true,
 });

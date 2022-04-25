@@ -3,11 +3,10 @@ import {STRING} from "/util/formatter";
 import {LabelBase} from "/features/labels/entity";
 
 
-const color = STRING({
+const color = STRING<LabelBase["color"]>({
   case: "lower",
   trim: "both",
-  name: "Label/color",
-  type: "" as LabelBase["color"],
+  name: "Label.color",
   pattern: RegExp(COLOR, "u"),
 });
 

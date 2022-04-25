@@ -4,7 +4,7 @@ import {MIN_DATE} from "../constants";
 
 const dateCreation = NUMBER({
   min: MIN_DATE,
-  name: "Card/dateCreation",
+  name: "Card.dateCreation",
   finite: true,
 });
 

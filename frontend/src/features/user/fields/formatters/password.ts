@@ -7,7 +7,7 @@ import {MAX_PASSWORD_LENGTH} from "../constants";
 const password = STRING({
   min: MIN_PASSWORD_LENGTH,
   max: MAX_PASSWORD_LENGTH,
-  name: "User/password",
+  name: "User.password",
   pattern: new RegExp(PASSWORD, "u"),
 });
 

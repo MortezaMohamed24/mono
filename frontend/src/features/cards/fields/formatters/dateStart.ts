@@ -12,7 +12,7 @@ const dateStart = OR([
     max: MAX_DATE,
   }),
 ], {
-  name: "Card/dateStart",
+  name: "Card.dateStart",
 });
 
 

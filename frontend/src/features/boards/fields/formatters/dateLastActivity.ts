@@ -8,7 +8,7 @@ const dateLastActivity = OR([
   NULL(),
   NUMBER({min: MIN_DATE, finite: true}),
 ], {
-  name: "Board/dateLasyActivity",
+  name: "Board.dateLasyActivity",
 });
 
 

@@ -9,7 +9,7 @@ const initials = STRING({
   max: MAX_INITIALS_LENGTH,
   trim: "both",
   case: "upper",
-  name: "User/initials",
+  name: "User.initials",
   pattern: new RegExp(INITIALS, "u"),
 });
 

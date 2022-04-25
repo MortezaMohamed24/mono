@@ -9,7 +9,7 @@ const firstname = STRING({
   max: MAX_FIRSTNAME_LENGTH,
   trim: "both",
   case: "capital",
-  name: "User/firstname",
+  name: "User.firstname",
   pattern: new RegExp(FIRSTNAME, "u"),
 });
 

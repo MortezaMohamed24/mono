@@ -1,18 +1,9 @@
-import {INVALID} from "../constants";
-import {TypeName} from "../typeNameChecker";
 import {Formatter} from "../formatter";
-import ErrorCreator from "../errorCreator";
-import formatterify from "../formatterify";
+import {FormatterFactory} from "../formatter";
 
 
-type Configs = {
+type Options = {
   name?: string;
-  error?: ErrorCreator;
-  strict?: boolean;
-  boolean?: boolean;
-  optional?: boolean;
-  fallback?: unknown;
-  typeNames?: TypeName[];
 }
 
 type Content = {
@@ -21,68 +12,25 @@ type Content = {
   [key: number]: Formatter;
 }
 
-type Options<TConfigs extends Configs> = TConfigs & {
-  name?: string;
-  error?: ErrorCreator;
-  typeNames?: TypeName[];
-}
-
-type ReturnType<TContent extends Content, TConfigs extends Configs> = 
-  TContent extends object
-    ? TConfigs["strict"] extends true
-      ? TConfigs["boolean"] extends true 
-        ? TConfigs["optional"] extends true
-          ? true
-          : true
-        : TConfigs["optional"] extends true
-          ? Fieldify<TContent> | FallbackType<TConfigs>
-          : Fieldify<TContent>
-      : TConfigs["boolean"] extends true 
-        ? TConfigs["optional"] extends true
-          ? boolean
-          : boolean
-        : TConfigs["optional"] extends true
-          ? INVALID | Fieldify<TContent> | FallbackType<TConfigs>
-          : INVALID | Fieldify<TContent>
-    : {}
-
-type Fieldify<TContent extends Record<any, Formatter>> = {
+type ReturnType<TContent extends Content> = {
   [Key in keyof TContent]: TContent[Key]["value"];
 }
 
-type FallbackType<TConfigs extends Configs> = 
-  TConfigs extends {fallback: infer Fallback} 
-    ? Fallback 
-    : undefined
 
-function OBJECT<TContent extends Content, TConfigs extends Configs>(content: TContent, options: Options<TConfigs> = {} as Options<TConfigs>) {
-  type Return = ReturnType<TContent, TConfigs>
-
-
-  const name = "Object";
-  const typeNames = ["Object"];
-
-
-  return formatterify<TConfigs, Record<any, unknown>, Return>({name, options, typeNames}, 
-    (unformatted, {strict, INVALID}) => {
-      const copy: Record<any, unknown> = {};
-      
-
-      for (let [key, formatter] of Object.entries(content)) {
-        const formatted = formatter(unformatted[key], strict ? {strict} : undefined);
-
-        if (copy[key] === INVALID) {
-          throw formatter.error(unformatted[key]);
-        }
-
-        copy[key] = formatted;
-      }
+const OBJECT = <TContent extends Content>(content: TContent, {name}: Options = {}) => (
+  FormatterFactory<TContent, ReturnType<TContent>>((unformatted) => {
+    const copy: any = {};
   
-
-      return copy as Return;
+    for (let [key, type] of Object.entries(content)) {
+      copy[key] = type(unformatted[key], {strict: true});
     }
-  );
-}
+
+    return copy;
+  }, {
+    name: name || "Object",
+    typeNames: ["Object"],
+  })
+);
 
 
 export default OBJECT;

@@ -1,40 +1,21 @@
 import {escape} from "html-escaper";
-import formatterify from "../formatterify";
-import ErrorCreator from "../errorCreator";
+import Formatter from "../formatter";
 
 
-type Configs = {
-  type?: undefined | string;
-  strict?: undefined | boolean;
-  boolean?: undefined | boolean;
-  optional?: undefined | boolean;
-  fallback?: undefined | unknown;
-}
-
-type Options<TConfigs extends Configs> = TConfigs & {
+type Options = {
   min?: undefined | number;
   max?: undefined | number;
   name?: undefined | string;
   trim?: undefined | "both" | "start" | "end";
   case?: undefined | "lower" | "upper" | "capital";
-  error?: undefined | ErrorCreator;
   escape?: undefined | "html";
   length?: undefined | number;
   pattern?: undefined | RegExp;
   compact?: undefined | boolean | [RegExp, string];
 }
 
-function STRING<TConfigs extends Configs>(options: Options<TConfigs> = {} as Options<TConfigs>) {
-  type Return = TConfigs["type"] extends string ? TConfigs["type"] : string;
-  
-  
-  return formatterify<TConfigs, string, Return>({
-    name: "String", 
-    options: options, 
-    typeNames: ["String"],
-  },
-
-  (unformatted) => {
+const STRING = <TFormatted extends string = string>(options: Options = {}) => (
+  Formatter<string, TFormatted>((unformatted, {INVALID}) => {
     if (options.compact === true) {
       unformatted = unformatted.replace(/\s+/ug, " ");
     } else if (options.compact) {
@@ -70,12 +51,15 @@ function STRING<TConfigs extends Configs>(options: Options<TConfigs> = {} as Opt
     ) || (
       options.pattern !== undefined && !options.pattern.test(unformatted)
     )) {
-      throw null;
+      throw INVALID;
     }
 
-    return unformatted;
-  });
-}
+    return unformatted as TFormatted;
+  }, {
+    name: options.name || "String", 
+    typeNames: ["String"],
+  })
+);
 
 
 export default STRING;

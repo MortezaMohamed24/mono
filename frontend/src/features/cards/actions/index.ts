@@ -143,9 +143,9 @@ export const formatAsCardCopyRequestMeta = OBJECT({
   title: FIELDS.title,
   index: NUMBER({min: 0}),
   idList: OID(),
-  keepDates: BOOLEAN({optional: true}),
-  keepLabels: BOOLEAN({optional: true}),
-  keepChecklista: BOOLEAN({optional: true}),
+  keepDates: BOOLEAN().copy({optional: true}),
+  keepLabels: BOOLEAN().copy({optional: true}),
+  keepChecklista: BOOLEAN().copy({optional: true}),
 });
 
 export const formatAsCardLabelRequestMeta = OBJECT({

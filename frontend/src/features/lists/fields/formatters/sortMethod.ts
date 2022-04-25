@@ -3,11 +3,10 @@ import {ListBase} from "../../entity";
 import {SORT_METHOD} from "../constants";
 
 
-const sortMethod = STRING({
+const sortMethod = STRING<ListBase["sortMethod"]>({
   case: "upper",
   trim: "both",
-  type: "" as ListBase["sortMethod"],
-  name: "List/sortMethod",
+  name: "List.sortMethod",
   pattern: RegExp(SORT_METHOD, "u"),
 });
 

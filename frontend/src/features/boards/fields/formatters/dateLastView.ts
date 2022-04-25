@@ -8,7 +8,7 @@ const dateLastView = OR([
   NULL(),
   NUMBER({min: MIN_DATE, finite: true}),
 ], {
-  name: "Board/dateLastView",
+  name: "Board.dateLastView",
 });
 
 

@@ -1,47 +1,34 @@
-import formatterify from "../formatterify";
-import {ErrorCreator} from "..";
+import Formatter from "../formatter";
 
 
-type Configs = {
-  which?: undefined | boolean | "unspecified";
-  strict?: undefined | boolean;
-  boolean?: undefined | boolean;
-  optional?: undefined | boolean;
-  fallback?: undefined | unknown;
-}
-
-type Options<TConfigs extends Configs> = TConfigs & {
+type Options = {
   name?: undefined | string;
-  error?: undefined | ErrorCreator;
+  which?: undefined | boolean | "any";
 }
 
-type ReturnType<TConfigs extends Configs> = 
-  TConfigs["which"] extends true
+type ReturnType<TOptions extends Options> = 
+  TOptions["which"] extends true
     ? true
-    : TConfigs["which"] extends false
+    : TOptions["which"] extends false
       ? false
       : boolean
 
-function BOOLEAN<TConfigs extends Configs>(options: Options<TConfigs> = {} as Options<TConfigs>) {
-  const name = "Boolean";
-  const which = options?.which ?? "unspecified";
-  const typeNames = ["Boolean"];
-
-
-  return formatterify<TConfigs, boolean, ReturnType<TConfigs>>({name, options, typeNames}, 
-    (unformatted) => {
-      if ((
-        which === true && unformatted !== true
-      ) || (
-        which === false && unformatted !== false
-      )) {
-        throw null;
-      } else {
-        return unformatted as ReturnType<TConfigs>;
-      }
+const BOOLEAN = <TOptions extends Options>({which}: TOptions = {} as TOptions) => (
+  Formatter<boolean, ReturnType<TOptions>>((unformatted) => {
+    if ((
+      which === true && unformatted !== true
+    ) || (
+      which === false && unformatted !== false
+    )) {
+      throw null;
+    } else {
+      return unformatted as ReturnType<TOptions>;
     }
-  );
-}
+  }, {
+    name: "Boolean",
+    typeNames: ["Boolean"],
+  })
+)
 
 
 export default BOOLEAN;

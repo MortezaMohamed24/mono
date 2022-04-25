@@ -2,7 +2,7 @@ import {BOOLEAN} from "/util/formatter";
 
 
 const isWatched = BOOLEAN({
-  name: "List/isWatched",
+  name: "List.isWatched",
 });
 
 

@@ -2,6 +2,8 @@ import {OR} from "./types";
 import {ANY} from "./constants";
 import {OID} from "./types";
 import {NULL} from "./types";
+import {Type} from "./formatter";
+import Format from "./format";
 import {ARRAY} from "./types";
 import {TUBLE} from "./types";
 import {NUMBER} from "./types";
@@ -10,18 +12,17 @@ import {OBJECT} from "./types";
 import {BOOLEAN} from "./types";
 import {INVALID} from "./constants";
 import {TypeName} from "./typeNameChecker";
+import {Options} from "./formatter";
+import {Modifiers} from "./formatter";
 import {UNDEFINED} from "./types";
-import {Formatter} from "./formatter";
-import formatterify from "./formatterify";
-import ErrorCreator from "./errorCreator";
 import {typeNameOf} from "./typeNameChecker";
+import {FormatterFactory} from "./formatter";
+import {FallbackType} from "./formatter";
 import {CheckTypeName} from "./typeNameChecker";
 import {checkTypeName} from "./typeNameChecker";
-import {FormatterFactory} from "./formatter";
+import {TypeReturnType} from "./formatter";
 import {FormattingCompleter} from "./formatter";
-import {FormattingModifiers} from "./formatter";
-import {FormatterReturnType} from "./formatter";
-import {FormatterWithConfigs} from "./formatter";
+import {FormattingCompleterApi} from "./formatter";
 
 
 export {
@@ -29,6 +30,8 @@ export {
   ANY,
   OID,
   NULL,
+  Type,
+  Format,
   ARRAY,
   TUBLE,
   NUMBER,
@@ -37,18 +40,17 @@ export {
   BOOLEAN,
   INVALID,
   TypeName,
+  Options,
+  Modifiers,
   UNDEFINED,
-  Formatter,
   typeNameOf,
-  formatterify,
-  ErrorCreator,
+  FormatterFactory as TypeFactory,
+  FallbackType,
   CheckTypeName,
   checkTypeName,
-  FormatterFactory,
+  TypeReturnType,
   FormattingCompleter,
-  FormattingModifiers,
-  FormatterReturnType,
-  FormatterWithConfigs,
+  FormattingCompleterApi,
 };
 
 
@@ -57,6 +59,7 @@ export default Object.freeze({
   ANY,
   OID,
   NULL,
+  Format,
   ARRAY,
   TUBLE,
   NUMBER,
@@ -66,9 +69,7 @@ export default Object.freeze({
   INVALID,
   UNDEFINED,
   typeNameOf,
-  formatterify,
-  ErrorCreator,
+  TypeFactory: FormatterFactory,
   CheckTypeName,
   checkTypeName,
-  FormatterFactory,
 });

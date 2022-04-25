@@ -8,7 +8,7 @@ const dateCreation = OR([
   NULL(),
   NUMBER({min: MIN_DATE, finite: true}),
 ], {
-  name: "Board/dateCreation",
+  name: "Board.dateCreation",
 });
 
 

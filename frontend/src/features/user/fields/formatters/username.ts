@@ -8,7 +8,7 @@ const username = STRING({
   min: MIN_USERNAME_LENGTH,
   max: MAX_USERNAME_LENGTH,
   trim: "both",
-  name: "User/username",
+  name: "User.username",
   pattern: new RegExp(USERNAME, "u"),
 });
 

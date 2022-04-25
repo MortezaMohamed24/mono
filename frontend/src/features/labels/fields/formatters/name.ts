@@ -16,7 +16,7 @@ const name = OR([
     compact: true,
   }),
 ], {
-  name: "Label/name"
+  name: "Label.name",
 });
 
 

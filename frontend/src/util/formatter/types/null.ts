@@ -1,30 +1,16 @@
-import formatterify from "../formatterify";
-import ErrorCreator from "../errorCreator";
+import Formatter from "../formatter";
 
 
-type Configs = {
-  strict?: boolean;
-  boolean?: boolean;
-  optional?: boolean;
-  fallback?: unknown;
-}
-
-type Options<TConfigs extends Configs> = TConfigs & {
-  name?: string;
-  error?: ErrorCreator;
+type Options = {
+  name?: undefined | string;
 } 
 
-function NULL<TConfigs extends Configs>(options: Options<TConfigs> = {} as Options<TConfigs>) {
-  return formatterify<TConfigs, null, null>({
-    name: "Null", 
-    options: options, 
+const NULL = ({name}: Options = {}) => (
+  Formatter<null, null>(() => null, {
+    name: name || "Null", 
     typeNames: ["Null"],
-  },
-
-  () => (
-    null
-  ));
-}
+  })
+)
 
 
 export default NULL;

@@ -13,7 +13,7 @@ const dateDue = OR([
     finite: true,
   }),
 ], {
-  name: "Card/dateDue",
+  name: "Card.dateDue",
 });
 
 
