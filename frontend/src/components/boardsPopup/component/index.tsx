@@ -9,16 +9,26 @@ import {ID} from "../constants";
 import {useRef} from "react";
 import {useState} from "react";
 import {useEffect} from "react";
+import {useDispatch} from "/store";
+import {PopupToggler} from "/components/popupify";
 
 import * as INPUT from "/components/inputDeferer";
-import * as MODULIFY from "/components/modulify";
 import * as POPUPIFY from "/components/popupify";
+import * as MODULIFY from "/components/modulify";
 import * as BOARD_CREATOR from "/components/boardCreatorModule";
 
 
 const Boards = POPUPIFY.popupify(ID, () => {
   const query = useRef<INPUT.Meta>({}).current;
   const [queryValue, setQueryValue] = useState<string>("");
+  
+
+  const dispatch = useDispatch();
+
+
+  function close() {
+    dispatch(POPUPIFY.close({id: ID}));
+  }
 
 
   useEffect(() => {
@@ -37,7 +47,7 @@ const Boards = POPUPIFY.popupify(ID, () => {
           placeholder="Find boards by name..."
         />
 
-        <POPUPIFY.Toggler
+        <PopupToggler
           target={ID}
           action="close" 
           className={s.close} 
@@ -52,7 +62,7 @@ const Boards = POPUPIFY.popupify(ID, () => {
         <MODULIFY.Toggler
           action="open"
           target={BOARD_CREATOR.ID}
-          onClick={() => POPUPIFY.close(ID)} 
+          onClick={close} 
           children="Add a new board"
           className={`${btn.gray} ${btn.block}`} 
         />

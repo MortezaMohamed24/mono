@@ -61,7 +61,7 @@ const UserAccountPopup = popupify(ID, () => {
             </ul>
           </>
         ) : (
-          <p>Error: Not loged in! 🤪</p>
+          <p>Unexpected error occured.</p>
         )}
       </section>
     </>

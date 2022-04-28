@@ -23,9 +23,6 @@
   height: auto;
   max-height: var(--panel-height);
   @include media.xs { width: 300px; } 
-  
-  visibility: hidden;
-  &.open { visibility: visible; }
 }
 
 

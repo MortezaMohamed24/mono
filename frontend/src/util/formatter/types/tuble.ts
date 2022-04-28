@@ -13,7 +13,7 @@ const TUBLE = <TContent extends Content>(content: TContent, {name}: Options = {}
   FormatterFactory<unknown[], ReturnType<TContent>>((unformatted) => {
     const copy: any[] = [];
     
-    for (let [i, type] of content.entries()) {
+    for (let [i, type] of content._()) {
       copy[i] = type(unformatted[i], {strict: true})
     }
 

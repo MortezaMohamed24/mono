@@ -1,14 +1,15 @@
 import s from "./style";
 import ps from "/components/popupify/style";
 import bd from "/features/boards";
-import React from "react";
-import classNames from "classnames";
 import {ID} from "../constants";
+import React from "react";
 import {Header} from "/components/popupify";
+import classNames from "classnames";
 import {popupify} from "/components/popupify";
 import {useDispatch} from "/store";
 import {useSelector} from "/store";
 import * as COLORS from "/features/boards/colors";
+import {PopupToggler} from "/components/popupify";
 
 
 const Themer = popupify(ID, ({payload: {idBoard}}) => {
@@ -31,8 +32,8 @@ const Themer = popupify(ID, ({payload: {idBoard}}) => {
           <ul>
             {COLORS.ALL.map(({id, name}) => 
               <li key={id}>
-                <button
-                  type="button"
+                <PopupToggler
+                  action="close"
                   onClick={() => setTheme(name)} 
                   className={classNames(s[name], {[s.selected]: name === board.theme })} 
                 />

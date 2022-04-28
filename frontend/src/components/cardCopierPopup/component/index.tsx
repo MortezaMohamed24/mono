@@ -5,13 +5,13 @@ import btn from "/style/button/style";
 import {ID} from "../constants";
 import React from "react";
 import popupify from "/components/popupify";
-import {Header} from "/components/popupify";
-import {Toggler} from "/components/popupify";
 import {useState} from "react";
 import Checkboxes from "./checkboxes";
 import CopyLocater from "./locater";
 import TitleField from "./titleField";
 import {useDispatch} from "react-redux";
+import {PopupHeader} from "/components/popupify";
+import {PopupToggler} from "/components/popupify";
 import {useSelector} from "react-redux";
 import {TextareaMeta} from "/components/textarea/statefull";
 import {CheckboxesMeta} from "./checkboxes";
@@ -49,6 +49,7 @@ const CardCopierPopup = popupify(ID, ({payload: {idCard}}) => {
   
   const dispatch = useDispatch();
 
+
   function commit() {
     if (title.value && location.$ && checkboxes.$ && titleValidity) {
       dispatch(cd.copy({ 
@@ -66,7 +67,7 @@ const CardCopierPopup = popupify(ID, ({payload: {idCard}}) => {
 
   return (
     <>
-      <Header title="Copy card" />
+      <PopupHeader title="Copy card" />
 
 
         {card ? (
@@ -90,7 +91,7 @@ const CardCopierPopup = popupify(ID, ({payload: {idCard}}) => {
             </section>
 
             <footer className={ps.footer}>
-              <Toggler
+              <PopupToggler
                 action="close"
                 onClick={commit}
                 children="Move"

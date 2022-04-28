@@ -2,12 +2,12 @@ import React from "react";
 import {useRef} from "react";
 
 
-const useListener = <_Event extends Event | React.BaseSyntheticEvent>(listener: (event: _Event) => void) => {
+export const useListener = <TEvent extends Event | React.BaseSyntheticEvent>(listener: (event: TEvent) => void) => {
   const wrapped = useRef(listener);
   wrapped.current = listener;
 
   
-  const wrapper = useRef((event: _Event) => {
+  const wrapper = useRef((event: TEvent) => {
     wrapped.current(event);
   });
   
