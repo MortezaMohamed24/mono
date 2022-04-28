@@ -42,11 +42,6 @@ export const PopupAutoCloser = React.memo<{}>(() => {
     dispatch(state.close({
       id: entry.id,
     }));
-    
-    // If the popup was closed, then we consider this event to 
-    // be compeletlly handled.
-    event.preventDefault();
-    event.stopImmediatePropagation();
   });
 
 
