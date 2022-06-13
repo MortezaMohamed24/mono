@@ -1,0 +1,14 @@
+{
+  "name": "express-session",
+  "main": "index.ts",
+  "version": "1.0.0",
+  "description": "A Middlware That Creates An Express Session",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MortezaMohamad",
+  "license": "ISC",
+  "dependencies": {
+    "oid": "file:../packages/oid"
+  }
+}

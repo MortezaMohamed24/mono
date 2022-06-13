@@ -1,0 +1,54 @@
+@use "sass:map";
+@use "/style/icon";
+@use "/style/form";
+@use "/style/colors";
+@use "/style/button";
+@use "/style/typeography";
+
+
+.ul {
+  // List
+  list-style-type: none;
+  width: 270px;
+  max-height: 400px;
+  overflow: auto;
+  margin: 0;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+
+  visibility: hidden;
+  
+  background-color: white;
+  padding: var(--jumbotron-sm) 0;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 0 30px 14px #20202018;
+
+
+  li {
+    // Options
+    > button {
+      @include button.create();
+      @include button.size("md", $filled: true);
+      @include button.apply-theme(button.$h-gray-a-red);
+    
+      &.selected {
+        color: map.get(button.$h-gray-a-red, "active-fill-fg");
+        background-color: map.get(button.$h-gray-a-red, "active-fill-bg");
+      }
+    
+      width: 100%;
+      margin: 0 ;
+      
+      &:active { transform: none; }
+    }
+
+    // "No options" message
+    > P {
+      padding: 0 var(--jumbotron-xs);
+      text-align: center;
+      margin: 0;
+    }
+  } 
+}

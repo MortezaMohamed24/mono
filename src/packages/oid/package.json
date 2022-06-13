@@ -1,0 +1,14 @@
+{
+  "name": "oid",
+  "main": "./src/index.ts",
+  "version": "1.0.0",
+  "description": "ObjectID Utilities",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MortezaMohamad",
+  "license": "ISC",
+  "dependencies": {
+    "bson": "^4.6.4"
+  }
+}
