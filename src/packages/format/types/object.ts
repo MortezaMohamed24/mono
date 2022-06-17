@@ -17,9 +17,8 @@ type TypeReturn<TContent extends Content> = {
   [Key in keyof TContent]: TContent[Key]["formatted"]
 }
 
-
 const OBJECT = <TContent extends Content, TOptions extends Options>(content: TContent, options?: TOptions) => (
-  Type<Optoinify<TOptions, unknown[], TypeReturn<TContent>>>((raw) => {
+  Type<Optoinify<Options, unknown[], TypeReturn<TContent>>>((raw) => {
     const copy: any = {}
   
     for (let [key, type] of Object.entries(content)) {

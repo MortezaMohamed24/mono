@@ -1,0 +1,15 @@
+{
+  "name": "mongoose-save",
+  "main": "index.js",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A utility function that takes an arbitray value, search for \"unsaved mongoose documents\", saves them, and returns them.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MortezaMohamad",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^6.3.8"
+  }
+}

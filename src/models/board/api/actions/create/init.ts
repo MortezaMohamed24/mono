@@ -21,7 +21,7 @@ CREATE.push(async ({set, get, body: {id, title, theme}}) => {
   });
 
 
-  set({board});
+  return [, ]
 });
 
 
@@ -30,3 +30,5 @@ CREATE.push(async ({get}) => {
   return await get().board.project();
 
 });
+
+

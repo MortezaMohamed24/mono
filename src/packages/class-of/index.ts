@@ -1,4 +1,4 @@
-const {toString} = Object.prototype
+const toString = Object.prototype.toString
 
 
 function classOf(value: unknown) {
@@ -6,5 +6,9 @@ function classOf(value: unknown) {
 }
 
 
-export {classOf}
+export {
+  classOf as classOf,
+  classOf as classof,
+}
+
 export default classOf

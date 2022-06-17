@@ -1,7 +1,7 @@
 import ur from "src/models/user/crud";
 import {Strategy} from "passport-local";
-import {WRONG_USERNAME} from "src/errors/auth";
-import {WRONG_PASSWORD} from "src/errors/auth";
+import {WRONG_USERNAME} from "src/error-codes/auth";
+import {WRONG_PASSWORD} from "src/error-codes/auth";
 
 
 export default new Strategy(async (username, password, done) => {

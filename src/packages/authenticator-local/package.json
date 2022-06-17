@@ -1,6 +1,6 @@
 {
   "name": "authenticator-local",
-  "main": "./dist/index.js",
+  "main": "./index.js",
   "type": "module",
   "version": "1.0.0",
   "description": "An Authenticatoin Method That Authenticates Users With a Username And Password",
@@ -11,6 +11,7 @@
   "author": "MortezaMohamad",
   "license": "ISC",
   "dependencies": {
-    "authenticator": "github:MortezaMohamed24/authenticator"
+    "authenticator": "file:../authenticator",
+    "format": "file:../format"
   }
 }

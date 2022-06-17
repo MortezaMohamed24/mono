@@ -82,13 +82,13 @@ export interface CopyOptions {
 
 export interface Configs {
   raw?: unknown
-  strict?: boolean 
-  boolean?: boolean 
-  classes?: ClassName[] 
-  fallback?: unknown 
-  optional?: boolean 
-  formatted?: unknown 
-  checkClass?: boolean
+  strict?: undefined | boolean 
+  boolean?: undefined | boolean 
+  classes?: undefined | ClassName[] 
+  fallback?: undefined | unknown 
+  optional?: undefined | boolean 
+  formatted?: undefined | unknown 
+  checkClass?: undefined | boolean
 }
 
 export interface Format<TConfigs extends Configs> {

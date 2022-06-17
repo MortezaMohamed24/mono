@@ -1,0 +1,17 @@
+{
+  "name": "checkitem",
+  "version": "1.0.0",
+  "description": "Checkitem Data Model",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MortezaMohamad",
+  "license": "ISC",
+  "dependencies": {
+    "format": "file:../../packages/format",
+    "mongoose-save": "file:../../packages/mongodb/mongoose-save",
+    "oid": "file:../../packages/oid",
+    "oid-util": "file:../../packages/oid-util"
+  }
+}

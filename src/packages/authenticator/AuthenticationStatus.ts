@@ -1,3 +1,6 @@
+import {URL} from "node:url"
+
+
 export type AnyAuthStatus = (
   | PassAuthStatus
   | FailAuthStatus
@@ -13,7 +16,8 @@ export interface PassAuthStatus {
 export interface FailAuthStatus {
   type: "fail"
   status: number | undefined
-  challenge: string
+  message: string | undefined
+  challenge: string | undefined
 }
 
 export interface SuccessAuthStatus {
@@ -34,10 +38,11 @@ export function pass(): PassAuthStatus {
   }
 }
 
-export function fail({status, challenge}: {status?: number | undefined, challenge: string}): FailAuthStatus {
+export function fail({status, message, challenge}: Omit<Partial<FailAuthStatus>, "type">): FailAuthStatus {
   return {
     type: "fail",
     status: status,
+    message: message,
     challenge: challenge,
   }
 }

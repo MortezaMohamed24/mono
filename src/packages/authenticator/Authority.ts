@@ -20,5 +20,6 @@ export type Authority = {
 */
 export type Failure = {
   status: number | undefined
-  challenge: string
+  message: string | undefined
+  challenge: string | undefined
 }

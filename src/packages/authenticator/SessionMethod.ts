@@ -15,7 +15,7 @@ export function SessionMethod({deserializer}: Options): Method {
 
 
     /** 
-     * if there is no user in the session, let the next method does the authentication.
+     * if there is no user in the session, do nothing.
     */
     if (isNoValue(state.user)) {
       return pass()

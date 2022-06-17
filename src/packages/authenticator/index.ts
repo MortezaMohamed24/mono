@@ -29,6 +29,8 @@ import {FailAuthStatus} from "./AuthenticationStatus.js"
 import {PassAuthStatus} from "./AuthenticationStatus.js"
 import {SuccessAuthStatus} from "./AuthenticationStatus.js"
 import {RedirectAuthStatus} from "./AuthenticationStatus.js"
+// -----------------------------------------
+import {WithAuth} from "./WithAuthority.js"
 
 
 export {
@@ -55,6 +57,7 @@ export {
   PassAuthStatus,
   SuccessAuthStatus,
   RedirectAuthStatus,
+  WithAuth,
 }
 
 

@@ -1,4 +1,6 @@
+import {URL} from "node:url"
 import {User} from "./Core.js"
+import {State} from "./Core.js"
 import {define} from "./util/define.js"
 import {Method} from "./Method.js"
 import {Failure} from "./Authority.js"
@@ -16,7 +18,7 @@ import * as AUTHENTICATE from "./Authenticate.js"
 
 export function Authenticator(options: Options) {
   const methods = {...options.methods}
-  const serialize = options.serializer
+  const serializer = options.serializer
   const deserializer = options.deserializer
 
 
@@ -46,7 +48,7 @@ export function Authenticator(options: Options) {
   }
 
   function initialize({useSession = false}: INITIALIZE.Options = {}): Middleware {
-    return (request, response, next) => {
+    return (inbound, outbound, proceed) => {
       let user: User | null = null
       let authenticated: boolean = false
 
@@ -77,26 +79,26 @@ export function Authenticator(options: Options) {
         const state = getState()
   
         try {
-          state.user = serialize(deserializedUser)
+          state.user = serializer(deserializedUser)
         } catch (error) {
           delete state.user
           throw error
         }
       }
   
-      function getState() {
+      function getState(): State {
         const session = getSession()
 
         if (session[STATE_KEY]) {
-          return session[STATE_KEY]
+          return session[STATE_KEY] as State
         }
         
         return session[STATE_KEY] = {}
       }
 
       function getSession() {
-        if (request.session) {
-          return request.session
+        if (inbound.session) {
+          return inbound.session
         } else {
           throw new Error("Could not find a session object on reqeuest. Did you forgot to write \"app.use(session(options))\"")
         }
@@ -115,36 +117,37 @@ export function Authenticator(options: Options) {
       }
     
 
-      define(REQUEST_KEY, request, {
+      define(REQUEST_KEY, inbound, {
         user: {get: getUser, set: setUser},
         state: {get: getState},
         authenticated: {get: getAuthenticated, set: setAuthenticated},
       })
   
   
-      next()
+      proceed()
     }
   }
 
   function authenticate({methods}: AUTHENTICATE.Options): Middleware {
-    return async (request, response, next) => {
+    return async (inbound, outbound, proceed) => {
       const failures: Failure[] = []
-      const authority = request[REQUEST_KEY]
+      const authority = inbound[REQUEST_KEY]
 
 
       for (let name of methods) {
-        const authStatus = await getMethod(name)(request)
+        const authStatus = await getMethod(name)(inbound)
       
 
         switch (authStatus.type) {
           case "pass": 
-            next()
+            proceed()
             return
             
           case "fail": 
             failures.push({
               status: authStatus.status,
-              challenge: authStatus.challenge
+              message: authStatus.message,
+              challenge: authStatus.challenge,
             })
             continue
 
@@ -152,14 +155,14 @@ export function Authenticator(options: Options) {
             authority.user = authStatus.user
             authority.failures = []
             authority.authenticated = true
-            next()
+            proceed()
             return
           
           case "redirect": 
-            response.setHeader("Location", authStatus.url instanceof URL ? authStatus.url.href : authStatus.url)
-            response.setHeader("Content-Length", "0")
-            response.status(authStatus.status ?? 302)
-            response.end()
+            outbound.setHeader("Location", authStatus.url instanceof URL ? authStatus.url.href : authStatus.url)
+            outbound.setHeader("Content-Length", "0")
+            outbound.status(authStatus.status ?? 302)
+            outbound.end()
             return authStatus
         }
       }

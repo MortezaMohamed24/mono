@@ -1,4 +1,4 @@
-import app from "./app.js";
+import app from "./app/app.js";
 import http from "node:http";
 import {PORT} from "./constants/origin.js";
 

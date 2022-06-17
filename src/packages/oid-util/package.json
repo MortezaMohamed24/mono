@@ -1,0 +1,14 @@
+{
+  "name": "oid-util",
+  "version": "1.0.0",
+  "description": "A number of utilities to manipluate ids",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MortezaMohamad",
+  "license": "ISC",
+  "dependencies": {
+    "oid": "file:../oid"
+  }
+}

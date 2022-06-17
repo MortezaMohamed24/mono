@@ -9,6 +9,7 @@
     "@types/express-session": "^1.17.4",
     "@types/html-escaper": "^3.0.0",
     "@types/morgan": "^1.9.3",
+    "@types/node": "^18.0.0",
     "@types/passport": "^1.0.7",
     "@types/passport-local": "^1.0.34",
     "@types/passport-strategy": "^0.2.35",
