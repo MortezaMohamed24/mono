@@ -22,9 +22,7 @@
     "mongodb": "^4.3.1",
     "mongoose": "^6.2.1",
     "morgan": "^1.10.0",
-    "passport": "^0.5.0",
-    "passport-local": "^1.0.0",
-    "passport-strategy": "^1.0.0"
+    "ts-toolbelt": "^9.6.0"
   },
   "devDependencies": {
     "ts-loader": "^9.2.6",

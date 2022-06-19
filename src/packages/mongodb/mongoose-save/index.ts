@@ -27,7 +27,8 @@ const save = (...documents: AnyValue[]): Promise<Doc[]> => (
 
 const toFlatArray = (unknown: AnyValue): Doc[] => {
   if (
-    unknown === null || 
+    unknown === null 
+    || 
     unknown === undefined 
   ) {
     return []
