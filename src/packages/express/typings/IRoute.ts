@@ -1,3 +1,6 @@
+import {IRouterHandler} from "./IRouteHandler.js"
+
+
 export interface IRoute<Route extends string = string> {
   path: string
   stack: any
@@ -26,3 +29,6 @@ export interface IRoute<Route extends string = string> {
   unlock: IRouterHandler<this, Route>
   unsubscribe: IRouterHandler<this, Route>
 }
+
+
+export default IRoute

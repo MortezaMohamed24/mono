@@ -4,7 +4,7 @@ import {Method} from "./Method.js"
 export interface IRouterMatcher<T, TMethod extends Method = Method> {
   <
     Route extends string,
-    P = RouteParameters<Route>,
+    Paramaeters = RouteParameters<Route>,
     ResBody = any,
     ReqBody = any,
     ReqQuery = ParsedQs,
@@ -13,8 +13,10 @@ export interface IRouterMatcher<T, TMethod extends Method = Method> {
     // tslint:disable-next-line no-unnecessary-generics (it"s used as the default type parameter for P)
     path: Route,
     // tslint:disable-next-line no-unnecessary-generics (This generic is meant to be passed explicitly.)
-    ...handlers: Array<RequestHandler<P, ResBody, ReqBody, ReqQuery, Locals>>
+    ...handlers: Array<RequestHandler<Paramaeters, ResBody, ReqBody, ReqQuery, Locals>>
   ): T
+
+
   <
     Path extends string,
     P = RouteParameters<Path>,
