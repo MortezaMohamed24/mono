@@ -6,7 +6,7 @@ export type Params = (
   | ParametersObject 
 )
 
-export type PathParams = (
+export type Path = (
 	| string 
 	| RegExp 
 	| Array<string | RegExp>

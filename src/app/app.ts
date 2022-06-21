@@ -21,6 +21,12 @@ import CheckitemRouter from "src/models/checkitem/api/router"
 const app = express()
 
 
+app.use(() => {
+
+})
+
+app.get(() => {})
+
 app.use(logger("common"))
 app.use(express.json())
 app. use(express.urlencoded({extended: false}))
@@ -80,6 +86,11 @@ app.use("/api/checklists", ChecklistRouter)
 app.use("/api/checkitems", CheckitemRouter)
 
 
+app.get("/ytryr:yt", (request, response) => {
+  request.params.yt
+})
+
+app.post
 app.use(on404)
 app.use(onError)
 

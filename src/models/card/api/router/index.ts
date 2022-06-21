@@ -4,7 +4,6 @@ import {Router} from "express";
 
 const cardsRouter = Router();
 
-
 cardsRouter.get("/project", actions.PROJECT);
 cardsRouter.post("/copy", actions.COPY);
 cardsRouter.post("/create", actions.CREATE);

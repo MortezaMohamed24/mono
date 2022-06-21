@@ -1,3 +1,3 @@
 export interface Errback {
-  (err: Error): void
+  (error: Error): void
 }

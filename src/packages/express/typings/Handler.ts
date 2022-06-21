@@ -1,1 +1,0 @@
-export interface Handler extends RequestHandler {}
