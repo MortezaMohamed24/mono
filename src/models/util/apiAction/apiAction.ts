@@ -1,7 +1,7 @@
 import {produce} from "immer";
 
-import {Request} from "express";
-import {Response} from "express";
+import {Request} from "src/packages/express/express";
+import {Response} from "src/packages/express/express";
 
 import {Middleware, MiddlewareArgument} from "./types.js";
 import {ActionFactoryConfig} from "./types.js";

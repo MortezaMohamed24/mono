@@ -1,6 +1,6 @@
 import {Oid} from "#util/oid";
 import Error from "#util/error";
-import {Request} from "express";
+import {Request} from "src/packages/express/express";
 
 
 const AuthorityChecker = () => (request: Request) => {

@@ -1,6 +1,6 @@
 import {URL} from "node:url";
 import Error from "#util/error";
-import {Request} from "express";
+import {Request} from "src/packages/express/express";
 import {INVALID} from "#util/checker";
 import {Checkable} from "#util/checker";
 

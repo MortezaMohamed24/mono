@@ -1,4 +1,4 @@
-import {Request} from "express";
+import {Request} from "src/packages/express/express";
 import {Checkable} from "#util/checker";
 import BodyFormatter from "./bodyValidator.js";
 

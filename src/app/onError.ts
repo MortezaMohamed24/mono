@@ -1,4 +1,4 @@
-import {Response} from "express"
+import {Response} from "src/packages/express/express"
 import {ServerError} from "server-error"
 import {STATUS_CODES} from "node:http"
 

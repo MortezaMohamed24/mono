@@ -1,4 +1,4 @@
-import {Request} from "express"
+import {Request} from "src/packages/express/express"
 import AuthorityChecker from "./authorityChecker.js";
 
 

@@ -1,6 +1,6 @@
 import {} from "authenticator"
 
-import {Router} from "express";
+import {Router} from "src/packages/express/express";
 import passport from "passport";
 import isAuthorized from "#middleware/isAuthorized";
 import {WRONG_USERNAME} from "src/error-codes/auth";
