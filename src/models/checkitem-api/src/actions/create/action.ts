@@ -4,12 +4,11 @@ import {OID} from "format"
 import {OBJECT} from "format"
 import {Router} from "src/packages/express/express"
 import {content} from "checkitem/fields/checkables"
-import {CheckitemDocumentJSON} from "checkitem/document"
 import {Authenticator} from "authenticator"
+import {CheckitemDocumentJSON} from "checkitem/document"
 
 
-
-interface ReqBody  {
+type ReqBody = {
   /** The id for the checkitem to create */
   readonly id?: Oid | undefined;
   /** The checkitem's content. */
@@ -18,9 +17,9 @@ interface ReqBody  {
   readonly idChecklist: Oid;
 }
 
-interface ResBody extends CheckitemDocumentJSON {
-
-}
+type ResBody  = (
+  CheckitemDocumentJSON
+)
 
 
 const BODY = OBJECT({

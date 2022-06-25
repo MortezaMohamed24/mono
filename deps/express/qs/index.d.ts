@@ -2,20 +2,20 @@ export as namespace qs
 
 
 declare namespace QueryString {
-  interface defaultDecoder {
+  interface DefaultDecoder {
     (str: string, decoder?: any, charset?: string): string
   }
   
-  interface defaultEncoder {
+  interface DefaultEncoder {
     (str: any, defaultEncoder?: any, charset?: string): string
   }
 
-  interface IStringifyOptions {
+  interface StringifyOptions {
     sort?: ((a: any, b: any) => number) | undefined
     format?: 'RFC1738' | 'RFC3986' | undefined
     encode?: boolean | undefined
-    encoder?: ((str: any, defaultEncoder: defaultEncoder, charset: string, type: 'key' | 'value') => string) | undefined
     filter?: Array<string | number> | ((prefix: string, value: any) => any) | undefined
+    encoder?: ((str: any, defaultEncoder: DefaultEncoder, charset: string, type: 'key' | 'value') => string) | undefined
     charset?: 'utf-8' | 'iso-8859-1' | undefined
     indices?: boolean | undefined
     delimiter?: string | undefined
@@ -29,10 +29,10 @@ declare namespace QueryString {
     strictNullHandling?: boolean | undefined
   }
 
-  interface IParseOptions {
+  interface ParseOptions {
     comma?: boolean | undefined
     depth?: number | false | undefined
-    decoder?: ((str: string, defaultDecoder: defaultDecoder, charset: string, type: 'key' | 'value') => any) | undefined
+    decoder?: ((str: string, defaultDecoder: DefaultDecoder, charset: string, type: 'key' | 'value') => any) | undefined
     charset?: 'utf-8' | 'iso-8859-1' | undefined
     delimiter?: string | RegExp | undefined
     arrayLimit?: number | undefined
@@ -51,22 +51,18 @@ declare namespace QueryString {
     [key: string]: undefined | string | string[] | ParsedQs | ParsedQs[] 
   }
 
-  function stringify(
-    obj: any, 
-    options?: IStringifyOptions,
-  ): string
-
-  function parse(
-    str: string, 
-    options?: IParseOptions & { decoder?: never | undefined },
-  ): ParsedQs
-
-  function parse(
-    str: string | Record<string, string>, 
-    options?: IParseOptions,
-  ): { 
-    [key: string]: unknown 
+  interface Stringify {
+    (obj: any, options?: StringifyOptions): string
   }
+
+  interface Parse {
+    (str: string, options?: ParseOptions & { decoder?: never | undefined }): ParsedQs
+    (str: string | Record<string, string>, options?: ParseOptions): {[key: string]: unknown}
+  }
+
+
+  const parse: Parse
+  const stringify: Stringify
 }
 
 

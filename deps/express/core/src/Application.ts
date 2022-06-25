@@ -1,10 +1,10 @@
-import {Step} from "./Customize.js"
+import {Stop} from "./Customize.js"
 import {Path} from "./RouteParameter.js"
 import {Server} from "node:http"
 import {Locals} from "./Locals.js"
 import {Request} from "./Request.js"
 import {Response} from "./Response.js"
-import {Middleware} from "./Middleware.js"
+import {AnyMiddleware} from "./Middleware.js"
 import {EventEmitter} from "node:events"
 import {EnginCallback} from "./Engin.js"
 import {ServerResponse} from "node:http"
@@ -81,13 +81,13 @@ export interface Application<TLocals extends Locals = Locals> extends EventEmitt
    * Mounted servers inherit their parent server"s settings.
    */
   set(setting: string, val: any): this
-  param<TStep extends Step>(name: string | string[], handler: RequestParamHandler<TStep>): this
+  param<TStep extends Stop>(name: string | string[], handler: RequestParamHandler<TStep>): this
   /**
    * Alternatively, you can pass only a callback, in which case you have the opportunity to alter the app.param()
    *
    * @deprecated since version 4.11
    */
-  param<TStep extends Step>(callback: (name: string, matcher: RegExp) => RequestParamHandler<TStep>): this
+  param<TStep extends Stop>(callback: (name: string, matcher: RegExp) => RequestParamHandler<TStep>): this
   /**
    * Return the app"s absolute pathname
    * based on the parent(s) that have
@@ -200,31 +200,31 @@ export interface Application<TLocals extends Locals = Locals> extends EventEmitt
   defaultConfiguration(): void
   
 
-  use<TStep extends Step>(...rest: [Path, Application] | [Path, ...Middleware<TStep>[]] | Middleware<TStep>[]): this 
-  all<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  put<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  get<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  copy<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  lock<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  post<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  head<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  move<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  merge<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  mkcol<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  purge<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  patch<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  trace<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  unlock<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  notify<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  report<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  search<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  delete<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  options<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  checkout<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  subscribe<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  mkactivity<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  "m-search"<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
-  unsubscribe<TStep extends Step>(path: Path, ...rest: Middleware<TStep>[] | [Application]): this
+  use<TStep extends Stop>(...rest: [Path, Application] | [Path, ...AnyMiddleware<TStep>[]] | AnyMiddleware<TStep>[]): this 
+  all<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  put<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  get<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  copy<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  lock<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  post<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  head<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  move<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  merge<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  mkcol<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  purge<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  patch<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  trace<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  unlock<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  notify<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  report<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  search<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  delete<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  options<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  checkout<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  subscribe<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  mkactivity<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  "m-search"<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  unsubscribe<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
 }
 
 

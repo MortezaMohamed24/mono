@@ -1,5 +1,5 @@
 {
-  "name": "authenticator-local",
+  "name": "local-method",
   "main": "./index.js",
   "type": "module",
   "version": "1.0.0",
@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "authenticator": "file:../authenticator",
-    "format": "file:../format"
+    "express": "file:../../express/core",
+    "format": "file:../../format"
   }
 }

@@ -1,6 +1,9 @@
-import {Middleware} from "./Core.js"
+import {Customize} from "express"
+import {Authority} from "./Authority.js"
+import {Middleware} from "express"
 import {STATUS_CODES} from "node:http"
 import {AuthenticationError} from "./AuthenticationError.js"
+import {AuthorityAuthorized} from "./Authority.js"
 
 
 interface Options {
@@ -14,10 +17,32 @@ interface Options {
   responde?: undefined | boolean
 }
 
-function WithAuth(options: Options): Middleware {
+
+
+type A = [[{}, {}, {}], [{}, {}, {}]]
+
+type Expectation<TUser extends object> = (
+  Customize<
+    Customize<A, [{auth: Authority<TUser>}, {}]>, [{}, {}]>
+)
+  
+type Customization<TUser extends object, TThrow extends boolean> = (
+  Customize<A, [
+    (
+      TThrow extends true 
+      ? {auth: AuthorityAuthorized<TUser>}
+      : {}
+    ), 
+    ({
+
+    }),
+  ]> 
+)
+
+function WithAuth<TUser extends object>(options: Options): Middleware<Expectation<TUser>> {
   const doThrow = options.throw ?? false
   const doResponde = options.responde ?? true
-
+  
 
   return (request, response, proceed) => {
     let auth = request.auth
@@ -25,7 +50,6 @@ function WithAuth(options: Options): Middleware {
     let message: string | null = null
     let challenges: string[] = []
 
-    
     if (auth.authenticated) {
       proceed()
       return 
@@ -45,7 +69,6 @@ function WithAuth(options: Options): Middleware {
       }
     }
 
-    
     if (status === null) {
       // Unauthorized
       status = 401
@@ -55,20 +78,20 @@ function WithAuth(options: Options): Middleware {
       message = STATUS_CODES[status] ?? "Unauthorized"
     }
     
-
     if (doResponde) {
       if (auth.failures.length > 0) {
         response.setHeader("WWW-Authenticate", challenges)
         response.status(status)
-        response.end(message)
       } else {
         response.status(status)
-        response.end(message)
       }
     }
-
+    
     if (doThrow) {
       throw new AuthenticationError(message, status)
+    } else {
+      response.end(message)
+      response.end(message)
     }
   }
 }

@@ -9,67 +9,64 @@ import {Request} from "./Request.js"
 import {Response} from "./Response.js"
 
 
-/** 
- * Omits the keys of `TObjectB` from `TObjectA`.
- * 
- * If the operation returns `never` (possibly because `TObjectB` has no keys),
- * `TObjectA` is returned unmodified.
-*/
-type SafeOmit0<TObjectA extends object, TObjectB extends object> = (
-  Omit<TObjectA, keyof TObjectB> extends never ? TObjectA : Omit<TObjectA, keyof TObjectB> 
-)
 
-
-export type Step = [
-  Line,
-  Line,
+type Stop = [
+  req: ItemHistory,
+  res: ItemHistory,
 ]
 
-export type Line = [
-  Customization,
-  Customization,
-  Customization,
-]
-
-export type Customization = (
+type Item = (
   object
 )
 
-export type Customizations = [
-  Customization, 
-  Customization,
+type ItemHistory = [
+  AllCustomizations: Item,
+  PrevCustomization: Item,
+  LastCustomization: Item,
 ]
 
 
-export type Customize<TStep extends Step, TCustomizations extends Customizations> = (
+type Merge<TStop extends Stop, TItems extends [Item, Item]> = (
   A<[
-    [TStep[0][1], TStep[0][1], TCustomizations[0]],
-    [TStep[1][1], TStep[1][1], TCustomizations[1]],
+    [TStop[0][1], TStop[0][2], TItems[0]],
+    [TStop[1][1], TStop[1][2], TItems[1]],
   ]>
 )
 
-type A<TStep extends Step> = (
+type Expect<T1 extends Item = {}, T2 extends Item = {}> = ([
+  [C0<T1>, C0<T1>, C0<T1>],
+  [C1<T2>, C1<T2>, C1<T2>],
+])
+
+type Customize<T1 extends Item, T2 extends Item = {}> = (
+  A<[
+    [{}, {}, T1],
+    [{}, {}, T2],
+  ]>
+)
+
+
+type A<TStop extends Stop> = (
   C<[
-    B<TStep[0]>,
-    B<TStep[1]>,
+    B<TStop[0]>,
+    B<TStop[1]>,
   ]>
 )
 
-
-type B<T extends [object, object, object]> = [
-  SafeOmit0<Required<T[0]>, T[2]> & SafeOmit0<Required<T[1]>, T[2]> & Partial<T[2]>,
-  SafeOmit0<Required<T[1]>, T[2]>,
+type B<T extends ItemHistory> = [
+  SafeOmit<Required<T[0]>, T[2]> & SafeOmit<Required<T[1]>, T[2]> & Partial<T[2]>,
+  SafeOmit<Required<T[1]>, T[2]>,
   Partial<T[2]>
 ]
 
 
-type C<TStep extends Step> = [
-  [C0<TStep[0][0]>, TStep[0][1], TStep[0][2]],
-  [C1<TStep[1][0]>, TStep[1][1], TStep[1][2]],
+type C<TStop extends Stop> = [
+  [C0<TStop[0][0]>, TStop[0][1], TStop[0][2]],
+  [C1<TStop[1][0]>, TStop[1][1], TStop[1][2]],
 ]
 
 type C0<TCustomization extends object> = (
-  & SafeOmit0<TCustomization, Request>
+  & SafeOmit<TCustomization, Request>
   & Request<
       TCustomization extends {locals: Locals} ? TCustomization["locals"] : never,
       TCustomization extends {params: Params} ? TCustomization["params"] : never
@@ -77,10 +74,28 @@ type C0<TCustomization extends object> = (
 )
 
 type C1<TCustomization extends object> = (
-  & SafeOmit0<TCustomization, Response>
+  & SafeOmit<TCustomization, Response>
   & Response<
       TCustomization extends {body?: unknown} ? TCustomization["body"] : never,
       TCustomization extends {locals: Locals} ? TCustomization["locals"] : never,
       TCustomization extends {status: number} ? TCustomization["status"] : never
     >
 )
+
+
+/** 
+ * Omits the keys of `TObjectB` from `TObjectA`.
+ * 
+ * If the operation returns `never` (possibly because `TObjectB` has no keys),
+ * `TObjectA` is returned unmodified.
+*/
+type SafeOmit<TObjectA extends object, TObjectB extends object> = (
+  keyof TObjectB extends never ? TObjectA : Omit<TObjectA, keyof TObjectB> 
+)
+
+
+
+export {Stop}
+export {Merge}
+export {Expect}
+export {Customize}
