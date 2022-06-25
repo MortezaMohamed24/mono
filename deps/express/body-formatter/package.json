@@ -1,0 +1,16 @@
+{
+  "name": "body-formatter",
+  "main": "./src/index.js",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Formats inbound bodies and throws if they are invalid.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MortezaMohamad",
+  "license": "ISC",
+  "dependencies": {
+    "format": "file:../../format",
+    "server-error": "file:../../server-error"
+  }
+}
