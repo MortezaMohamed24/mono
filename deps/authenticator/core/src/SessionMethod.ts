@@ -5,10 +5,10 @@ import {Deserializer} from "./Core.js"
 
 
 export interface Options {
-  deserializer: Deserializer
+  deserialize: Deserializer
 }
 
-export function SessionMethod({deserializer}: Options): Method {
+export function SessionMethod({deserialize: deserializer}: Options): Method {
   return async (inbound) =>  {
     const auth = inbound.auth
     const state = auth.state

@@ -1,4 +1,3 @@
-import {Method} from "./Method.js"
 import {Proceed} from "express"
 import {Request} from "express"
 import {Response} from "express"
@@ -27,16 +26,6 @@ export type Session<TKey extends Key> = {
   [TTKey in TKey]: State
 }
 /** 
- * Options for the `Authenticator` factory.
-*/
-export interface Options<TUser extends object, TRequestKey extends Key, TSessionKey extends Key> {
-  methods?: Record<string, Method<TUser>>
-  requestKey: TRequestKey
-  sessionkey: TSessionKey
-  serializer: Serializer<TUser>
-  deserializer: Deserializer<TUser>
-}
-/** 
  * A function to serializes a user object to be saved into the session
 */
 export interface Serializer<TUser> {
@@ -51,14 +40,14 @@ export interface Deserializer<TUser> {
 /** 
  * Any middleware created by an `authenticator` instance.
 */
-export interface InitializeMiddlewar<TUser> {
+export interface InitializeMiddlewar<TUser extends User> {
   (
     request: Customize<{auth: Authority<TUser>, session: {}}>, 
     responde: Response, 
     proceed: Proceed,
   ): void
 }
-export interface AuthenticateMiddlewar<TUser> {
+export interface AuthenticateMiddlewar<TUser extends User> {
   (
     request: Customize<{auth: Authority<TUser>}>, 
     responde: Response, 

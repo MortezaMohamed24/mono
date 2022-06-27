@@ -1,3 +1,4 @@
+import {User} from "./Core.js"
 import {State} from "./Core.js"
 import {Failure} from "./Failure.js"
 
@@ -6,7 +7,7 @@ import {Failure} from "./Failure.js"
  * The authentication extension assigned to `request[inRequestKey]` 
  * by the `authenticator.initialize()` middleware.
 */
-export type Authority<TUser> = {
+export type Authority<TUser extends User> = {
   get user(): TUser | null
   set user(newUserData: TUser | null) 
   get state(): State

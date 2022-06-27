@@ -22,37 +22,38 @@ type ResBody  = (
 )
 
 
-const BODY = OBJECT({
-  id: Or([OID({}), UNDEFINED({})]),
-  content: content,
-  idChecklist: OID({}),
-})
-
 
 const router = Router()
 
 
-router.use(() => {
-  // read body
-})
+router.use(initialize({
+  kRequest: "AUTH",
+  kSession: "AUTH",
+}))
 
-router.use(() => {
-  // format body
-})
+router.use(authenticate({
+  kRequest: "AUTH",
+  kSession: "AUTH",
+}))
 
-router.use()
+router.use(Body({
+  type: "application/json"
+}))
 
-router.use(() => {
-  // populate realed document number 1 
-})
+router.use(Payload(OBJECT({
+  id: Or([OID({}), UNDEFINED({})]),
+  content: content,
+  idChecklist: OID({}),
+})))
 
-router.use(PopulateChecklistByBody<Config, "checklist", "idChecklist">({
+router.use(PopulateChecklist({
   checklistKey: "checklist",
   idChecklistKey: "idChecklist",
 }))
 
 router.use(async (request, response) => {
-  const {id, checklist} = request.aka
+  const {id, checklist} = request.payload
+
 
   const checkitem = await Checkitem.make({
     id,
@@ -60,9 +61,22 @@ router.use(async (request, response) => {
     checklist, 
   });
 
-  request.aka.checkitem = checkitem
+
+  request.data.checkitem = checkitem
 })
 
-router.use((request, response) => {
-  response.send(request.aka.checkitem)
+router.use(({payload}, response) => {
+
+  response.send(payload.checkitem)
+
+})
+
+router.use(({data, payload}, response) => {
+
+  sse.notify({
+    type: "checkitem/created",
+    data: data,
+    payload: payload,
+  })
+
 })

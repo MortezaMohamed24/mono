@@ -78,7 +78,7 @@ type C1<TCustomization extends object> = (
   & Response<
       TCustomization extends {body?: unknown} ? TCustomization["body"] : never,
       TCustomization extends {locals: Locals} ? TCustomization["locals"] : never,
-      TCustomization extends {status: number} ? TCustomization["status"] : never
+      TCustomization extends {status: number} ? TCustomization["status"] : number
     >
 )
 
@@ -93,10 +93,6 @@ type SafeOmit<TObjectA extends object, TObjectB extends object> = (
   keyof TObjectB extends never ? TObjectA : Omit<TObjectA, keyof TObjectB> 
 )
 
-
-namespace Mono {
-  
-}
 
 export {Stop}
 export {Merge}

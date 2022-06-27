@@ -1,17 +1,32 @@
-export type Key = string | number | symbol
+type Key = (
+  | string
+  | symbol
+  | number
+)
+
+type Descriptors = (
+  (
+    | [key: string, type: "getter", value: any]
+    | [key: string, type: "setter", value: any]
+    | [key: string, type: "method", value: any]
+  )[]
+)
 
 
-/** 
- * Creates a field on `target` whose name is `key` and whose value is an object 
- * whose properties are defined via `descriptors`.
-*/
-export function define<TKey extends Key>(key: TKey, target: Record<TKey, unknown>, descriptors: PropertyDescriptorMap) {  
-  return Object.defineProperty(target, key, {
-    value: Object.defineProperties({}, descriptors),
-    writable: false,
-    configurable: false,
-  })
+function define<T extends object>(target: T, key: Key, descriptors: Descriptors) {
+  (target as any)[key] = {}
+
+
+  for (let [key, type, value] of descriptors) {
+    switch (type) {
+      case "getter": Object.defineProperty(target, key, {get: value}); break
+      case "setter": Object.defineProperty(target, key, {set: value}); break
+      case "method": Object.defineProperty(target, key, {value: value}); break
+    }
+  }
 }
 
 
+
+export {define}
 export default define

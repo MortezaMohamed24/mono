@@ -18,6 +18,7 @@
     "esModuleInterop": true,
     "strictNullChecks": true,
     "moduleResolution": "node",
+    "experimentalDecorators": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
   }

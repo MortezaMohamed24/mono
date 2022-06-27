@@ -16,7 +16,7 @@ import {REQUEST_KEY} from "./constants.js"
 import {Method} from "./Method.js"
 import {MethodReturn} from "./Method.js"
 // -----------------------------------------
-import {Authenticator} from "./Authenticator.js"
+import {Authenticator} from "./Authenticator/index.js"
 // -----------------------------------------
 import {AuthenticationError} from "./AuthenticationError.js"
 // -----------------------------------------
@@ -30,7 +30,7 @@ import {PassAuthStatus} from "./AuthenticationStatus.js"
 import {SuccessAuthStatus} from "./AuthenticationStatus.js"
 import {RedirectAuthStatus} from "./AuthenticationStatus.js"
 // -----------------------------------------
-import {WithAuth} from "./WithAuthority.js"
+import {onAuthFailure} from "./Authenticate/onAuthFailure.js"
 
 
 export {
@@ -57,7 +57,7 @@ export {
   PassAuthStatus,
   SuccessAuthStatus,
   RedirectAuthStatus,
-  WithAuth,
+  onAuthFailure as WithAuth,
 }
 
 
