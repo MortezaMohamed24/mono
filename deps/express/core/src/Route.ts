@@ -1,38 +1,38 @@
-import {Step} from "./Customize.js"
+import {Stop} from "./Customize.js"
 import {AnyMiddleware} from "./Middleware.js"
 
 
 export interface Route {
   path: string;
   stack: any;
-  use<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  all<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  get<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  put<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  head<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  move<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  post<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  copy<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  lock<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  mkcol<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  merge<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  patch<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  trace<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  purge<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  unlock<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  search<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  delete<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  notify<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  report<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  options<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  connect<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  checkout<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  propfind<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  proppatch<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  subscribe<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  "m-search"<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  mkactivity<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
-  unsubscribe<TStep extends Step>(...rest: AnyMiddleware<TStep>[] | [AnyMiddleware<TStep>]): this
+  use<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  all<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  get<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  put<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  head<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  move<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  post<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  copy<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  lock<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  mkcol<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  merge<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  patch<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  trace<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  purge<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  unlock<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  search<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  delete<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  notify<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  report<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  options<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  connect<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  checkout<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  propfind<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  proppatch<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  subscribe<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  "m-search"<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  mkactivity<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
+  unsubscribe<TStop extends Stop>(...rest: AnyMiddleware<TStop>[] | [AnyMiddleware<TStop>]): this
 }
 
 

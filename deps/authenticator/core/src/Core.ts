@@ -1,15 +1,18 @@
-import {Step} from "express"
-import {Method} from "./Method"
+import {Method} from "./Method.js"
 import {Proceed} from "express"
 import {Request} from "express"
 import {Response} from "express"
 import {Customize} from "express"
+import {Authority} from "./Authority.js"
 
 
 export type Key = (
   | string
   | number
   | symbol
+)
+export type User = (
+  object
 )
 /** 
  * The authenticator's state in the session.
@@ -28,6 +31,7 @@ export type Session<TKey extends Key> = {
 */
 export interface Options<TUser extends object, TRequestKey extends Key, TSessionKey extends Key> {
   methods?: Record<string, Method<TUser>>
+  requestKey: TRequestKey
   sessionkey: TSessionKey
   serializer: Serializer<TUser>
   deserializer: Deserializer<TUser>
@@ -47,9 +51,16 @@ export interface Deserializer<TUser> {
 /** 
  * Any middleware created by an `authenticator` instance.
 */
-export interface MiddlewarAuthenticate {
+export interface InitializeMiddlewar<TUser> {
   (
-    request: Customize<Step, [{session: {}}, {}]>, 
+    request: Customize<{auth: Authority<TUser>, session: {}}>, 
+    responde: Response, 
+    proceed: Proceed,
+  ): void
+}
+export interface AuthenticateMiddlewar<TUser> {
+  (
+    request: Customize<{auth: Authority<TUser>}>, 
     responde: Response, 
     proceed: Proceed,
   ): void

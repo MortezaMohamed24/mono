@@ -94,6 +94,9 @@ type SafeOmit<TObjectA extends object, TObjectB extends object> = (
 )
 
 
+namespace Mono {
+  
+}
 
 export {Stop}
 export {Merge}

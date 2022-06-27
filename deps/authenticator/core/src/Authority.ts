@@ -1,4 +1,6 @@
-import {State} from "./Core"
+import {State} from "./Core.js"
+import {Failure} from "./Failure.js"
+
 
 /** 
  * The authentication extension assigned to `request[inRequestKey]` 
@@ -34,11 +36,5 @@ export type AuthorityUnauthorized = {
   set authenticated(value: false)
 }
 
-/** 
- * A method's failure
-*/
-export type Failure = {
-  status: number | undefined
-  message: string | undefined
-  challenge: string | undefined
-}
+
+export default Authority

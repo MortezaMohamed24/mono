@@ -1,4 +1,4 @@
-type Key = string | number | symbol
+export type Key = string | number | symbol
 
 
 /** 
