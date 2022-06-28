@@ -1,17 +1,20 @@
-import {pass} from "./AuthenticationStatus.js"
+import {pass} from "./Result.js"
+import {User} from "./Core.js"
 import {Method} from "./Method.js"
+import {Request} from "express"
 import {isNoValue} from "./util/isNoValue.js"
+import {getManager} from "./util/getManager.js"
 import {Deserializer} from "./Core.js"
 
 
-export interface Options {
-  deserialize: Deserializer
+export interface Options<TUser extends User> {
+  deserialize: Deserializer<TUser>
 }
 
-export function SessionMethod({deserialize: deserializer}: Options): Method {
-  return async (inbound) =>  {
-    const auth = inbound.auth
-    const state = auth.state
+export function SessionMethod<TUser extends User>({deserialize}: Options<TUser>) {
+  return Method<TUser, Request>("session", async (request) =>  {
+    const manager = getManager(request)
+    const state = manager.state
 
 
     /** 
@@ -25,21 +28,21 @@ export function SessionMethod({deserialize: deserializer}: Options): Method {
       throw new TypeError(`expected authority.state.user to be a string, but it was of type ${typeof state.user}`)
     } 
     
-    const deserializedUser = await deserializer(state.user)
+    const deserializedUser = await deserialize(state.user)
 
     /** 
      * the serializer returning null or undefined means we should remove the user from the session 
     */
     if (isNoValue(deserializedUser)) {
       delete state.user
-      auth.user = null
+      manager.user = null
     } else {
-      auth.user = deserializedUser
+      manager.user = deserializedUser
     }
   
   
     return pass()
-  }
+  })
 }
 
 

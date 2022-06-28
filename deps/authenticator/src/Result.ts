@@ -1,44 +1,44 @@
 import {URL} from "node:url"
 
 
-export type AnyAuthStatus<TUser> = (
-  | PassAuthStatus
-  | FailAuthStatus
-  | SuccessAuthStatus<TUser>
-  | RedirectAuthStatus  
+export type Result<TUser> = (
+  | PassResult
+  | FailResult
+  | SuccessResult<TUser>
+  | RedirectResult  
 )
 
 
-export interface PassAuthStatus {
+export interface PassResult {
   type: "pass"
 }
 
-export interface FailAuthStatus {
+export interface FailResult {
   type: "fail"
   status: number | undefined
   message: string | undefined
   challenge: string | undefined
 }
 
-export interface SuccessAuthStatus<TUser> {
+export interface SuccessResult<TUser> {
   type: "success"
   user: TUser
 }
 
-export interface RedirectAuthStatus {
+export interface RedirectResult {
   url: URL | string
   type: "redirect"
   status: number | undefined
 }
 
 
-export function pass(): PassAuthStatus {
+export function pass(): PassResult {
   return {
     type: "pass",
   }
 }
 
-export function fail({status, message, challenge}: Omit<Partial<FailAuthStatus>, "type">): FailAuthStatus {
+export function fail({status, message, challenge}: Omit<Partial<FailResult>, "type">): FailResult {
   return {
     type: "fail",
     status: status,
@@ -47,14 +47,14 @@ export function fail({status, message, challenge}: Omit<Partial<FailAuthStatus>,
   }
 }
 
-export function success<TUser>(user: TUser): SuccessAuthStatus<TUser> {
+export function success<TUser>(user: TUser): SuccessResult<TUser> {
   return {
     type: "success",
     user: user,
   }
 }
 
-export function redirect(url: string, status?: number | undefined): RedirectAuthStatus {
+export function redirect(url: string, status?: number | undefined): RedirectResult {
   return {
     url: url,
     type: "redirect",

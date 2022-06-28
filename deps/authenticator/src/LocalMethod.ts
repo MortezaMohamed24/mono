@@ -1,17 +1,16 @@
-import {Request} from "express"
-// -----------------------------
+import * as CORE from "./Core.js"
+import * as EXPRESS from "express"
+import {fail} from "./Result.js"
+import {Method} from "./Method.js"
 import {STRING} from "format"
 import {INVALID} from "format"
-// -----------------------------
-import {fail} from "authenticator"
-import {Method} from "authenticator"
-import {FailAuthStatus} from "authenticator"
-import {SuccessAuthStatus} from "authenticator"
+import {FailResult} from "./Result.js"
+import {SuccessResult} from "./Result.js"
 
 
-
-export type Options = {
-  verify: Verify
+export type Options<TUser extends CORE.User> = {
+  name?: undefined | string
+  verify: Verify<TUser>
   /** 
    * Defaults to `"username"`
   */
@@ -52,27 +51,26 @@ export type Options = {
   missingCredentialsMessage?: undefined | null | string
 }
 
-export type Verify = {
-  (username: string, password: string, inbound: Request): VerifyReturn
+export type Verify<TUser extends CORE.User> = {
+  (username: string, password: string): (
+    | FailResult
+    | SuccessResult<TUser>
+    | Promise<FailResult>
+    | Promise<SuccessResult<TUser>>
+  )
 }
 
-export type VerifyReturn = (
-  | FailAuthStatus
-  | SuccessAuthStatus
-  | Promise<FailAuthStatus>
-  | Promise<SuccessAuthStatus>
-)
+export function LocalMethod<TUser extends CORE.User>(options: Options<TUser>) {  
+  type User = TUser
+  type Request = EXPRESS.Expect<{body: object, query: object}, {}>[0][0]
 
 
-export function LocalMethod(options: Options): Method {  
+  const name = options.name || "local"
   const verify = options.verify
-
   const usernameKey = options.usernameKey ?? "username"
   const passwordKey = options.passwordKey ?? "password"
-
   const formatUsername = options.formatUsername || STRING()
   const formatPassword = options.formatPassword || STRING()
-
   const BAD_PASSWORD_MESSAGE = options.badPasswordMessage || "bad password"
   const BAD_USERNAME_MESSAGE = options.badUsernameMessage || "bad username"
   const MISSING_PASSWORD_MESSAGE = options.missingPasswordMessage || "missing password"
@@ -80,11 +78,11 @@ export function LocalMethod(options: Options): Method {
   const MISSING_CREDENTIALS_MESSAGE = options.missingCredentialsMessage || "missing credentials"
 
 
-  return async (inbound) => {
-    let store: Record<any, unknown>
+  return Method<User, Request>(name, async (request) => {
+    let store: Record<any, any>
 
-    const body = inbound.body
-    const query = inbound.query
+    const body = request.body
+    const query = request.query
 
     if (body && usernameKey in body && passwordKey in body) {
       store = body
@@ -128,8 +126,8 @@ export function LocalMethod(options: Options): Method {
       })
     }
 
-    return verify(username, password, inbound)
-  }
+    return verify(username, password)
+  })
 }
 
 
