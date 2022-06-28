@@ -19,6 +19,9 @@ import {Deserializer} from "./Core.js"
 import {SuccessResult} from "./Result.js"
 import {SessionMethod} from "./SessionMethod.js"
 import {RedirectResult} from "./Result.js"
+import {ManagerUnresolved} from "./Manager/typings.js"
+import {ManagerAuthorized} from "./Manager/typings.js"
+import {ManagerUnauthorized} from "./Manager/typings.js"
 import {AuthenticationError} from "./Error.js"
 
 
@@ -44,6 +47,9 @@ export {
   SessionMethod,
   SuccessResult,
   RedirectResult,
+  ManagerUnresolved, 
+  ManagerAuthorized, 
+  ManagerUnauthorized, 
   AuthenticationError,
 }
 

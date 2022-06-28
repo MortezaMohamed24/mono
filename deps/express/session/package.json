@@ -1,14 +1,16 @@
 {
   "name": "express-session",
-  "main": "index.ts",
+  "main": "./dist/index.js",
   "version": "1.0.0",
-  "description": "A Middlware That Creates An Express Session",
+  "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "MortezaMohamad",
   "license": "ISC",
   "dependencies": {
-    "oid": "file:../packages/oid"
+    "@types/node": "18.0.0",
+    "express": "file:../core",
+    "express-session": "1.17.3"
   }
 }

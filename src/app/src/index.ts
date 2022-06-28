@@ -1,9 +1,19 @@
-import {SERVER} from "../mongo/constants.js"
+import {Oid} from "oid"
+import {SERVER} from "../../mongo/src/constants.js"
+import {Session} from "express-session"
 import MongoStore from "connect-mongo"
-import expressSession from "express-session"
+import {SessionData} from "express-session"
 
 
-const day = 1000 * 60 * 60 * 24
+type Customization = [{
+  session: Session & SessionData
+}, {
+
+}]
+
+const day = (
+  1000 * 60 * 60 * 24
+)
 
 const store = MongoStore.create({ 
   ttl: day * 15,
@@ -13,7 +23,7 @@ const store = MongoStore.create({
 })
 
 const session = () => (
-  expressSession({
+  Session({
     store: store,
     secret: "Mikasa is lovely",
     resave: false,

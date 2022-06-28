@@ -31,6 +31,10 @@ export function If<TRequest extends Request, TResponse extends Response>(method:
       return
     }
 
+    if (!manager.method) {
+      return
+    }
+    
     if (pattern.test(manager.method)) {
       await callback(request, response, proceed)
     }

@@ -1,4 +1,5 @@
 export * from "./util.js"
+export {default as default} from "./oid.js"
 export {default as Oid} from "./oid.js"
 export {default as idUtil} from "./util.js"
 export {default as oidify} from "./oidify.js"

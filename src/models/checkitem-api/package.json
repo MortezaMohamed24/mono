@@ -10,7 +10,7 @@
   "author": "MortezaMohamad",
   "license": "ISC",
   "dependencies": {
-    "authenticator": "file:../../packages/authenticator",
+    "authenticator": "file:../../../deps/authenticator",
     "checkitem": "file:../checkitem",
     "format": "file:../../packages/format",
     "oid": "file:../../packages/oid"

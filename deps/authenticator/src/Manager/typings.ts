@@ -24,7 +24,7 @@ export type Options<TConfig extends Config> = {
   useSession?: undefined | boolean
 }
 
-export type Manager<TUser extends User> = {
+export type ManagerUnresolved<TUser extends User> = {
   get user(): TUser | null
   set user(value: TUser | null)
   get state(): State
@@ -82,8 +82,8 @@ export type Expectation<T extends Config> = (
   Expect<
     & (
       T["kRequest"] extends Key
-        ? {[TKey in keyof T["kRequest"]]?: Manager<T["user"]>} 
-        : {[DEFAULT_K_REQUEST]: Manager<T["user"]>}
+        ? {[TKey in keyof T["kRequest"]]?: ManagerUnresolved<T["user"]>} 
+        : {[DEFAULT_K_REQUEST]: ManagerUnresolved<T["user"]>}
     ) & ({
       session: Session<T["kSession"]>,
     })
@@ -92,7 +92,7 @@ export type Expectation<T extends Config> = (
 
 export type Customization<T extends Config> = (
   Customize<{
-    [TKey in keyof T["kRequest"]]: Manager<T["user"]>
+    [TKey in keyof T["kRequest"]]: ManagerUnresolved<T["user"]>
   }>
 )
 

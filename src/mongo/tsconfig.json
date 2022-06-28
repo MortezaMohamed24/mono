@@ -1,6 +1,5 @@
 {
   "display": "Node 12",
-  
   "include": [
     "./*", 
     "./*/*", 
@@ -14,7 +13,7 @@
   ],
 
   "compilerOptions": {
-    "lib": ["es2021"],
+    "lib": ["es2022"],
     "strict": true,
     "module": "ES2020",
     "target": "es2019",
@@ -32,4 +31,15 @@
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
   },
+
+  "watchOptions": {
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+
+    "fallbackPolling": "dynamicPriority",
+
+    "synchronousWatchDirectory": true,
+
+    "excludeDirectories": ["**/node_modules", "_build"],
+  }
 }

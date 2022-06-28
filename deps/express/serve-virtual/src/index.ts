@@ -1,5 +1,6 @@
 import {join} from "node:path"
 import {Request} from "express"
+import {Proceed} from "express"
 import {Response} from "express"
 
 
@@ -9,13 +10,13 @@ interface Options {
 }
 
 
-function statics(options: Options = {}) {
+function Virtuals(options: Options = {}) {
   const base = options.base || ""
   const paths = options.paths || []
 
 
-  return (inbound: Request, outbound: Response, proceed: Function) => {
-    if (inbound.method !== "GET") { 
+  return (request: Request, response: Response, proceed: Proceed) => {
+    if (request.method !== "GET") { 
       proceed()
       return
     }
@@ -23,25 +24,24 @@ function statics(options: Options = {}) {
     let resolved: string
 
     for (let item of paths) {
-      if (item[0].test(inbound.path)) {
+      if (item[0].test(request.path)) {
         resolved = item[1]
       }
     }
 
-    resolved = join(base, inbound.path) 
+    resolved = join(base, request.path) 
 
     if (!resolved) {
       proceed()
       return
     }
 
-    outbound.sendFile(resolved, (e) => {
+    response.sendFile(resolved, (e) => {
       if (e) { proceed() }
     })
   }
 }
 
 
-
-export {statics}
-export default statics
+export {Virtuals}
+export default Virtuals

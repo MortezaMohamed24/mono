@@ -1,3 +1,4 @@
+import Auth from "authenticator"
 import {OR} from "format"
 import {Oid} from "oid"
 import {OID} from "format"
@@ -22,14 +23,8 @@ type ResBody  = (
 )
 
 
-
 const router = Router()
 
-
-router.use(initialize({
-  kRequest: "AUTH",
-  kSession: "AUTH",
-}))
 
 router.use(authenticate({
   kRequest: "AUTH",
