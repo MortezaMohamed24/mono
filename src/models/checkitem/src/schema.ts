@@ -1,15 +1,14 @@
 import {Oid} from "oid"
-import Model from "./Model.js"
-import Methods from "./Statics.js"
+import setters from "./setters.js"
 import methods from "./methods/index.js"
-import setters from "./accessors/setters.js"
 import statics from "./statics/index.js"
-import mongoose from "mongoose"
-import DocumentType from "./DocumentType.js"
-import virtualGetters from "./virtual-getters/index.js"
+import {Schema} from "mongoose"
+import {CheckitemModel} from "./Model.js"
+import {CheckitemMethods} from "./Methods.js"
+import {CheckitemDocumentType} from "./DocumentType.js"
 
 
-const schema = new mongoose.Schema<DocumentType, Model, Methods>({
+const schema = new Schema<CheckitemDocumentType, CheckitemModel, CheckitemMethods>({
   _id: {type: "ObjectID", default: () => new Oid(), immutable: true},
   idUser: {type: "ObjectID", required: true},
   idList: {type: "ObjectID", required: true},
@@ -26,10 +25,6 @@ Object.entries(methods).forEach(([key, value]) => {
 
 Object.entries(statics).forEach(([key, value]) => {
   schema.static(key, value)
-})
-
-Object.entries(virtualGetters).forEach(([key, value]) => {
-  schema.virtual(key).get(value)
 })
 
 

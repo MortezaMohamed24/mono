@@ -1,0 +1,19 @@
+{
+  "name": "list",
+  "main": "./dist/index.js",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MortezaMohamad",
+  "license": "ISC",
+  "dependencies": {
+    "checkitem": "file:../checkitem",
+    "checklist": "file:../checklist",
+    "format": "file:../../../deps/format",
+    "oid": "file:../../../deps/oid",
+    "save": "file:../../../deps/mongo/save"
+  }
+}

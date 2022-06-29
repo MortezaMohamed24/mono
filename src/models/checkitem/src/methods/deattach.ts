@@ -1,12 +1,12 @@
-import save from "mongoose-save"
-import idUtil from "oid-util"
-import Checkitem from "checkitem"
+import oid from "oid"
+import save from "save"
+import Checkitem from "../Model.js"
 
 
-async function deattach(this: Checkitem) {
+async function deattach(this: Checkitem): Promise<void> {
   const checklist = await this.checklist()
 
-  idUtil.rem(checklist.idCheckitems, this.id)
+  oid.rem(checklist.idCheckitems, this.id)
 
   await save(checklist)
 }

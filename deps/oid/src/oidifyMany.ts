@@ -3,7 +3,7 @@ import pattern from "./pattern.js"
 import oidifyOne from "./oidifyOne.js"
 
 
-function oidifyMany(many: any): Oid[] {
+export function oidifyMany(many: any): Oid[] {
   if (Array.isArray(many)) {
     return many.map(any => oidifyOne(any))
   } else {

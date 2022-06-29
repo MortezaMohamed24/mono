@@ -1,8 +1,9 @@
-import ct from "src/models/checklist/crud"
-import Checkitem from "src/models/checkitem"
+import ct from "checklist/crud.js"
+import Checklist from "checklist"
+import Checkitem from "../Model.js"
 
 
-async function checklist(this: Checkitem) {
+async function checklist(this: Checkitem): Promise<Checklist> {
   const checklist = await ct.f(this.idChecklist)
 
   if (checklist) {

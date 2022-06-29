@@ -1,5 +1,6 @@
 import {Type} from "../type.js"
 import {Optoinify} from "../util/optionifty.js"
+import {VirtualType} from "../type.js"
 import {RawBaseOptions} from "../type.js"
 
 
@@ -8,9 +9,9 @@ type Options = (
 )
 
 type Content = {
-  [key: string]: Type
-  [key: symbol]: Type
-  [key: number]: Type
+  [key: string]: VirtualType
+  [key: symbol]: VirtualType
+  [key: number]: VirtualType
 }
 
 type TypeReturn<TContent extends Content> = {

@@ -38,6 +38,7 @@ export interface RawBaseOptions<TConfigs extends Configs = Configs> {
    * Defaults to true.
   */
   checkClass?: undefined | TConfigs["checkClass"]
+  violation?: undefined | string
 }
 
 export interface PreparedBaseOptions {
@@ -47,6 +48,7 @@ export interface PreparedBaseOptions {
   classes: ClassName[] 
   fallback: unknown 
   optional: boolean 
+  violation: undefined | string
   checkClass: boolean
 }
 
@@ -68,6 +70,7 @@ export interface FinalOptions {
   classes: ClassName[] 
   fallback: unknown 
   optional: boolean 
+  violation: undefined | string
   checkClass: boolean
 }
 
@@ -78,6 +81,7 @@ export interface CopyOptions {
   classes?: undefined | ClassName[] 
   fallback?: undefined | unknown 
   optional?: undefined | boolean 
+  violation?: undefined | string
 }
 
 export interface Configs {
@@ -109,6 +113,20 @@ export type Merge<A extends object, B extends object> = {
       : A extends {[TKey in Key]?: infer TValue}
         ? TValue
         : never
+}
+
+export interface VirtualType {
+  (
+    rawValue: unknown, 
+    inlineOptions?: any,
+  ): any
+
+  
+  copy: Copy<any>
+
+
+  raw?: any
+  formatted?: any
 }
 
 export interface Type<TConfigs extends Configs = Configs> {
@@ -161,6 +179,7 @@ export function prepareOptions(options: RawBaseOptions = {}): PreparedBaseOption
     classes: options.classes ?? [ANY], 
     fallback: options.fallback, 
     optional: options.optional ?? false, 
+    violation: options.violation ?? undefined,
     checkClass: options.checkClass ?? true,
   }
 }
@@ -268,8 +287,9 @@ export function Type<TConfigs extends Configs>(format: Format<TConfigs>, rawBase
         error instanceof FormatError
       )) {
         return invalidate(options, rawValue, new FormatError({
-          typeName: name,
           typeKey: options.key,
+          typeName: name,
+          violation: options.violation,
           invalidValue: error instanceof FormatError ? error.invalidValue : rawValue,
           childTypeName: error instanceof FormatError ? error.typePath : undefined,
         }))

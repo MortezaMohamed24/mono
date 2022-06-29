@@ -1,7 +1,7 @@
-import Checkitem from "src/models/checkitem"
+import Checkitem from "../Model.js"
 import Projector from "../Projector.js"
 import Projection from "../Projection.js"
-import DEFAULT_PROJECTOR from "../default-projector.js"
+import DEFAULT_PROJECTOR from "../DefaultProjector.js"
 
 
 async function project(this: Checkitem, {keys}: Projector = DEFAULT_PROJECTOR): Promise<Projection> {

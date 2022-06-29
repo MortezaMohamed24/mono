@@ -1,4 +1,4 @@
-import bd from "board/crud"
+import bd from "board/crud.js"
 import Board from "board/Model.js"
 import Checkitem from "../Model.js"
 

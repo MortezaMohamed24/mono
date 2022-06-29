@@ -1,5 +1,5 @@
 export interface CheckitemProjector {
-  keys: (
+  keys: readonly (
     | "id"
     | "idUser"
     | "idList"

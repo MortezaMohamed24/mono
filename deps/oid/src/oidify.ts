@@ -3,7 +3,7 @@ import oidifyOne from "./oidifyOne.js"
 import oidifyMany from "./oidifyMany.js"
 
 
-function oidify(any: any): Oid | (Oid[]) {
+export function oidify(any: any): Oid | (Oid[]) {
   if (any instanceof Oid) {
     return any
   } else if (Array.isArray(any)) {

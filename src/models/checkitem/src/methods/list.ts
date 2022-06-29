@@ -1,16 +1,17 @@
-import lt from "src/models/list/crud";
-import Checkitem from "src/models/checkitem";
+import lt from "list/crud.js"
+import List from "list"
+import Checkitem from "../Model.js"
 
 
-async function list(this: Checkitem) {
-  const list = await lt.f(this.idList);
+async function list(this: Checkitem): Promise<List> {
+  const list = await lt.f(this.idList)
 
   if (list) {
-    return list;
+    return list
   }
 
-  throw new Error("checkitem: could not find owner list");
+  throw new Error("checkitem: could not find owner list")
 }
 
 
-export default list;
+export default list

@@ -1,13 +1,14 @@
 import {Oid} from "oid"
-import Methods from "./methods/type.js"
-import Virtuals from "./virtuals/type.js"
 import {Document} from "mongoose"
-import DocumentType from "./DocumentType.js"
+import {CheckitemMethods} from "./Methods.js"
+import {CheckitemDocumentType} from "./DocumentType.js"
 
 
-export interface CheckitemDocument extends Omit<Document<Oid, {}, DocumentType>, "_id" | "id">, DocumentType, Methods, Virtuals {
-  // Empty
-}
+export type CheckitemDocument = (
+  & Omit<Document<Oid, {}, CheckitemDocumentType>, keyof CheckitemDocumentType>
+  & CheckitemDocumentType
+  & CheckitemMethods
+)
 
 
 export default CheckitemDocument

@@ -1,8 +1,9 @@
-import cd from "card/crud"
-import Checkitem from "checkitem/Model.js"
+import cd from "card/crud.js"
+import Card from "card"
+import Checkitem from "../Model.js"
 
 
-async function card(this: Checkitem) {
+async function card(this: Checkitem): Promise<Card> {
   const card = await cd.f(this.idCard)
 
   if (card) {

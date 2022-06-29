@@ -30,6 +30,7 @@ export interface Options {
    * Defaults to true.
   */
   checkClass?: undefined | boolean
+  violation?: undefined | string
 }
 
 

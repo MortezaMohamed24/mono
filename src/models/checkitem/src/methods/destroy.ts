@@ -1,7 +1,7 @@
-import Checkitem from "src/models/checkitem"
+import Checkitem from "../Model.js"
 
 
-async function destroy(this: Checkitem) {
+async function destroy(this: Checkitem): Promise<void> {
   await this.deattach()
   await this.remove()
 }

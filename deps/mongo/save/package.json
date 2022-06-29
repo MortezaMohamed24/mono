@@ -1,6 +1,6 @@
 {
-  "name": "mongoose-save",
-  "main": "index.js",
+  "name": "save",
+  "main": "./dist/index.js",
   "type": "module",
   "version": "1.0.0",
   "description": "A utility function that takes an arbitray value, search for \"unsaved mongoose documents\", saves them, and returns them.",

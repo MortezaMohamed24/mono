@@ -1,15 +1,15 @@
-import save from "src/models/util/save";
-import idUtil from "src/models/util/idUtil";
-import Checkitem from "src/models/checkitem";
+import oid from "oid"
+import save from "save"
+import Checkitem from "../Model.js"
 
 
-async function shift(this: Checkitem, index = Infinity) {
-  const checklist = await this.checklist();
+async function shift(this: Checkitem, index = Infinity): Promise<void> {
+  const checklist = await this.checklist()
 
-  idUtil.move(checklist.idCheckitems, this.id, index);
+  oid.move(checklist.idCheckitems, this.id, index)
 
-  await save(checklist);
+  await save(checklist)
 }
 
 
-export default shift;
+export default shift

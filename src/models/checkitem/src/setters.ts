@@ -1,14 +1,14 @@
-import v from "src/models/checkitem/fields/validators";
-import Checkitem from "src/models/checkitem";
+import v from "./fields/types.js"
+import Checkitem from "./Model.js"
 
 
 export function content(this: Checkitem, content: Checkitem["content"]): Checkitem["content"] {
-  return v.content(content);
+  return v.content(content, {strict: true})
 }
 
-export function isComplete(this: Checkitem, isComplete: Checkitem["isComplete"]): Checkitem["content"] {
-  return v.isComplete(isComplete);
+export function isComplete(this: Checkitem, isComplete: Checkitem["isComplete"]): Checkitem["isComplete"] {
+  return v.isComplete(isComplete, {strict: true})
 }
 
 
-export default Object.freeze({content, isComplete});
+export default Object.freeze({content, isComplete})

@@ -4,6 +4,7 @@ import serialize from "./serialize.js"
 interface CotrOptions {
   typeKey?: undefined | string | number | symbol
   typeName: string | symbol | number
+  violation?: string | undefined
   invalidValue: unknown 
   childTypeName?: undefined | string
 }
@@ -12,11 +13,12 @@ class FormatError extends Error {
   typeKey: string | number | symbol | undefined
   typeName: string | symbol | number
   typePath: string
+  violation: string | undefined
   invalidValue: unknown
   childTypeName: string | undefined
 
 
-  constructor({typeName, invalidValue, typeKey, childTypeName}: CotrOptions) {
+  constructor({typeName, violation, invalidValue, typeKey, childTypeName}: CotrOptions) {
     let message = ""
     let typePath = ""
 
@@ -33,6 +35,7 @@ class FormatError extends Error {
     this.typeKey = typeKey
     this.typeName = typeName
     this.typePath = typePath
+    this.violation = violation
     this.invalidValue = invalidValue
     this.childTypeName = childTypeName
   }

@@ -1,11 +1,12 @@
 import {Type} from "../type.js"
 import {VALID} from "../symbols.js"
 import {Optoinify} from "../util/optionifty.js"
+import {VirtualType} from "../type.js"
 import {RawBaseOptions} from "../type.js"
 
 
 type Options = Omit<RawBaseOptions, "classes" | "checkClass">
-type Operands = Type[]
+type Operands = VirtualType[]
 
 
 type TypeReturn<TOperands extends Operands> = (

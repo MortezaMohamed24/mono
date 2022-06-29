@@ -1,9 +1,10 @@
 import {Type} from "../type.js"
 import {Optoinify} from "../util/optionifty.js"
+import {VirtualType} from "../type.js"
 import {RawBaseOptions} from "../type.js"
 
 
-type Content = Type[]
+type Content = VirtualType[]
 type Options = Omit<RawBaseOptions, "checkClass"> 
 
 

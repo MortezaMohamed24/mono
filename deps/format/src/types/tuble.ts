@@ -1,10 +1,11 @@
 import {Type} from "../type.js"
 import {Optoinify} from "../util/optionifty.js"
+import {VirtualType} from "../type.js"
 import {RawBaseOptions} from "../type.js"
 
 
 type Content = (
-  Type[]
+  VirtualType[]
 )
 
 type Options = (

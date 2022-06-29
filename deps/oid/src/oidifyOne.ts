@@ -2,7 +2,7 @@ import Oid from "./oid.js"
 import pattern from "./pattern.js"
 
 
-function oidifyOne(one: unknown): Oid {
+export function oidifyOne(one: unknown): Oid {
   if (one instanceof Oid) {
     return one
   } else if (typeof one === "string" && pattern.test(one)) {

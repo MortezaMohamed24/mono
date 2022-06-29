@@ -17,8 +17,8 @@ export const Checkitem = (
 )
 
 export type CheckitemModel = (
-  & CheckitemStatics
   & Model<CheckitemDocumentType, {}, CheckitemMethods, CheckitemVirtuals>
+  & CheckitemStatics
 )
 
 

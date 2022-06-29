@@ -1,1 +1,4 @@
-export default /^[0123456789abcdef]{24}$/
+export const PATTERN = /^[0123456789abcdef]{24}$/
+
+
+export default PATTERN

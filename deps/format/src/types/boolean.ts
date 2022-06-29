@@ -20,7 +20,7 @@ type TypeReturn<TOptions extends Options> = (
     : boolean
 )
 
-const BOOLEAN = <TOptions extends Options>({which, ...options}: Partial<TOptions> = {}) => {
+const BOOLEAN = <TOptions extends Options>({which, ...options}: Partial<TOptions> = {}) => (
   Type<Optoinify<TOptions, boolean, TypeReturn<TOptions>>>((raw, {INVALID}) => {
     switch (which) {
       case true: if (raw === true) return raw as TypeReturn<TOptions>
@@ -32,7 +32,7 @@ const BOOLEAN = <TOptions extends Options>({which, ...options}: Partial<TOptions
     classes: ["Boolean"],
     ...options
   })
-}
+)
 
 
 export default BOOLEAN

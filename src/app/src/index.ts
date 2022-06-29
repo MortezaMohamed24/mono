@@ -1,11 +1,12 @@
 import {Oid} from "oid"
 import {SERVER} from "../../mongo/src/constants.js"
 import {Session} from "express-session"
+import SESSSION from "express-session"
 import MongoStore from "connect-mongo"
 import {SessionData} from "express-session"
 
 
-type Customization = [{
+export type Customization = [{
   session: Session & SessionData
 }, {
 
@@ -23,9 +24,9 @@ const store = MongoStore.create({
 })
 
 const session = () => (
-  Session({
+  SESSSION.session({
     store: store,
-    secret: "Mikasa is lovely",
+    secret: "Cat",
     resave: false,
     cookie: {maxAge: day * 15},
     saveUninitialized: true,
