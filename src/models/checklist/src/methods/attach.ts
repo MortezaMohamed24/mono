@@ -1,4 +1,4 @@
-import cm from "checkitem/crud.js"
+import cm from "checkitem/dist/crud.js"
 import oid from "oid"
 import Card from "card"
 import save from "save"

@@ -1,43 +1,46 @@
-import {Oid} from "#util/oid";
-import deduplicate from "./deduplicate.js";
+import {Oid} from "oid"
+import {deduplicate} from "./deduplicate.js"
 
 
-type Output<Ids extends Oid[] | undefined, Query extends object | undefined> = 
-  Ids extends undefined 
-    ? Query extends undefined 
+type Config = {
+  ids?: undefined | Oid[]
+  query?: undefined | object
+}
+
+type Output<T extends Config> = (
+  T["ids"] extends undefined 
+    ? T["query"] extends undefined 
       ? {}
-      : Query 
-    : Query extends undefined 
+      : T["query"] 
+    : T["query"] extends undefined 
       ? {$or: {_id: Oid}[]}
-      : Query & {$or: {_id: Oid}[]}
+      : T["query"] & {$or: {_id: Oid}[]}
+)
 
-
-const idsWithQuery = <
-  Ids extends Oid[] | undefined, 
-  Query extends object | undefined,
->(ids: Ids, query: Query): Output<Ids, Query> => {
-  let output: any = {};
+function idsWithQuery<T extends Config>(ids: T["ids"], query: T["query"]) {
+  let output: any = {}
 
   if (query) {
-    output = {...query};
+    output = {...query}
   } 
   
   if (ids) {
     if (ids.length > 0) {
-      output.$or = deduplicate(ids).map(_id => ({_id}));
+      output.$or = deduplicate(ids).map(_id => ({_id}))
     } else {
-      return {} as any;
+      return {} as Output<T>
     }
   }
 
   for (let key in output) {
     if (output[key] !== undefined) {
-      return output;
+      return output
     }
   }
 
-  return {} as any;
-};
+  return {} as Output<T>
+}
 
 
-export default idsWithQuery;
+export {idsWithQuery}
+export default idsWithQuery

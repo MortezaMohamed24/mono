@@ -1,15 +1,15 @@
-import save from "src/models/util/save";
-import idUtil from "src/models/util/idUtil";
-import Checklist from "src/models/checklist";
+import oid from "oid"
+import save from "save"
+import Checklist from "../Model.js"
 
 
 async function deattach(this: Checklist) {
-  const card = await this.card();
+  const card = await this.card()
 
-  idUtil.rem(card.idChecklists, this.id);
+  oid.rem(card.idChecklists, this.id)
 
-  await save(card);
+  await save(card)
 }
 
 
-export default deattach;
+export default deattach

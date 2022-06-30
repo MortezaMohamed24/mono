@@ -1,29 +1,33 @@
-import {Oid} from "#util/oid";
+import {Oid} from "oid"
 
 
-type Output<ID extends Oid | undefined, Query extends object | undefined> = ID extends undefined 
-  ? Query extends undefined 
-    ? {} 
-    : Query 
-  : Query extends undefined 
-    ? {_id: Oid} 
-    : Query & {_id: Oid}
+type Config = {
+  id?: undefined | Oid
+  query?: undefined | object
+}
 
+type Output<T extends Config> = (
+  T["id"] extends undefined 
+    ? T["query"] extends undefined 
+      ? {} 
+      : T["query"]
+    : T["query"] extends undefined 
+      ? {_id: Oid} 
+      : T["query"] & {_id: Oid}
+)
 
-const idWithQuery = <
-  Id extends Oid | undefined, 
-  Query extends object | undefined,
->(id: Id, query: Query): Output<Id, Query> => {
-  let output: any = {};
+function idWithQuery<T extends Config>(id: T["id"], query: T["query"]) {
+  let output: any = {}
 
   if (query) {
-    output = {...query};
+    output = {...query}
   } if (id) {
-    output._id = id;
+    output._id = id
   } 
 
-  return output;
-};
+  return output as Output<T>
+}
 
 
-export default idWithQuery;
+export {idWithQuery}
+export default idWithQuery

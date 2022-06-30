@@ -1,17 +1,20 @@
-import {Oid} from "#util/oid";
+import {Oid} from "oid"
 
 
-const deduplicate = (ids: Oid[]) => {
-  const clean: Oid[] = [];
+/** 
+ * Removes duplicate ids
+*/
+export function deduplicate(ids: Oid[]) {
+  const clean: Oid[] = []
 
   for (let id of ids) {
     if (!clean.includes(id)) {
-      clean.push(id);
+      clean.push(id)
     }
   }
 
-  return clean;
-};
+  return clean
+}
 
 
-export default deduplicate;
+export default deduplicate

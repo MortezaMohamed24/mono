@@ -1,17 +1,17 @@
-import {Oid} from "#util/oid";
-import Checklist from "src/models/checklist";
-import Checkitem from "src/models/checkitem";
+import {Oid} from "oid"
+import Checklist from "../Model.js"
+import Checkitem from "checkitem"
 
 
 async function copyOwnCheckitems(this: Checklist, checklist: Checklist) {
-  const copies: Checkitem[] = [];
+  const copies: Checkitem[] = []
 
   for (let checkitem of await this.checkitems()) {
-    copies.push(await checkitem.copy(checklist));
+    copies.push(await checkitem.copy(checklist))
   }
 
-  return copies;
+  return copies
 }
 
 
-export default copyOwnCheckitems;
+export default copyOwnCheckitems

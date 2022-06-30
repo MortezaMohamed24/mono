@@ -1,14 +1,11 @@
 {
-  "name": "crud",
-  "main": "./dist/index.js",
+  "name": "model",
   "version": "1.0.0",
   "description": "",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "MortezaMohamad",
-  "license": "ISC",
-  "dependencies": {
-    "oid": "file:../../oid"
-  }
+  "license": "ISC"
 }

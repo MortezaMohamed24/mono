@@ -1,4 +1,4 @@
-import bd from "src/models/board/crud"
+import bd from "board/board/crud"
 import User from "../Model.js"
 
 

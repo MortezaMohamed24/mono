@@ -1,8 +1,8 @@
-import {Oid} from "#util/oid";
+import {Oid} from "oid"
 
 
-type idKey = "_id" | "id";
-type idEntityKey = "idUser" | "idList" | "idCard" | "idBoard" | "idLabel" | "idChecklist" | "idCheckitem";
+type idKey = "_id" | "id"
+type idEntityKey = "idUser" | "idList" | "idCard" | "idBoard" | "idLabel" | "idChecklist" | "idCheckitem"
 
 type Updatify<T extends object> = {
   [Key in Exclude<keyof T, idKey>]?: Key extends idEntityKey
@@ -13,4 +13,5 @@ type Updatify<T extends object> = {
 }
 
 
-export default Updatify;
+export {Updatify}
+export default Updatify

@@ -4,12 +4,12 @@ import Checklist from "../Model.js"
 
 type Arg = {
   card: Card
-  title?: string 
-  index?: number
+  title?: undefined | string 
+  index?: undefined | number
 }
 
-const copy = async function(this: Checklist, {card, title = this.title, index = Infinity}: Arg): Promise<Checklist> {
-  const copy = await this.copySelf({card, title, index})
+const copy = async function(this: Checklist, arg: Arg): Promise<Checklist> {
+  const copy = await this.copySelf(arg)
 
   await this.copyOwnCheckitems(copy)
 

@@ -13,6 +13,7 @@
     "board": "file:../board",
     "card": "file:../card",
     "checklist": "file:../checklist",
+    "crud": "file:../../../deps/mongo/crud",
     "format": "file:../../../deps/format",
     "list": "file:../list",
     "oid": "file:../../../deps/oid",

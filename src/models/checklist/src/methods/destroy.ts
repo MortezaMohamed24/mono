@@ -1,11 +1,12 @@
-import cm from "src/models/checkitem/crud";
-import Checklist from "src/models/checklist";
+import cm from "checkitem/dist/crud.js"
+import Checklist from "../Model.js"
 
 
 async function destroy(this: Checklist) {
-  await this.deattach();
-  await cm.dm({idChecklist: this.id});
+  await this.deattach()
+  await cm.dm({idChecklist: this.id})
 }
 
 
-export default destroy;
+export {destroy}
+export default destroy
