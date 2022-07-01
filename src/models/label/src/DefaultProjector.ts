@@ -1,7 +1,7 @@
-import {LabelProjectorType} from "./Projector.js"
+import {LabelProjector} from "./Projector.js"
 
 
-export const labelProjectorDefault = Object.freeze<LabelProjectorType>({
+export const DEFAULT_LABEL_PROJECTOR = Object.freeze<LabelProjector>({
   keys: [
     "id", 
     "name", 
@@ -12,4 +12,4 @@ export const labelProjectorDefault = Object.freeze<LabelProjectorType>({
 })
 
 
-export default labelProjectorDefault
+export default DEFAULT_LABEL_PROJECTOR

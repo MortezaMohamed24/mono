@@ -1,24 +1,17 @@
-import List from "src/models/list";
-import {Oid} from "#util/oid";
-import Label from "src/models/label";
+import v from "../fields/types.js"
+import List from "list"
+import Card from "../Model.js"
+import Label from "label"
+import {Oid} from "oid"
 
 
-interface CardStaticsMakeArgument {
-  id?: Oid | undefined;
-  list: List;
-  title: string;
-  labels?: Label[] | undefined;
-  description?: string | null | undefined;
+type Argument = {
+  id?: Oid | undefined
+  list: List
+  title: string
+  labels?: Label[] | undefined
+  description?: string | null | undefined
 }
-
-
-// export default CardStaticsMakeArgument;
-
-import v from "src/models/card/fields/validators";
-import Card from "src/models/card";
-import {Oid} from "#util/oid";
-import Argument from "./argument.js";
-
 
 async function make({id = new Oid(), list, title, labels = [], description = null}: Argument) {
   const card = new Card({
@@ -32,13 +25,14 @@ async function make({id = new Oid(), list, title, labels = [], description = nul
     dateCreation: Date.now(),
     dateLastView: null,
     dateLastActivity: Date.now(),
-  });
+  })
 
-  await card.attach(list);
-  await card.setLabels(labels);
+  await card.attach(list)
+  await card.setLabels(labels)
 
-  return card;
+  return card
 }
 
 
-export default make;
+export {make}
+export default make

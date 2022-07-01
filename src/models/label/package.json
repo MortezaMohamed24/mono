@@ -10,11 +10,14 @@
   "author": "MortezaMohamad",
   "license": "ISC",
   "dependencies": {
+    "board": "file:../board",
+    "card": "file:../card",
     "checkitem": "file:../checkitem",
     "checklist": "file:../checklist",
     "format": "file:../../../deps/format",
     "list": "file:../list",
     "oid": "file:../../../deps/oid",
-    "save": "file:../../../deps/mongo/save"
+    "save": "file:../../../deps/mongo/save",
+    "user": "file:../user"
   }
 }

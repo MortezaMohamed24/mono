@@ -1,11 +1,11 @@
 import {OR} from "format"
 import {NULL} from "format"
-import {COLOR} from "./constants.js"
+import {COLOR} from "../constants.js"
 import {STRING} from "format"
 import {INVALID_NAME} from "../errors.js"
 import {INVALID_COLOR} from "../errors.js"
-import {MAX_NAME_LENGTH} from "./constants.js"
-import {MIN_NAME_LENGTH} from "./constants.js"
+import {MAX_NAME_LENGTH} from "../constants.js"
+import {MIN_NAME_LENGTH} from "../constants.js"
 
 
 export const name = OR([
@@ -17,7 +17,7 @@ export const name = OR([
     trim: "both",
     escape: "html",
     compact: true,
-    violation: INVALID_NAME.
+    violation: INVALID_NAME,
   }),
 ])
 

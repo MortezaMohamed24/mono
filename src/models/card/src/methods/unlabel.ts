@@ -1,14 +1,14 @@
-import save from "src/models/util/save";
-import Card from "src/models/card";
-import Label from "src/models/label";
-import idUtil from "src/models/util/idUtil";
+import oid from "oid"
+import save from "save"
+import Card from "../Model.js"
+import Label from "label"
 
 
 async function unlabel(this: Card, label: Label) {
-  idUtil.rem(this.idLabels, label.id);
-  
-  await save(this);
+  oid.rem(this.idLabels, label.id)
+  await save(this)
 }
 
 
-export default unlabel;
+export {unlabel}
+export default unlabel

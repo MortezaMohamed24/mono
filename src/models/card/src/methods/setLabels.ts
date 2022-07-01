@@ -1,13 +1,13 @@
-import save from "src/models/util/save"
-import Card from "src/models/card"
-import Label from "src/models/label"
-import idUtil from "src/models/util/idUtil"
+import oid from "oid"
+import save from "save"
+import Card from "../Model.js"
+import Label from "label"
 
 
 async function setLabels(this: Card, labels: Label[]) {
   for (let label of labels) {
     if (label.idBoard.equals(this.idBoard)) {
-      idUtil.add(this.idLabels, label.id)
+      oid.add(this.idLabels, label.id)
     } else {
       throw new Error("card: could not add a label to card because the label is owned by a board other than the card's")
     }
@@ -17,4 +17,5 @@ async function setLabels(this: Card, labels: Label[]) {
 }
 
 
+export {setLabels}
 export default setLabels

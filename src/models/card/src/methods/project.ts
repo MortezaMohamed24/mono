@@ -1,9 +1,9 @@
-import Card from "src /models/card"
-import Projector from "./projectorType.js"
-import Projection from "./projectionType.js"
-import projectMany from "src/models/util/projectMany"
-import projectorDefault from "./projectorDefault.js"
-import {CardDocumentJSONWithDescendants} from "src/models/card/document"
+import Card from "card"
+import Projector from "../Projector.js"
+import Projection from "../Projection.js"
+import {projectMany} from "model"
+import projectorDefault from "../DefaultProjector.js"
+import {CardDocumentJSONWithDescendants} from "../DocumentJSONWithDescendants.js"
 
 
 async function project(this: Card): Promise<CardDocumentJSONWithDescendants>

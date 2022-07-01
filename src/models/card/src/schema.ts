@@ -1,15 +1,14 @@
-import {Oid} from "#util/oid"
-import Model from "./model/type.js"
-import DocType from "./document/documentType.js"
-import Methods from "./methods/type.js"
+import {Oid} from "oid"
 import statics from "./statics/index.js"
 import methods from "./methods/index.js"
-import getters from "./virtuals/getters.js"
-import setters from "./src/accessors/setters.js"
-import mongoose from "mongoose"
+import setters from "./setters.js"
+import {Schema} from "mongoose"
+import {CardModel} from "./Model.js"
+import {CardMethods} from "./Methods.js"
+import {CardDocumentType} from "./DocumentType.js"
 
 
-const schema = new mongoose.Schema<DocType, Model, Methods>({
+const schema = new Schema<CardDocumentType, CardModel, CardMethods>({
   _id: {type: "ObjectID", default: () => new Oid()},
   title: {type: "String", required: true, set: setters.title},
   idUser: {type: "ObjectID", required: true},
@@ -32,10 +31,6 @@ Object.entries(statics).forEach(([key, value]) => {
 
 Object.entries(methods).forEach(([key, value]) => {
   schema.method(key, value)
-})
-
-Object.entries(getters).forEach(([key, value]) => {
-  schema.virtual(key).get(value)
 })
 
 

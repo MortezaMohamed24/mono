@@ -1,15 +1,16 @@
-import Card from "src/models/card";
-import save from "src/models/util/save";
-import idUtil from "src/models/util/idUtil";
+import oid from "oid"
+import Card from "card"
+import save from "save"
 
 
 async function shift(this: Card, index = Infinity) {
-  const list = await this.list();
+  const list = await this.list()
 
-  idUtil.move(list.idCards, this.id, index);
+  oid.move(list.idCards, this.id, index)
 
-  await save(list);
+  await save(list)
 }
 
 
-export default shift;
+export {shift}
+export default shift

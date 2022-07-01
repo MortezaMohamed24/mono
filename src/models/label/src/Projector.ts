@@ -1,9 +1,9 @@
 import {LabelDocumentKey} from "./DocumentKey.js"
 
 
-export interface LabelProjectorType {
+export interface LabelProjector {
   keys: LabelDocumentKey[]
 }
 
 
-export default LabelProjectorType
+export default LabelProjector 

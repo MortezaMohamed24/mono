@@ -1,10 +1,11 @@
-import Label from "src/models/label";
+import Label from "label"
 
 
-async function destroy(this: Label) {
-  await this.deattach();
-  await this.remove();
+async function destroy(this: Label): Promise<void> {
+  await this.deattach()
+  await this.remove()
 }
 
 
-export default destroy;
+export {destroy}
+export default destroy

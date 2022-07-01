@@ -1,66 +1,43 @@
-import user from "./user/index.js";
-import list from "./list/index.js";
-import move from "./move/index.js";
-import copy from "./copy/index.js";
-import shift from "./shift/index.js";
-import label from "./label/index.js";
-import board from "./board/index.js";
-import attach from "./attach/index.js";
-import labels from "./labels/index.js";
-import unlabel from "./unlabel/index.js";
-import destroy from "./destroy/index.js";
-import project from "./project/index.js";
-import deattach from "./deattach/index.js";
-import copySelf from "./copySelf/index.js";
-import setLabels from "./setLabels/index.js";
-import checklists from "./checklists/index.js";
-import checkitems from "./checkitems/index.js";
-import copyOwnChecklists from "./copyOwnChecklists/index.js";
-import updateDateLastView from "./updateDateLastView/index.js";
+import user from "./user.js"
+import list from "./list.js"
+import move from "./move.js"
+import copy from "./copy.js"
+import shift from "./shift.js"
+import label from "./label.js"
+import board from "./board.js"
+import attach from "./attach.js"
+import labels from "./labels.js"
+import unlabel from "./unlabel.js"
+import destroy from "./destroy.js"
+import project from "./project.js"
+import deattach from "./deattach.js"
+import copySelf from "./copySelf.js"
+import setLabels from "./setLabels.js"
+import checklists from "./checklists.js"
+import checkitems from "./checkitems.js"
+import copyOwnChecklists from "./copyOwnChecklists.js"
+import updateDateLastView from "./updateDateLastView.js"
 
 
-type user = typeof user;
-type list = typeof list;
-type move = typeof move;
-type copy = typeof copy;
-type shift = typeof shift;
-type label = typeof label;
-type board = typeof board;
-type attach = typeof attach;
-type labels = typeof labels;
-type unlabel = typeof unlabel;
-type destroy = typeof destroy;
-type project = typeof project;
-type deattach = typeof deattach;
-type copySelf = typeof copySelf;
-type setLabels = typeof setLabels;
-type checklists = typeof checklists;
-type checkitems = typeof checkitems;
-type copyOwnChecklists = typeof copyOwnChecklists;
-type updateDateLastView = typeof updateDateLastView;
-
-
-export {
-  user,
-  list,
-  move,
-  copy,
-  shift,
-  label,
-  board,
-  attach,
-  labels,
-  unlabel,
-  destroy,
-  project,
-  deattach,
-  copySelf,
-  setLabels,
-  checklists,
-  checkitems,
-  copyOwnChecklists,
-  updateDateLastView,
-};
+export type user = typeof user
+export type list = typeof list
+export type move = typeof move
+export type copy = typeof copy
+export type shift = typeof shift
+export type label = typeof label
+export type board = typeof board
+export type attach = typeof attach
+export type labels = typeof labels
+export type unlabel = typeof unlabel
+export type destroy = typeof destroy
+export type project = typeof project
+export type deattach = typeof deattach
+export type copySelf = typeof copySelf
+export type setLabels = typeof setLabels
+export type checklists = typeof checklists
+export type checkitems = typeof checkitems
+export type copyOwnChecklists = typeof copyOwnChecklists
+export type updateDateLastView = typeof updateDateLastView
 
 
 export default Object.freeze({
@@ -83,4 +60,4 @@ export default Object.freeze({
   checkitems,
   copyOwnChecklists,
   updateDateLastView,
-});
+})

@@ -1,9 +1,10 @@
-import Card from "src/models/card";
+import Card from "../Model.js"
 
 
 function updateDateLastView(this: Card) {
-  this.dateLastView = Date.now();
+  this.dateLastView = Date.now()
 }
 
 
-export default updateDateLastView;
+export {updateDateLastView}
+export default updateDateLastView

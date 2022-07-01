@@ -1,8 +1,8 @@
 import {CardProjector} from "./Projector.js"
-import {checklistProjectorDefault} from "src/models/checklist/methods/project"
+import {CHECKLIST_DEFAULT_PROJECTOR} from "checklist/DefaultProjector.js"
 
 
-const projectorDefault: CardProjector = Object.freeze({
+const DEFAULT_CARD_PROJECTOR = Object.freeze<CardProjector>({
   keys: [
     "id", 
     "url", 
@@ -20,8 +20,9 @@ const projectorDefault: CardProjector = Object.freeze({
     "dateCreation", 
     "dateLastView",
   ],
-  checklists: checklistProjectorDefault,
+  checklists: CHECKLIST_DEFAULT_PROJECTOR,
 })
 
 
-export default projectorDefault
+export {DEFAULT_CARD_PROJECTOR}
+export default DEFAULT_CARD_PROJECTOR

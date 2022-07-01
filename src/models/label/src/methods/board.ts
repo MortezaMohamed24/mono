@@ -1,16 +1,18 @@
-import bd from "src/models/board/crud";
-import Label from "src/models/label";
+import bd from "board/crud.js"
+import Board from "board"
+import Label from "label"
 
 
-async function board(this: Label) {
-  const board = await bd.f(this.idBoard);
+async function board(this: Label): Promise<Board> {
+  const board = await bd.f(this.idBoard)
 
   if (board) {
-    return board;
+    return board
   }
 
-  throw new Error("label: could not find owner user");
+  throw new Error("label: could not find owner user")
 }
 
 
-export default board;
+export {board}
+export default board

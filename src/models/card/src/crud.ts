@@ -1,11 +1,30 @@
-import crud from "src/models/util/crud";
-import Card from "src/models/card/model";
-import CardMethods from "src/models/card/methods/type";
-import CardVirtuals from "src/models/card/virtuals/type";
-import {CardDocumentType} from "src/models/card/document";
+import CRUD from "crud"
+import {Card} from "./Model.js"
+import {CardMethods} from "./Methods.js"
+import {CardDocumentType} from "./DocumentType.js"
 
 
-const cd = crud<CardMethods, CardVirtuals, CardDocumentType>("card", Card);
+export const {
+  f,
+  u,
+  h,
+  d,
+  fm,
+  um,
+  dm,
+  he,
+} = (
+  CRUD<CardMethods, CardDocumentType>(Card)
+)
 
 
-export default cd;
+export default Object.freeze({
+  f,
+  u,
+  h,
+  d,
+  fm,
+  um,
+  dm,
+  he,
+})

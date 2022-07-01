@@ -1,17 +1,18 @@
-import save from "src/models/util/save";
-import Board from "src/models/board";
-import Label from "src/models/label";
-import idUtil from "src/models/util/idUtil";
+import oid from "oid"
+import save from "save"
+import Board from "board"
+import Label from "../Model.js"
 
 
-async function attach(this: Label, board: Board, index: number = Infinity) {
-  this.idUser = board.idUser;
-  this.idBoard = board.id;
+async function attach(this: Label, board: Board, index: number = Infinity): Promise<void> {
+  this.idUser = board.idUser
+  this.idBoard = board.id
 
-  idUtil.add(board.idLabels, this.id, index);
+  oid.add(board.idLabels, this.id, index)
 
-  await save(this, board);
+  await save(this, board)
 }
 
 
-export default attach;
+export {attach}
+export default attach

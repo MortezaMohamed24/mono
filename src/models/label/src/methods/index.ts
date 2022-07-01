@@ -1,30 +1,19 @@
-import user from "./user/index.js";
-import copy from "./copy/index.js";
-import board from "./board/index.js";
-import attach from "./attach/index.js";
-import destroy from "./destroy/index.js";
-import project from "./project/index.js";
-import deattach from "./deattach/index.js";
+import user from "./user.js"
+import copy from "./copy.js"
+import board from "./board.js"
+import attach from "./attach.js"
+import destroy from "./destroy.js"
+import project from "./project.js"
+import deattach from "./deattach.js"
 
 
-type user = typeof user;
-type copy = typeof copy;
-type board = typeof board;
-type attach = typeof attach;
-type destroy = typeof destroy;
-type project = typeof project;
-type deattach = typeof deattach;
-
-
-export {
-  user,
-  copy,
-  board,
-  attach,
-  destroy,
-  project,
-  deattach,
-};
+export type user = typeof user
+export type copy = typeof copy
+export type board = typeof board
+export type attach = typeof attach
+export type destroy = typeof destroy
+export type project = typeof project
+export type deattach = typeof deattach
 
 
 export default Object.freeze({
@@ -35,4 +24,4 @@ export default Object.freeze({
   destroy,
   project,
   deattach,
-});
+})

@@ -12,6 +12,7 @@ export const INVALID_IS_COMPLETE = "checkitem: invalid iscomplete"
 
 export default Object.freeze({
   NOT_FOUND,
-  INVALID_CONTENT, 
+  INVALID_CONTENT,
+  INVALID_PROJECTOR, 
   INVALID_IS_COMPLETE,
 })

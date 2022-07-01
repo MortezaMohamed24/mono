@@ -1,15 +1,16 @@
-import save from "src/models/util/save";
-import Label from "src/models/label";
-import idUtil from "src/models/util/idUtil";
+import oid from "oid"
+import save from "save"
+import Label from "label"
 
 
-async function deattach(this: Label) {
-  const board = await this.board();
+async function deattach(this: Label): Promise<void> {
+  const board = await this.board()
 
-  idUtil.rem(board.idLabels, this.id);
+  oid.rem(board.idLabels, this.id)
 
-  await save(this);
+  await save(this)
 }
 
 
-export default deattach;
+export {deattach}
+export default deattach

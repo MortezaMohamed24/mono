@@ -1,5 +1,5 @@
-import {Oid} from "format"
-import {ChecklistDocumentJSONWithDescendants} from "checklist"
+import {Oid} from "oid"
+import {ChecklistDocumentJSONWithDescendants} from "checklist/DocumentJSONWithDescendants.js"
 
 
 export interface CardDocumentJSONWithDescendants {

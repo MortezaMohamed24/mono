@@ -1,17 +1,17 @@
-import {KEY} from "src/models/card/fields/constants";
-import {ARRAY} from "#util/checker";
-import {STRING} from "#util/checker";
-import {OBJECT} from "#util/checker";
-import CardProjectorType from "./projectorType.js";
-import {checklistProjectorCheckable} from "src/models/checklist/methods/project";
-import {checkitemProjectorCheckable} from "src/models/checkitem/methods/project";
+import {KEY} from "./constants.js"
+import {ARRAY} from "format"
+import {STRING} from "format"
+import {OBJECT} from "format"
+import {CHECKLIST_PROJECTOR} from "checklist/ProjectorType.js"
+import {CHECKITEM_PROJECTOR} from "checkitem/ProjectorType.js"
 
 
-const cardProjectorCheckable = OBJECT<CardProjectorType>({
+const CARD_PROJECTOR = OBJECT({
   keys: ARRAY([STRING({trim: "both", pattern: KEY})]),
-  checklists: checklistProjectorCheckable.opt(undefined),
-  checkitems: checkitemProjectorCheckable.opt(undefined),
-});
+  checklists: CHECKLIST_PROJECTOR.opt(undefined),
+  checkitems: CHECKITEM_PROJECTOR.opt(undefined),
+})
 
 
-export default cardProjectorCheckable;
+export {CARD_PROJECTOR}
+export default CARD_PROJECTOR

@@ -1,23 +1,23 @@
-import Label from "src/models/label";
-import Projector from "./projectorType.js";
-import Projection from "./projectionType.js";
-import projectorDefault from "./projectorDefault.js";
-import {LabelDocumentJSON} from "src/models/label/document";
+import Label from "label"
+import Projector from "../Projector.js"
+import Projection from "../Projection.js"
+import {LabelDocumentJSON} from "src/models/label/document"
+import {DEFAULT_LABEL_PROJECTOR} from "../DefaultProjector.js"
 
 
-async function project(this: Label): Promise<LabelDocumentJSON>;
-async function project(this: Label, {keys}: Projector): Promise<Projection>;
-async function project(this: Label, {keys}: Projector = projectorDefault): Promise<LabelDocumentJSON | Projection> {
-  const output: Projection = {};
+async function project(this: Label): Promise<LabelDocumentJSON>
+async function project(this: Label, {keys}: Projector): Promise<Projection>
+async function project(this: Label, {keys}: Projector = DEFAULT_LABEL_PROJECTOR): Promise<LabelDocumentJSON | Projection> {
+  const output: Projection = {}
 
-  keys.includes("id") && (output.id = this.id);
-  keys.includes("name") && (output.name = this.name);
-  keys.includes("color") && (output.color = this.color);
-  keys.includes("idUser") && (output.idUser = this.idUser);
-  keys.includes("idBoard") && (output.idBoard = this.idBoard);
+  keys.includes("id") && (output.id = this.id)
+  keys.includes("name") && (output.name = this.name)
+  keys.includes("color") && (output.color = this.color)
+  keys.includes("idUser") && (output.idUser = this.idUser)
+  keys.includes("idBoard") && (output.idBoard = this.idBoard)
 
-  return output;
+  return output
 }
 
 
-export default project;
+export default project

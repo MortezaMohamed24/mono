@@ -1,6 +1,6 @@
-import {CardDocumentKey} from "src/models/card/document"
-import {CheckitemProjectorType} from "src/models/checkitem/methods/project"
-import {ChecklistProjectorType} from "src/models/checklist/methods/project"
+import {CardDocumentKey} from "./DocumentKey.js"
+import {CheckitemProjectorType} from "checkitem/Projector.js"
+import {ChecklistProjectorType} from "checklist/Projector.js"
 
 
 export interface CardProjector {
