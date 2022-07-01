@@ -1,15 +1,16 @@
-import Card from "src/models/card";
-import save from "src/models/util/save";
-import idUtil from "src/models/util/idUtil";
+import oid from "oid"
+import Card from "../Models.js"
+import save from "save"
 
 
 async function deattach(this: Card) {
-  const list = await this.list();
+  const list = await this.list()
 
-  idUtil.rem(list.idCards, this.id);
+  oid.rem(list.idCards, this.id)
 
-  await save(list);
+  await save(list)
 }
 
 
-export default deattach;
+export {deattach}
+export default deattach

@@ -1,16 +1,22 @@
-import bd from "src/models/board/crud";
-import Card from "src/models/card";
+import bd from "board/dist/crud.js"
+import {Card} from "../Model.js"
+import {Board} from "board"
+import {ServerError} from "errors"
 
 
-async function board(this: Card) {
-  const board = await bd.f(this.idBoard);
+async function board(this: Card): Promise<Board> {
+  const board = await bd.f(this.idBoard)
 
   if (board) {
-    return board;
+    return board
   }
 
-  throw new Error("card: coukd not find owner board");
+  throw new ServerError({
+    status: 500,
+    message: "card: coukd not find owner board",
+  })
 }
 
 
-export default board;
+export {board}
+export default board

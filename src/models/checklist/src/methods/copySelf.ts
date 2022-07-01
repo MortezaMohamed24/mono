@@ -1,24 +1,22 @@
-import v from "../fields/types.js"
+import types from "../fields/types.js"
 import Checklist from "../Model.js"
 
 
-interface Argument {
+type Argument = {
   card: Card 
   title?: undefined | string 
   index?: undefined | number
 }
 
-async function copySelf(this: Checklist, {card, title = this.title, index = Infinity}: Argument) {
-
+const copySelf = async function(this: Checklist, {card, title = this.title, index = Infinity}: Argument): Promise<Checklist> {
   const copy = new Checklist({
-    title: v.title(title), 
+    title: types.title(title), 
     filter: this.filter,
   })
 
   await copy.attach(card, index)
 
   return copy
-
 }
 
 

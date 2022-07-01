@@ -1,23 +1,23 @@
-import v from "src/models/checklist/fields/validators"
-import {ALL} from "src/models/checklist/fields/constants"
-import Card from "src/models/card"
-import {Oid} from "#util/oid"
-import Arg from "./argument.js"
-import Checklist from "src/models/checklist"
+import types from "../fields/types.js"
+import {ALL} from "../constants.js"
+import {Oid} from "oid"
+import {Card} from "card"
+import {Checklist} from "../Model.js"
+import {ChecklistModel} from "../Model.js"
 
 
-type Arg = {
+type Argument = {
   id?: Oid | undefined
   card: Card
   title: Checklist["title"]
   filter?: Checklist["filter"]
 }
 
-const make = async ({id, card, title, filter = ALL}: Arg) => {
+async function make(this: ChecklistModel, {id, card, title, filter = ALL}: Argument): Promise<Checklist> {
   const checklist = new Checklist({
     id: id ?? new Oid(),
-    title: v.title(title), 
-    filter: v.filter(filter),
+    title: types.title(title), 
+    filter: types.filter(filter),
   })
 
   await checklist.attach(card)
@@ -26,4 +26,5 @@ const make = async ({id, card, title, filter = ALL}: Arg) => {
 }
 
 
+export {make}
 export default make

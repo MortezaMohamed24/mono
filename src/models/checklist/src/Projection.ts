@@ -1,6 +1,6 @@
 import {Oid} from "oid"
 import {Checklist} from "./Model.js"
-import {CheckitemProjectionType} from "checkitem"
+import {CheckitemProjection} from "checkitem/dist/Projection.js"
 
 
 export interface ChecklistProjectionType {
@@ -11,7 +11,7 @@ export interface ChecklistProjectionType {
   idList?: Oid
   idCard?: Oid
   idBoard?: Oid
-  checkitems?: CheckitemProjectionType[]
+  checkitems?: CheckitemProjection[]
 }
 
 

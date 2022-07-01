@@ -1,19 +1,19 @@
-import {Oid} from "#util/oid";
-import {ALL} from "src/models/checklist/fields/constants";
-import {INCOMPLETE} from "src/models/checklist/fields/constants";
-import {CheckitemDocumentJSON} from "src/models/checkitem/document";
+import {Oid} from "oid"
+import {ALL} from "./constants.js"
+import {INCOMPLETE} from "./constants.js"
+import {CheckitemDocumentJSON} from "checkitem/DocumentJSON.js"
 
 
 export interface ChecklistDocumentJSONWithDescendants {
-  id: Oid;
-  title: string;
-  filter: typeof ALL | typeof INCOMPLETE;
-  idUser: Oid;
-  idList: Oid;
-  idCard: Oid;
-  idBoard: Oid;
-  checkitems: CheckitemDocumentJSON[];
+  id: Oid
+  title: string
+  filter: typeof ALL | typeof INCOMPLETE
+  idUser: Oid
+  idList: Oid
+  idCard: Oid
+  idBoard: Oid
+  checkitems: CheckitemDocumentJSON[]
 }
 
 
-export default ChecklistDocumentJSONWithDescendants;
+export default ChecklistDocumentJSONWithDescendants

@@ -1,5 +1,5 @@
-import ct from "checklist/crud"
-import cm from "checkitem/crud"
+import ct from "checklist/crud.js"
+import cm from "checkitem/crud.js"
 import oid from "oid"
 import save from "save"
 import Card from "../Model.js"
@@ -21,4 +21,5 @@ async function attach(this: Card, list: List, index = Infinity) {
 }
 
 
+export {attach}
 export default attach

@@ -1,6 +1,6 @@
 import cd from "card/dist/crud.js"
-import Card from "card"
-import Checklist from "../Model.js"
+import {Card} from "card"
+import {Checklist} from "../Model.js"
 import {ServerError} from "errors"
 
 

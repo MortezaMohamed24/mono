@@ -1,11 +1,11 @@
+import {CheckitemProjector} from "checkitem/dist/Projector.js"
 import {ChecklistDocumentKey} from "./DocumentKey.js"
-import {CheckitemProjectorType} from "checkitem/Projector"
 
 
-export interface ChecklistProjectorType {
+export interface ChecklistProjector {
   keys: ChecklistDocumentKey[]
-  checkitems?: CheckitemProjectorType,
+  checkitems?: CheckitemProjector
 }
 
 
-export default ChecklistProjectorType
+export default ChecklistProjector

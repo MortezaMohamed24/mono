@@ -1,24 +1,18 @@
-import v from "src/models/card/fields/validators";
-import Card from "src/models/card";
-import save from "src/models/util/save";
-import Argument from "./argument.js";
-import fixBrokenLabelReferences from "src/models/util/fixBrokenLabelReferencesForCards";
+import Card from "../Model.js"
+import save from "save"
+import List from "list"
+import types from "../fields/types.js"
+import fixBrokenLabelReferences from "label/util/fixBrokenLabelReferencesForCards.js"
 
 
-import List from "src/models/list/model";
-
-
-interface CardMethodsCopySelfArgument {
+type Argument = {
   /** The list into which to copy the card */
-  list: List;
-  title?: string | undefined;
-  index?: number | undefined;
-  keepDates?: boolean | undefined;
-  keepLabels?: boolean | undefined;
+  list: List
+  title?: string | undefined
+  index?: number | undefined
+  keepDates?: boolean | undefined
+  keepLabels?: boolean | undefined
 }
-
-
-export default CardMethodsCopySelfArgument;
 
 async function copySelf(this: Card, {
   list, 
@@ -26,29 +20,30 @@ async function copySelf(this: Card, {
   index = Infinity,
   keepDates = true, 
   keepLabels = true,
-}: Argument) {
+}: Argument): Promise<Card> {
   const copy = new Card({
     due: keepDates ? this.dateDue : null,
     start: keepDates ? this.dateStart : null,
-    title: v.title(title),
+    title: types.title(title),
     idLabels: keepLabels ? this.idLabels : [],
     isWatched: this.isWatched,
     isComplete: keepDates ? this.isComplete : false,
     description: this.description,
     dateCreation: Date.now(),
     dateLastView: null,
-  });
+  })
 
-  await copy.attach(list, index);
+  await copy.attach(list, index)
 
   if (keepLabels) {
-    await fixBrokenLabelReferences([copy]);
+    await fixBrokenLabelReferences([copy])
   }
   
-  await save(copy);
+  await save(copy)
 
-  return copy;
+  return copy
 }
 
 
-export default copySelf;
+export {copySelf}
+export default copySelf

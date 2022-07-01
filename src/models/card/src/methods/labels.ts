@@ -1,10 +1,12 @@
-import ll from "src/models/card/crud";
-import Card from "src/models/card";
+import ll from "label/crud.js"
+import Card from "../Model.js"
+import Label from "label"
 
 
-async function labels(this: Card) {
-  return ll.fm(this.idLabels);
+async function labels(this: Card): Promise<Label> {
+  return ll.fm(this.idLabels)
 }
 
 
-export default labels;
+export {labels}
+export default labels

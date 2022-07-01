@@ -1,15 +1,15 @@
-import save from "src/models/util/save";
-import idUtil from "src/models/util/idUtil";
-import Checklist from "src/models/checklist";
+import oid from "oid"
+import save from "save"
+import Checklist from "../Model.js"
 
 
 async function shift(this: Checklist, index: number = Infinity) {
-  const card = await this.card();
+  const card = await this.card()
 
-  idUtil.move(card.idChecklists, this.id, index);
+  oid.move(card.idChecklists, this.id, index)
 
-  await save(card);
+  await save(card)
 }
 
 
-export default shift;
+export default shift

@@ -1,6 +1,6 @@
 import bd from "board/dist/crud.js"
-import Board from "board"
-import Checklist from "../Model.js"
+import {Board} from "board"
+import {Checklist} from "../Model.js"
 import {ServerError} from "errors"
 
 

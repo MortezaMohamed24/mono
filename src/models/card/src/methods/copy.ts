@@ -1,20 +1,16 @@
-import Card from "src/models/card";
-import Argument from "./argument.js";
-
-import List from "src/models/list";
+import Card from "../Model.js"
+import List from "list"
 
 
-interface CardMethodsCopyArgument {
-  list: List;
-  title?: string | undefined;
-  index?: number | undefined;
-  keepDates?: boolean | undefined;
-  keepLabels?: boolean | undefined;
-  keepChecklists?: boolean | undefined;
+type Argument = {
+  list: List
+  title?: string | undefined
+  index?: number | undefined
+  keepDates?: boolean | undefined
+  keepLabels?: boolean | undefined
+  keepChecklists?: boolean | undefined
 }
 
-
-export default CardMethodsCopyArgument;
 async function copy(this: Card, {
   list,
   title = this.title,
@@ -22,15 +18,16 @@ async function copy(this: Card, {
   keepDates = true, 
   keepLabels = true, 
   keepChecklists = true,
-}: Argument) {
-  const copy = await this.copySelf({list, title, index, keepDates, keepLabels});
+}: Argument): Promise<Card> {
+  const copy = await this.copySelf({list, title, index, keepDates, keepLabels})
 
   if (keepChecklists) {
-    await this.copyOwnChecklists(copy);
+    await this.copyOwnChecklists(copy)
   }
   
-  return copy;
+  return copy
 }
 
 
-export default copy;
+export {copy}
+export default copy

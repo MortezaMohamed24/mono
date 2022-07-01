@@ -1,11 +1,11 @@
-import ChecklistProjectorType from "./Projector.js";
-import {checkitemProjectorDefault} from "src/models/checkitem/methods/project";
+import {ChecklistProjector} from "./Projector.js"
+import {checkitemProjectorDefault} from "checkitem/DefaultProjector.js"
 
 
-const checklistProjectorDefault: ChecklistProjectorType = Object.freeze({
+export const DEFAULT_PROJECTOR = Object.freeze<ChecklistProjector>({
   keys: ["id", "title", "filter", "idUser", "idList", "idCard", "idBoard"],
   checkitems: checkitemProjectorDefault,
-});
+})
 
 
-export default checklistProjectorDefault;
+export default DEFAULT_PROJECTOR

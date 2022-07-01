@@ -1,10 +1,12 @@
-import ct from "src/models/checklist/crud";
-import Card from "src/models/card";
+import ct from "checklist/crud.js"
+import Card from "../Model.js"
+import Checklist from "checklist"
 
 
-function checklists(this: Card) {
-  return ct.fm(this.idChecklists);
+function checklists(this: Card): Promise<Checklist[]> {
+  return ct.fm(this.idChecklists)
 }
 
 
-export default checklists;
+export {checklists}
+export default checklists

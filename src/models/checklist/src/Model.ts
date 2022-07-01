@@ -16,7 +16,9 @@ export type Checklist = (
   ChecklistDocument
 )
 
-export const Checklist = model<ChecklistDocumentType, ChecklistModel, ChecklistMethods>("Checklist", schema)
+export const Checklist = (
+  model<ChecklistDocumentType, ChecklistModel, ChecklistMethods>("Checklist", schema)
+)
 
 
 

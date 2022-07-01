@@ -1,18 +1,18 @@
-import {Oid} from "#util/oid";
-import {ALL} from "src/models/checklist/fields/constants";
-import {INCOMPLETE} from "src/models/checklist/fields/constants";
+import {Oid} from "oid"
+import {ALL} from "./constants.js"
+import {INCOMPLETE} from "./constants.js"
 
 
 export interface ChecklistDocumentType {
-  _id: Oid;
-  title: string;
-  filter: typeof ALL | typeof INCOMPLETE;
-  idUser: Oid;
-  idList: Oid;
-  idCard: Oid;
-  idBoard: Oid;
-  idCheckitems: Oid[];
+  _id: Oid
+  title: string
+  filter: typeof ALL | typeof INCOMPLETE
+  idUser: Oid
+  idList: Oid
+  idCard: Oid
+  idBoard: Oid
+  idCheckitems: Oid[]
 }
 
 
-export default ChecklistDocumentType;
+export default ChecklistDocumentType

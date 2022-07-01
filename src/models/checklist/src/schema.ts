@@ -1,11 +1,11 @@
 import {Oid} from "oid"
 import {ALL} from "./constants.js"
-import {ChecklistMethods} from "./Methods.js"
 import statics from "./statics/index.js"
 import methods from "./methods/index.js"
 import setters from "./setters.js"
 import {Schema} from "mongoose"
 import {ChecklistModel} from "./Model.js"
+import {ChecklistMethods} from "./Methods.js"
 import {ChecklistDocumentType} from "./DocumentType.js"
 
 

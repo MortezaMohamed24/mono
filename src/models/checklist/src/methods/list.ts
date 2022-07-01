@@ -1,9 +1,10 @@
-import lt from "../list/dist/crud.js"
+import lt from "list/dist/crud.js"
+import {List} from "list"
 import {Checklist} from "../Model.js"
 import {ServerError} from "errors"
 
 
-async function list(this: Checklist) {
+async function list(this: Checklist): Promise<List> {
   const list = lt.f(this.idList)
 
   if (list) {

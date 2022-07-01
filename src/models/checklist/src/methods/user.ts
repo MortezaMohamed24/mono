@@ -1,17 +1,21 @@
-import ur from "src/models/user/crud";
-import Error from "#util/error";
-import Checklist from "src/models/checklist";
+import ur from "user/dist/crud.js"
+import User from "user"
+import {Checklist} from "../Model.js"
+import {ServerError} from "errors"
 
 
-async function user(this: Checklist) {
-  const user = await ur.f(this.idUser);
+async function user(this: Checklist): Promise<User> {
+  const user = await ur.f(this.idUser)
 
   if (user) {
-    return user;
+    return user
   }
 
-  throw new Error(500, "checklist: could not find owner user")
+  throw new ServerError({
+    status: 500, 
+    message: "checklist: could not find owner user",
+  })
 }
 
 
-export default user;
+export default user

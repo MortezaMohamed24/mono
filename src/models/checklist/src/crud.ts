@@ -1,11 +1,30 @@
-import crud from "src/models/util/crud";
-import Checklist from "src/models/checklist/model";
-import ChecklistMethods from "src/models/checklist/methods/type";
-import ChecklistVirtuals from "src/models/checklist/virtuals/type";
-import ChecklistDocumentType from "src/models/checklist/document/documentType";
+import CRUD from "crud"
+import Checklist from "./Model.js"
+import ChecklistMethods from "./Methods.js"
+import ChecklistDocumentType from "./DocumentType.js"
 
 
-const ct = crud<ChecklistMethods, ChecklistVirtuals, ChecklistDocumentType>("Checklist", Checklist);
+export const {
+  f,
+  u,
+  h,
+  d,
+  fm,
+  um,
+  dm,
+  he,
+} = (
+  CRUD<ChecklistMethods, ChecklistDocumentType>(Checklist)
+)
 
 
-export default ct;
+export default Object.freeze({
+  f,
+  u,
+  h,
+  d,
+  fm,
+  um,
+  dm,
+  he,
+})

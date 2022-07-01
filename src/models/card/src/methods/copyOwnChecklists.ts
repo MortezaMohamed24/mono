@@ -1,16 +1,16 @@
-import Card from "src/models/card";
-import Checklist from "src/models/checklist";
+import Card from "../Model.js"
+import Checklist from "checklist"
 
 
-async function copyOwnChecklists(this: Card, targetCard: Card) {
-  const copies: Checklist[] = [];
+async function copyOwnChecklists(this: Card, targetCard: Card): Promise<Checklist[]> {
+  const copies: Checklist[] = []
 
   for (let checklist of await this.checklists()) {
-    copies.push(await checklist.copy({card: targetCard}));
+    copies.push(await checklist.copy({card: targetCard}))
   }
 
-  return copies;
+  return copies
 }
 
 
-export default copyOwnChecklists;
+export default copyOwnChecklists

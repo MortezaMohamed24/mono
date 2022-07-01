@@ -1,17 +1,20 @@
-import lt from "src/models/list/crud";
-import Card from "src/models/card";
-import Error from "#util/error";
+import lt from "list/crud.js"
+import Card from "../Model.js"
+import {ServerError} from "errors"
 
 
 async function list(this: Card) {
-  const list = await lt.f(this.idList);
+  const list = await lt.f(this.idList)
 
   if (list) {
-    return list;
+    return list
   }
 
-  throw new Error(400, "card: could not find owner list");
+  throw new ServerError({
+    status: 400, 
+    message: "card: could not find owner list",
+  })
 }
 
 
-export default list;
+export default list

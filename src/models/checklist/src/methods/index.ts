@@ -13,36 +13,19 @@ import checkitems from "./checkitems.js"
 import copyOwnCheckitems from "./copyOwnCheckitems.js"
 
 
-type user = typeof user
-type card = typeof card
-type list = typeof list
-type copy = typeof copy
-type shift = typeof shift
-type board = typeof board
-type attach = typeof attach
-type destroy = typeof destroy
-type project = typeof project
-type deattach = typeof deattach
-type copySelf = typeof copySelf
-type checkitems = typeof checkitems
-type copyOwnCheckitems = typeof copyOwnCheckitems
-
-
-export {
-  user,
-  card,
-  list,
-  copy,
-  shift,
-  board,
-  attach,
-  destroy,
-  project,
-  deattach,
-  copySelf,
-  checkitems,
-  copyOwnCheckitems,
-}
+export type user = typeof user
+export type card = typeof card
+export type list = typeof list
+export type copy = typeof copy
+export type shift = typeof shift
+export type board = typeof board
+export type attach = typeof attach
+export type destroy = typeof destroy
+export type project = typeof project
+export type deattach = typeof deattach
+export type copySelf = typeof copySelf
+export type checkitems = typeof checkitems
+export type copyOwnCheckitems = typeof copyOwnCheckitems
 
 
 export default Object.freeze({

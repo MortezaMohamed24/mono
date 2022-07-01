@@ -7,7 +7,7 @@ const title = function(this: Checklist, title: Checklist["title"]): Checklist["t
 }
 
 const filter = function(this: Checklist, filter: Checklist["filter"]): Checklist["filter"] {
-  return types.filter(filter, {strict: true})
+  return types.filter(filter, {strict: true}) as Checklist["filter"]
 }
 
 

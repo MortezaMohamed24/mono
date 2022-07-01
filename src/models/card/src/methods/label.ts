@@ -1,17 +1,22 @@
-import Card from "src/models/card";
-import save from "src/models/util/save";
-import Label from "src/models/label";
-import idUtil from "src/models/util/idUtil";
+import oid from "oid"
+import Card from "../Model.js"
+import save from "save"
+import Label from "label"
+import {ServerError} from "errors"
 
 
-async function label(this: Card, label: Label) {
+async function label(this: Card, label: Label): Promise<void> {
   if (label.idBoard.equals(this.idBoard)) {
-    idUtil.add(this.idLabels, label.id);
-    await save(this);
+    oid.add(this.idLabels, label.id)
+    await save(this)
   } else {
-    throw new Error("card: could not add a label to card because the label is owned by a board other than the card's");
+    throw new ServerError({
+      status: 401,
+      message: "card: could not add a label to card because the label is owned by a board other than the card's",
+    })
   }
 }
 
 
-export default label;
+export {label}
+export default label

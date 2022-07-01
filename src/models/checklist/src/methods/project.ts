@@ -1,14 +1,14 @@
 import Checklist from "../Model.js"
 import Projector from "../Projector.js"
 import Projection from "../Projection.js"
-import projectMany from "/projectMany"
-import projectorDefault from "./projectorDefault.js"
-import {ChecklistDocumentJSONWithDescendants} from "src/models/checklist/document"
+import {projectMany} from "model"
+import {DEFAULT_PROJECTOR} from "../DefaultProjector.js"
+import {ChecklistDocumentJSONWithDescendants} from "../DocumentJSONWithDescendants.js"
 
 
 async function project(this: Checklist): Promise<ChecklistDocumentJSONWithDescendants>
 async function project(this: Checklist, {keys, checkitems}: Projector): Promise<Projection>
-async function project(this: Checklist, {keys, checkitems}: Projector = projectorDefault): Promise<Projection> {
+async function project(this: Checklist, {keys, checkitems}: Projector = DEFAULT_PROJECTOR): Promise<Projection> {
   const output: Projection = {}
 
   keys.includes("id") && (output.id = this.id)
