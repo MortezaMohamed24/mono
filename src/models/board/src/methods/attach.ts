@@ -1,15 +1,15 @@
-import cd from "card/crud"
-import lt from "list/crud"
-import ll from "label/crud"
-import ct from "checklist/crud"
-import cm from "checkitem/crud"
+import cd from "card/dist/crud.js"
+import lt from "list/dist/crud.js"
+import ll from "label/dist/crud.js"
+import ct from "checklist/dist/crud.js"
+import cm from "checkitem/dist/crud.js"
 import oid from "oid"
 import save from "save"
 import User from "user"
-import Board from "board"
+import Board from "../Model.js"
 
 
-async function attach(this: Board, user: User) {
+async function attach(this: Board, user: User): Promise<void> {
   oid.add(user.idBoards, this.id)
   
   this.idUser = user.id
@@ -24,4 +24,18 @@ async function attach(this: Board, user: User) {
 }
 
 
+export {attach}
 export default attach
+
+new Board({
+  theme: "cyan",
+  title: "",
+  _id: new Oid(),
+  dateCreation: 75765,
+  dateLastActivity: 8987,
+  dateLastView: 0909,
+  idLabels: [],
+  idLists: [],
+  idUser: new Oid(),
+  isStarred: true,
+}).copy

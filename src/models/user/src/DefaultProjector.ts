@@ -1,8 +1,8 @@
-import {UserProjectorType} from "./Projector.js"
-import {boardProjectorDefault} from "board/DefaultProjector.js"
+import {UserProjector} from "./Projector.js"
+import {DEFAULT_BOARD_PROJECTOR} from "board/dist/DefaultProjector.js"
 
 
-export const userProjectorDefault = Object.freeze<UserProjectorType>({
+export const DEFAULT_USER_PROJECTOR = Object.freeze<UserProjector>({
   keys: [
     "id",
     "avatar",
@@ -14,8 +14,8 @@ export const userProjectorDefault = Object.freeze<UserProjectorType>({
     "firstname",
   ],
 
-  boards: boardProjectorDefault,
+  boards: DEFAULT_BOARD_PROJECTOR,
 })
 
 
-export default userProjectorDefault
+export default DEFAULT_USER_PROJECTOR

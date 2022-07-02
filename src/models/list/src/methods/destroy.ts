@@ -1,16 +1,17 @@
-import cd from "src/models/card/crud";
-import ct from "src/models/checklist/crud";
-import cm from "src/models/checkitem/crud";
-import List from "src/models/list";
+import cd from "card/dist/crud.js"
+import ct from "checklist/dist/crud.js"
+import cm from "checkitem/dist/crud.js"
+import List from "../Model.js"
 
 
-async function destroy(this: List) {
-  await this.deattach();
-  await this.remove();
-  await cd.dm({idList: this.id});
-  await ct.dm({idList: this.id});
-  await cm.dm({idList: this.id});
+async function destroy(this: List): Promise<void> {
+  await this.deattach()
+  await this.remove()
+  await cd.dm({idList: this.id})
+  await ct.dm({idList: this.id})
+  await cm.dm({idList: this.id})
 }
 
 
-export default destroy;
+export {destroy}
+export default destroy

@@ -1,11 +1,11 @@
-import ListProjectorType from "./Projector.js";
-import {cardProjectorDefault} from "src/models/card/methods/project";
+import ListProjector from "./Projector.js"
+import {DEFAULT_CARD_PROJECTOR} from "card/dist/DefaultProjector.js"
 
 
-const listProjectorDefault: ListProjectorType = Object.freeze({
+export const DEFAULT_LIST_PROJECTOR = Object.freeze<ListProjector>({
   keys: ["id", "title", "idUser", "idBoard", "idCards", "isWatched", "sortMethod"],
-  cards: cardProjectorDefault,
-});
+  cards: DEFAULT_CARD_PROJECTOR,
+})
 
 
-export default listProjectorDefault;
+export default DEFAULT_LIST_PROJECTOR

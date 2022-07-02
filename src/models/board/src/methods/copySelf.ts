@@ -1,32 +1,28 @@
-import v from "src/models/board/fields/validators";
-import Board from "src/models/board";
-import Argument from "./argument.js";
-import User from "src/models/user";
-import Board from "src/models/board";
+import User from "user"
+import types from "../fields/types.js"
+import Board from "../Model.js"
 
 
-interface BoardMethodsCopySelfArgument {
-  user: User;
-  title?: Board["title"];
+type Argument = {
+  user: User
+  title?: Board["title"]
 }
 
-
-export default BoardMethodsCopySelfArgument;
-
-async function copySelf(this: Board, {user, title = this.title}: Argument) {
+async function copySelf(this: Board, {user, title = this.title}: Argument): Promise<Board> {
   const copy = new Board({
-    title: v.title(title),
+    title: types.title(title),
     theme: this.theme,
     isStarred: this.isStarred,
     dateLastView: null,
     dateCreation: Date.now(),
     dateLastActivity: null,
-  });
+  })
 
-  await copy.attach(user);
+  await copy.attach(user)
 
-  return copy;
+  return copy
 }
 
 
-export default copySelf;
+export {copySelf}
+export default copySelf

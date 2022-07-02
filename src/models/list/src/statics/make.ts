@@ -1,39 +1,28 @@
-import List from "src/models/list";
-import {Oid} from "#util/oid";
-import Argument from "./argument.js";
-import {DATE_CREATED_ASCENDING} from "src/models/list/fields/constants"; 
-import List from "src/models/list";
-import {Oid} from "#util/oid";
-import Board from "src/models/board";
+import {Oid} from "oid"
+import {List} from "../Model.js"
+import {Board} from "board"
+import {DATE_CREATED_ASCENDING} from "../constants.js" 
 
 
-
-interface ListStaticsMakeArgument {
-  id?: Oid | undefined;
-  title: List["title"];
-  board: Board;
-  sortMethod?: List["sortMethod"] | undefined;
+type Argument = {
+  id?: Oid | undefined
+  title: List["title"]
+  board: Board
+  sortMethod?: List["sortMethod"] | undefined
 }
 
-
-export default ListStaticsMakeArgument;
-
-async function make({
-  id = new Oid(),
-  title,
-  board, 
-  sortMethod = DATE_CREATED_ASCENDING,
-}: Argument) {
+async function make(arg: Argument) {
   const list = new List({
-    _id: id,
-    title: title, 
-    sortMethod: sortMethod,
-  });
+    _id: arg.id ?? new Oid(),
+    title: arg.title, 
+    sortMethod: arg.sortMethod ?? DATE_CREATED_ASCENDING,
+  })
 
-  await list.attach(board);
+  await list.attach(arg.board)
 
-  return list;
+  return list
 }
 
 
-export default make;
+export {make}
+export default make

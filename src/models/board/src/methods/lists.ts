@@ -1,10 +1,12 @@
-import lt from "src/models/list/crud";
-import Board from "src/models/board";
+import lt from "list/crud.js"
+import List from "list"
+import Board from "../Model.js"
 
 
-function lists(this: Board) {
-  return lt.fm(this.idLists);
+function lists(this: Board): Promise<List[]> {
+  return lt.fm(this.idLists)
 }
 
 
-export default lists;
+export {lists}
+export default lists

@@ -1,10 +1,12 @@
-import ll from "src/models/label/crud";
-import Board from "src/models/board";
+import ll from "label/crud.js"
+import Label from "label"
+import Board from "../Model.js"
 
 
-function labels(this: Board) {
-  return ll.fm(this.idLabels);
+function labels(this: Board): Promise<Label[]> {
+  return ll.fm(this.idLabels)
 }
 
 
-export default labels;
+export {labels}
+export default labels

@@ -1,7 +1,7 @@
 import Label from "label"
 import Projector from "../Projector.js"
 import Projection from "../Projection.js"
-import {LabelDocumentJSON} from "src/models/label/document"
+import {LabelDocumentJSON} from "../DocumentJSON.js"
 import {DEFAULT_LABEL_PROJECTOR} from "../DefaultProjector.js"
 
 

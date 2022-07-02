@@ -1,27 +1,23 @@
-import List from "src/models/list";
-import Board from "src/models/board";
-import Argument from "./argument.js";
-
-import Board from "src/models/board";
+import List from "list"
+import Board from "../Model.js"
+import Argument from "./argument.js"
 
 
-interface BoardMethosCopyOwnListsArgument {
-  board: Board; 
-  keepCards?: boolean;
+type Argument = {
+  board: Board 
+  keepCards?: boolean
 }
 
-
-export default BoardMethosCopyOwnListsArgument;
-
-async function copyOwnLists(this: Board, {board, keepCards = true}: Argument) {
-  const lists: List[] = [];
+async function copyOwnLists(this: Board, {board, keepCards = true}: Argument): Promise<List[]> {
+  const lists: List[] = []
 
   for (let list of await this.lists()) {
-    lists.push(await list.copy({board, keepCards}));
+    lists.push(await list.copy({board, keepCards}))
   }
 
-  return lists;
+  return lists
 }
 
 
-export default copyOwnLists;
+export {copyOwnLists}
+export default copyOwnLists

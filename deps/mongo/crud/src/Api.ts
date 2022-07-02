@@ -8,7 +8,47 @@ import {idWithQuery} from "./idWithQuery.js"
 import {idsWithQuery} from "./idsWithQuery.js"
 
 
-export function CRUD<Methods extends object, DocumentType extends object>(Model: Model<DocumentType, {}, Methods>) {
+export function CRUD<Methods extends object, DocumentType extends object>(Model: Model<DocumentType, {}, Methods>): Readonly<{
+  f: {
+      (id: Oid): Promise<(Document<any, any, any> & DocumentType & Methods) | null>;
+      (query: Querify<DocumentType>): Promise<(Document<any, any, any> & DocumentType & Methods) | null>;
+      (id: Oid, query: Querify<DocumentType>): Promise<(Document<any, any, any> & DocumentType & Methods) | null>;
+  };
+  h: {
+      (id: Oid): Promise<boolean>;
+      (query: Querify<DocumentType>): Promise<boolean>;
+      (id: Oid, query: Querify<DocumentType>): Promise<boolean>;
+  };
+  d: {
+      (id: Oid): Promise<void>;
+      (query: Querify<DocumentType>): Promise<void>;
+      (id: Oid, query: Querify<DocumentType>): Promise<void>;
+  };
+  u: {
+      (id: Oid, update: Updatify<DocumentType>): Promise<void>;
+      (query: Querify<DocumentType>, update: Updatify<DocumentType>): Promise<void>;
+      (id: Oid, query: Querify<DocumentType>, update: Updatify<DocumentType>): Promise<void>;
+  };
+  fm: {
+      (p0: Oid[]): Promise<(Document<any, any, any> & DocumentType & Methods)[]>;
+      (p0: Querify<DocumentType>): Promise<(Document<any, any, any> & DocumentType & Methods)[]>;
+      (p0: Oid[], p1: Querify<DocumentType>): Promise<(Document<any, any, any> & DocumentType & Methods)[]>;
+  };
+  dm: {
+      (ids: Oid[]): Promise<void>;
+      (query: Querify<DocumentType>): Promise<void>;
+      (ids: Oid[], query: Querify<DocumentType>): Promise<void>;
+  };
+  he: {
+      (ids: Oid[]): Promise<boolean>;
+      (ids: Oid[], query: Querify<DocumentType>): Promise<boolean>;
+  };
+  um: {
+      (ids: Oid[], update: Updatify<DocumentType>): Promise<void>;
+      (query: Querify<DocumentType>, update: Updatify<DocumentType>): Promise<void>;
+      (ids: Oid[], query: Querify<DocumentType>, update: Updatify<DocumentType>): Promise<void>;
+  };
+}> {
   type Doc = Document & DocumentType & Methods
   type Query = Querify<DocumentType>
   type Update = Updatify<DocumentType>

@@ -1,11 +1,30 @@
-import crud from "src/models/util/crud";
-import Label from "src/models/label/model";
-import LabelMethods from "src/models/label/methods/type";
-import LabelVirtuals from "src/models/label/virtuals/type";
-import {LabelDocumentType} from "src/models/label/document";
+import CRUD from "crud"
+import {Label} from "./Model.js"
+import {LabelMethods} from "./Methods.js"
+import {LabelDocumentType} from "./DocumentType.js"
 
 
-const ll = crud<LabelMethods, LabelVirtuals, LabelDocumentType>("label", Label);
+export const {
+  f,
+  u,
+  h,
+  d,
+  fm,
+  um,
+  dm,
+  he,
+} = (
+  CRUD<LabelMethods, LabelDocumentType>(Label)
+)
 
 
-export default ll;
+export default Object.freeze({
+  f,
+  u,
+  h,
+  d,
+  fm,
+  um,
+  dm,
+  he,
+})

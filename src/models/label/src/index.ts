@@ -1,1 +1,2 @@
-export {default} from "./Model.js";
+export {Label} from "./Model.js"
+export {default} from "./Model.js"

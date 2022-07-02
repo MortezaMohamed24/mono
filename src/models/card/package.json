@@ -1,8 +1,9 @@
 {
   "name": "card",
+  "main": "./dist/index.js",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +13,7 @@
     "board": "file:../board",
     "checkitem": "file:../checkitem",
     "checklist": "file:../checklist",
+    "crud": "file:../../../deps/mongo/crud",
     "errors": "file:../../../deps/errors",
     "format": "file:../../../deps/format",
     "label": "file:../label",

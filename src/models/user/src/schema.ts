@@ -1,15 +1,14 @@
-import {Oid} from "#util/oid";
-import Model from "./model/type.js";
-import Methods from "../methods/type.js";
-import statics from "./statics/index.js";
-import methods from "../methods/index.js";
-import setters from "../accessors/setters.js";
-import getters from "./virtuals/getters.js";
-import mongoose from "mongoose";
-import DocumentType from "../document/documentType.js";
+import {Oid} from "oid"
+import statics from "./statics/index.js"
+import methods from "./methods/index.js"
+import setters from "./setters.js"
+import {Schema} from "mongoose"
+import {UserModel} from "./Model.js"
+import {UserMethods} from "./Methods.js"
+import {UserDocumentType} from "./DocumentType.js"
 
 
-const schema = new mongoose.Schema<DocumentType, Model, Methods>({
+const schema = new Schema<UserDocumentType, UserModel, {}, UserMethods>({
   _id: {
     type: "ObjectID", 
     default: () => new Oid(),
@@ -58,20 +57,16 @@ const schema = new mongoose.Schema<DocumentType, Model, Methods>({
     type: "String", 
     required: true, 
   },
-}, {id: true});
+}, {id: true})
 
 Object.entries(statics).forEach(([key, value]) => {
-  schema.static(key, value);
-});
+  schema.static(key, value)
+})
 
 Object.entries(methods).forEach(([key, value]) => {
-  schema.method(key, value);
-});
-
-Object.entries(getters).forEach(([key, value]) => {
-  schema.virtual(key).get(value);
-});
+  schema.method(key, value)
+})
 
 
-export {schema};
-export default schema;
+export {schema}
+export default schema

@@ -1,11 +1,30 @@
-import crud from "src/models/util/crud";
-import List from "./model/index.js";
-import ListMethods from "./methods/type.js";
-import ListVirtuals from "./virtuals/type.js";
-import {ListDocumentType} from "./document/index.js";
+import {CRUD} from "crud"
+import {List} from "./Model.js"
+import {ListMethods} from "./Methods.js"
+import {ListDocumentType} from "./DocumentType.js"
 
 
-const lt = crud<ListMethods, ListVirtuals, ListDocumentType>("list", List);
+export const {
+  f,
+  u,
+  h,
+  d,
+  fm,
+  um,
+  dm,
+  he,
+} = (
+  CRUD<ListMethods, ListDocumentType>(List)
+)
 
 
-export default lt;
+export default Object.freeze({
+  f,
+  u,
+  h,
+  d,
+  fm,
+  um,
+  dm,
+  he,
+})

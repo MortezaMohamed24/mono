@@ -1,9 +1,9 @@
-import BoardProjectorType from "./Projector.js"
-import {listProjectorDefault} from "src/models/list/methods/project"
-import {labelProjectorDefault} from "src/models/label/methods/project"
+import BoardProjector from "./Projector.js"
+import {DEFAULT_LIST_PROJECTOR} from "list/DefaultProjector.js"
+import {DEFAULT_LABEL_PROJECTOR} from "label/DefaultProjector.js"
 
 
-const boardProjectorDefault = Object.freeze<BoardProjectorType>({
+const DEFAULT_BOARD_PROJECTOR = Object.freeze<BoardProjector>({
   keys: [
     "id", 
     "url", 
@@ -17,9 +17,10 @@ const boardProjectorDefault = Object.freeze<BoardProjectorType>({
     "dateLastView", 
     "dateLastActivity", 
   ],
-  lists: listProjectorDefault,  
-  labels: labelProjectorDefault,
+  lists: DEFAULT_LIST_PROJECTOR,  
+  labels: DEFAULT_LABEL_PROJECTOR,
 })
 
 
-export default boardProjectorDefault
+export {DEFAULT_BOARD_PROJECTOR}
+export default DEFAULT_BOARD_PROJECTOR

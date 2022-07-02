@@ -1,8 +1,3 @@
-import make from "./make/index.js";
-
-
-type make = typeof make;
-
-
-export {make};
-export default Object.freeze({make});
+import make from "./make.js"
+export type make = typeof make
+export default Object.freeze({make})

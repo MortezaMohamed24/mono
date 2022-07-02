@@ -1,1 +1,2 @@
-export {default} from "./Model.js";
+export {Board} from "./Model.js"
+export {default} from "./Model.js"

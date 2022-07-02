@@ -5,4 +5,4 @@ export type LabelDocumentKey =
   | "idUser"
   | "idBoard"
 
-export default LabelDocumentKey;
+export default LabelDocumentKey

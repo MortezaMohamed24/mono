@@ -1,10 +1,12 @@
-import cd from "src/models/card/crud";
-import Board from "src/models/board";
+import cd from "card/crud.js"
+import Card from "card"
+import Board from "../Model.js"
 
 
-function cards(this: Board) {
-  return cd.fm({idBoard: this.id});
+function cards(this: Board): Promise<Card[]> {
+  return cd.fm({idBoard: this.id})
 }
 
 
-export default cards;
+export {cards}
+export default cards

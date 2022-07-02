@@ -1,16 +1,21 @@
-import ur from "src/models/user/crud";
-import Board from "src/models/board";
+import ur from "user/crud.js"
+import User from "user"
+import Board from "../Model.js"
+import {ServerError} from "errors"
 
 
-async function user(this: Board) {
-  const user = await ur.f(this.idUser);
+async function user(this: Board): Promise<User> {
+  const user = await ur.f(this.idUser)
 
   if (user) {
-    return user;
+    return user
   }
 
-  throw new Error("board: could not find owner user");
+  throw new ServerError({
+    status: 500,
+    message: "board: could not find owner user",
+  })
 }
 
 
-export default user;
+export default user

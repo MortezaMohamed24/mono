@@ -1,18 +1,18 @@
-import {Oid} from "#util/oid";
-import {DATE_CREATED_ASCENDING} from "src/models/list/fields/constants";
-import {DATE_CREATED_DESCENDING} from "src/models/list/fields/constants";
-import {ALPHABETICALLY_ASCENDING} from "src/models/list/fields/constants";
-import {ALPHABETICALLY_DESCENDING} from "src/models/list/fields/constants";
-import {CardDocumentJSONWithDescendants} from "src/models/card/document";
+import {Oid} from "oid"
+import {DATE_CREATED_ASCENDING} from "./constants.js"
+import {DATE_CREATED_DESCENDING} from "./constants.js"
+import {ALPHABETICALLY_ASCENDING} from "./constants.js"
+import {ALPHABETICALLY_DESCENDING} from "./constants.js"
+import {CardDocumentJSONWithDescendants} from "card/dist/DocumentJSONWithDescendants.js"
 
 
-export interface ListDocumentType {
-  id: Oid;
-  title: string;
-  idUser: Oid;
-  idBoard: Oid;
-  cards: CardDocumentJSONWithDescendants[];
-  isWatched: boolean;
+export interface ListDocumentJSONWithDescendants {
+  id: Oid
+  title: string
+  idUser: Oid
+  idBoard: Oid
+  cards: CardDocumentJSONWithDescendants[]
+  isWatched: boolean
   sortMethod: 
     | typeof DATE_CREATED_ASCENDING 
     | typeof DATE_CREATED_DESCENDING 
@@ -21,4 +21,4 @@ export interface ListDocumentType {
 }
 
 
-export default ListDocumentType;
+export default ListDocumentJSONWithDescendants

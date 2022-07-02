@@ -1,4 +1,4 @@
-export type ListDocumentKeys = 
+export type ListDocumentKey = (
   | "id"
   | "title"
   | "idUser"
@@ -6,6 +6,7 @@ export type ListDocumentKeys =
   | "idCards"
   | "isWatched"
   | "sortMethod"
+)
 
 
-export default ListDocumentKeys;
+export default ListDocumentKey

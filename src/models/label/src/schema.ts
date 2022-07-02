@@ -1,15 +1,14 @@
-import {Oid} from "#util/oid"
-import Model from "./model/type.js"
-import Methods from "./methods/type.js"
+import {Oid} from "oid"
 import statics from "./statics/index.js"
 import methods from "./methods/index.js"
-import getters from "./virtuals/getters.js"
-import setters from "./accessors/setters.js"
-import mongoose from "mongoose"
-import DocumentType from "./document/documentType.js"
+import setters from "./setters.js"
+import {Schema} from "mongoose"
+import {LabelModel} from "./Model.js"
+import {LabelMethods} from "./Methods"
+import {LabelDocumentType} from "./DocumentType.js"
 
 
-const schema = new mongoose.Schema<DocumentType, Model, Methods>({
+const schema = new Schema<LabelDocumentType, LabelModel, LabelMethods>({
   _id: {type: "ObjectID", default: () => new Oid()},
   name: {type: "String", default: null, set: setters.name},
   color: {type: "String", required: true, set: setters.color},
@@ -23,10 +22,6 @@ Object.entries(statics).forEach(([key, value]) => {
 
 Object.entries(methods).forEach(([key, value]) => {
   schema.method(key, value)
-})
-
-Object.entries(getters).forEach(([key, value]) => {
-  schema.virtual(key).get(value)
 })
 
 

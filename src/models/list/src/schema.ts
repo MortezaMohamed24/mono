@@ -1,16 +1,15 @@
 import {Oid} from "oid"
-import Model from "./model/type.js"
-import setters from "./accessors/setters.js"
-import getters from "./virtuals/getters.js"
-import Methods from "./methods/type.js"
+import setters from "./setters.js"
 import methods from "./methods/index.js"
 import statics from "./statics/index.js"
-import mongoose from "mongoose"
-import DocumentType from "./document/documentType.js"
-import {DATE_CREATED_ASCENDING} from "./fields/constants.js"
+import {Schema} from "mongoose"
+import {ListModel} from "./Model.js"
+import {ListMethods} from "./Methods.js"
+import {ListDocumentType} from "./DocumentType.js"
+import {DATE_CREATED_ASCENDING} from "./constants.js"
 
 
-const schema = new mongoose.Schema<DocumentType, Model, Methods>({
+const schema = new Schema<ListDocumentType, ListModel, {}, ListMethods>({
   _id: {type: "ObjectID", default: () => new Oid()},
   title: {type: "String", required: true, set: setters.title},
   idUser: {type: "ObjectID", required: true},
@@ -28,9 +27,6 @@ Object.entries(methods).forEach(([key, value]) => {
   schema.method(key, value)
 })
 
-Object.entries(getters).forEach(([key, value]) => {
-  schema.virtual(key).get(value)
-})
 
-
+export {schema}
 export default schema

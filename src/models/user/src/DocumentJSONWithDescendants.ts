@@ -1,5 +1,5 @@
 import {UserDocumentType} from "./DocumentType.js"
-import {BoardDocumentJSONWithDescendants} from "board/DocumentJSONWithDescendants.js"
+import {BoardDocumentJSONWithDescendants} from "board/dist/DocumentJSONWithDescendants.js"
 
 
 export interface UserDocumentJSONWithDescendants {

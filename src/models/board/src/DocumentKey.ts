@@ -1,4 +1,4 @@
-type BoardDocumentKey =
+type BoardDocumentKey = (
   | "id"
   | "url"
   | "title"
@@ -10,5 +10,7 @@ type BoardDocumentKey =
   | "dateCreation"
   | "dateLastView"
   | "dateLastActivity"
+)
 
-export default BoardDocumentKey;
+
+export default BoardDocumentKey

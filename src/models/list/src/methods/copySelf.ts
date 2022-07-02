@@ -1,37 +1,28 @@
-import v from "src/models/list/fields/validators";
-import List from "src/models/list";
-import Argument from "./copySelf/argument.js";
-import Board from "src/models/board";
+import List from "../Model.js"
+import types from "../fields/types.js"
+import Board from "board"
 
 
-interface ListMethodsCopySelfArgument {
-  title?: string | undefined;
-  index?: number | undefined;
-  board: Board;
+type Argument {
+  title?: string | undefined
+  index?: number | undefined
+  board: Board
 }
 
-
-export default ListMethodsCopySelfArgument;
-
-async function copySelf(this: List, {
-  board, 
-  title = this.title,
-  index = Infinity,
-}: Argument) {
+async function copySelf(this: List, {board, title = this.title, index = Infinity}: Argument): Promise<List> {
   const copy = new List({
-    title: v.title(title),
+    title: types.title(title),
     idUser: this.idUser,
     idBoard: this.idBoard,
     isWatched: this.isWatched,
     sortMethod: this.sortMethod,
-  });
+  })
   
-  await copy.attach(board, index);
+  await copy.attach(board, index)
 
-  copy.id
-
-  return copy;
+  return copy
 }
 
 
-export default copySelf;
+export {copySelf}
+export default copySelf

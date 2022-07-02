@@ -1,17 +1,20 @@
-import v from "src/models/user/fields/validators";
-import ur from "src/models/user/crud";
-import User from "src/models/user";
-import Error from "#util/error";
-import {UNAVAILABLE_USERNAME} from "src/models/user/errors";
+import ur from "../crud.js"
+import User from "../Model.js"
+import types from "../fields/types.js"
+import {ServerError} from "errors"
+import {UNAVAILABLE_USERNAME} from "../errors.js"
 
 
-async function setUsername(this: User, username: string) {
+export async function setUsername(this: User, username: string): Promise<void> {
   if (await ur.h({username})) {
-    throw new Error(400, UNAVAILABLE_USERNAME);
-  } else {
-    this.username = v.username(username);
+    throw new ServerError({
+      status: 400, 
+      message: UNAVAILABLE_USERNAME,
+    })
   }
+
+  this.username = types.username(username, {strict: true})
 }
 
 
-export default setUsername;
+export default setUsername

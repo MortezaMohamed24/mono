@@ -1,15 +1,15 @@
-import {ListDocumentKey} from "src/models/list/document";
-import {CardProjectorType} from "src/models/card/methods/project";
-import {ChecklistProjectorType} from "src/models/checklist/methods/project";
-import {CheckitemProjectorType} from "src/models/checkitem/methods/project";
+import {CardProjector} from "card/dist/Projector.js"
+import {ListDocumentKey} from "./DocumentKey.js"
+import {ChecklistProjector} from "checklist/dist/Projector.js"
+import {CheckitemProjector} from "checkitem/dist/Projector.js"
 
 
-export interface ListProjectorType {
-  keys: ListDocumentKey[];
-  cards?: CardProjectorType;
-  checklists?: ChecklistProjectorType;
-  checkitems?: CheckitemProjectorType;
+export interface ListProjector {
+  keys: ListDocumentKey[]
+  cards?: CardProjector
+  checklists?: ChecklistProjector
+  checkitems?: CheckitemProjector
 }
 
 
-export default ListProjectorType;
+export default ListProjector

@@ -7,7 +7,7 @@ export function name(this: Label, name: Label["name"]): Label["name"] {
 }
 
 export function color(this: Label, color: Label["color"]): Label["color"] {
-  return types.color(color, {strict: true})
+  return types.color(color, {strict: true}) as Label["color"]
 }
 
 

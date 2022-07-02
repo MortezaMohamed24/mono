@@ -1,15 +1,16 @@
-import List from "src/models/list";
-import save from "src/models/util/save";
-import idUtil from "src/models/util/idUtil";
+import oid from "oid"
+import List from "../Model.js"
+import save from "save"
 
 
-async function deattach(this: List) {
-  const board = await this.board();
+async function deattach(this: List): Promise<void> {
+  const board = await this.board()
 
-  idUtil.rem(board.idLists, this.id);
+  oid.rem(board.idLists, this.id)
 
-  await save(board);
+  await save(board)
 }
 
 
-export default deattach;
+export {deattach}
+export default deattach

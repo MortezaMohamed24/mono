@@ -1,23 +1,22 @@
-import {KEY} from "src/models/board/fields/constants";
-import {ARRAY} from "#util/checker";
-import {OBJECT} from "#util/checker";
-import {STRING} from "#util/checker";
-import BoardProjectorType from "./Projector.js";
-import {listProjectorCheckable} from "src/models/list/methods/project";
-import {cardProjectorCheckable} from "src/models/card/methods/project";
-import {labelProjectorCheckable} from "src/models/label/methods/project";
-import {checklistProjectorCheckable} from "src/models/checklist/methods/project";
-import {checkitemProjectorCheckable} from "src/models/checkitem/methods/project";
+import {KEY} from "./constants.js"
+import {ARRAY} from "format"
+import {OBJECT} from "format"
+import {STRING} from "format"
+import {LIST_PROJECTOR} from "list/Projector.js"
+import {CARD_PROJECTOR} from "card/Projector.js"
+import {LABEL_PROJECTOR} from "label/Projector.js"
+import {CHECKLIST_PROJECTOR} from "checklist/Projector.js"
+import {CHECKITEM_PROJECTOR} from "checkitem/Projector.js"
 
 
-const boardProjectorCheckable = OBJECT<BoardProjectorType>({
+export const BOARD_PROJECTOR = OBJECT({
   keys: ARRAY([STRING({trim: "both", pattern: KEY})]),
-  lists: listProjectorCheckable.opt(undefined),
-  cards: cardProjectorCheckable.opt(undefined),
-  labels: labelProjectorCheckable.opt(undefined),
-  checklists: checklistProjectorCheckable.opt(undefined),
-  checkitems: checkitemProjectorCheckable.opt(undefined),
-});
+  lists: LIST_PROJECTOR.copy({optional: true}),
+  cards: CARD_PROJECTOR.copy({optional: true}),
+  labels: LABEL_PROJECTOR.copy({optional: true}),
+  checklists: CHECKLIST_PROJECTOR.copy({optional: true}),
+  checkitems: CHECKITEM_PROJECTOR.copy({optional: true}),
+})
 
 
-export default boardProjectorCheckable;
+export default BOARD_PROJECTOR

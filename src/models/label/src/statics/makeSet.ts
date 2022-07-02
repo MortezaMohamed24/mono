@@ -1,9 +1,9 @@
-import Board from "src/models/board"
-import Label from "src/models/label"
-import {COLORS} from "src/models/label/fields/constants"
+import Board from "board"
+import Label from "label"
+import {COLORS} from "../constants.js"
 
 
-async function makeSet(board: Board) {
+async function makeSet(board: Board): Promise<Label[]> {
   const labels: Label[] = []
 
   for (let color of COLORS) {
@@ -18,4 +18,5 @@ async function makeSet(board: Board) {
 }
 
 
+export {makeSet}
 export default makeSet

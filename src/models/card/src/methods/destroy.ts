@@ -1,4 +1,4 @@
-import cm from "checkitem/crud.js"
+import cm from "checkitem/constants.js"
 import ct from "checklist/crud.js"
 import Card from "../Model.js"
 

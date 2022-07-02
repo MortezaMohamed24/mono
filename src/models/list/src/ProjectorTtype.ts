@@ -1,19 +1,22 @@
-import {KEY} from "src/models/list/fields/constants";
-import {ARRAY} from "#util/checker";
-import {OBJECT} from "#util/checker";
-import {STRING} from "#util/checker";
-import ListProjectorType from "./projectorType.js";
-import {cardProjectorCheckable} from "src/models/card/methods/project";
-import {checklistProjectorCheckable} from "src/models/checklist/methods/project";
-import {checkitemProjectorCheckable} from "src/models/checkitem/methods/project";
+import {KEY} from "./constants.js"
+import {ARRAY} from "format"
+import {OBJECT} from "format"
+import {STRING} from "format"
+import {CARD_PROJECTOR} from "card/dist/ProjectorType.js"
+import {INVALID_PROJECTOR} from "./errors.js"
+import {CHECKLIST_PROJECTOR} from "checklist/dist/ProjectorType.js"
+import {CHECKITEM_PROJECTOR} from "checkitem/dist/ProjectorType.js"
 
 
-const listProjectorCheckable = OBJECT<ListProjectorType>({
+export const LIST_PROJECTOR = OBJECT({
   keys: ARRAY([STRING({trim: "both", pattern: KEY})]),
-  cards: cardProjectorCheckable.opt(undefined),
-  checklists: checklistProjectorCheckable.opt(undefined),
-  checkitems: checkitemProjectorCheckable.opt(undefined),
-});
+  cards: CARD_PROJECTOR.copy({optional: true}),
+  checklists: CHECKLIST_PROJECTOR.copy({optional: true}),
+  checkitems: CHECKITEM_PROJECTOR.copy({optional: true}),
+}, {
+  name: "LIST_PROJECTOR",
+  error: INVALID_PROJECTOR,
+})
 
 
-export default listProjectorCheckable;
+export default LIST_PROJECTOR

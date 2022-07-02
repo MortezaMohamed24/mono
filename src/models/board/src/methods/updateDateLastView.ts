@@ -1,9 +1,9 @@
-import Board from "src/models/board";
+import Board from "../Model.js"
 
 
-function updateDateLastView(this: Board) {
-  this.dateLastView = Date.now();
+export function updateDateLastView(this: Board): void {
+  this.dateLastView = Date.now()
 }
 
 
-export default updateDateLastView;
+export default updateDateLastView

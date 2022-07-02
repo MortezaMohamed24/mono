@@ -1,41 +1,38 @@
-import v from "src/models/board/fields/validators";
-import {Oid} from "#util/oid";
-import Board from "src/models/board";
-import Label from "src/models/label";
-import Argument from "./argument.js";
-
-import User from "src/models/user/model";
-import {Oid} from "#util/oid";
-import Board from "src/models/board";
+import {Document} from "mongoose"
+import {Oid} from "oid"
+import types from "../fields/types.js"
+import {User} from "user"
+import {Board} from "../Model.js"
+import {Label} from "label"
 
 
-interface BoardStaticsMakeArgument {
-  id?: Oid | undefined;
-  user: User;
-  title: Board["title"]; 
-  theme: Board["theme"]; 
-  isStarred?: Board["isStarred"];
+interface Argument {
+  id?: Oid | undefined
+  user: User
+  title: Board["title"] 
+  theme: Board["theme"] 
+  isStarred?: Board["isStarred"]
 }
 
-
-// export default BoardStaticsMakeArgument;
-
-async function make({id = new Oid(), user, title, theme, isStarred = false}: Argument) {
+async function make({id = new Oid(), user, title, theme, isStarred = false}: Argument): Promise<Board> {
   const board = new Board({
     id: id,
-    title: v.title(title),
-    theme: v.theme(theme),
+    title: types.title(title),
+    theme: types.theme(theme),
     isStarred: isStarred,
     dateLastView: null,
     dateCreation: Date.now(),
     dateLastActivity: null,
-  });
+  })
 
-  await board.attach(user);
-  await Label.makeSet(board);
+  await board.attach(user)
+  await Label.makeSet(board)
 
-  return board;
+  return board
 }
 
 
-export default make;
+export {make}
+export default make
+
+Board.findOne({title: "", theme: 67576575})

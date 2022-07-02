@@ -2,13 +2,13 @@ import {KEY} from "./constants.js"
 import {ARRAY} from "format"
 import {OBJECT} from "format"
 import {STRING} from "format"
-import {CHECKITEM} from "checkitem/dist/ProjectorType.js"
+import {CHECKITEM_PROJECTOR} from "checkitem/dist/ProjectorType.js"
 
 
-const CHECKLIST = OBJECT({
+const CHECKLIST_PROJECTOR = OBJECT({
   keys: ARRAY([STRING({trim: "both", pattern: KEY})]),
-  checkitems: checkitemProjectorCheckable,
+  checkitems: CHECKITEM_PROJECTOR.copy({optional: true}),
 })
 
 
-export default CHECKLIST
+export default CHECKLIST_PROJECTOR

@@ -1,19 +1,19 @@
-import Key from "src/models/board/document/documentKey";
-import {ListProjectorType} from "src/models/list/methods/project";
-import {CardProjectorType} from "src/models/card/methods/project";
-import {LabelProjectorType} from "src/models/label/methods/project";
-import {ChecklistProjectorType} from "src/models/checklist/methods/project";
-import {CheckitemProjectorType} from "src/models/checkitem/methods/project";
+import Key from "./DocumentKey.js"
+import {ListProjector} from "list/Projector.js"
+import {CardProjector} from "card/Projector.js"
+import {LabelProjector} from "label/Projector.js"
+import {ChecklistProjector} from "checklist/Projector.js"
+import {CheckitemProjector} from "checkitem/Projector.js"
 
 
-export interface BoardProjectorType {
-  keys: Key[],
-  lists?: ListProjectorType;
-  cards?: CardProjectorType;
-  labels?: LabelProjectorType;
-  checklists?: ChecklistProjectorType;
-  checkitems?: CheckitemProjectorType;
+export interface BoardProjector {
+  keys: Key[]
+  lists?: ListProjector
+  cards?: CardProjector
+  labels?: LabelProjector
+  checklists?: ChecklistProjector
+  checkitems?: CheckitemProjector
 }
 
 
-export default BoardProjectorType;
+export default BoardProjector

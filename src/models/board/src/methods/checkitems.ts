@@ -1,10 +1,12 @@
-import cm from "src/models/checkitem/crud";
-import Board from "src/models/board";
+import cm from "checkitem/crud.js"
+import Board from "../Model.js"
+import Checkitem from "checkitem"
 
 
-function checkitems(this: Board) {
-  return cm.fm({idBoard: this.id});
+function checkitems(this: Board): Promise<Checkitem[]> {
+  return cm.fm({idBoard: this.id})
 }
 
 
-export default checkitems;
+export {checkitems}
+export default checkitems

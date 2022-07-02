@@ -1,4 +1,4 @@
-import bd from "board/dist/crud.js"
+import bd from "board/crud.js"
 import {Card} from "../Model.js"
 import {Board} from "board"
 import {ServerError} from "errors"

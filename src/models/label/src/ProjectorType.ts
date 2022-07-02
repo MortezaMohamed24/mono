@@ -2,6 +2,7 @@ import {KEY} from "./constants.js"
 import {ARRAY} from "format"
 import {OBJECT} from "format"
 import {STRING} from "format"
+import {INVALID_PROJECTOR} from "./errors.js"
 
 
 const PROJECTOR = OBJECT({
@@ -10,7 +11,7 @@ const PROJECTOR = OBJECT({
   ]),
 }, {
   name: "LABEL_PROJECTOR",
-  // violation: INVALID_PROJECTOR,
+  error: INVALID_PROJECTOR,
 })
 
 

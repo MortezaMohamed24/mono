@@ -1,17 +1,19 @@
-import List from "src/models/list";
+import List from "../Model.js"
+import Card from "card"
 
 
-async function moveAllOwnCards(this: List, list: List) {
-  const cards = await this.cards();
+async function moveAllOwnCards(this: List, list: List): Promise<Card[]> {
+  const cards = await this.cards()
 
   
   for (let card of cards) {
-    await card.move(list);
+    await card.move(list)
   }
 
 
-  return cards;
+  return cards
 }
 
 
-export default moveAllOwnCards;
+export {moveAllOwnCards}
+export default moveAllOwnCards

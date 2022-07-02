@@ -1,9 +1,9 @@
-import User from "src/models/user";
+import User from "../Model.js"
 
 
-function getUsername(this: User) {
-  return this.username;
+export function getUsername(this: User) {
+  return this.username
 }
 
 
-export default getUsername;
+export default getUsername
