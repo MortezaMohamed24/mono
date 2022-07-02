@@ -1,25 +1,28 @@
-import {KEY} from "src/models/user/fields/constants";
-import {ARRAY} from "#util/checker";
-import {OBJECT} from "#util/checker";
-import {STRING} from "#util/checker";
-import {UserProjectorType} from "./ProjectorType.js";
-import {listProjectorCheckable} from "src/models/list/methods/project";
-import {cardProjectorCheckable} from "src/models/card/methods/project";
-import {boardProjectorCheckable} from "src/models/board/methods/project";
-import {labelProjectorCheckable} from "src/models/label/methods/project";
-import {checklistProjectorCheckable} from "src/models/checklist/methods/project";
-import {checkitemProjectorCheckable} from "src/models/checkitem/methods/project";
+import {KEY} from "./constants.js"
+import {ARRAY} from "format"
+import {OBJECT} from "format"
+import {STRING} from "format"
+import {LIST_PROJECTOR} from "list/dist/ProjectorType.js"
+import {CARD_PROJECTOR} from "card/dist/ProjectorType.js"
+import {BOARD_PROJECTOR} from "board/dist/ProjectorType.js"
+import {LABEL_PROJECTOR} from "label/dist/ProjectorType.js"
+import {INVALID_PROJECTOR} from "./errors.js"
+import {CHECKLIST_PROJECTOR} from "checklist/dist/ProjectorType.js"
+import {CHECKITEM_PROJECTOR} from "checkitem/dist/ProjectorType.js"
 
 
-const userProjectorCheckable = OBJECT<UserProjectorType>({
+export const USER_PROJECTOR = OBJECT({
   keys: ARRAY([STRING({trim: "both", pattern: KEY})]),
-  lists: listProjectorCheckable.opt(undefined),
-  cards: cardProjectorCheckable.opt(undefined),
-  boards: boardProjectorCheckable.opt(undefined),
-  labels: labelProjectorCheckable.opt(undefined),
-  checklists: checklistProjectorCheckable.opt(undefined),
-  checkitems: checkitemProjectorCheckable.opt(undefined),
-});
+  lists: LIST_PROJECTOR.copy({optional: true}),
+  cards: CARD_PROJECTOR.copy({optional: true}),
+  boards: BOARD_PROJECTOR.copy({optional: true}),
+  labels: LABEL_PROJECTOR.copy({optional: true}),
+  checklists: CHECKLIST_PROJECTOR.copy({optional: true}),
+  checkitems: CHECKITEM_PROJECTOR.copy({optional: true}),
+}, {
+  name: "USER_PROJECTOR",
+  error: INVALID_PROJECTOR,
+})
 
 
-export default userProjectorCheckable;
+export default USER_PROJECTOR

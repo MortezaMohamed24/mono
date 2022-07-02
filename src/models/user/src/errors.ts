@@ -5,6 +5,7 @@ export type INVALID_PASSWORD = typeof INVALID_PASSWORD
 export type INVALID_INITIALS = typeof INVALID_INITIALS
 export type INVALID_LASTNAME = typeof INVALID_LASTNAME
 export type INVALID_FIRSTNAME = typeof INVALID_FIRSTNAME
+export type INVALID_PROJECTOR = typeof INVALID_PROJECTOR
 export type UNAVAILABLE_USERNAME = typeof UNAVAILABLE_USERNAME
 
 
@@ -15,6 +16,7 @@ export const INVALID_PASSWORD = "user: invalid password"
 export const INVALID_INITIALS = "user: invalid initials"
 export const INVALID_LASTNAME = "user: invalid last name"
 export const INVALID_FIRSTNAME = "user: invalid first name"
+export const INVALID_PROJECTOR = "user: invalid projector"
 export const UNAVAILABLE_USERNAME = "user: unavailable username"
 
 

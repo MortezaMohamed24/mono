@@ -1,10 +1,11 @@
-import ll from "src/models/label/crud";
-import User from "src/models/user";
+import ll from "label/dist/crud.js"
+import User from "../Model.js"
+import Label from "label"
 
 
-function labels(this: User) {
-  return ll.fm({idUser: this.id});
+export function labels(this: User): Promise<Label[]> {
+  return ll.fm({idUser: this.id})
 }
 
 
-export default labels;
+export default labels

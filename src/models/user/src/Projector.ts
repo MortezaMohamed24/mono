@@ -1,21 +1,21 @@
+import {ListProjector} from "list/dist/Projector.js"
+import {CardProjector} from "card/dist/Projector.js"
+import {BoardProjector} from "board/dist/Projector.js"
+import {LabelProjector} from "label/dist/Projector.js"
 import {UserDocumentKey} from "./DocumentKey.js"
-import {ListProjectorType} from "list/Projector.js"
-import {CardProjectorType} from "card/Projector.js"
-import {BoardProjectorType} from "board/Projector.js"
-import {LabelProjectorType} from "label/Projector.js"
-import {ChecklistProjectorType} from "checklist/Projector.js"
-import {CheckitemProjectorType} from "checkitem/Projector.js"
+import {ChecklistProjector} from "checklist/dist/Projector.js"
+import {CheckitemProjector} from "checkitem/dist/Projector.js"
 
 
-export interface UserProjectorType {
+export interface UserProjector {
   keys: UserDocumentKey[]
-  lists?: ListProjectorType
-  cards?: CardProjectorType
-  boards?: BoardProjectorType
-  labels?: LabelProjectorType
-  checklists?: ChecklistProjectorType
-  checkitems?: CheckitemProjectorType
+  lists?: ListProjector
+  cards?: CardProjector
+  boards?: BoardProjector
+  labels?: LabelProjector
+  checklists?: ChecklistProjector
+  checkitems?: CheckitemProjector
 }
 
 
-export default UserProjectorType
+export default UserProjector

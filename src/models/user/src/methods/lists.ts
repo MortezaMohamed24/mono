@@ -1,10 +1,11 @@
-import lt from "src/models/list/crud";
-import User from "src/models/user";
+import lt from "list/dist/crud.js"
+import User from "../Model.js"
+import List from "list"
 
 
-function lists(this: User) {
-  return lt.fm({idUser: this.id});
+export function lists(this: User): Promise<List[]> {
+  return lt.fm({idUser: this.id})
 }
 
 
-export default lists;
+export default lists

@@ -1,11 +1,28 @@
-import crud from "src/models/util/crud";
-import User from "src/models/user";
-import UserMethods from "src/models/user/methods/type";
-import UserVirtuals from "src/models/user/virtuals/type";
-import {UserDocumentType} from "src/models/user/document";
+import CRUD from "crud"
+import {User} from "./Model.js"
+import {UserMethods} from "./Methods.js"
+import {UserDocumentType} from "./DocumentType.js"
 
 
-const ur = crud<UserMethods, UserVirtuals, UserDocumentType>("user", User);
+export const {
+  f,
+  u,
+  h,
+  d,
+  fm,
+  um,
+  dm,
+  he,
+} = (CRUD<UserMethods, UserDocumentType>(User))
 
 
-export default ur;
+export default Object.freeze({
+  f,
+  u,
+  h,
+  d,
+  fm,
+  um,
+  dm,
+  he,
+})

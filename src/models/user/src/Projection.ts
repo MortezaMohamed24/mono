@@ -1,27 +1,27 @@
 import {User} from "./Model.js"
-import {ListProjectionType} from "list/Projector.js"
-import {CardProjectionType} from "card/Projector.js"
-import {BoardProjectionType} from "board/Projector.js"
-import {LabelProjectionType} from "label/Projector.js"
-import {ChecklistProjectionType} from "checklist/Projector.js"
-import {CheckitemProjectionType} from "checkitem/Projector.js"
+import {ListProjection} from "list/dist/Projector.js"
+import {CardProjection} from "card/dist/Projector.js"
+import {BoardProjection} from "board/dist/Projector.js"
+import {LabelProjection} from "label/dist/Projector.js"
+import {ChecklistProjection} from "checklist/dist/Projector.js"
+import {CheckitemProjection} from "checkitem/dist/Projector.js"
 
 
-export interface UserProjectionType {
+export interface UserProjection {
   id?: User["id"]
-  lists?: ListProjectionType[]
-  cards?: CardProjectionType[]
-  boards?: BoardProjectionType[]
-  labels?: LabelProjectionType[]
+  lists?: ListProjection[]
+  cards?: CardProjection[]
+  boards?: BoardProjection[]
+  labels?: LabelProjection[]
   avatar?: User["avatar"]
   idBoards?: User["idBoards"]
   username?: User["username"]
   lastname?: User["lastname"]
   initials?: User["initials"]
   firstname?: User["firstname"]
-  checklists?: ChecklistProjectionType[]
-  checkitems?: CheckitemProjectionType[]
+  checklists?: ChecklistProjection[]
+  checkitems?: CheckitemProjection[]
 }
 
 
-export default UserProjectionType
+export default UserProjection
