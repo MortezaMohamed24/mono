@@ -1,7 +1,7 @@
 import oid from "oid"
 import save from "save"
 import Checkitem from "../Model.js"
-import Checklist from "checklist/Model.js"
+import Checklist from "checklist"
 
 
 async function attach(this: Checkitem, checklist: Checklist, index: number = Infinity) {
@@ -17,4 +17,5 @@ async function attach(this: Checkitem, checklist: Checklist, index: number = Inf
 }
 
 
+export {attach}
 export default attach

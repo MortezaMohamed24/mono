@@ -1,8 +1,5 @@
-export {Express} from "./Express.js"
-// --------------------------------------------
 export {Stop} from "./Customize.js"
-export {Merge} from "./Customize.js"
-export {Expect} from "./Customize.js"
+export {Stop0} from "./Customize.js"
 export {Customize} from "./Customize.js"
 // --------------------------------------------
 export {Application} from "./Application.js"

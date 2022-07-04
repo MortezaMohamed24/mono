@@ -12,4 +12,5 @@ async function deattach(this: Checkitem): Promise<void> {
 }
 
 
+export {deattach}
 export default deattach

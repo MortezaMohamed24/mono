@@ -1,6 +1,6 @@
-import ur from "user/crud.js"
-import User from "user"
-import Checkitem from "../Model.js"
+import {ur} from "user"
+import {User} from "user"
+import {Checkitem} from "../Model.js"
 
 
 async function user(this: Checkitem): Promise<User> {
@@ -14,4 +14,5 @@ async function user(this: Checkitem): Promise<User> {
 }
 
 
+export {user}
 export default user

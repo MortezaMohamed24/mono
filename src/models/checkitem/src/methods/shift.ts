@@ -12,4 +12,5 @@ async function shift(this: Checkitem, index = Infinity): Promise<void> {
 }
 
 
+export {shift}
 export default shift

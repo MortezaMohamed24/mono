@@ -17,4 +17,5 @@ const copy = async function(this: Checklist, arg: Argument): Promise<Checklist> 
 }
 
 
+export {copy}
 export default copy

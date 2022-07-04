@@ -1,14 +1,12 @@
 import {Key} from "../Core.js"
 import {User} from "../Core.js"
 import {State} from "../Core.js"
-import {Expect} from "express"
 import {Proceed} from "express"
 import {Session} from "../Core.js"
 import {Failure} from "../Failure.js"
 import {Customize} from "express"
 import {Middleware as _Middleware} from "express/src/Middleware.js"
 import {Serializer} from "../Core.js"
-import {DEFAULT_K_REQUEST} from "src/constants.js"
 
 
 export type Config = {
@@ -17,10 +15,10 @@ export type Config = {
   kSession: Key
 }
 
-export type Options<TConfig extends Config> = {
-  kRequest?: undefined | TConfig["kRequest"]
-  kSession?: undefined | TConfig["kSession"]
-  serialize: Serializer<TConfig["user"]>
+export type Options<TUser extends User, TKRequest extends Key, TKSession extends Key> = {
+  kRequest: TKRequest
+  kSession: TKSession
+  serialize: Serializer<TUser>
   useSession?: undefined | boolean
 }
 
@@ -78,28 +76,24 @@ export type ManagerUnauthorized<TUser extends User> = {
   set authenticated(value: boolean)
 }
 
-export type Expectation<T extends Config> = (
-  Expect<
-    & (
-      T["kRequest"] extends Key
-        ? {[TKey in keyof T["kRequest"]]?: ManagerUnresolved<T["user"]>} 
-        : {[DEFAULT_K_REQUEST]: ManagerUnresolved<T["user"]>}
-    ) & ({
-      session: Session<T["kSession"]>,
-    })
-  >
-)
-
-export type Customization<T extends Config> = (
+export type Expectation<TUser extends User, TKRequest extends Key, TKSession extends Key> = (
   Customize<{
-    [TKey in keyof T["kRequest"]]: ManagerUnresolved<T["user"]>
+    [TKey in TKRequest]: ManagerUnresolved<TUser>
+  } & {
+    session: Session<TKSession>
   }>
 )
 
-export interface Middleware<TConfig extends Config> {
+export type Customization<TUser extends User, TKRequest extends Key> = (
+  Customize<{
+    [TKey in TKRequest]: ManagerUnresolved<TUser>
+  }>
+)
+
+export interface Middleware<TUser extends User, TKRequest extends Key, TKSession extends Key> {
   (
-    request: Expectation<TConfig>[0][0], 
-    responde: Expectation<TConfig>[1][0], 
+    request: Expectation<TUser, TKRequest, TKSession>[0][0], 
+    responde: Expectation<TUser, TKRequest, TKSession>[1][0], 
     proceed: Proceed,
   ): void
 }

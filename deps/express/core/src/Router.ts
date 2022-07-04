@@ -1,46 +1,46 @@
 import {Path} from "./RouteParameter.js"
-import {Stop} from "./Customize.js"
+import {Stop0} from "./Customize.js"
 import {Route} from "./Route.js"
 import {Application} from "./Application.js"
 import {AnyMiddleware} from "./Middleware.js"
 import {RequestParamHandler} from "./RequestParamHandler.js"
 
 
-export interface Router<TStop extends Stop> extends AnyMiddleware<TStop> {
+export interface Router<TStop extends Stop0> extends AnyMiddleware<TStop> {
   /**
    * Stack of configured routes
   */
   stack: any[]
   
   
-  use<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application] | AnyMiddleware<TStop>[]): this
-  all<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  get<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  put<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  head<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  move<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  post<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  copy<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  lock<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  mkcol<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  merge<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  patch<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  trace<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  purge<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  unlock<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  search<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  delete<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  notify<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  report<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  options<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  connect<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  checkout<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  propfind<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  proppatch<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  subscribe<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  "m-search"<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  mkactivity<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
-  unsubscribe<TStop extends Stop>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  use<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application] | AnyMiddleware<TStop>[]): this
+  all<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  get<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  put<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  head<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  move<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  post<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  copy<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  lock<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  mkcol<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  merge<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  patch<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  trace<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  purge<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  unlock<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  search<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  delete<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  notify<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  report<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  options<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  connect<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  checkout<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  propfind<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  proppatch<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  subscribe<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  "m-search"<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  mkactivity<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
+  unsubscribe<TStop extends Stop0>(...rest: [Path, ...AnyMiddleware<TStop>[]] | [Path, Application]): this
 
   
   route<T extends string>(prefix: T): Route
@@ -71,7 +71,7 @@ export interface Router<TStop extends Stop> extends AnyMiddleware<TStop> {
    *    })
    *    })
   */
-  param<TStop extends Stop>(name: string, handler: RequestParamHandler<TStop>): this
+  param<TStop extends Stop0>(name: string, handler: RequestParamHandler<TStop>): this
 }
 
 

@@ -62,7 +62,7 @@ export type Verify<TUser extends CORE.User> = {
 
 export function LocalMethod<TUser extends CORE.User>(options: Options<TUser>) {  
   type User = TUser
-  type Request = EXPRESS.Expect<{body: object, query: object}, {}>[0][0]
+  type Request = EXPRESS.Customize<{body: object, query: object}, {}, false>[0][0]
 
 
   const name = options.name || "local"

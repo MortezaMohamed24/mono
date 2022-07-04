@@ -16,4 +16,5 @@ async function copy(this: Checkitem, checklist: Checklist, index: number = Infin
 }
 
 
+export {copy}
 export default copy

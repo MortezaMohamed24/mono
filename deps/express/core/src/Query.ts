@@ -1,5 +1,4 @@
 import {Parse} from "qs"
-import {Expect} from "./Customize.js"
 import {ParsedQs} from "qs"
 import {Customize} from "./Customize.js"
 import {Middleware} from "./Middleware.js"
@@ -11,11 +10,11 @@ export interface Query {
 }
 
 export type Expectation = (
-  Expect<{query: ParsedQs}>
+  Customize<{query: ParsedQs}, {}, false>
 )
 
 export type Customization = (
-  Customize<{query: ParsedQs}>
+  Customize<{query: ParsedQs}, {}, true>
 )
 
 export type QueryParserMiddleware = (

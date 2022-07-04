@@ -1,7 +1,7 @@
 import cm from "src/models/checkitem/crud";
 import {Oid} from "#util/oid";
 import Error from "#util/error";
-import Checkitem from "src/models/checkitem";
+import Checkitem from "src/models";
 import {NOT_FOUND} from "src/models/checkitem/errors";
 import {ActionFactoryConfig} from "src/models/util/apiAction";
 

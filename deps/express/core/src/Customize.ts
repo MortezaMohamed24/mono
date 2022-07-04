@@ -9,78 +9,101 @@ import {Request} from "./Request.js"
 import {Response} from "./Response.js"
 
 
-
-type Stop = [
+export type Stop = [
   req: ItemHistory,
   res: ItemHistory,
 ]
 
-type Item = (
+export type Item = (
   object
 )
 
-type ItemHistory = [
+export type ItemHistory = [
   AllCustomizations: Item,
   PrevCustomization: Item,
-  LastCustomization: Item,
+  CurrCustomization: Item,
 ]
 
+export type EmptyStop = [
+  req: [{}, {}, {}],
+  res: [{}, {}, {}],
+]
 
-type Merge<TStop extends Stop, TItems extends [Item, Item]> = (
-  A<[
-    [TStop[0][1], TStop[0][2], TItems[0]],
-    [TStop[1][1], TStop[1][2], TItems[1]],
-  ]>
-)
-
-type Expect<T1 extends Item = {}, T2 extends Item = {}> = ([
-  [C0<T1>, C0<T1>, C0<T1>],
-  [C1<T2>, C1<T2>, C1<T2>],
-])
-
-type Customize<T1 extends Item, T2 extends Item = {}> = (
-  A<[
-    [{}, {}, T1],
-    [{}, {}, T2],
-  ]>
+export type Stop0 = (
+  Customize<{}, {}>
 )
 
 
-type A<TStop extends Stop> = (
-  C<[
-    B<TStop[0]>,
-    B<TStop[1]>,
+export type Customize<TReq extends Item, TRes extends Item = {}, TOptional extends boolean = true, TStop extends Stop = EmptyStop> = (
+  TOptional extends true
+    ? OptionalCustomize<TReq, TRes, TStop>
+    : RequiredCustomize<TReq, TRes, TStop>
+)
+
+export type OptionalCustomize<TReq extends Item, TRes extends Item, TStop extends Stop> = (
+  WithReqAndRes<[
+    MakeOptionalItemStop<[TStop[0][1], TStop[0][2], TReq]>,
+    MakeOptionalItemStop<[TStop[1][1], TStop[1][2], TRes]>,
   ]>
 )
 
-type B<T extends ItemHistory> = [
-  SafeOmit<Required<T[0]>, T[2]> & SafeOmit<Required<T[1]>, T[2]> & Partial<T[2]>,
+export type RequiredCustomize<TReq extends Item, TRes extends Item, TStop extends Stop> = (
+  WithReqAndRes<[
+    MakeRequiredItemStop<[TStop[0][1], TStop[0][2], TReq]>,
+    MakeRequiredItemStop<[TStop[1][1], TStop[1][2], TRes]>,
+  ]>
+)
+
+export type MakeOptionalItemStop<T extends ItemHistory> = [
+  & Partial<T[2]>
+  & SafeOmit<Required<T[0]>, T[2]> 
+  & SafeOmit<Required<T[1]>, T[2]>,
+
+  // ----------------------------
+
+  SafeOmit<Required<T[1]>, T[2]>, 
+
+  // ----------------------------
+
+  Partial<T[2]>,
+]
+
+export type MakeRequiredItemStop<T extends ItemHistory> = [
+  & Required<T[2]>
+  & SafeOmit<Required<T[0]>, T[2]> 
+  & SafeOmit<Required<T[1]>, T[2]>,
+ 
+  // ----------------------------
+  
   SafeOmit<Required<T[1]>, T[2]>,
-  Partial<T[2]>
+
+  // ----------------------------
+
+  Required<T[2]>
 ]
 
 
-type C<TStop extends Stop> = [
-  [C0<TStop[0][0]>, TStop[0][1], TStop[0][2]],
-  [C1<TStop[1][0]>, TStop[1][1], TStop[1][2]],
-]
-
-type C0<TCustomization extends object> = (
-  & SafeOmit<TCustomization, Request>
+export type WithReq<T extends Item> = (
+  & SafeOmit<T, Request>
   & Request<
-      TCustomization extends {locals: Locals} ? TCustomization["locals"] : never,
-      TCustomization extends {params: Params} ? TCustomization["params"] : never
+      T extends {locals: Locals} ? T["locals"] : never,
+      T extends {params: Params} ? T["params"] : never
     >
 )
 
-type C1<TCustomization extends object> = (
-  & SafeOmit<TCustomization, Response>
+export type WithRes<T extends Item> = (
+  & SafeOmit<T, Response>
   & Response<
-      TCustomization extends {body?: unknown} ? TCustomization["body"] : never,
-      TCustomization extends {locals: Locals} ? TCustomization["locals"] : never,
-      TCustomization extends {status: number} ? TCustomization["status"] : number
+      T extends {body?: unknown} ? T["body"] : never,
+      T extends {locals: Locals} ? T["locals"] : never,
+      T extends {status: number} ? T["status"] : number
     >
 )
+
+export type WithReqAndRes<TStop extends Stop> = [
+  [WithReq<TStop[0][0]>, TStop[0][1], TStop[0][2]],
+  [WithRes<TStop[1][0]>, TStop[1][1], TStop[1][2]],
+]
 
 
 /** 
@@ -89,12 +112,28 @@ type C1<TCustomization extends object> = (
  * If the operation returns `never` (possibly because `TObjectB` has no keys),
  * `TObjectA` is returned unmodified.
 */
-type SafeOmit<TObjectA extends object, TObjectB extends object> = (
+export type SafeOmit<TObjectA extends object, TObjectB extends object> = (
   keyof TObjectB extends never ? TObjectA : Omit<TObjectA, keyof TObjectB> 
 )
 
 
-export {Stop}
-export {Merge}
-export {Expect}
-export {Customize}
+
+type PushOptionalEdit<> = (
+  
+)
+// PushRequiredEdit
+// PushStop
+
+export type merge = (
+  ""
+)
+
+export type expect = (
+  ""
+)
+
+export type modify<TStop extends Stop, TReq extends Item, TRes extends Item = > = (
+  ""
+)
+
+export default Customize 

@@ -1,6 +1,6 @@
 import QueryType from "./queryType.js";
 import ReturnType from "./returnType.js";
-import Checkitem from "src/models/checkitem";
+import Checkitem from "src/models";
 
 
 interface CheckitemProjectActionConfig {

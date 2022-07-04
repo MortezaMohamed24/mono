@@ -4,7 +4,6 @@ import {schema} from "./schema.js"
 import {CheckitemStatics} from "./Statics.js"
 import {CheckitemMethods} from "./Methods.js"
 import {CheckitemDocument} from "./Document.js"
-import {CheckitemVirtuals} from "./Virtuals.js"
 import {CheckitemDocumentType} from "./DocumentType.js"
 
 
@@ -17,7 +16,7 @@ export const Checkitem = (
 )
 
 export type CheckitemModel = (
-  & Model<CheckitemDocumentType, {}, CheckitemMethods, CheckitemVirtuals>
+  & Model<CheckitemDocumentType, {}, CheckitemMethods>
   & CheckitemStatics
 )
 

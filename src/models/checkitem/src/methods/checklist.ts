@@ -1,4 +1,4 @@
-import ct from "checklist/crud.js"
+import ct from "checklist/crud"
 import Checklist from "checklist"
 import Checkitem from "../Model.js"
 

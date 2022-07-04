@@ -12,4 +12,5 @@ async function shift(this: Checklist, index: number = Infinity) {
 }
 
 
+export {shift}
 export default shift

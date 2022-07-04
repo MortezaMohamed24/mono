@@ -1,8 +1,8 @@
-import cm from "checkitem/dist/crud.js"
+import {cm} from "checkitem"
 import oid from "oid"
 import Card from "card"
 import save from "save"
-import Checklist from "checklist"
+import Checklist from "../Model.js"
 
 
 async function attach(this: Checklist, card: Card, index: number = Infinity): Promise<void> {

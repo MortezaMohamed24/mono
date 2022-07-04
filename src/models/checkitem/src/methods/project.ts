@@ -1,10 +1,9 @@
 import Checkitem from "../Model.js"
 import Projector from "../Projector.js"
 import Projection from "../Projection.js"
-import DEFAULT_PROJECTOR from "../DefaultProjector.js"
 
 
-async function project(this: Checkitem, {keys}: Projector = DEFAULT_PROJECTOR): Promise<Projection> {
+async function project(this: Checkitem, {keys}: Projector): Promise<Projection> {
   const output: Projection = {}
 
   keys.includes("id") && (output.id = this.id)
@@ -20,4 +19,5 @@ async function project(this: Checkitem, {keys}: Projector = DEFAULT_PROJECTOR): 
 }
 
 
+export {project}
 export default project

@@ -1,6 +1,6 @@
-import cd from "card/crud.js"
-import Card from "card"
-import Checkitem from "../Model.js"
+import {cd} from "card"
+import {Card} from "card"
+import {Checkitem} from "../Model.js"
 
 
 async function card(this: Checkitem): Promise<Card> {
@@ -14,4 +14,5 @@ async function card(this: Checkitem): Promise<Card> {
 }
 
 
+export {card}
 export default card

@@ -1,26 +1,22 @@
+import {Key} from "../Core.js"
+import {User} from "../Core.js"
 import {State} from "../Core.js"
-import {Config} from "./typings.js"
 import {Failure} from "../Failure.js"
 import {Options} from "./typings.js"
 import {isNoValue} from "src/util/isNoValue.js"
 import {Middleware} from "./typings.js"
-import {DEFAULT_K_REQUEST} from "../constants.js"
-import {DEFAULT_K_SESSION} from "../constants.js"
 
 
-export function Manager<TConfig extends Config>(options: Options<TConfig>): Middleware<TConfig> {
-  type User = TConfig["user"]
-
-
-  let kRequest = options.kRequest ?? DEFAULT_K_REQUEST
-  let kSession = options.kSession ?? DEFAULT_K_SESSION
+export function Manager<TUser extends User, TKRequest extends Key, TKSession extends Key>(options: Options<TUser, TKRequest, TKSession>): Middleware<TUser, TKRequest, TKSession> {
+  let kRequest = options.kRequest
+  let kSession = options.kSession
   let serialize = options.serialize ?? String
   let useSession = options.useSession ?? false
 
 
   return async (request, response, proceed) => {
     class Manager {
-      #user: User | null = null
+      #user: TUser | null = null
       #status: number | null = null
       #method: string | null = null
       #message: string | null = null
@@ -33,7 +29,7 @@ export function Manager<TConfig extends Config>(options: Options<TConfig>): Midd
         return this.#user
       }
     
-      set user(value: User | null) {
+      set user(value: TUser | null) {
         if (isNoValue(value)) {
           this.#user = null
           this.#unsaveUser()
@@ -111,7 +107,7 @@ export function Manager<TConfig extends Config>(options: Options<TConfig>): Midd
       }
       
       
-      #saveUser(user: User) {
+      #saveUser(user: TUser) {
         if (!useSession) {
           return
         }

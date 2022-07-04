@@ -1,5 +1,5 @@
 import User from "user"
-import types from "../fields/types.js"
+import types from "../fields/formats.js"
 import Board from "../Model.js"
 
 

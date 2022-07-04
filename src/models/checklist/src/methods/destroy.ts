@@ -1,5 +1,5 @@
-import cm from "checkitem/dist/crud.js"
-import Checklist from "../Model.js"
+import {cm} from "checkitem"
+import {Checklist} from "../Model.js"
 
 
 async function destroy(this: Checklist): Promise<void> {

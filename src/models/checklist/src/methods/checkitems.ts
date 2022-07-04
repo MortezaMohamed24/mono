@@ -1,4 +1,4 @@
-import cm from "checkitem/dist/crud.js"
+import {cm} from "checkitem"
 import {Checklist} from "../Model.js"
 import {Checkitem} from "checkitem"
 

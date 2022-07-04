@@ -1,5 +1,5 @@
-import ur from "user/dist/crud.js"
-import User from "user"
+import {ur} from "user"
+import {User} from "user"
 import {Checklist} from "../Model.js"
 import {ServerError} from "errors"
 
@@ -18,4 +18,5 @@ async function user(this: Checklist): Promise<User> {
 }
 
 
+export {user}
 export default user

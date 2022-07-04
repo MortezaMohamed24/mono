@@ -1,5 +1,5 @@
 import Board from "./Model.js"
-import types from "./fields/types.js"
+import types from "./fields/formats.js"
 
   
 export function title(this: Board, title: Board["title"]): Board["title"] {

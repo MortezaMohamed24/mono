@@ -1,7 +1,7 @@
 /** 
  * A checkitem document public data key 
 */
-export const KEY = /^(id|idUser|idList|idCard|idBoard|content|isComplete|idChecklist)$/u
+export const KEY_PATTERN = /^(id|idUser|idList|idCard|idBoard|content|isComplete|idChecklist)$/u
 /**
  * The minimum valid content length
 */
@@ -13,7 +13,7 @@ export const MAX_CONTENT_LENGTH = 3000
 
 
 export default Object.freeze({
-  KEY,
+  KEY: KEY_PATTERN,
   MIN_CONTENT_LENGTH, 
   MAX_CONTENT_LENGTH, 
 })

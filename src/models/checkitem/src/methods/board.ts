@@ -1,6 +1,7 @@
-import bd from "board/crud.js"
-import Board from "board/Model.js"
-import Checkitem from "../Model.js"
+import {bd} from "board"
+import {Board} from "board"
+import {Checkitem} from "../Model.js"
+import {ServerError} from "errors"
 
 
 async function board(this: Checkitem): Promise<Board> {
@@ -10,8 +11,12 @@ async function board(this: Checkitem): Promise<Board> {
     return board
   }
 
-  throw new Error("checkitem: could not find owner board")
+  throw new ServerError({
+    status: 500,
+    message: "checkitem: could not find owner board",
+  })
 }
 
 
+export {board}
 export default board

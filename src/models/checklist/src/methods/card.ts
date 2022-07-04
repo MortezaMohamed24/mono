@@ -1,4 +1,4 @@
-import cd from "card/dist/crud.js"
+import {cd} from "card"
 import {Card} from "card"
 import {Checklist} from "../Model.js"
 import {ServerError} from "errors"
@@ -18,4 +18,5 @@ async function card(this: Checklist): Promise<Card> {
 }
 
 
+export {card}
 export default card

@@ -1,5 +1,5 @@
 import {Oid} from "oid"
-import types from "../fields/types"
+import types from "../formats"
 import Checkitem from "../Model.js"
 import Checklist from "checklist"
 
@@ -14,7 +14,7 @@ type Arg = {
 const make = async ({id = new Oid(), content, isComplete = false, checklist}: Arg): Promise<Checkitem> => {
   const checkitem = new Checkitem({
     id: id,
-    content: types.content(content, {strict: true}), 
+    content: types.CONTENT(content, {strict: true}), 
     isComplete: !!isComplete,
   })
 

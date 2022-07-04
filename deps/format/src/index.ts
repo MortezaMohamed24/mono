@@ -1,61 +1,23 @@
-import {OR} from "./types/index.js"
-import {OID} from "./types/index.js"
-import {NULL} from "./types/index.js"
-import {TUBLE} from "./types/index.js"
-import {ARRAY} from "./types/index.js"
-import {OBJECT} from "./types/index.js"
-import {STRING} from "./types/index.js"
-import {NUMBER} from "./types/index.js"
-import {BOOLEAN} from "./types/index.js"
-// -----------------------------------------
-import {O} from "./util/index.js"
-import {M} from "./util/index.js"
-import {Options} from "./util/index.js"
-import {Optoinify} from "./util/index.js"
-// -----------------------------------------
-import {serialize} from "./serialize.js"
-import {setSerializer} from "./serialize.js"
-// -----------------------------------------
-import {ANY} from "./symbols.js"
-import {VALID} from "./symbols.js"
-import {INVALID} from "./symbols.js"
-// -----------------------------------------
-import {Type} from "./type.js"
-import {Copy} from "./type.js"
-import {Configs} from "./type.js"
-import {ClassName} from "./type.js"
-import {CopyOptions} from "./type.js"
-import {RawInlineOptions} from "./type.js"
-import {RawBaseOptions} from "./type.js"
-
-
-export {
-  OR,
-  OID,
-  NULL,
-  TUBLE,
-  ARRAY,
-  OBJECT,
-  STRING,
-  NUMBER,
-  BOOLEAN,
-  O,
-  M,
-  Options,
-  Optoinify,
-  serialize,
-  setSerializer,
-  ANY,
-  VALID,
-  INVALID,
-  Type,
-  Copy,
-  Configs,
-  ClassName,
-  CopyOptions,
-  RawInlineOptions as InlineOptions,
-  RawBaseOptions,
-}
-
-
-export default Type
+export {O} from "./util/index.js"
+export {M} from "./util/index.js"
+export {OR} from "./types/index.js"
+export {OID} from "./types/index.js"
+export {ANY} from "./symbols.js"
+export {NULL} from "./types/index.js"
+export {Type} from "./type.js"
+export {VALID} from "./symbols.js"
+export {TUBLE} from "./types/index.js"
+export {ARRAY} from "./types/index.js"
+export {OBJECT} from "./types/index.js"
+export {STRING} from "./types/index.js"
+export {NUMBER} from "./types/index.js"
+export {BOOLEAN} from "./types/index.js"
+export {default} from "./type.js"
+export {INVALID} from "./symbols.js"
+export {Options} from "./util/index.js"
+export {Optoinify} from "./util/index.js"
+export {serialize} from "./serialize.js"
+export {ClassName} from "./type.js"
+export {FormatError} from "./error.js"
+export {VirtualType} from "./type.js"
+export {setSerializer} from "./serialize.js"

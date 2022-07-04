@@ -1,12 +1,12 @@
 import {Oid} from "oid"
-import {ALL} from "./constants.js"
-import {INCOMPLETE} from "./constants.js"
+import {ALL_FILTER} from "./constants.js"
+import {INCOMPLETE_FILTER} from "./constants.js"
 
 
 export interface ChecklistDocumentType {
   _id: Oid
   title: string
-  filter: typeof ALL | typeof INCOMPLETE
+  filter: typeof ALL_FILTER | typeof INCOMPLETE_FILTER
   idUser: Oid
   idList: Oid
   idCard: Oid

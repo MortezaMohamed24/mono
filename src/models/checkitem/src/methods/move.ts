@@ -12,4 +12,5 @@ async function move(this: Checkitem, checklist: Checklist, index: number = Infin
 }
 
 
+export {move}
 export default move

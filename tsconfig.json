@@ -14,7 +14,7 @@
 
   "compilerOptions": {
     "lib": ["es2022"],
-    "strict": true,
+    // "strict": true,
     "module": "ES2020",
     "target": "es2019",
     "baseUrl": ".",
@@ -22,14 +22,15 @@
     "allowJs": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "alwaysStrict": true,
-    "noImplicitAny": true,
+    // "alwaysStrict": true,
+    // "noImplicitAny": true,
     "esModuleInterop": true,
     "strictNullChecks": true,
     "moduleResolution": "node",
-    "exactOptionalPropertyTypes": true,
+    // "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
   },
+
 
   "watchOptions": {
     "watchFile": "useFsEvents",

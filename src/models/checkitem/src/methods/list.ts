@@ -1,6 +1,6 @@
-import lt from "list/crud.js"
-import List from "list"
-import Checkitem from "../Model.js"
+import {lt} from "list"
+import {List} from "list"
+import {Checkitem} from "../Model.js"
 
 
 async function list(this: Checkitem): Promise<List> {
@@ -14,4 +14,5 @@ async function list(this: Checkitem): Promise<List> {
 }
 
 
+export {list}
 export default list

@@ -3,7 +3,7 @@ import List from "../Model.js"
 import Card from "card"
 
 
-function cards(this: List): Promise<Card> {
+function cards(this: List): Promise<Card[]> {
   return cd.fm(this.idCards)
 }
 

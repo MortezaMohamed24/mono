@@ -1,11 +1,11 @@
-import {Stop} from "./Customize.js"
+import {Stop0} from "./Customize.js"
 import {Proceed} from "./Proceed.js"
 
 
-export type RequestParamHandler<TStep extends Stop> = {
+export type RequestParamHandler<TStop extends Stop0> = {
   (
-    request: TStep[0][0], 
-    response: TStep[1][0], 
+    request: TStop[0][0], 
+    response: TStop[1][0], 
     proceed: Proceed, 
     value: any, 
     name: string,

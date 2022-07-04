@@ -11,8 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "authenticator": "file:../../../deps/authenticator",
-    "checkitem": "file:../checkitem",
-    "format": "file:../../packages/format",
-    "oid": "file:../../packages/oid"
+    "body-parser": "file:../../../deps/express/body-parser",
+    "checkitem": "file:../../models/checkitem",
+    "express": "file:../../../deps/express/core",
+    "format": "file:../../../deps/format",
+    "oid": "file:../../../deps/oid"
   }
 }

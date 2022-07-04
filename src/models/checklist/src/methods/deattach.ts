@@ -12,4 +12,5 @@ async function deattach(this: Checklist): Promise<void> {
 }
 
 
+export {deattach}
 export default deattach

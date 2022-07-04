@@ -1,4 +1,4 @@
-import types from "../fields/types.js"
+import types from "../formats.js"
 import Checklist from "../Model.js"
 
 
@@ -10,7 +10,7 @@ type Argument = {
 
 const copySelf = async function(this: Checklist, {card, title = this.title, index = Infinity}: Argument): Promise<Checklist> {
   const copy = new Checklist({
-    title: types.title(title), 
+    title: types.TITLE(title, {strict: true}), 
     filter: this.filter,
   })
 

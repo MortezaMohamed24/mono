@@ -1,6 +1,6 @@
 import {Document} from "mongoose"
 import {Oid} from "oid"
-import types from "../fields/types.js"
+import types from "../fields/formats.js"
 import {User} from "user"
 import {Board} from "../Model.js"
 import {Label} from "label"

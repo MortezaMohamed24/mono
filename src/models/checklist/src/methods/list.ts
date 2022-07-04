@@ -1,4 +1,4 @@
-import lt from "list/dist/crud.js"
+import {lt} from "list"
 import {List} from "list"
 import {Checklist} from "../Model.js"
 import {ServerError} from "errors"

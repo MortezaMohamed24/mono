@@ -1,7 +1,7 @@
-import {Stop} from "./Customize.js"
+import {Stop0} from "./Customize.js"
 import {Middleware} from "./Middleware.js"
 
 
 export interface IRouterHandler<TReturn> {
-  <TStop extends Stop>(...handlers: Middleware<TStop>[]): TReturn
+  <TStop extends Stop0>(...handlers: Middleware<TStop>[]): TReturn
 }

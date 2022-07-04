@@ -2,20 +2,24 @@ import {Request} from "express"
 import {INVALID} from "format"
 import {Response} from "express"
 import {ServerError} from "errors"
+import {Cu} from "express"
 
 
-interface Options<TBody> {
-  error: string
-  format: Format<TBody>
-}
+// interface Options<TBody> {
+//   error: string
+//   format: Format<TBody>
+// }
 
-interface Format<TBody> {
-  (rawBody: unknown): (
-    | TBody
-    | INVALID
-  )
-}
+// interface Format<TBody> {
+//   (rawBody: unknown): (
+//     | TBody
+//     | INVALID
+//   )
+// }
 
+// type Expectation = (
+// ""
+// )
 
 /** 
  * Creates a middleware that format the inbound body using `format`.
@@ -23,9 +27,9 @@ interface Format<TBody> {
  * `400 (Bad Request)` and whose message is `error` will be thrown,
  * else, the formatted body will be assigned to `inbound.body` (overwrite the origianl body)
 */
-const BodyFormatter = <TBody>({error, format}: Options<TBody>) => (
-  (inbound: Request, outbound: Response, proceed: Function) => {
-    const output = format(inbound.body)
+function Payload(format) {
+  return (request, response, proceed) => {
+    const output = format(request.body)
     
     if (output === INVALID) {
       throw new ServerError({
@@ -34,12 +38,11 @@ const BodyFormatter = <TBody>({error, format}: Options<TBody>) => (
       })
     }
     
-    inbound.body = output as TBody
-
+    request.payload =
     proceed()
   }
-)
+}
 
 
-export {BodyFormatter}
-export default BodyFormatter
+export {Payload as BodyFormatter}
+export default Payload

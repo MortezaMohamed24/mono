@@ -7,4 +7,5 @@ async function destroy(this: Checkitem): Promise<void> {
 }
 
 
+export {destroy}
 export default destroy

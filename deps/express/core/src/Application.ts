@@ -1,4 +1,4 @@
-import {Stop} from "./Customize.js"
+import {Stop0} from "./Customize.js"
 import {Path} from "./RouteParameter.js"
 import {Server} from "node:http"
 import {Locals} from "./Locals.js"
@@ -81,13 +81,13 @@ export interface Application<TLocals extends Locals = Locals> extends EventEmitt
    * Mounted servers inherit their parent server"s settings.
    */
   set(setting: string, val: any): this
-  param<TStep extends Stop>(name: string | string[], handler: RequestParamHandler<TStep>): this
+  param<TStop extends Stop0>(name: string | string[], handler: RequestParamHandler<TStop>): this
   /**
    * Alternatively, you can pass only a callback, in which case you have the opportunity to alter the app.param()
    *
    * @deprecated since version 4.11
    */
-  param<TStep extends Stop>(callback: (name: string, matcher: RegExp) => RequestParamHandler<TStep>): this
+  param<TStop extends Stop0>(callback: (name: string, matcher: RegExp) => RequestParamHandler<TStop>): this
   /**
    * Return the app"s absolute pathname
    * based on the parent(s) that have
@@ -200,31 +200,31 @@ export interface Application<TLocals extends Locals = Locals> extends EventEmitt
   defaultConfiguration(): void
   
 
-  use<TStep extends Stop>(...rest: [Path, Application] | [Path, ...AnyMiddleware<TStep>[]] | AnyMiddleware<TStep>[]): this 
-  all<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  put<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  get<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  copy<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  lock<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  post<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  head<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  move<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  merge<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  mkcol<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  purge<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  patch<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  trace<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  unlock<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  notify<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  report<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  search<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  delete<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  options<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  checkout<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  subscribe<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  mkactivity<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  "m-search"<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
-  unsubscribe<TStep extends Stop>(path: Path, ...rest: AnyMiddleware<TStep>[] | [Application]): this
+  use<TStop extends Stop0>(...rest: [Path, Application] | [Path, ...AnyMiddleware<TStop>[]] | AnyMiddleware<TStop>[]): this 
+  all<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  put<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  get<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  copy<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  lock<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  post<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  head<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  move<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  merge<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  mkcol<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  purge<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  patch<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  trace<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  unlock<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  notify<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  report<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  search<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  delete<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  options<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  checkout<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  subscribe<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  mkactivity<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  "m-search"<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
+  unsubscribe<TStop extends Stop0>(path: Path, ...rest: AnyMiddleware<TStop>[] | [Application]): this
 }
 
 

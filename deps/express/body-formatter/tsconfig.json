@@ -1,6 +1,6 @@
 {
   "display": "Node 12",
-  "include": ["src/index.ts"],
+  "include": ["src/index.js"],
   "compilerOptions": {
     "lib": ["es2021"],
     "strict": true,

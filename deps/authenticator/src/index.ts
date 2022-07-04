@@ -23,6 +23,8 @@ import {ManagerUnresolved} from "./Manager/typings.js"
 import {ManagerAuthorized} from "./Manager/typings.js"
 import {ManagerUnauthorized} from "./Manager/typings.js"
 import {AuthenticationError} from "./Error.js"
+import {Expectation as ManagerExpectation} from "./Manager/typings.js"
+import {Customization as ManagerCustomization} from "./Manager/typings.js"
 
 
 export {
@@ -49,8 +51,10 @@ export {
   RedirectResult,
   ManagerUnresolved, 
   ManagerAuthorized, 
+  ManagerExpectation,
   ManagerUnauthorized, 
   AuthenticationError,
+  ManagerCustomization,
 }
 
 

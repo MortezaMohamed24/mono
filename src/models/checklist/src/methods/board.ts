@@ -1,4 +1,4 @@
-import bd from "board/dist/crud.js"
+import {bd} from "board"
 import {Board} from "board"
 import {Checklist} from "../Model.js"
 import {ServerError} from "errors"
@@ -18,4 +18,5 @@ async function board(this: Checklist): Promise<Board> {
 }
 
 
+export {board}
 export default board

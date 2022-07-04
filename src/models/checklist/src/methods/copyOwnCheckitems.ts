@@ -13,4 +13,5 @@ async function copyOwnCheckitems(this: Checklist, checklist: Checklist): Promise
 }
 
 
+export {copyOwnCheckitems}
 export default copyOwnCheckitems

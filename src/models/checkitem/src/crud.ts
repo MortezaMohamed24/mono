@@ -4,6 +4,10 @@ import {CheckitemMethods} from "./Methods.js"
 import {CheckitemDocumentType} from "./DocumentType.js"
 
 
+export const cm = (
+  CRUD<CheckitemMethods, CheckitemDocumentType>(Checkitem) as any
+)
+
 export const {
   f,
   u,
@@ -13,18 +17,7 @@ export const {
   um,
   dm,
   he,
-} = (
-  CRUD<CheckitemMethods, CheckitemDocumentType>(Checkitem)
-)
+} = cm
 
 
-export default Object.freeze({
-  f,
-  u,
-  h,
-  d,
-  fm,
-  um,
-  dm,
-  he,
-})
+export default cm

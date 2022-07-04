@@ -1,4 +1,4 @@
-import types from "./fields/types.js"
+import types from "./fields/formats.js"
 import Checklist from "./Model.js"
 
 
