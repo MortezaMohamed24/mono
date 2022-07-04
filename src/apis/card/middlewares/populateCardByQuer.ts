@@ -1,6 +1,6 @@
 import cd from "src/models/card/crud";
 import {Oid} from "#util/oid";
-import Card from "src/models/card";
+import Card from "src/Card";
 import Error from "#util/error";
 import {NOT_FOUND} from "src/models/card/errors";
 import {ActionFactoryConfig} from "src/models/util/apiAction";

@@ -1,0 +1,23 @@
+{
+  "name": "checkitem",
+  "type": "module",
+  "main": "index.js",
+  "version": "1.0.0",
+  "description": "Checkitem Data Model",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MortezaMohamad",
+  "license": "ISC",
+  "dependencies": {
+    "board": "file:../board",
+    "card": "file:../card",
+    "checklist": "file:../checklist",
+    "crud": "file:../../../deps/mongo/crud",
+    "format": "file:../../../deps/format",
+    "list": "file:../list",
+    "oid": "file:../../../deps/oid",
+    "save": "file:../../../deps/mongo/save",
+    "user": "file:../user"
+  }
+}

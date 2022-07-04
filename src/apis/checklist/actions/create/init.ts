@@ -1,6 +1,6 @@
 import Config from "./config.js";
 import CREATE from "./action.js";
-import Checklist from "src/models/checklist";
+import Checklist from "src/models/checklist/Checklist";
 import {PopulateCardByBody} from "src/models/card/api/middlewares";
 
 

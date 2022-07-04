@@ -1,4 +1,4 @@
-import Label from "src/models/label";
+import Label from "src/models/label/Label";
 import QueryType from "./queryType.js";
 import ReturnType from "./returnType.js";
 

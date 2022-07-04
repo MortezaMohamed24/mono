@@ -1,5 +1,5 @@
 import {Oid} from "#util/oid";
-import Checklist from "src/models/checklist";
+import Checklist from "src/models/checklist/Checklist";
 
 
 interface ChecklistCreateRequestBody {

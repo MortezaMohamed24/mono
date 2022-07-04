@@ -1,4 +1,4 @@
-import Label from "src/models/label";
+import Label from "src/models/label/Label";
 import Config from "./config";
 import CREATE from "./action.js";
 import {PopulateBoardByBody} from "src/models/board/api/middlewares";

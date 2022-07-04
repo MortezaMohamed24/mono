@@ -1,4 +1,4 @@
-import List from "src/models/list";
+import List from "src/models/list/List";
 import {Oid} from "#util/oid";
 
 

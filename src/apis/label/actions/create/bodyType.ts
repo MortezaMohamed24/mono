@@ -1,5 +1,5 @@
 import {Oid} from "#util/oid";
-import Label from "src/models/label";
+import Label from "src/models/label/Label";
 
 
 interface LabelCreateActionBody {

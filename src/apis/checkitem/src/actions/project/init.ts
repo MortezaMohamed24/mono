@@ -9,8 +9,6 @@ PROJECT.push(PopulateCheckitemByQuery<Config, "checkitem", "idCheckitem">({
 }));
 
 
-PROJECT.push(async ({get, query: {projector}}) => (
-
-  await get().checkitem.project(projector)
-
-));
+PROJECT.push(async ({get, query: {projector}}) => {
+  return Checkitem.findOne(id, {strict: true}).project(projector)
+});

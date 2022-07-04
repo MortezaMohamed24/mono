@@ -1,6 +1,6 @@
 import ll from "src/models/label/crud";
 import {Oid} from "#util/oid";
-import Label from "src/models/label";
+import Label from "src/models/label/Label";
 import Error from "#util/error";
 import {NOT_FOUND} from "src/models/label/errors";
 import {ActionFactoryConfig} from "src/models/util/apiAction";

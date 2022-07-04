@@ -4,7 +4,7 @@ import {ManagerCustomization} from "authenticator"
 
 import BodyType from "./bodyType.js";
 import Checkitem from "src/models";
-import Checklist from "src/models/checklist";
+import Checklist from "src/models/checklist/Checklist";
 import ReturnType from "./returnType.js";
 
 
