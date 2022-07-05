@@ -14,6 +14,7 @@ export interface RawBaseOptions<TConfigs extends Configs = Configs> {
    * Defaults to "UnknownType".
   */
   name?: undefined | string | symbol | number
+  error?: undefined | string
   /**
    * Defaults to false.
   */
@@ -38,17 +39,16 @@ export interface RawBaseOptions<TConfigs extends Configs = Configs> {
    * Defaults to true.
   */
   checkClass?: undefined | TConfigs["checkClass"]
-  violation?: undefined | string
 }
 
 export interface PreparedBaseOptions {
   name: string | symbol | number 
+  error: undefined | string
   strict: boolean 
   boolean: boolean 
   classes: ClassName[] 
   fallback: unknown 
   optional: boolean 
-  violation: undefined | string
   checkClass: boolean
 }
 
@@ -85,7 +85,7 @@ export interface CopyOptions {
 }
 
 export interface Configs {
-  raw?: unknown
+  raw: unknown
   strict?: undefined | boolean 
   boolean?: undefined | boolean 
   classes?: undefined | ClassName[] 
@@ -125,8 +125,8 @@ export interface VirtualType {
   copy: Copy<any>
 
 
-  raw?: any
-  formatted?: any
+  raw: any
+  formatted: any
 }
 
 export interface Type<TConfigs extends Configs = Configs> {
@@ -180,7 +180,7 @@ export function prepareOptions(options: RawBaseOptions = {}): PreparedBaseOption
     classes: options.classes ?? [ANY], 
     fallback: options.fallback, 
     optional: options.optional ?? false, 
-    violation: options.violation ?? undefined,
+    error: options.error ?? undefined,
     checkClass: options.checkClass ?? true,
   }
 }

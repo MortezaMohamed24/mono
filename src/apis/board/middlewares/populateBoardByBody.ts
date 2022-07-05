@@ -1,5 +1,5 @@
 import bd from "src/models/board/crud";
-import Board from "src/models/board";
+import Board from "src/models/board/board";
 import Error from "#util/error";
 import {Oid} from "#util/oid";
 import {NOT_FOUND} from "src/models/board/errors";

@@ -1,5 +1,5 @@
-import User from "src/models/user";
-import Board from "src/models/board";
+import User from "src/User";
+import Board from "src/models/board/board";
 import BodyType from "./bodyType.js";
 import ReturnType from "./returnType.js";
 

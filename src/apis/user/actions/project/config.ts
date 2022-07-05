@@ -1,4 +1,4 @@
-import User from "src/models/user";
+import User from "src/User";
 import QueryType from "./queryType.js";
 import ReturnType from "./returnType.js";
 

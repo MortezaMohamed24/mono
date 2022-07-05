@@ -1,5 +1,5 @@
-import Board from "src/models/board";
-import Label from "src/models/label";
+import Board from "src/models/board/board";
+import Label from "src/models/label/Label";
 import BodyType from "./bodyType.js";
 import ReturnType from "./returnType.js";
 

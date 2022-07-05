@@ -1,6 +1,6 @@
-import Card from "src/models/card";
-import List from "src/models/list";
-import Label from "src/models/label";
+import Card from "src/Card";
+import List from "src/models/list/List";
+import Label from "src/models/label/Label";
 import BodyType from "./bodyType.js";
 import ReturnType from "./returnType.js";
 

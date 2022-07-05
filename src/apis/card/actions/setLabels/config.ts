@@ -1,4 +1,4 @@
-import Card from "src/models/card";
+import Card from "src/Card";
 import Label from "src/models/label/model";
 import BodyType from "./bodyType.js";
 import ReturnType from "./returnType.js";

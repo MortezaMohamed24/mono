@@ -1,4 +1,4 @@
-import Label from "src/models/label";
+import Label from "src/models/label/Label";
 import BodyType from "./bodyType.js";
 import ReturnType from "./returnType.js";
 

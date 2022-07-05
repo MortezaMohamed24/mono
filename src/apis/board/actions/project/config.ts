@@ -1,4 +1,4 @@
-import Board from "src/models/board";
+import Board from "src/models/board/board";
 import QueryType from "./queryType.js";
 import ReturnType from "./returnType.js";
 

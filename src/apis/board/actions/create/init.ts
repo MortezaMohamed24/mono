@@ -1,4 +1,4 @@
-import Board from "src/models/board";
+import Board from "src/models/board/board";
 import CREATE from "./action.js";
 import Config from "./config.js";
 import {PopulateAuthorizedUser} from "src/models/user-api/middlewares";

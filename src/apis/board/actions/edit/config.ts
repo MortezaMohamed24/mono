@@ -1,4 +1,4 @@
-import Board from "src/models/board";
+import Board from "src/models/board/board";
 import BodyType from "./bodyType.js";
 import ReturnType from "./returnType.js";
 

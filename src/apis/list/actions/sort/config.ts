@@ -1,4 +1,4 @@
-import List from "src/models/list";
+import List from "src/models/list/List";
 import BodyType from "./bodyType.js";
 import ReturnType from "./returnType.js";
 

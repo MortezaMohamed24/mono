@@ -1,5 +1,5 @@
 import {Oid} from "#util/oid";
-import Board from "src/models/board";
+import Board from "src/models/board/board";
 
 
 interface BoardCreateActionBody {

@@ -1,5 +1,5 @@
-import List from "src/models/list";
-import Card from "src/models/card";
+import List from "src/models/list/List";
+import Card from "src/Card";
 import BodyType from "./bodyType.js";
 import ReturnType from "./returnType.js";
 

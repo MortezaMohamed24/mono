@@ -1,4 +1,4 @@
-import Card from "src/models/card";
+import Card from "src/Card";
 import CREATE from "./action.js";
 import Config from "./config.js";
 import {PopulateListByBody} from "src/models/list/api/middlewares";

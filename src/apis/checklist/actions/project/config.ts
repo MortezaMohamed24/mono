@@ -1,4 +1,4 @@
-import Checklist from "src/models/checklist";
+import Checklist from "src/models/checklist/Checklist";
 import QueryType from "./queryType.js";
 import ReturnType from "./returnType.js";
 import {ChecklistProjectionType} from "src/models/checklist/methods/project";

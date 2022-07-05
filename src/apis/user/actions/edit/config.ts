@@ -1,4 +1,4 @@
-import User from "src/models/user";
+import User from "src/User";
 import BodyType from "./bodyType.js";
 import ReturnType from "./returnType.js";
 

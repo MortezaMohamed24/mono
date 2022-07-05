@@ -1,6 +1,6 @@
 import lt from "src/models/list/crud";
 import {Oid} from "#util/oid";
-import List from "src/models/list";
+import List from "src/models/list/List";
 import Error from "#util/error";
 import {NOT_FOUND} from "src/models/list/errors";
 import {ActionFactoryConfig} from "src/models/util/apiAction";

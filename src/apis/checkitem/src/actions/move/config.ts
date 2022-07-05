@@ -1,5 +1,5 @@
 import BodyType from "./bodyType.js";
-import Checklist from "src/models/checklist";
+import Checklist from "src/models/checklist/Checklist";
 import Checkitem from "src/models";
 import ReturnType from "./returnType.js";
 

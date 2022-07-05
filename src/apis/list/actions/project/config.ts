@@ -1,4 +1,4 @@
-import List from "src/models/list";
+import List from "src/models/list/List";
 import QueryType from "./queryType.js";
 import ReturnType from "./returnType.js";
 

@@ -1,6 +1,6 @@
-import Card from "src/models/card";
+import Card from "src/Card";
 import BodyType from "./bodyType.js";
-import Checklist from "src/models/checklist";
+import Checklist from "src/models/checklist/Checklist";
 import ReturnType from "./returnType.js";
 
 

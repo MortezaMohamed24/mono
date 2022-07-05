@@ -1,4 +1,4 @@
-import Card from "src/models/card";
+import Card from "src/Card";
 import QueryType from "./queryType.js";
 import ReturnType from "./returnType.js";
 
