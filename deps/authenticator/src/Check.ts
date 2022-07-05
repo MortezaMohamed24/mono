@@ -1,4 +1,3 @@
-import {Middleware} from "express"
 import {getManager} from "./util/getManager.js"
 import {STATUS_CODES} from "node:http"
 import {AuthenticationError} from "./Error.js"
@@ -8,7 +7,7 @@ export type Options = {
   action?: undefined | "throw" | "responde"
 }
 
-export function Check({action = "throw"}: Options = {}): Middleware {
+export function Check({action = "throw"}: Options = {}) {
   return (request, response, proceed) => {
     const manager = getManager(request)
 

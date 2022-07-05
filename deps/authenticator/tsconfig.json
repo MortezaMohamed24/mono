@@ -15,7 +15,7 @@
 
   "compilerOptions": {
     "lib": ["es2021"],
-    "strict": true,
+    // "strict": true,
     "module": "ES2020",
     "target": "es2019",
     "baseUrl": ".",
@@ -24,8 +24,8 @@
     "sourceMap": true,
     "declaration": true,
     "skipLibCheck": true,
-    "alwaysStrict": true,
-    "noImplicitAny": true,
+    // "alwaysStrict": true,
+    // "noImplicitAny": true,
     "esModuleInterop": true,
     "strictNullChecks": true,
     "moduleResolution": "node",

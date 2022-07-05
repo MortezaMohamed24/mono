@@ -3,12 +3,10 @@ import {User} from "./Core.js"
 import {fail} from "./Result.js"
 import {pass} from "./Result.js"
 import {Check} from "./Check.js"
-import {State} from "./Core.js"
 import {Method} from "./Method.js"
 import {Result} from "./Result.js"
 import {success} from "./Result.js"
 import {Manager} from "./Manager/index.js"
-import {Session} from "./Core.js"
 import {Failure} from "./Failure.js"
 import {redirect} from "./Result.js"
 import {FailResult} from "./Result.js"
@@ -23,8 +21,7 @@ import {ManagerUnresolved} from "./Manager/typings.js"
 import {ManagerAuthorized} from "./Manager/typings.js"
 import {ManagerUnauthorized} from "./Manager/typings.js"
 import {AuthenticationError} from "./Error.js"
-import {Expectation as ManagerExpectation} from "./Manager/typings.js"
-import {Customization as ManagerCustomization} from "./Manager/typings.js"
+import {VerifyReturn as LocalMethodVerifyReturn} from "./LocalMethod.js"
 
 
 export {
@@ -33,12 +30,10 @@ export {
   fail,
   pass,
   Check,
-  State,
   Result,
   Method,
   Manager,
   success,
-  Session,
   Failure,
   redirect,
   FailResult,
@@ -51,10 +46,9 @@ export {
   RedirectResult,
   ManagerUnresolved, 
   ManagerAuthorized, 
-  ManagerExpectation,
   ManagerUnauthorized, 
   AuthenticationError,
-  ManagerCustomization,
+  LocalMethodVerifyReturn,
 }
 
 
@@ -65,4 +59,5 @@ export default Object.freeze({
   Method: Method,
   Manager: Manager,
   Session: SessionMethod,
+  LocalMethodVerifyReturn: LocalMethodVerifyReturn,
 })

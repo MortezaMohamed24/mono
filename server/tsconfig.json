@@ -1,0 +1,27 @@
+{
+  "display": "Node 12",
+  "include": [
+    "./*", 
+    "./*/*", 
+    "./*/*/*", 
+    "./*/*/*/*", 
+  ],
+  "exclude": [
+    "./dist",
+    "./node_modules",
+  ],
+  "compilerOptions": {
+    "lib": ["es2022"],
+    "module": "ES2020",
+    "target": "es2019",
+    "baseUrl": ".",
+    "outDir": "dist",
+    "allowJs": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+  },
+}

@@ -48,7 +48,3 @@ const NUMBER = <TOptions extends Options>({nan, min, max, safe, finite, ...optio
 
 
 export default NUMBER
-
-
-const AA = NUMBER()
-const BB = AA("", {strict: true, optional: true})

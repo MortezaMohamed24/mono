@@ -139,8 +139,8 @@ export interface Type<TConfigs extends Configs = Configs> {
   copy: Copy<TConfigs>
 
 
-  raw?: TConfigs["raw"]
-  formatted?: TConfigs["formatted"]
+  raw: TConfigs["raw"]
+  formatted: TConfigs["formatted"]
 }
 
 export interface Copy<TConfigs extends Configs> {

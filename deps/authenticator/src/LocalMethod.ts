@@ -1,14 +1,12 @@
-import * as CORE from "./Core.js"
-import * as EXPRESS from "express"
+import {User} from "./Core.js"
 import {fail} from "./Result.js"
 import {Method} from "./Method.js"
 import {STRING} from "format"
+import {success} from "./Result.js"
 import {INVALID} from "format"
-import {FailResult} from "./Result.js"
-import {SuccessResult} from "./Result.js"
 
 
-export type Options<TUser extends CORE.User> = {
+export type Options<TUser extends User> = {
   name?: undefined | string
   verify: Verify<TUser>
   /** 
@@ -38,6 +36,10 @@ export type Options<TUser extends CORE.User> = {
   */
   badPasswordMessage?: undefined | null | string
   /** 
+   * Defaults to `"unknown user"`
+  */
+  unknownUserMessage?: undefined | null | string
+  /** 
    * Defaults to `"missing username"`
   */
   missingUsernameMessage?: undefined | null | string
@@ -46,25 +48,28 @@ export type Options<TUser extends CORE.User> = {
   */
   missingPasswordMessage?: undefined | null | string
   /** 
+   * Defaults to `"incorrect password"`
+  */
+  incorrectPasswoedMessage?: undefined | null | string
+  /** 
    * Defaults to `"missing credentials"`
   */
   missingCredentialsMessage?: undefined | null | string
 }
 
-export type Verify<TUser extends CORE.User> = {
+export type Verify<TUser extends User> = {
   (username: string, password: string): (
-    | FailResult
-    | SuccessResult<TUser>
-    | Promise<FailResult>
-    | Promise<SuccessResult<TUser>>
+    | TUser
+    | VerifyReturn
   )
 }
 
-export function LocalMethod<TUser extends CORE.User>(options: Options<TUser>) {  
-  type User = TUser
-  type Request = EXPRESS.Customize<{body: object, query: object}, {}, false>[0][0]
+export enum VerifyReturn {
+  UNKNOWN_USER = "BAD_USERNAME",
+  INCORRECT_PASSWPRD = "BAD_PASSWORD",
+}
 
-
+export function LocalMethod<TUser extends User>(options: Options<TUser>) {  
   const name = options.name || "local"
   const verify = options.verify
   const usernameKey = options.usernameKey ?? "username"
@@ -73,12 +78,14 @@ export function LocalMethod<TUser extends CORE.User>(options: Options<TUser>) {
   const formatPassword = options.formatPassword || STRING()
   const BAD_PASSWORD_MESSAGE = options.badPasswordMessage || "bad password"
   const BAD_USERNAME_MESSAGE = options.badUsernameMessage || "bad username"
+  const UNKNOWN_USER_MESSAGE = options.unknownUserMessage || "unknown user"
   const MISSING_PASSWORD_MESSAGE = options.missingPasswordMessage || "missing password"
   const MISSING_USERNAME_MESSAGE = options.missingUsernameMessage || "missing username"
+  const INCORRECT_PASSWORD_MESSAGE = options.incorrectPasswoedMessage || "incorrect password"
   const MISSING_CREDENTIALS_MESSAGE = options.missingCredentialsMessage || "missing credentials"
 
 
-  return Method<User, Request>(name, async (request) => {
+  return Method<TUser>(name, async (request) => {
     let store: Record<any, any>
 
     const body = request.body
@@ -126,7 +133,23 @@ export function LocalMethod<TUser extends CORE.User>(options: Options<TUser>) {
       })
     }
 
-    return verify(username, password)
+    const verification = verify(username, password)
+
+    if (verification === VerifyReturn.UNKNOWN_USER) {
+      return fail({
+        status: 400,
+        message: UNKNOWN_USER_MESSAGE,
+      })
+    }
+
+    if (verification === VerifyReturn.INCORRECT_PASSWPRD) {
+      return fail({
+        status: 400,
+        message: INCORRECT_PASSWORD_MESSAGE,
+      })
+    }
+
+    return success(verification)
   })
 }
 

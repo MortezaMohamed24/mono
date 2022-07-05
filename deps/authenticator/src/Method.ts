@@ -1,21 +1,19 @@
 import {URL} from "node:url"
 import {User} from "src/Core.js"
 import {Result} from "./Result.js"
-import {Proceed} from "express"
 import {Request} from "express"
-import {Response} from "express"
 import {getManager} from "./util/getManager.js"
 
 
-export type Method<TUser extends User, TRequest extends Request> = (
-  (request: TRequest) => (
+export type Method<TUser extends User> = (
+  (request: Request) => (
     | Result<TUser>
     | Promise<Result<TUser>>
   )
 )
 
-export function Method<TUser extends User, TRequest extends Request>(name: string, method: Method<TUser, TRequest>) {
-  return async (request: TRequest, response: Response, proceed: Proceed) => {
+export function Method<TUser extends User>(name: string, method: Method<TUser>) {
+  return async (request, response, proceed) => {
     const manager = getManager(request)
 
     if (manager.authenticated) {

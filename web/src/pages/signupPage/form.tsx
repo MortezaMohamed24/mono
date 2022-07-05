@@ -1,40 +1,40 @@
-import s from "./style";
-import sp from "./state";
-import btn from "/style/button/style";
-import React from "react";
-import {Link} from "react-router-dom";
-import {signup} from "./state";
-import {USERNAME} from "/features/user/fields/constants";
-import {PASSWORD} from "/features/user/fields/constants";
-import {LASTNAME} from "/features/user/fields/constants";
-import typeography from "/style/typeography/style";
-import {FIRSTNAME} from "/features/user/fields/constants";
-import {useSelector} from "react-redux";
-import {useDispatch} from "react-redux";
-import InputWithStatus from "/components/inputWithStatus";
-import {MIN_USERNAME_LENGTH} from "/features/user/fields/constants";
-import {MAX_USERNAME_LENGTH} from "/features/user/fields/constants";
-import {MIN_PASSWORD_LENGTH} from "/features/user/fields/constants";
-import {MAX_PASSWORD_LENGTH} from "/features/user/fields/constants";
-import {MIN_LASTNAME_LENGTH} from "/features/user/fields/constants";
-import {MAX_LASTNAME_LENGTH} from "/features/user/fields/constants";
-import {MIN_FIRSTNAME_LENGTH} from "/features/user/fields/constants";
-import {MAX_FIRSTNAME_LENGTH} from "/features/user/fields/constants";
+import s from "./style"
+import sp from "./state"
+import btn from "/style/button/style"
+import React from "react"
+import {Link} from "react-router-dom"
+import {signup} from "./state"
+import {USERNAME} from "/features/user/fields/constants"
+import {PASSWORD} from "/features/user/fields/constants"
+import {LASTNAME} from "/features/user/fields/constants"
+import typeography from "/style/typeography/style"
+import {FIRSTNAME} from "/features/user/fields/constants"
+import {useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
+import InputWithStatus from "/components/inputWithStatus"
+import {MIN_USERNAME_LENGTH} from "/features/user/fields/constants"
+import {MAX_USERNAME_LENGTH} from "/features/user/fields/constants"
+import {MIN_PASSWORD_LENGTH} from "/features/user/fields/constants"
+import {MAX_PASSWORD_LENGTH} from "/features/user/fields/constants"
+import {MIN_LASTNAME_LENGTH} from "/features/user/fields/constants"
+import {MAX_LASTNAME_LENGTH} from "/features/user/fields/constants"
+import {MIN_FIRSTNAME_LENGTH} from "/features/user/fields/constants"
+import {MAX_FIRSTNAME_LENGTH} from "/features/user/fields/constants"
 
 
 interface Props {
-  error: unknown;
+  error: unknown
 }
 
 
 const Form = React.memo<Props>(({error}) => {
-  const status = useSelector(sp.status);
-  const dispatch = useDispatch();
-  const validity = useSelector(sp.validity);
-  const username = useSelector(sp.username);
-  const password = useSelector(sp.password);
-  const lastname = useSelector(sp.lastname);
-  const firstname = useSelector(sp.firstname);
+  const status = useSelector(sp.status)
+  const dispatch = useDispatch()
+  const validity = useSelector(sp.validity)
+  const username = useSelector(sp.username)
+  const password = useSelector(sp.password)
+  const lastname = useSelector(sp.lastname)
+  const firstname = useSelector(sp.firstname)
 
 
   console.log({
@@ -44,7 +44,7 @@ const Form = React.memo<Props>(({error}) => {
     password, 
     lastname, 
     firstname,
-  });
+  })
   
 
   function commit() {
@@ -55,40 +55,40 @@ const Form = React.memo<Props>(({error}) => {
         password: password.value, 
         lastname: lastname.value, 
         firstname: firstname.value, 
-      }));
+      }))
     }
   }
 
   function setUsername(value: string) {
-    dispatch(sp.edit({error: null, status: "idle", username: {value}}));
+    dispatch(sp.edit({error: null, status: "idle", username: {value}}))
   }
   
   function setLastname(value: string) {
-    dispatch(sp.edit({error: null, status: "idle", lastname: {value}}));
+    dispatch(sp.edit({error: null, status: "idle", lastname: {value}}))
   }
   
   function setPassword(value: string) {
-    dispatch(sp.edit({error: null, status: "idle", password: {value}}));
+    dispatch(sp.edit({error: null, status: "idle", password: {value}}))
   }
   
   function setFirstname(value: string) {
-    dispatch(sp.edit({error: null, status: "idle", firstname: {value}}));
+    dispatch(sp.edit({error: null, status: "idle", firstname: {value}}))
   }
   
   function setUsernameValidity(isValid: boolean) {
-    dispatch(sp.edit({error: null, status: "idle", username: {isValid}}));
+    dispatch(sp.edit({error: null, status: "idle", username: {isValid}}))
   }
   
   function setLastnameValidity(isValid: boolean) {
-    dispatch(sp.edit({error: null, status: "idle", lastname: {isValid}}));
+    dispatch(sp.edit({error: null, status: "idle", lastname: {isValid}}))
   }
   
   function setPasswordValidity(isValid: boolean) {
-    dispatch(sp.edit({error: null, status: "idle", password: {isValid}}));
+    dispatch(sp.edit({error: null, status: "idle", password: {isValid}}))
   }
   
   function setFirstnameValidity(isValid: boolean) {
-    dispatch(sp.edit({error: null, status: "idle", firstname: {isValid}}));
+    dispatch(sp.edit({error: null, status: "idle", firstname: {isValid}}))
   }  
 
 
@@ -176,8 +176,8 @@ const Form = React.memo<Props>(({error}) => {
         Already have an account? <Link to="/login" className={typeography.link}>Log In</Link>
       </p>
     </div>
-  );
-});
+  )
+})
 
 
-export default Form;
+export default Form

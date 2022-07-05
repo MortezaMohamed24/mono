@@ -11,7 +11,6 @@ import {SignupActionFulfilled} from "../actions";
 const thunk = (body: RequestBody) => async (dispatch: Dispatch, getState: GetState) => {
   const state = getState().sp;
 
-  console.log(state);
   if ((
     state.status !== "idle"
   ) || (

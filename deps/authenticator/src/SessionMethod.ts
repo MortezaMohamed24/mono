@@ -1,18 +1,14 @@
 import {pass} from "./Result.js"
 import {User} from "./Core.js"
 import {Method} from "./Method.js"
-import {Request} from "express"
+import {success} from "./Result.js"
 import {isNoValue} from "./util/isNoValue.js"
 import {getManager} from "./util/getManager.js"
 import {Deserializer} from "./Core.js"
 
 
-export interface Options<TUser extends User> {
-  deserialize: Deserializer<TUser>
-}
-
-export function SessionMethod<TUser extends User>({deserialize}: Options<TUser>) {
-  return Method<TUser, Request>("session", async (request) =>  {
+export function SessionMethod<TUser extends User>(deserialize: Deserializer<TUser>) {
+  return Method<TUser>("session", async (request) =>  {
     const manager = getManager(request)
     const state = manager.state
 
@@ -35,13 +31,10 @@ export function SessionMethod<TUser extends User>({deserialize}: Options<TUser>)
     */
     if (isNoValue(deserializedUser)) {
       delete state.user
-      manager.user = null
-    } else {
-      manager.user = deserializedUser
-    }
-  
-  
-    return pass()
+      return pass()
+    } 
+
+    return success(deserializedUser)
   })
 }
 

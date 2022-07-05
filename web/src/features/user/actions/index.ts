@@ -1,14 +1,14 @@
-import URLS from "/features/user/endpoints";
-import {OBJECT} from "/util/formatter";
-import {UserRaw} from "../entity";
-import {password} from "/features/user/fields";
-import ApiQuerier from "/api/querier";
-import ApiMutator from "/api/mutator";
-import {initials} from "/features/user/fields";
-import {username} from "/features/user/fields";
-import {lastname} from "/features/user/fields";
-import {firstname} from "/features/user/fields";
-import {formatAsUserRaw} from "../entity";
+import URLS from "/features/user/endpoints"
+import {OBJECT} from "/util/formatter"
+import {UserRaw} from "../entity"
+import {password} from "/features/user/fields"
+import ApiQuerier from "/api/querier"
+import ApiMutator from "/api/mutator"
+import {initials} from "/features/user/fields"
+import {username} from "/features/user/fields"
+import {lastname} from "/features/user/fields"
+import {firstname} from "/features/user/fields"
+import {formatAsUserRaw} from "../entity"
 
 
 // ----------  REQUEST METAS
@@ -17,26 +17,26 @@ export type UserLoadRequestMeta = undefined
 
 export type UserEditRequestMeta = {
   /** The new username for user. */
-  readonly username?: string;
+  readonly username?: string
   /** The new first name for user. */
-  readonly firstname?: string;
+  readonly firstname?: string
   /** The new last name for user. */
-  readonly lastname?: string;
+  readonly lastname?: string
   /** The new initials for user. */
-  readonly initials?: string;
+  readonly initials?: string
   /** The new passwrod for user. */
-  readonly passwrod?: string;
+  readonly passwrod?: string
 }
 
 export type UserCreateRequestMeta = {
   /** The username of the user to create. */
-  readonly username: string; 
+  readonly username: string 
   /** The first name of the user to create. */
-  readonly firstname: string; 
+  readonly firstname: string 
   /** The password of the user to create. */
-  readonly password: string;
+  readonly password: string
   /** The last name of the user to create. */
-  readonly lastname: string; 
+  readonly lastname: string 
 }
 
 export type UserDestroyRequestMeta = undefined
@@ -53,7 +53,7 @@ export const formatAsUserEditRequestMeta = OBJECT({
   fistname: firstname.copy({optional: true}),
 }, {
   name: "UserEditRequestMeta",
-});
+})
 
 export const formatAsUserCreateRequestMeta = OBJECT({
   username: username, 
@@ -62,7 +62,7 @@ export const formatAsUserCreateRequestMeta = OBJECT({
   firstname: firstname, 
 }, {
   name: "UserCreateRequestMeta",
-});
+})
 
 
 // ---------- REQUEST CREATORS
@@ -71,7 +71,7 @@ export const UserLoadRequest = (): Request => (
   new Request(new URL(URLS.LOAD).href, {
     method: "GET",
   })
-);
+)
 
 export const UserEditRequest = (meta: UserEditRequestMeta): Request => (
   new Request(URLS.EDIT, {
@@ -79,7 +79,7 @@ export const UserEditRequest = (meta: UserEditRequestMeta): Request => (
     method: "PATCH",
     headers: {"Content-Type": "application/json"},
   })
-);
+)
 
 export const UserCreateRequest = (meta: UserCreateRequestMeta): Request => (
   new Request(URLS.CREATE, {
@@ -87,7 +87,7 @@ export const UserCreateRequest = (meta: UserCreateRequestMeta): Request => (
     method: "POST",
     headers: {"Content-Type": "application/json"},
   })
-);
+)
 
 export const UserDestroyRequest = (meta: UserDestroyRequestMeta): Request => (
   new Request(URLS.DESTROY, {
@@ -95,36 +95,36 @@ export const UserDestroyRequest = (meta: UserDestroyRequestMeta): Request => (
     method: "DELETE",
     headers: {"Content-Type": "application/json"},
   })
-);
+)
 
 
 // ---------- RESPONSE BODIES
 
-export type UserLoadResponseBody = UserRaw;
-export type UserEditResponseBody = undefined;
-export type UserCreateResponseBody = undefined;
-export type UserDestroyResponseBody = undefined;
+export type UserLoadResponseBody = UserRaw
+export type UserEditResponseBody = undefined
+export type UserCreateResponseBody = undefined
+export type UserDestroyResponseBody = undefined
 
 
 // ---------- RESPONSE BODY FORMATTERS
 
-export const formatAsUserLoadResponseBody = formatAsUserRaw;
+export const formatAsUserLoadResponseBody = formatAsUserRaw
 
 
 // ---------- ACTION TYPES
 
-export const LOAD_PENDING = "user/load/pending";
-export const LOAD_REJECTED = "user/load/rejected";
-export const LOAD_FULFILLED = "user/load/fulfilled";
-export const EDIT_PENDING = "user/edit/pending";
-export const EDIT_REJECTED = "user/edit/rejected";
-export const EDIT_FULFILLED = "user/edit/fulfilled";
-export const CREATE_PENDING = "user/create/pending";
-export const CREATE_REJECTED = "user/create/rejected";
-export const CREATE_FULFILLED = "user/create/fulfilled";
-export const DESTROY_PENDING = "user/destroy/pending";
-export const DESTROY_REJECTED = "user/destroy/rejected";
-export const DESTROY_FULFILLED = "user/destroy/fulfilled";
+export const LOAD_PENDING = "user/load/pending"
+export const LOAD_REJECTED = "user/load/rejected"
+export const LOAD_FULFILLED = "user/load/fulfilled"
+export const EDIT_PENDING = "user/edit/pending"
+export const EDIT_REJECTED = "user/edit/rejected"
+export const EDIT_FULFILLED = "user/edit/fulfilled"
+export const CREATE_PENDING = "user/create/pending"
+export const CREATE_REJECTED = "user/create/rejected"
+export const CREATE_FULFILLED = "user/create/fulfilled"
+export const DESTROY_PENDING = "user/destroy/pending"
+export const DESTROY_REJECTED = "user/destroy/rejected"
+export const DESTROY_FULFILLED = "user/destroy/fulfilled"
 
 export type LOAD_PENDING = typeof LOAD_PENDING
 export type LOAD_REJECTED = typeof LOAD_REJECTED
@@ -143,87 +143,87 @@ export type DESTROY_FULFILLED = typeof DESTROY_FULFILLED
 // ---------- ACTIONS
 
 export type UserEditPendingAction = {
-  type: EDIT_PENDING;
-  meta: UserEditRequestMeta;
-  error: undefined;
-  payload: undefined;
+  type: EDIT_PENDING
+  meta: UserEditRequestMeta
+  error: undefined
+  payload: undefined
 }
 
 export type UserEditRejectedAction = {
-  type: EDIT_REJECTED;
-  meta: UserEditRequestMeta;
-  error: unknown;
-  payload: undefined;
+  type: EDIT_REJECTED
+  meta: UserEditRequestMeta
+  error: unknown
+  payload: undefined
 }
 
 export type UserEditFulfilledAction = {
-  type: EDIT_FULFILLED;
-  meta: UserEditRequestMeta;
-  error: undefined;
-  payload: UserEditResponseBody;
+  type: EDIT_FULFILLED
+  meta: UserEditRequestMeta
+  error: undefined
+  payload: UserEditResponseBody
 }
 
 export type UserLoadPendingAction = {
-  type: LOAD_PENDING;
-  meta: undefined;
-  error: undefined;
-  payload: undefined;
+  type: LOAD_PENDING
+  meta: undefined
+  error: undefined
+  payload: undefined
 }
 
 export type UserLoadRejectedAction = {
-  type: LOAD_REJECTED;
-  meta: undefined;
-  error: unknown;
-  payload: undefined;
+  type: LOAD_REJECTED
+  meta: undefined
+  error: unknown
+  payload: undefined
 }
 
 export type UserLoadFulfilledAction = {
-  type: LOAD_FULFILLED;
-  meta: undefined;
-  error: undefined;
-  payload: UserLoadResponseBody;
+  type: LOAD_FULFILLED
+  meta: undefined
+  error: undefined
+  payload: UserLoadResponseBody
 }
 
 export type UserCreatePendingAction = {
-  type: CREATE_PENDING;
-  meta: UserCreateRequestMeta;
-  error: undefined;
-  payload: undefined;
+  type: CREATE_PENDING
+  meta: UserCreateRequestMeta
+  error: undefined
+  payload: undefined
 }
 
 export type UserCreateRejectedAction = {
-  type: CREATE_REJECTED;
-  meta: UserCreateRequestMeta;
-  error: unknown;
-  payload: undefined;
+  type: CREATE_REJECTED
+  meta: UserCreateRequestMeta
+  error: unknown
+  payload: undefined
 }
 
 export type UserCreateFulfilledAction = {
-  type: CREATE_FULFILLED;
-  meta: UserCreateRequestMeta;
-  error: undefined;
-  payload: UserCreateResponseBody;
+  type: CREATE_FULFILLED
+  meta: UserCreateRequestMeta
+  error: undefined
+  payload: UserCreateResponseBody
 }
 
 export type UserDestroyPendingAction = {
-  type: DESTROY_PENDING;
-  meta: UserDestroyRequestMeta;
-  error: undefined;
-  payload: undefined;
+  type: DESTROY_PENDING
+  meta: UserDestroyRequestMeta
+  error: undefined
+  payload: undefined
 }
 
 export type UserDestroyRejectedAction = {
-  type: DESTROY_REJECTED;
-  meta: UserDestroyRequestMeta;
-  error: unknown;
-  payload: undefined;
+  type: DESTROY_REJECTED
+  meta: UserDestroyRequestMeta
+  error: unknown
+  payload: undefined
 }
 
 export type UserDestroyFulfilledAction = {
-  type: DESTROY_FULFILLED;
-  meta: UserDestroyRequestMeta;
-  error: undefined;
-  payload: UserDestroyResponseBody;
+  type: DESTROY_FULFILLED
+  meta: UserDestroyRequestMeta
+  error: undefined
+  payload: UserDestroyResponseBody
 }
 
 
@@ -244,18 +244,18 @@ export type AnyAction =
   | UserDestroyFulfilledAction
 
 export type AllActions = {
-  [EDIT_PENDING]: UserEditPendingAction;
-  [EDIT_REJECTED]: UserEditRejectedAction;
-  [EDIT_FULFILLED]: UserEditFulfilledAction;
-  [LOAD_PENDING]: UserLoadPendingAction;
-  [LOAD_REJECTED]: UserLoadRejectedAction;
-  [LOAD_FULFILLED]: UserLoadFulfilledAction;
-  [CREATE_PENDING]: UserCreatePendingAction;
-  [CREATE_REJECTED]: UserCreateRejectedAction;
-  [CREATE_FULFILLED]: UserCreateFulfilledAction;
-  [DESTROY_PENDING]: UserDestroyPendingAction;
-  [DESTROY_REJECTED]: UserDestroyRejectedAction;
-  [DESTROY_FULFILLED]: UserDestroyFulfilledAction; 
+  [EDIT_PENDING]: UserEditPendingAction
+  [EDIT_REJECTED]: UserEditRejectedAction
+  [EDIT_FULFILLED]: UserEditFulfilledAction
+  [LOAD_PENDING]: UserLoadPendingAction
+  [LOAD_REJECTED]: UserLoadRejectedAction
+  [LOAD_FULFILLED]: UserLoadFulfilledAction
+  [CREATE_PENDING]: UserCreatePendingAction
+  [CREATE_REJECTED]: UserCreateRejectedAction
+  [CREATE_FULFILLED]: UserCreateFulfilledAction
+  [DESTROY_PENDING]: UserDestroyPendingAction
+  [DESTROY_REJECTED]: UserDestroyRejectedAction
+  [DESTROY_FULFILLED]: UserDestroyFulfilledAction 
 }
 
 
@@ -266,84 +266,84 @@ export const UserEditPendingAction = (meta: UserEditRequestMeta): UserEditPendin
   meta: meta,
   error: undefined,
   payload: undefined,
-});
+})
 
 export const UserEditRejectedAction = (meta: UserEditRequestMeta, error: unknown): UserEditRejectedAction => ({
   type: EDIT_REJECTED,
   meta: meta,
   error: error,
   payload: undefined,
-});
+})
 
 export const UserEditFulfilledAction = (meta: UserEditRequestMeta, payload: UserEditResponseBody): UserEditFulfilledAction => ({
   type: EDIT_FULFILLED,
   meta: meta,
   error: undefined,
   payload: payload,
-});
+})
 
 export const UserLoadPendingAction = (meta: UserLoadRequestMeta): UserLoadPendingAction => ({
   type: LOAD_PENDING,
   meta: meta,
   error: undefined,
   payload: undefined,
-});
+})
 
 export const UserLoadRejectedAction = (meta: UserLoadRequestMeta, error: unknown): UserLoadRejectedAction => ({
   type: LOAD_REJECTED,
   meta: meta,
   error: error,
   payload: undefined,
-});
+})
 
 export const UserLoadFulfilledAction = (meta: UserLoadRequestMeta, payload: UserLoadResponseBody): UserLoadFulfilledAction => ({
   type: LOAD_FULFILLED,
   meta: meta,
   error: undefined,
   payload: payload,
-});
+})
 
 export const UserCreatePendingAction = (meta: UserCreateRequestMeta): UserCreatePendingAction => ({
   type: CREATE_PENDING,
   meta: meta,
   error: undefined,
   payload: undefined,
-});
+})
 
 export const UserCreateRejectedAction = (meta: UserCreateRequestMeta, error: unknown): UserCreateRejectedAction => ({
   type: CREATE_REJECTED,
   meta: meta,
   error: error,
   payload: undefined,
-});
+})
 
 export const UserCreateFulfilledAction = (meta: UserCreateRequestMeta, payload: UserCreateResponseBody): UserCreateFulfilledAction => ({
   type: CREATE_FULFILLED,
   meta: meta,
   error: undefined,
   payload: payload,
-});
+})
 
 export const UserDestroyPendingAction = (meta: UserDestroyRequestMeta): UserDestroyPendingAction => ({
   type: DESTROY_PENDING,
   meta: meta,
   error: undefined,
   payload: undefined,
-});
+})
 
 export const UserDestroyRejectedAction = (meta: UserDestroyRequestMeta, error: unknown): UserDestroyRejectedAction => ({
   type: DESTROY_REJECTED,
   meta: meta,
   error: error,
   payload: undefined,
-});
+})
 
 export const UserDestroyFulfilledAction = (meta: UserDestroyRequestMeta, payload: UserDestroyResponseBody): UserDestroyFulfilledAction => ({
   type: DESTROY_FULFILLED,
   meta: meta,
   error: undefined,
   payload: payload,
-});
+})
 
 
 // ---------- THUNKS
@@ -359,7 +359,7 @@ export const edit = ApiMutator<
   pending: UserEditPendingAction,
   rejected: UserEditRejectedAction,
   fulfilled: UserEditFulfilledAction,
-});
+})
 
 export const load = ApiQuerier<
   UserLoadRequestMeta,
@@ -373,7 +373,7 @@ export const load = ApiQuerier<
   pending: UserLoadPendingAction,
   rejected: UserLoadRejectedAction,
   fulfilled: UserLoadFulfilledAction,
-});
+})
 
 export const create = ApiMutator<
   UserCreateRequestMeta,
@@ -386,7 +386,7 @@ export const create = ApiMutator<
   pending: UserCreatePendingAction,
   rejected: UserCreateRejectedAction,
   fulfilled: UserCreateFulfilledAction,
-});
+})
 
 export const destroy = ApiMutator<
   UserDestroyRequestMeta,
@@ -400,7 +400,7 @@ export const destroy = ApiMutator<
   pending: UserDestroyPendingAction,
   rejected: UserDestroyRejectedAction,
   fulfilled: UserDestroyFulfilledAction,
-});
+})
 
 
 export default Object.freeze({
@@ -439,4 +439,4 @@ export default Object.freeze({
   load,
   create,
   destroy,
-});
+})

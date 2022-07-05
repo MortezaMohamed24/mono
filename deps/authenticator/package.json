@@ -5,6 +5,8 @@
   "version": "1.0.0",
   "description": "Web Authentication Library",
   "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.0.1",
     "errors": "file:../errors",
     "express": "file:../express/core",
     "format": "file:../format"
