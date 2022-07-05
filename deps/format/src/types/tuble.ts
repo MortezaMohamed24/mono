@@ -1,5 +1,5 @@
 import {Type} from "../type.js"
-import {Optoinify} from "../util/optionifty.js"
+import {Optionify} from "../util/optionifty.js"
 import {VirtualType} from "../type.js"
 import {RawBaseOptions} from "../type.js"
 
@@ -18,7 +18,7 @@ type TypeReturn<TContent extends Content> = (
 
 
 const TUBLE = <TContent extends Content, TOptions extends Options>(content: TContent, options?: TOptions) => (
-  Type<Optoinify<TOptions, unknown[], TypeReturn<TContent>>>((raw) => {
+  Type<Optionify<TOptions, unknown[], TypeReturn<TContent>>>((raw) => {
     const copy: TypeReturn<TContent> = []
     
     for (let [index, type] of content.entries()) {

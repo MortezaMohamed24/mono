@@ -1,11 +1,11 @@
 import {Options} from "./options.js"
-import {Optoinify} from "./optionifty.js"
+import {Optionify} from "./optionifty.js"
 
 
 export {
   Options as O,
-  Optoinify as M,
+  Optionify as M,
 
   Options,
-  Optoinify,
+  Optionify as Optoinify,
 }

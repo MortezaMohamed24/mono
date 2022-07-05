@@ -1,5 +1,5 @@
 import {Type} from "../type.js"
-import {Optoinify} from "../util/optionifty.js"
+import {Optionify} from "../util/optionifty.js"
 import {RawBaseOptions} from "../type.js"
 
 
@@ -13,7 +13,7 @@ interface Options extends Omit<RawBaseOptions, "checkClass"> {
 }
 
 const NUMBER = <TOptions extends Options>({nan, min, max, safe, finite, ...options}: Partial<TOptions> = {}) => (
-  Type<Optoinify<TOptions, number, number>>((raw, {INVALID}) => {
+  Type<Optionify<TOptions, number, number>>((raw, {INVALID}) => {
     if (nan) {
       if (Object.is(raw, NaN)) {
         return raw
@@ -48,3 +48,7 @@ const NUMBER = <TOptions extends Options>({nan, min, max, safe, finite, ...optio
 
 
 export default NUMBER
+
+
+const AA = NUMBER()
+const BB = AA("", {strict: true, optional: true})

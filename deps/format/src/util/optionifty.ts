@@ -1,7 +1,7 @@
 import {RawInlineOptions} from "../type.js"
 
 
-export type Optoinify<TOptions extends RawInlineOptions, TRaw, TFormatted> = {
+export type Optionify<TOptions extends RawInlineOptions, TRaw, TFormatted> = {
   raw: TRaw
   strict: TOptions["strict"]
   boolean: TOptions["boolean"]
@@ -11,4 +11,4 @@ export type Optoinify<TOptions extends RawInlineOptions, TRaw, TFormatted> = {
 }
 
 
-export default Optoinify
+export default Optionify

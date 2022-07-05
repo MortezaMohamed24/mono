@@ -165,11 +165,12 @@ export type TypeReturn<TConfigs extends Configs> =
         ? INVALID | TConfigs["formatted"] | FallbackType<TConfigs>
         : INVALID | TConfigs["formatted"]
 
-export type FallbackType<TConfigs extends Configs> = 
-  TConfigs extends {fallback?: infer Fallback} 
-    ? Fallback 
-    : undefined
-
+export type FallbackType<T extends Configs> = 
+  unknown extends T["fallback"] 
+    ? undefined
+    : never extends T["fallback"]
+      ? undefined
+      : T["fallback"]
 
 export function prepareOptions(options: RawBaseOptions = {}): PreparedBaseOptions {
   return {

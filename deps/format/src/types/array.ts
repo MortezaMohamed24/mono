@@ -1,5 +1,5 @@
 import {Type} from "../type.js"
-import {Optoinify} from "../util/optionifty.js"
+import {Optionify} from "../util/optionifty.js"
 import {VirtualType} from "../type.js"
 import {RawBaseOptions} from "../type.js"
 
@@ -12,7 +12,7 @@ const UNDEFINED = Symbol()
 
 
 const ARRAY = <TContent extends Content, TOptions extends Options>(content: TContent, options?: Partial<TOptions>) => (
-  Type<Optoinify<TOptions, unknown[], TContent[number]["formatted"][]>>((raw) => {
+  Type<Optionify<TOptions, unknown[], TContent[number]["formatted"][]>>((raw) => {
     const copy: unknown[] = []
     
     for (let [index, item] of raw.entries()) {

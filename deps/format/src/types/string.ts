@@ -1,6 +1,6 @@
 import {Type} from "../type.js"
 import {escape} from "html-escaper"
-import {Optoinify} from "../util/optionifty.js"
+import {Optionify} from "../util/optionifty.js"
 import {RawBaseOptions} from "../type.js"
 
 
@@ -44,7 +44,7 @@ interface Options extends Omit<RawBaseOptions, "checkClass"> {
 }
 
 const STRING = <TOptions extends Options>(options: Partial<TOptions> = {}) => (
-  Type<Optoinify<TOptions, string, string>>((raw, {INVALID}) => {
+  Type<Optionify<TOptions, string, string>>((raw, {INVALID}) => {
     if (options.compact === true) {
       raw = raw.replace(/\s+/ug, " ")
     } else if (options.compact) {

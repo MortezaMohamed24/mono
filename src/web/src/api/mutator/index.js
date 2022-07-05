@@ -10,7 +10,7 @@ function ApiMutator({format, pending, request, prepare, rejected, fulfilled}) {
     const meta = prepare ? prepare(unpreparedMeta) : unpreparedMeta;
 
 
-    async function ThunkTommy(dispatch, getState) {
+    async function ThunkTummy(dispatch, getState) {
       const stateBeforeUptimisticUpdates = getState();
       dispatch(pending(meta));
       const stateAfterUptimisticUpdates = getState();
@@ -35,7 +35,7 @@ function ApiMutator({format, pending, request, prepare, rejected, fulfilled}) {
     }
 
 
-    return ThunkTommy;
+    return ThunkTummy;
   }
 
 

@@ -1,5 +1,5 @@
 import {Type} from "../type.js"
-import {Optoinify} from "../util/optionifty.js"
+import {Optionify} from "../util/optionifty.js"
 import {RawBaseOptions} from "../type.js"
 
 
@@ -14,7 +14,7 @@ const PATTERN = /^[0-9a-fA-F]{24}$/
 
 
 const OID = <TOptions extends Options>(options: Partial<TOptions> = {}) => (
-  Type<Optoinify<TOptions, string, string>>((raw, {INVALID}) => {
+  Type<Optionify<TOptions, string, string>>((raw, {INVALID}) => {
     raw = raw.trim().toLowerCase()
 
     if (PATTERN.test(raw)) {

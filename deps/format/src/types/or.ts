@@ -1,6 +1,6 @@
 import {Type} from "../type.js"
 import {VALID} from "../symbols.js"
-import {Optoinify} from "../util/optionifty.js"
+import {Optionify} from "../util/optionifty.js"
 import {VirtualType} from "../type.js"
 import {RawBaseOptions} from "../type.js"
 
@@ -17,7 +17,7 @@ type TypeReturn<TOperands extends Operands> = (
 
 
 const OR = <TOperands extends Operands, TOptions extends Options>(operands: TOperands, options?: TOptions) => (
-  Type<Optoinify<TOptions, unknown[], TypeReturn<TOperands>>>((raw, {VALID, INVALID}) => {
+  Type<Optionify<TOptions, unknown[], TypeReturn<TOperands>>>((raw, {VALID, INVALID}) => {
     let valid = true
 
 

@@ -1,5 +1,5 @@
 import {Type} from "../type.js"
-import {Optoinify} from "../util/optionifty.js"
+import {Optionify} from "../util/optionifty.js"
 import {RawBaseOptions} from "../type.js"
 
 
@@ -21,7 +21,7 @@ type TypeReturn<TOptions extends Options> = (
 )
 
 const BOOLEAN = <TOptions extends Options>({which, ...options}: Partial<TOptions> = {}) => (
-  Type<Optoinify<TOptions, boolean, TypeReturn<TOptions>>>((raw, {INVALID}) => {
+  Type<Optionify<TOptions, boolean, TypeReturn<TOptions>>>((raw, {INVALID}) => {
     switch (which) {
       case true: if (raw === true) return raw as TypeReturn<TOptions>
       case false: if (raw === false) return raw as TypeReturn<TOptions>

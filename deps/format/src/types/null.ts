@@ -1,5 +1,5 @@
 import {Type} from "../type.js"
-import {Optoinify} from "../util/optionifty.js"
+import {Optionify} from "../util/optionifty.js"
 import {RawBaseOptions} from "../type.js"
 
 
@@ -8,7 +8,7 @@ type Options = (
 )
 
 const NULL = <TOptions extends Options>(options?: TOptions) => (
-  Type<Optoinify<TOptions, null, null>>(() => (
+  Type<Optionify<TOptions, null, null>>(() => (
     null
   ), {
     name: "Null", 
