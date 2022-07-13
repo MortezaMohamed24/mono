@@ -1,9 +1,9 @@
-import title from "./title";
-import theme from "./theme";
-import isStarred from "./isStarred";
-import dateCreation from "./dateCreation";
-import dateLastView from "./dateLastView";
-import dateLastActivity from "./dateLastActivity";
+import title from "./title"
+import theme from "./theme"
+import isStarred from "./isStarred"
+import dateCreation from "./dateCreation"
+import dateLastView from "./dateLastView"
+import dateLastActivity from "./dateLastActivity"
 
 
 export {
@@ -13,7 +13,7 @@ export {
   dateCreation,
   dateLastView,
   dateLastActivity,
-};
+}
 
 
 export default Object.freeze({
@@ -23,4 +23,4 @@ export default Object.freeze({
   dateCreation,
   dateLastView,
   dateLastActivity,
-});
+})

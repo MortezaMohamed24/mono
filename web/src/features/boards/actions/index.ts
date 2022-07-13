@@ -1,58 +1,58 @@
-import URLS from "../endpoints";
-import {Oid} from "/util/idUtil";
-import {OID} from "/util/formatter";
-import {ARRAY} from "/util/formatter";
-import {OBJECT} from "/util/formatter";
-import {BOOLEAN} from "/util/formatter";
-import ApiMutator from "/api/mutator";
-import {LabelBase} from "/features/labels/entity";
-import BOARD_FIELDS from "/features/boards/fields";
-import LABEL_FIELDS from "/features/labels/fields";
-import LABEL_COLORS from "/features/labels/constants/colors";
-import {BoardNative} from "../entity";
-import {BoardRawUnnested} from "../entity";
-import {formatAsBoardRawUnnested} from "../entity";
+import URLS from "../endpoints"
+import {Oid} from "/util/idUtil"
+import {OID} from "/util/formatter"
+import {ARRAY} from "/util/formatter"
+import {OBJECT} from "/util/formatter"
+import {BOOLEAN} from "/util/formatter"
+import ApiMutator from "/api/mutator"
+import {LabelBase} from "/features/labels/entity"
+import BOARD_FIELDS from "/features/boards/fields"
+import LABEL_FIELDS from "/features/labels/fields"
+import LABEL_COLORS from "/features/labels/constants/colors"
+import {BoardNative} from "../entity"
+import {BoardRawUnnested} from "../entity"
+import {formatAsBoardRawUnnested} from "../entity"
 
 
 // ---------- PREPARED REQUEST METAS
 
 export type BoardEditRequestMeta = {
-  readonly title?: string;
-  readonly theme?: BoardNative["theme"];
-  readonly idBoard: string;
-  readonly isStarred?: boolean;
+  readonly title?: string
+  readonly theme?: BoardNative["theme"]
+  readonly idBoard: string
+  readonly isStarred?: boolean
 }
 
 export type BoardCopyRequestMeta = {
-  readonly title: string;
-  readonly idBoard: string; 
-  readonly keepCards: boolean;
+  readonly title: string
+  readonly idBoard: string 
+  readonly keepCards: boolean
 }
 
 export type BoardCreateRequestMeta = BoardCreateRequestMetaUnprepared & {
   /** The id for the board to create */
-  readonly id: string;
+  readonly id: string
   /** A description for the labels to pre create for the board */
   readonly labels: {
     /** The id for the label to create */
-    id: string;
+    id: string
     /** The name for the label to create */
-    name: LabelBase["name"];
+    name: LabelBase["name"]
     /** The color for the label to create */
-    color: LabelBase["color"];
-  }[];
+    color: LabelBase["color"]
+  }[]
 }
 
 export type BoardDestroyRequestMeta = {
-  readonly idBoard: string;
+  readonly idBoard: string
 }
 
 
 // ---------- UNPREPARED REQUEST METAS
 
 export type BoardCreateRequestMetaUnprepared = {
-  readonly title: string; 
-  readonly theme: BoardNative["theme"];
+  readonly title: string 
+  readonly theme: BoardNative["theme"]
 }
 
 
@@ -67,7 +67,7 @@ export const prepareBoardCreateRequestMeta = (meta: BoardCreateRequestMetaUnprep
     name: null, 
     color: color.name,
   })),
-});
+})
 
 
 // ---------- REQUEST META FORMATTERS
@@ -79,7 +79,7 @@ export const formatAsBoardEditRequestMeta = OBJECT({
   isStarred: BOARD_FIELDS.isStarred.copy({optional: true}),
 }, {
   name: "BoardEditRequestMeta",
-});
+})
 
 export const formatAsBoardCopyRequestMeta = OBJECT({
   title: BOARD_FIELDS.title,
@@ -87,7 +87,7 @@ export const formatAsBoardCopyRequestMeta = OBJECT({
   keepCards: BOOLEAN(),
 }, {
   name: "BoardCopyRequestMeta",
-});
+})
 
 export const formatAsBoardCreateRequestMeta = OBJECT({
   id: OID(),
@@ -102,13 +102,13 @@ export const formatAsBoardCreateRequestMeta = OBJECT({
   ]),
 }, {
   name: "BoardCreateRequestMeta",
-});
+})
 
 export const formatAsBoardDestroyRequestMeta = OBJECT({
   idBoard: OID(),
 }, {
   name: "BoardDestroyRequestMeta",
-});
+})
 
 
 // ---------- REQUEST CREATORS
@@ -119,7 +119,7 @@ export const BoardCopyRequest = (meta: BoardCopyRequestMeta): Request => (
     method: "POST",
     headers: {"Content-Type": "application/json"},
   })
-);
+)
 
 export const BoardEditRequest = (meta: BoardEditRequestMeta): Request => (
   new Request(URLS.EDIT, {
@@ -127,7 +127,7 @@ export const BoardEditRequest = (meta: BoardEditRequestMeta): Request => (
     method: "PATCH",
     headers: {"Content-Type": "application/json"},
   })
-);
+)
 
 export const BoardCreateRequest = (meta: BoardCreateRequestMeta): Request => (
   new Request(URLS.CREATE, {
@@ -135,7 +135,7 @@ export const BoardCreateRequest = (meta: BoardCreateRequestMeta): Request => (
     method: "POST",
     headers: {"Content-Type": "application/json"},
   })
-);
+)
 
 export const BoardDestroyRequest = (meta: BoardDestroyRequestMeta): Request => (
   new Request(URLS.DESTROY, {
@@ -143,42 +143,45 @@ export const BoardDestroyRequest = (meta: BoardDestroyRequestMeta): Request => (
     method: "DELETE",
     headers: {"Content-Type": "application/json"},
   })
-);
+)
 
 
 // ---------- RESPONSE BODIES
 
-export type BoardEditResponseBody = undefined;
+export type BoardEditResponseBody = undefined
 export type BoardCopyResponseBody = BoardRawUnnested
-export type BoardCreateResponseBody = BoardRawUnnested
-export type BoardDestroyResponseBody = undefined;
+export type BoardCreateResponseBody = undefined
+export type BoardDestroyResponseBody = undefined
 
 
 // ---------- RESPONSE BODY FORMATTERS
 
 export const formatAsBoardCopyResponseBody = formatAsBoardRawUnnested.copy({
   name: "BoardCopyResponseBody",
-});
+})
 
-export const formatAsBoardCreateResponseBody = formatAsBoardRawUnnested.copy({
-  name: "BoardCreateResponseBpdy",
-});
+// export const formatAsBoardCreateResponseBody = formatAsBoardRawUnnested.copy({
+//   name: "BoardCreateResponseBpdy",
+// })
+export const formatAsBoardCreateResponseBody = () => (
+  undefined
+)
 
 
 // ---------- ACTION TYPES
 
-export const EDIT_PENDING = "boards/edit/pending";
-export const EDIT_REJECTED = "boards/edit/rejected";
-export const EDIT_FULFILLED = "boards/edit/fulfilled";
-export const COPY_PENDING = "boards/copy/pending";
-export const COPY_REJECTED = "boards/copy/rejected";
-export const COPY_FULFILLED = "boards/copy/fulfilled";
-export const CREATE_PENDING = "boards/create/pending";
-export const CREATE_REJECTED = "boards/create/rejected";
-export const CREATE_FULFILLED = "boards/create/fulfilled";
-export const DESTROY_PENDING = "boards/destroy/pending";
-export const DESTROY_REJECTED = "boards/destroy/rejected";
-export const DESTROY_FULFILLED = "boards/destroy/fulfilled";
+export const EDIT_PENDING = "boards/edit/pending"
+export const EDIT_REJECTED = "boards/edit/rejected"
+export const EDIT_FULFILLED = "boards/edit/fulfilled"
+export const COPY_PENDING = "boards/copy/pending"
+export const COPY_REJECTED = "boards/copy/rejected"
+export const COPY_FULFILLED = "boards/copy/fulfilled"
+export const CREATE_PENDING = "boards/create/pending"
+export const CREATE_REJECTED = "boards/create/rejected"
+export const CREATE_FULFILLED = "boards/create/fulfilled"
+export const DESTROY_PENDING = "boards/destroy/pending"
+export const DESTROY_REJECTED = "boards/destroy/rejected"
+export const DESTROY_FULFILLED = "boards/destroy/fulfilled"
 
 
 export type EDIT_PENDING = typeof EDIT_PENDING
@@ -198,87 +201,87 @@ export type DESTROY_FULFILLED = typeof DESTROY_FULFILLED
 // ---------- ACTIONS 
 
 export type BoardEditPendingAction = {
-  type: EDIT_PENDING; 
-  meta: BoardEditRequestMeta; 
-  error: undefined;
-  payload: undefined;
+  type: EDIT_PENDING 
+  meta: BoardEditRequestMeta 
+  error: undefined
+  payload: undefined
 }
 
 export type BoardEditRejectedAction = {
-  type: EDIT_REJECTED;
-  meta: BoardEditRequestMeta;
-  error: unknown;
-  payload: undefined;
+  type: EDIT_REJECTED
+  meta: BoardEditRequestMeta
+  error: unknown
+  payload: undefined
 }
 
 export type BoardEditFulfilledAction = {
-  type: EDIT_FULFILLED; 
-  meta: BoardEditRequestMeta;
-  error: undefined;
-  payload: BoardEditResponseBody;
+  type: EDIT_FULFILLED 
+  meta: BoardEditRequestMeta
+  error: undefined
+  payload: BoardEditResponseBody
 }
 
 export type BoardCopyPendingAction = {
-  type: COPY_PENDING; 
-  meta: BoardCopyRequestMeta; 
-  error: undefined;
-  payload: undefined;
+  type: COPY_PENDING 
+  meta: BoardCopyRequestMeta 
+  error: undefined
+  payload: undefined
 }
 
 export type BoardCopyRejectedAction = {
-  type: COPY_REJECTED; 
-  meta: BoardCopyRequestMeta;
-  error: unknown;
-  payload: undefined;
+  type: COPY_REJECTED 
+  meta: BoardCopyRequestMeta
+  error: unknown
+  payload: undefined
 }
 
 export type BoardCopyFulfilledAction = {
-  type: COPY_FULFILLED; 
-  meta: BoardCopyRequestMeta; 
-  error: undefined;
-  payload: BoardCopyResponseBody;
+  type: COPY_FULFILLED 
+  meta: BoardCopyRequestMeta 
+  error: undefined
+  payload: BoardCopyResponseBody
 }
 
 export type BoardCreatePendingAction = {
-  type: CREATE_PENDING; 
-  meta: BoardCreateRequestMeta; 
-  error: undefined;
-  payload: undefined;
+  type: CREATE_PENDING 
+  meta: BoardCreateRequestMeta 
+  error: undefined
+  payload: undefined
 }
 
 export type BoardCreateRejectedAction = {
-  type: CREATE_REJECTED; 
-  meta: BoardCreateRequestMeta;
-  error: unknown; 
-  payload: undefined;
+  type: CREATE_REJECTED 
+  meta: BoardCreateRequestMeta
+  error: unknown 
+  payload: undefined
 }
 
 export type BoardCreateFulfilledAction = {
-  type: CREATE_FULFILLED; 
-  meta: BoardCreateRequestMeta; 
-  error: undefined;
-  payload: BoardCreateResponseBody;
+  type: CREATE_FULFILLED 
+  meta: BoardCreateRequestMeta 
+  error: undefined
+  payload: BoardCreateResponseBody
 }
 
 export type BoardDestroyPendingAction = {
-  type: DESTROY_PENDING; 
-  meta: BoardDestroyRequestMeta; 
-  error: undefined;
-  payload: undefined;
+  type: DESTROY_PENDING 
+  meta: BoardDestroyRequestMeta 
+  error: undefined
+  payload: undefined
 }
 
 export type BoardDestroyRejectedAction = {
-  type: DESTROY_REJECTED; 
-  meta: BoardDestroyRequestMeta;
-  error: unknown;
-  payload: undefined;
+  type: DESTROY_REJECTED 
+  meta: BoardDestroyRequestMeta
+  error: unknown
+  payload: undefined
 }
 
 export type BoardDestroyFulfilledAction = {
-  type: DESTROY_FULFILLED; 
-  meta: BoardDestroyRequestMeta; 
-  error: undefined;
-  payload: BoardDestroyResponseBody;
+  type: DESTROY_FULFILLED 
+  meta: BoardDestroyRequestMeta 
+  error: undefined
+  payload: BoardDestroyResponseBody
 }
 
 
@@ -299,18 +302,18 @@ export type AnyAction =
   | BoardDestroyFulfilledAction
 
 export type AllActions = {
-  [EDIT_PENDING]: BoardEditPendingAction;
-  [EDIT_REJECTED]: BoardEditRejectedAction;
-  [EDIT_FULFILLED]: BoardEditFulfilledAction;
-  [COPY_PENDING]: BoardCopyPendingAction;
-  [COPY_REJECTED]: BoardCopyRejectedAction;
-  [COPY_FULFILLED]: BoardCopyFulfilledAction;
-  [CREATE_PENDING]: BoardCreatePendingAction;
-  [CREATE_REJECTED]: BoardCreateRejectedAction;
-  [CREATE_FULFILLED]: BoardCreateFulfilledAction;
-  [DESTROY_PENDING]: BoardDestroyPendingAction;
-  [DESTROY_REJECTED]: BoardDestroyRejectedAction;
-  [DESTROY_FULFILLED]: BoardDestroyFulfilledAction;  
+  [EDIT_PENDING]: BoardEditPendingAction
+  [EDIT_REJECTED]: BoardEditRejectedAction
+  [EDIT_FULFILLED]: BoardEditFulfilledAction
+  [COPY_PENDING]: BoardCopyPendingAction
+  [COPY_REJECTED]: BoardCopyRejectedAction
+  [COPY_FULFILLED]: BoardCopyFulfilledAction
+  [CREATE_PENDING]: BoardCreatePendingAction
+  [CREATE_REJECTED]: BoardCreateRejectedAction
+  [CREATE_FULFILLED]: BoardCreateFulfilledAction
+  [DESTROY_PENDING]: BoardDestroyPendingAction
+  [DESTROY_REJECTED]: BoardDestroyRejectedAction
+  [DESTROY_FULFILLED]: BoardDestroyFulfilledAction  
 }
 
 
@@ -321,84 +324,84 @@ export const BoardEditPendingAction = (meta: BoardEditRequestMeta): BoardEditPen
   meta: meta,
   error: undefined,
   payload: undefined,
-});
+})
 
 export const BoardEditRejectedAction = (meta: BoardEditRequestMeta, error: unknown): BoardEditRejectedAction => ({
   type: EDIT_REJECTED,
   meta: meta,
   error: error,
   payload: undefined,
-});
+})
 
 export const BoardEditFulfilledAction = (meta: BoardEditRequestMeta, payload: BoardEditResponseBody): BoardEditFulfilledAction => ({
   type: EDIT_FULFILLED,
   meta: meta,
   error: undefined,
   payload: payload,
-});
+})
 
 export const BoardCopyPendingAction = (meta: BoardCopyRequestMeta): BoardCopyPendingAction => ({
   type: COPY_PENDING,
   meta: meta,
   error: undefined,
   payload: undefined,
-});
+})
 
 export const BoardCopyRejectedAction = (meta: BoardCopyRequestMeta, error: unknown): BoardCopyRejectedAction => ({
   type: COPY_REJECTED,
   meta: meta,
   error: error,
   payload: undefined,
-});
+})
 
 export const BoardCopyFulfilledAction = (meta: BoardCopyRequestMeta, payload: BoardCopyResponseBody): BoardCopyFulfilledAction => ({
   type: COPY_FULFILLED,
   meta: meta,
   error: undefined,
   payload: payload,
-});
+})
 
 export const BoardCreatePendingAction = (meta: BoardCreateRequestMeta): BoardCreatePendingAction => ({
   type: CREATE_PENDING,
   meta: meta,
   error: undefined,
   payload: undefined,
-});
+})
 
 export const BoardCreateRejectedAction = (meta: BoardCreateRequestMeta, error: unknown): BoardCreateRejectedAction => ({
   type: CREATE_REJECTED,
   meta: meta,
   error: error,
   payload: undefined,
-});
+})
 
 export const BoardCreateFulfilledAction = (meta: BoardCreateRequestMeta, payload: BoardCreateResponseBody): BoardCreateFulfilledAction => ({
   type: CREATE_FULFILLED,
   meta: meta,
   error: undefined,
   payload: payload,
-});
+})
 
 export const BoardDestroyPendingAction = (meta: BoardDestroyRequestMeta): BoardDestroyPendingAction => ({
   type: DESTROY_PENDING,
   meta: meta,
   error: undefined,
   payload: undefined,
-});
+})
 
 export const BoardDestroyRejectedAction = (meta: BoardDestroyRequestMeta, error: unknown): BoardDestroyRejectedAction => ({
   type: DESTROY_REJECTED,
   meta: meta,
   error: error,
   payload: undefined,
-});
+})
 
 export const BoardDestroyFulfilledAction = (meta: BoardDestroyRequestMeta, payload: BoardDestroyResponseBody): BoardDestroyFulfilledAction => ({
   type: DESTROY_FULFILLED,
   meta: meta,
   error: undefined,
   payload: payload,
-});
+})
 
 
 // ---------- THUNKS
@@ -415,7 +418,7 @@ export const copy = ApiMutator<
   pending: BoardCopyPendingAction,
   rejected: BoardCopyRejectedAction,
   fulfilled: BoardCopyFulfilledAction,
-});
+})
 
 export const edit = ApiMutator<
   BoardEditRequestMeta,
@@ -428,7 +431,7 @@ export const edit = ApiMutator<
   pending: BoardEditPendingAction,
   rejected: BoardEditRejectedAction,
   fulfilled: BoardEditFulfilledAction,
-});
+})
 
 export const create = ApiMutator<
   BoardCreateRequestMeta,
@@ -438,13 +441,12 @@ export const create = ApiMutator<
   BoardCreateFulfilledAction,
   BoardCreateRequestMetaUnprepared
 >({
-  format: formatAsBoardCreateResponseBody.copy({strict: true}),
   request: BoardCreateRequest,
   prepare: prepareBoardCreateRequestMeta,
   pending: BoardCreatePendingAction,
   rejected: BoardCreateRejectedAction,
   fulfilled: BoardCreateFulfilledAction,
-});
+})
 
 export const destroy = ApiMutator<
   BoardDestroyRequestMeta,
@@ -457,7 +459,7 @@ export const destroy = ApiMutator<
   pending: BoardDestroyPendingAction,
   rejected: BoardDestroyRejectedAction,
   fulfilled: BoardDestroyFulfilledAction,
-});
+})
 
 
 export default Object.freeze({
@@ -500,4 +502,4 @@ export default Object.freeze({
   edit,
   create,
   destroy,
-});
+})

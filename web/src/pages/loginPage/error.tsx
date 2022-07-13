@@ -1,25 +1,25 @@
-import s from "./style";
-import lg from "./state";
-import btn from "/style/button/style";
-import React from "react";
-import {login} from "./state";
-import typeography from "/style/typeography/style";
-import {useDispatch} from "/store";
-import {useSelector} from "/store";
+import s from "./style"
+import lg from "./state"
+import btn from "/style/button/style"
+import React from "react"
+import {login} from "./state"
+import typeography from "/style/typeography/style"
+import {useDispatch} from "/store"
+import {useSelector} from "/store"
 
 
 interface Props {
-  error: unknown;
+  error: unknown
 }
 
 
 const Error = React.memo<Props>(({error}) => {
-  const dispatch = useDispatch();
-  const username = useSelector(lg.username.value);
+  const dispatch = useDispatch()
+  const username = useSelector(lg.username.value)
 
 
   function reset() {
-    dispatch(lg.clear());
+    dispatch(lg.clear())
   }
 
   return (
@@ -42,8 +42,8 @@ const Error = React.memo<Props>(({error}) => {
       </button>
 
     </div>
-  );
-});
+  )
+})
 
 
-export default Error;
+export default Error

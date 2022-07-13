@@ -1,6 +1,6 @@
-import {THEME} from "../constants";
-import {STRING} from "/util/formatter";
-import {BoardNative} from "/features/boards/entity/native";
+import {THEME} from "../constants"
+import {STRING} from "/util/formatter"
+import {BoardNative} from "/features/boards/entity/native"
 
 
 const theme = STRING<BoardNative["theme"]>({
@@ -9,7 +9,7 @@ const theme = STRING<BoardNative["theme"]>({
   name: "Board.theme",
   pattern: RegExp(THEME, "u"),
   compact: true,
-});
+})
 
 
-export default theme;
+export default theme

@@ -30,6 +30,7 @@ export class User {
     this.username = initializer.username
     this.lastname = initializer.lastname
     this.initials = initializer.initials
+    this.password = initializer.password
     this.firstname = initializer.firstname
     User.items.push(this)
   }

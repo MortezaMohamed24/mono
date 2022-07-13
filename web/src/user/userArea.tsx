@@ -5,7 +5,7 @@ import {Route} from "react-router-dom";
 import {Switch} from "react-router-dom";
 import BoardPage from "/pages/boardPage";
 import PageNotFound from "/pages/NotFoundPage";
-import BoardNotFoundPage from "/pages/boardNotFoundPage";
+import BoardNotFoundPage from "../pages/boardNotFoundPage/src";
 
 
 const UserArea = React.memo(() => (

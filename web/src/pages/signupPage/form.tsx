@@ -100,15 +100,15 @@ const Form = React.memo<Props>(({error}) => {
 
       <p style={{display: error ? "block" : "none"}}>
         {
-          error === signup.ERRORS.INVALID_USERNAME_ERROR 
+          error === signup.ERRORS.AUTH_BAD_USERNAME_ERROR
             ? "Username is invalid"
-            : error === signup.ERRORS.INVALID_PASSWORD_ERROR
+            : error === signup.ERRORS.AUTH_BAD_PASSWORD_ERROR
               ? "Password is invalid"
-              : error === signup.ERRORS.INVALID_LASTNAME_ERROR
+              : error === "signup.ERRORS.AUTH"
                 ? "Last name is invalid"
-                : error === signup.ERRORS.INVALID_FIRSTNAME_ERROR
+                : error === "signup.ERRORS.INVALID_FIRSTNAME_ERROR"
                   ? "First name was invalid"
-                  : error === signup.ERRORS.UNAVAILABLE_USERNAME_ERROR
+                  : error === "signup.ERRORS.UNAVAILABLE_USERNAME_ERROR"
                     ? `Username "${username.value}" is not available`
                     : "Unexpected error occured"
         }

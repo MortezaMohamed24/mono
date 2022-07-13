@@ -1,46 +1,46 @@
-import s from "./style";
-import lg from "./state";
-import Form from "./form";
-import React from "react";
-import Error from "./error";
-import Loading from "../mainLoadingPage";
-import {Redirect} from "react-router-dom";
-import {useEffect} from "react";
-import {useSelector} from "react-redux";
-import {useDispatch} from "react-redux";
+import s from "./style"
+import lg from "./state"
+import Form from "./form"
+import React from "react"
+import Error from "./error"
+import Loading from "../mainLoadingPage"
+import {Redirect} from "react-router-dom"
+import {useEffect} from "react"
+import {useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
 
 
 const Login = React.memo(() => {
-  const error = useSelector(lg.error);
-  const status = useSelector(lg.status);
-  const dispatch = useDispatch();
+  const error = useSelector(lg.error)
+  const status = useSelector(lg.status)
+  const dispatch = useDispatch()
   
   useEffect(() => {
-    dispatch(lg.clear()); 
+    dispatch(lg.clear()) 
     
     return () => {
-      dispatch(lg.clear());
-    };
-  }, []);
+      dispatch(lg.clear())
+    }
+  }, [])
 
-  let content: JSX.Element;
+  let content: JSX.Element
 
   if (status === "idle") {
-    content = <Form />;
+    content = <Form />
   } else if (status === "loading") {
-    content = <Loading />;
+    content = <Loading />
   } else if (status === "succeeded") {
-    content = <Redirect to="/" />;
+    content = <Redirect to="/" />
   } else {
-    content = <Error error={error} />;
+    content = <Error error={error} />
   }
 
   return (
     <article className={s.login}>
       {content}
     </article>
-  );
-});
+  )
+})
 
 
-export default Login;
+export default Login

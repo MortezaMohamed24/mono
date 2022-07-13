@@ -1,4 +1,4 @@
-import {ORIGIN} from "/api/url";
+import {ORIGIN} from "/api/url"
 
 
 export const LOAD = new URL("/api/checkitem", ORIGIN).href
@@ -14,4 +14,4 @@ export default Object.freeze({
   MOVE,
   CREATE,
   DESTROY,
-});
+})

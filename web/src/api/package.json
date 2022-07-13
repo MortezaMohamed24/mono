@@ -1,0 +1,15 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MortezaMohamed",
+  "license": "ISC",
+  "dependencies": {
+    "format": "file:../../../deps/format",
+    "ts-toolbelt": "^9.6.0"
+  }
+}

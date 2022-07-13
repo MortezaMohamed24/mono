@@ -16,6 +16,7 @@ import {Checkitem} from "./models/Checkitem/Checkitem.js"
 import {Checklist} from "./models/Checklist/Checklist.js"
 import {URLToDirname} from "./util/URLToDirname.js"
 import {STATUS_CODES} from "http"
+import {JSONQueryParser} from "./JSONQueryParser.js"
 import {USER_PROJECT_REQUEST} from "./models/User/UserProjectRequestType.js"
 import {LIST_PROJECT_REQUEST} from "./models/List/ListProjectRequestType.js"
 import {CARD_PROJECT_REQUEST} from "./models/Card/CardProjectRequestType.js"
@@ -50,9 +51,9 @@ app.use(Virtuals({
     // "/home"
     [/^\/home?$/, "/index.html"], 
     // "/cards/idCard"
-    [/^\/cards\/\w+$/, "/index.html"], 
+    [/^\/cards\/[\w-]+$/, "/index.html"], 
     // "/boards/idBoard"
-    [/^\/boards\/\w+$/, "/index.html"], 
+    [/^\/boards\/[\w-]+$/, "/index.html"], 
     // "/login" || "/login/index" || "/login/index.html"
     [/^\/login(\/index(\.html)?)?$/, "/index.html"], 
     // "/login/error" || "/login/error/index" || "/login/error/index.html"
@@ -88,12 +89,8 @@ app.use(Auth.Session<User>((idUser) => (
   User.items.find(user => user.id === idUser) ?? null
 )))
 
-app.use((request, response, proceed) => {
-  console.log(request.AUTH)
-  proceed()
-})
 
-app.use(Auth.Local({
+app.post("/auth/login", Auth.Local({
   verify: verifyAuth,
   usernameKey: "username",
   passwordKey: "password",
@@ -106,19 +103,21 @@ app.use(Auth.Local({
   missingCredentialsMessage: "AUTH: MISSING_CREDINTAILS",
 }))
 
+app.post("/auth/login", (req, res, proceed) => {
+  if (req.AUTH.authenticated) {
+    res.status(200)
+    res.send("OK")
+  }
+})
+
 app.get("/auth/status", (request, response, proceed) => {
   response.send({
     authenticated: request.AUTH.authenticated
   })
 })
 
-app.get("/login/status", (request, response, proceed) => {
-  response.send({
-    isAuthorized: request.AUTH.authenticated
-  })
-})
 
-app.post("/api/user/create", (request, response, proceed) => {
+app.post("/api/users/create", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
@@ -126,23 +125,25 @@ app.use(Auth.Check({
   action: "responde",
 }))
 
-app.get("/api/user/project", (request, response, proceed) => {
-  const body = USER_PROJECT_REQUEST(request.body, {strict: true})
-  const user = User.one(body.id)
+app.get("/api/users/project", (
+  JSONQueryParser(USER_PROJECT_REQUEST)
+))
 
+app.get("/api/users/project", (request, response, proceed) => {
+  console.log(JSON.stringify(request.query.projector, null, 2))
   response.status(200)
-  response.send(user.project(body.projector as any))
+  response.send(request.AUTH.user!.project(request.query.projector as any))
 })
 
-app.patch("/api/user/edit", (request, response, proceed) => {
+app.patch("/api/users/edit", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.delete("/api/user/destroy", (request, response, proceed) => {
+app.delete("/api/users/destroy", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.get("/api/board/project", (request, response, proceed) => {
+app.get("/api/boards/project", (request, response, proceed) => {
   const body = BOARD_PROJECT_REQUEST(request.body, {strict: true})
   const board = Board.one(body.id)
 
@@ -150,19 +151,19 @@ app.get("/api/board/project", (request, response, proceed) => {
   response.send(board.project(body.projector as any))
 })
 
-app.post("/api/board/create", (request, response, proceed) => {
+app.post("/api/boards/create", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/api/board/edit", (request, response, proceed) => {
+app.patch("/api/boards/edit", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.delete("/api/board/destroy", (request, response, proceed) => {
+app.delete("/api/boards/destroy", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.get("/api/label/project", (request, response, proceed) => {
+app.get("/api/labels/project", (request, response, proceed) => {
   const body = LABEL_PROJECT_REQUEST(request.body, {strict: true})
   const label = Label.one(body.id)
 
@@ -170,19 +171,19 @@ app.get("/api/label/project", (request, response, proceed) => {
   response.send(label.project(body.projector as any))
 })
 
-app.post("/api/label/create", (request, response, proceed) => {
+app.post("/api/labels/create", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/api/label/edit", (request, response, proceed) => {
+app.patch("/api/labels/edit", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.delete("/api/label/destroy", (request, response, proceed) => {
+app.delete("/api/labels/destroy", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.get("/apl/list/project", (request, response, proceed) => {
+app.get("/api/lists/project", (request, response, proceed) => {
   const body = LIST_PROJECT_REQUEST(request.body, {strict: true})
   const list = List.one(body.id)
 
@@ -190,39 +191,39 @@ app.get("/apl/list/project", (request, response, proceed) => {
   response.send(list.project(body.projector as any))
 })
 
-app.post("/apl/list/copy", (request, response, proceed) => {
+app.post("/api/lists/copy", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.post("/apl/list/create", (request, response, proceed) => {
+app.post("/api/lists/create", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.post("/apl/list/copyAllOwnCards", (request, response, proceed) => {
+app.post("/api/lists/copyAllOwnCards", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/apl/list/move", (request, response, proceed) => {
+app.patch("/api/lists/move", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/apl/list/edit", (request, response, proceed) => {
+app.patch("/api/lists/edit", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/apl/list/sort", (request, response, proceed) => {
+app.patch("/api/lists/sort", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/apl/list/moveAllOwnCards", (request, response, proceed) => {
+app.patch("/api/lists/moveAllOwnCards", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.delete("/apl/list/destroy", (request, response, proceed) => {
+app.delete("/api/lists/destroy", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.get("/api/card/project", (request, response, proceed) => {
+app.get("/api/cards/project", (request, response, proceed) => {
   const body = CARD_PROJECT_REQUEST(request.body, {strict: true})
   const card = Card.one(body.id)
 
@@ -230,39 +231,39 @@ app.get("/api/card/project", (request, response, proceed) => {
   response.send(card.project(body.projector as any))
 })
 
-app.post("/api/card/copy", (request, response, proceed) => {
+app.post("/api/cards/copy", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.post("/api/card/create", (request, response, proceed) => {
+app.post("/api/cards/create", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/api/card/edit", (request, response, proceed) => {
+app.patch("/api/cards/edit", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/api/card/label", (request, response, proceed) => {
+app.patch("/api/cards/label", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/api/card/move", (request, response, proceed) => {
+app.patch("/api/cards/move", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/api/card/unlabel", (request, response, proceed) => {
+app.patch("/api/cards/unlabel", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/api/card/setLabels", (request, response, proceed) => {
+app.patch("/api/cards/setLabels", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.delete("/api/card/destroy", (request, response, proceed) => {
+app.delete("/api/cards/destroy", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.get("/api/checklist/project", (request, response, proceed) => {
+app.get("/api/checklists/project", (request, response, proceed) => {
   const body = CHECKLIST_PROJECT_REQUEST(request.body, {strict: true})
   const checklist = Checklist.one(body.id)
 
@@ -270,19 +271,19 @@ app.get("/api/checklist/project", (request, response, proceed) => {
   response.send(checklist.project(body.projector as any))
 })
 
-app.post("/api/checklist/create", (request, response, proceed) => {
+app.post("/api/checklists/create", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/api/checklist/edit", (request, response, proceed) => {
+app.patch("/api/checklists/edit", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.delete("/api/checklist/destroy", (request, response, proceed) => {
+app.delete("/api/checklists/destroy", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.get("/api/checkitem/project", (request, response, proceed) => {
+app.get("/api/checkitems/project", (request, response, proceed) => {
   const body = CHECKITEM_PROJECT_REQUEST(request.body, {strict: true})
   const checkitem = Checkitem.one(body.id)
 
@@ -290,19 +291,19 @@ app.get("/api/checkitem/project", (request, response, proceed) => {
   response.send(checkitem.project(body.projector as any))
 })
 
-app.post("/api/checkitem/create", (request, response, proceed) => {
+app.post("/api/checkitems/create", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/api/checkitem/edit", (request, response, proceed) => {
+app.patch("/api/checkitems/edit", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.patch("/api/checkitem/move", (request, response, proceed) => {
+app.patch("/api/checkitems/move", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
-app.delete("/api/checkitem/destroy", (request, response, proceed) => {
+app.delete("/api/checkitems/destroy", (request, response, proceed) => {
   response.status(200).send("OK")
 })
 
@@ -337,3 +338,6 @@ server.on("listening", () => {
 })
 
 server.listen(PORT)
+
+
+import "./data/bluemoon.js"

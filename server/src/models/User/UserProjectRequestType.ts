@@ -4,7 +4,6 @@ import {USER_PROJECTOR} from "./UserProjectorType.js"
 
 
 export const USER_PROJECT_REQUEST = OBJECT({
-  id: STRING(),
   projector: USER_PROJECTOR,
 }, {
   name: "USER_PROJECT_REQUEST",

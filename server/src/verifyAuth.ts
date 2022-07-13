@@ -5,6 +5,11 @@ import {LocalMethodVerifyReturn} from "authenticator"
 function verifyAuth(username: string, password: string) {
   const user = User.items.find(user => user.username === username)
 
+  console.log({
+    username,
+    password,
+  }, user?.password)
+
   if (!user) {
     return LocalMethodVerifyReturn.UNKNOWN_USER
   }

@@ -17,13 +17,13 @@ export interface BoardProjector {
 }
 
 
-export const boardRawNestedProjector: BoardProjector = Object.freeze({
+export const boardRawNestedProjector = Object.freeze<BoardProjector>({
   keys: ["id", "title", "theme", "isStarred", "dateLastView", "dateCreation", "dateLastView"],
   lists: list.rawNested,
   labels: label.rawNested,
 });
 
-export const boardRawUnnestedProjector: BoardProjector = Object.freeze({
+export const boardRawUnnestedProjector = Object.freeze<BoardProjector>({
   keys: ["id", "title", "theme", "isStarred", "dateLastView", "dateCreation", "dateLastView"],
   lists: list.rawNested,
   labels: label.rawNested,

@@ -88,6 +88,8 @@ const Form = React.memo<{}>(() => {
       <p className={`${typeography.center} ${typeography.sm}`}>
         Don't have an account? 
         
+        {" "}
+        
         <Link className={typeography.link} to="/signup"> 
           Create one
         </Link>

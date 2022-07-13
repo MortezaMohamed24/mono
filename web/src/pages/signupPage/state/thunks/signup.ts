@@ -1,36 +1,36 @@
-import {ERRORS} from "/api/signup";
-import {signup} from "/api/signup";
-import {GetState} from "/store";
-import {Dispatch} from "/store";
-import {RequestBody} from "/api/signup";
-import {SignupActionPending} from "../actions";
-import {SignupActionRejected} from "../actions";
-import {SignupActionFulfilled} from "../actions";
+import {ERRORS} from "/api/signup"
+import {signup} from "/api/signup"
+import {GetState} from "/store"
+import {Dispatch} from "/store"
+import {RequestBody} from "/api/signup"
+import {SignupActionPending} from "../actions"
+import {SignupActionRejected} from "../actions"
+import {SignupActionFulfilled} from "../actions"
 
 
 const thunk = (body: RequestBody) => async (dispatch: Dispatch, getState: GetState) => {
-  const state = getState().sp;
+  const state = getState().sp
 
   if ((
     state.status !== "idle"
   ) || (
     state.validity !== true
   )) {
-    return;
+    return
   }
 
-  dispatch(SignupActionPending());
+  dispatch(SignupActionPending())
 
   try {
-    await signup(body);
+    await signup(body)
     dispatch(SignupActionFulfilled())
   } catch (e) {
-    dispatch(SignupActionRejected(e));
+    dispatch(SignupActionRejected(e))
   }
 
-};
+}
 
-thunk.ERRORS = ERRORS;
+thunk.ERRORS = ERRORS
 
 
-export default thunk;
+export default thunk

@@ -67,7 +67,7 @@ declare function ApiMutator<
     RejectedAction, 
     FulfilledAction, 
     UnpreparedRequestMeta,
-    >
+  >
 )
 
 

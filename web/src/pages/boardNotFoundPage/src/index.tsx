@@ -1,20 +1,20 @@
-import s from "./style";
-import ur from "/features/user";
-import btn from "/style/button/style";
-import React from "react";
-import {Link} from "react-router-dom";
-import typeography from "/style/typeography/style";
-import {useSelector} from "react-redux";
+import s from "./style"
+import ur from "/features/user"
+import btn from "/style/button/style"
+import React from "react"
+import {Link} from "react-router-dom"
+import typeography from "/style/typeography/style"
+import {useSelector} from "react-redux"
 
 
 function BoardNotFoundPage() {
-  const user = useSelector(ur.user);
+  const user = useSelector(ur.user)
 
 
   if (user.$status !== "succeeded") {
     throw new Error(
       "<Avatar /> component could not render because the user state is not available"
-    );
+    )
   }
 
 
@@ -38,8 +38,8 @@ function BoardNotFoundPage() {
       </Link>
 
     </div>
-  );
+  )
 }
 
 
-export default BoardNotFoundPage;
+export default BoardNotFoundPage

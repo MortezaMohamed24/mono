@@ -6,7 +6,7 @@ type Options = {
 }
 
 /** Matches an Object Id's hex string representation */
-const PATTERN = /^[0-9a-fA-F]{24}$/;
+const PATTERN = (/^[0123456789abcdef-]{36}$/u);
 
 
 const OID = ({name}: Options = {}) => (
